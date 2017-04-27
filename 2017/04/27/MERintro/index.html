@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="音乐情感识别简介"/>
+
+
+
+
+  <meta name="keywords" content="MER," />
+
+
+
+
+  <link rel="alternate" href="/default" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/04/27/MERintro/"/>
+
+
+<meta name="description" content="音乐情感识别的重要性：1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。  音乐情感识别的基础框架：     音乐情感识别的四个问题：    情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；   情感注释的认知负载；   情绪感知的主观性；   低层特征和高层感知之间的语义鸿沟。      《Music Emotion Re">
+<meta name="keywords" content="MER">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音乐情感识别简介">
+<meta property="og:url" content="http://yoursite.com/2017/04/27/MERintro/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="音乐情感识别的重要性：1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。  音乐情感识别的基础框架：     音乐情感识别的四个问题：    情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；   情感注释的认知负载；   情绪感知的主观性；   低层特征和高层感知之间的语义鸿沟。      《Music Emotion Re">
+<meta property="og:image" content="http://yoursite.com/2017/04/27/MERintro/merc1-1.png">
+<meta property="og:image" content="http://yoursite.com/2017/04/27/MERintro/merc1-2.png">
+<meta property="og:image" content="http://yoursite.com/2017/04/27/MERintro/merc1-3.png">
+<meta property="og:updated_time" content="2017-04-27T06:37:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音乐情感识别简介">
+<meta name="twitter:description" content="音乐情感识别的重要性：1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。  音乐情感识别的基础框架：     音乐情感识别的四个问题：    情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；   情感注释的认知负载；   情绪感知的主观性；   低层特征和高层感知之间的语义鸿沟。      《Music Emotion Re">
+<meta name="twitter:image" content="http://yoursite.com/2017/04/27/MERintro/merc1-1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+
+
+    <title> 音乐情感识别简介 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          音乐情感识别简介
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年4月27日
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <ul>
+<li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
+</li>
+<li><p>音乐情感识别的基础框架：  </p>
+<img src="/2017/04/27/MERintro/merc1-1.png" alt="音乐情感识别概略图" title="音乐情感识别概略图">
+</li>
+<li><p>音乐情感识别的四个问题：  </p>
+<ol>
+<li>情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；  </li>
+<li>情感注释的认知负载；  </li>
+<li>情绪感知的主观性；  </li>
+<li>低层特征和高层感知之间的语义鸿沟。  <img src="/2017/04/27/MERintro/merc1-2.png" alt="四个问题" title="四个问题">
+</li>
+</ol>
+</li>
+<li><p>《Music Emotion Recognizition》概览  </p>
+<img src="/2017/04/27/MERintro/merc1-3.png" alt="本书概览" title="本书概览">
+</li>
+</ul>
+<a id="more"></a>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://yoursite.com/2017/04/27/MERintro/">http://yoursite.com/2017/04/27/MERintro/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/MER/">MER</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/04/27/openSMILE/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">openSMILE</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/27/ApplicationMath/cluster/">
+        <span class="next-text nav-default">聚类</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            阅读更多
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

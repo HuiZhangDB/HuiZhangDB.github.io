@@ -3,6 +3,497 @@
   
     
     <entry>
+      <title><![CDATA[Markov Chains & HMM]]></title>
+      <url>/2017/04/27/ApplicationMath/mc/</url>
+      <content type="html"><![CDATA[<p>会其意，知其形。</p>
+<h2 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h2><p>服从马尔可夫性（无记忆性）：当前状态只与前一个状态有关，与更往前的状态无关。</p>
+<h2 id="HMM-Hiden-Markov-Model"><a href="#HMM-Hiden-Markov-Model" class="headerlink" title="HMM(Hiden Markov Model)"></a>HMM(Hiden Markov Model)</h2><p>一个概率模型，用于描述系统隐性状态的转移和隐性状态的表现（输出）概率。</p>
+<ul>
+<li>可见状态链</li>
+<li>隐含状态链    <img src="/2017/04/27/ApplicationMath/mc/chains.jpg" alt="chains.jpg" title=""></li>
+<li>隐含状态数量  </li>
+<li>隐含状态之间的转换概率(transition probability)    <img src="/2017/04/27/ApplicationMath/mc/transition.jpg" alt="transition.jpg" title=""></li>
+<li>隐含状态到可见状态的输出概率(emission probability)    <img src="/2017/04/27/ApplicationMath/mc/emission.jpg" alt="emission.jpg" title="">  
+</li>
+</ul>
+<h3 id="HMM能做什么，怎么做？"><a href="#HMM能做什么，怎么做？" class="headerlink" title="HMM能做什么，怎么做？"></a>HMM能做什么，怎么做？</h3><ol>
+<li>估计(evaluation)<br> 转换概率+输出概率 -&gt; 可见状态出现的概率 （动态规划、forward algorithm）</li>
+<li>解码(decoding)<br> 转换概率+输出概率+可见状态链 -&gt; 隐含状态链 （极大似然、Viterbi algorithm）      </li>
+<li>学习(learning)<br> a. 有可见状态链和隐含状态链-&gt;HMM模型<br> b. 只有可见状态链-&gt;HMM模型</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 应用工程数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PCA主成分分析]]></title>
+      <url>/2017/04/27/ApplicationMath/pca/</url>
+      <content type="html"><![CDATA[<ol>
+<li>零均值化：每个属性值减去其均值</li>
+<li>求协方差矩阵</li>
+<li>求协方差矩阵的特征值和特征向量</li>
+<li>保留主成分</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 应用工程数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Point Esimation 点估计]]></title>
+      <url>/2017/04/27/ApplicationMath/pe/</url>
+      <content type="html"><![CDATA[<h2 id="hoeffdingbu不等式"><a href="#hoeffdingbu不等式" class="headerlink" title="hoeffdingbu不等式"></a>hoeffdingbu不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|X-EX|&gt;=t) &lt;= 2exp(-2(tn)^2 / ∑(bi-ai)^2)</div></pre></td></tr></table></figure>
+<h2 id="Regression回归分析"><a href="#Regression回归分析" class="headerlink" title="Regression回归分析"></a>Regression回归分析</h2><p>Bias-Variance Tradeoff</p>
+<ul>
+<li>欠拟合 underfitting 高偏差 bias</li>
+<li>过拟合 overfitting 高方差 variance</li>
+</ul>
+<p>解决方法：1、减少选取的特征数量；2、正则化 regularization</p>
+<h2 id="Polynomial-Curve-Fitting"><a href="#Polynomial-Curve-Fitting" class="headerlink" title="Polynomial Curve Fitting"></a>Polynomial Curve Fitting</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Y = XA </div><div class="line">#使用法向量计算最小二乘法结果</div><div class="line">A = (X.T * X) * X.T * Y</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 应用工程数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[聚类]]></title>
+      <url>/2017/04/27/ApplicationMath/cluster/</url>
+      <content type="html"><![CDATA[<h2 id="相似性衡量"><a href="#相似性衡量" class="headerlink" title="相似性衡量"></a>相似性衡量</h2><ul>
+<li>距离</li>
+<li>相似性</li>
+<li>核函数</li>
+<li>DTW（dynamic time warping 一种特殊的距离算法）</li>
+</ul>
+<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
+<li><p>划分聚类(Partition-based methods)<br>确认聚类数量，挑选初始点 -&gt; 类内的点足够近，类间的点足够远。</p>
+</li>
+<li><p>密度聚类(Density-based methods)<br>指定圈的最大半径，包含的最少点数量 -&gt; 画圈。</p>
+</li>
+<li><p>模型聚类(Model-based methods)<br>基于概率模型和神经网络模型 -&gt; 同一类属于同一概率分布</p>
+</li>
+<li><p>层次聚类(Hierarchical methods)<br>自下而上法 (bottom-up) 和自上而下法 (top-down)，根据linkage迭代联合或者排异。</p>
+</li>
+<li><p>网格聚类(Grid-based methods)<br>将数据空间划分为网格单元，将数据对象集映射到网格单元中。计算每个单元的密度，根据阈值确定高密度单元 -&gt; 相近的高密度单元组成类</p>
+</li>
+</ul>
+<h3 id="常用聚类算法"><a href="#常用聚类算法" class="headerlink" title="常用聚类算法"></a>常用聚类算法</h3><p><a href="http://scikit-learn.org/stable/modules/clustering.html#clustering" target="_blank" rel="external">Overview of clustering methods</a>  </p>
+<ul>
+<li><p>k-means</p>
+<img src="/2017/04/27/ApplicationMath/cluster/kmeans01.png" alt="kmeans01.png" title="">
+<img src="/2017/04/27/ApplicationMath/cluster/kmeans02.png" alt="kmeans02.png" title="">
+</li>
+<li><p>GMM</p>
+<img src="/2017/04/27/ApplicationMath/cluster/gmm01.png" alt="gmm01.png" title="">
+<img src="/2017/04/27/ApplicationMath/cluster/gmm02.png" alt="gmm02.png" title="">
+</li>
+</ul>
+<h2 id="数据简化"><a href="#数据简化" class="headerlink" title="数据简化"></a>数据简化</h2><ul>
+<li>变化</li>
+<li>降维</li>
+<li>抽样</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 应用工程数学 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[音乐情感识别简介]]></title>
+      <url>/2017/04/27/MERintro/</url>
+      <content type="html"><![CDATA[<ul>
+<li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
+</li>
+<li><p>音乐情感识别的基础框架：  </p>
+<img src="/2017/04/27/MERintro/merc1-1.png" alt="音乐情感识别概略图" title="音乐情感识别概略图">
+</li>
+<li><p>音乐情感识别的四个问题：  </p>
+<ol>
+<li>情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；  </li>
+<li>情感注释的认知负载；  </li>
+<li>情绪感知的主观性；  </li>
+<li>低层特征和高层感知之间的语义鸿沟。  <img src="/2017/04/27/MERintro/merc1-2.png" alt="四个问题" title="四个问题">
+</li>
+</ol>
+</li>
+<li><p>《Music Emotion Recognizition》概览  </p>
+<img src="/2017/04/27/MERintro/merc1-3.png" alt="本书概览" title="本书概览">
+</li>
+</ul>
+<a id="more"></a>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> MER </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[openSMILE]]></title>
+      <url>/2017/04/27/openSMILE/</url>
+      <content type="html"><![CDATA[<p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
+<p>S2. 下载依赖工具库  </p>
+<ul>
+<li>autotools(automake, autoconf, libtool, and m4)  </li>
+<li>make</li>
+<li>GNU C and C++ compiler gcc and g++</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ brew install automake</div><div class="line">$ brew install autoconf</div><div class="line">$ brew install libtool</div><div class="line">$ brew install m4</div><div class="line">$ brew install gcc</div></pre></td></tr></table></figure>
+<p>S3. 解压并安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ tar-zxvf opensmile-X.X.X.tar.gz</div><div class="line">$ cd opensmile-X.X.X</div><div class="line">$ sh buildStandalone.sh</div></pre></td></tr></table></figure>
+<p>S4. 测试安装是否成功  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ SMILExtract -h</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> MER </tag>
+            
+            <tag> feature </tag>
+            
+            <tag> tool </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Features in MER]]></title>
+      <url>/2017/04/27/MERFeature/</url>
+      <content type="html"><![CDATA[<h2 id="Analysis-Content"><a href="#Analysis-Content" class="headerlink" title="Analysis Content"></a>Analysis Content</h2><ul>
+<li>Text-Content   (Web-Documents, Social-Tags, Lyrics)  </li>
+<li>Audio-Content  （Acoustic Features）</li>
+</ul>
+<a id="more"></a>
+<h2 id="Audio-Content"><a href="#Audio-Content" class="headerlink" title="Audio-Content"></a>Audio-Content</h2><p>P1. Measurement and time series analysis of emotion in music(Schubert1999 <em>Cited: 118’</em>)<br>A very old book introducing measurement and time series analysis of emotion in music.</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loudnedss related</td>
+<td>Dynamics</td>
+</tr>
+<tr>
+<td>Pitch related</td>
+<td>Mean pitch, Pitch range, Variation in pitch, Melodic contour, Register, Mode, Timbre, Harmony</td>
+</tr>
+<tr>
+<td>Duration related</td>
+<td>Tempo, Articulation, Note onset, Vibrato, Rhythm, Metre</td>
+</tr>
+</tbody>
+</table>
+<p>P2. Automatic mood detection from acoustic music data(ISMIR2003 <em>Cited: 233’</em>)<br>“It was indicated that mode, intensity, timbre and rhythm are of great significance in arousing different music moods. However, mode is very difficult to obtain from acoustic data (Hinn, 1996). Therefore, only the rest three features are extracted and used in our mood detection system.”</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intensity</td>
+<td>Root mean-square (RMS) level in decibels</td>
+</tr>
+<tr>
+<td>Rhythm</td>
+<td>Average strength, Average correlation peak, Average tempo</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>Spectral Shape Features: Centroid, Bandwidth, Roll off, Spectral Flux; Spectral Contrast Features: Sub-band Peak, Sub-band Valley, Sub-band Average</td>
+</tr>
+</tbody>
+</table>
+<p>P3. Disambiguating Music Emotion Using Software Agents(ISMIR2004 <em>Cited: 118’</em>)<br>This paper confirmed the results of P2 which found that emotional intensity was highly correlated with rhythm and timbre features.</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tempo</td>
+<td>Beats per Minute (BPM)</td>
+</tr>
+<tr>
+<td>LLD</td>
+<td>Low-level standard descriptors from the MPEG-7 audio standard (12 attributes)</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>Spectral centroid, Spectral rolloff, Spectral flux, Spectral kurtosis</td>
+</tr>
+<tr>
+<td>Intensity</td>
+<td>Labels of intensity from 0 to 9 were applied to instances by a human listener</td>
+</tr>
+<tr>
+<td>Another 12 attributes</td>
+<td>Generated by a genetic algorithm using the Sony Extractor Discovery System (EDS)</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：Wavelet tools, MPEG-7 Low Level Descriptors, Sony Extractor Discovery System (EDS)  </p>
+<p>P4. Modeling emotional content of music using system identification(TSMC2005 <em>Cited: 104’</em>)</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamiscs</td>
+<td>Loudness level, Short term max.loudness</td>
+</tr>
+<tr>
+<td>Mean Pitch</td>
+<td>Power spectrum centroid, Mean STFT centroid</td>
+</tr>
+<tr>
+<td>Pitch Variation</td>
+<td>Mean STFT Flux, Std dev. STFT flux, Std dev. STFT centroid</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>Timbral Width, Mean STFT rolloff, Std. dev. STFT rolloff, Sharpness(Zwicker and Fastl)</td>
+</tr>
+<tr>
+<td>Harmony</td>
+<td>Spectral dissonance(Hutchinson and Knopoff), Spectral dissonance(Sethares), Tonal dissonance(Hutchinson and Knopoff), Tonal dissonance(Sethares), Complex tonalness</td>
+</tr>
+<tr>
+<td>Tempo</td>
+<td>Beats Per Minute</td>
+</tr>
+<tr>
+<td>Texture</td>
+<td>Multiplicity</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：PsySound, Marsyas</p>
+<p>P5. Music Emotion Classification: A Fuzzy Approach(ACM MM2006 <em>Cited: 142’</em>)<br>This paper used PsySound2 to extract music features and choose 15 features as recommended in P1. “begins with all 15 features and then greedily removes the worst feature sequentially until no more accuracy improvement can be obtained.” Same as <a href="./papers/popmusic.22.pdf">Detecting and Classifying Emotion in Popular Music</a>(JCIS2006 <em>Cited: 22’</em>)</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loudnedss related</td>
+<td>Dynamics</td>
+</tr>
+<tr>
+<td>Pitch related</td>
+<td>Mean pitch, Pitch range, Variation in pitch, Melodic contour, Register, Mode, Timbre, Harmony</td>
+</tr>
+<tr>
+<td>Duration related</td>
+<td>Tempo, Articulation, Note onset, Vibrato, Rhythm, Metre</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：PsySound2</p>
+<p>P6. Multi-Label Classification of Music into Emotions(ISMIR2008 <em>Cited: 529’</em>)  </p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rhythm</td>
+<td>The two highest peaks and computing their amplitudes, their BMPs (beats per minute) and the high-to-low ratio of their BPMs; Summing the histogram bins between 40-90, 90-140 and 140- 250 BPMs respectively. -&gt; 8</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>the first 13 MFCCs, spectral centroid, spectral rolloff and spectral flux for per frame -&gt; 16 -&gt; The mean, std, mean std and std std over all frames -&gt; 64</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：Marsyas tool</p>
+<p>P7. A regression approach to music emotion recognition(TASLP2008 <em>Cited: 319’</em>)<br>“extract musical features and construct a 114-dimension feature space”</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PsySound</td>
+<td>Loudness, Level, Dissonance, Pitch -&gt; 44</td>
+</tr>
+<tr>
+<td>Marsyas</td>
+<td>Spectral centroid, Spectral rolloff, Spectral flux, Time domain zero-crossing and Mel-frequency cep- stral coefficient (MFCC) -&gt; 19, 6 rhythmic content features (by beat and tempo detection), 5 pitch content features (by multi- pitch detection) -&gt; 30</td>
+</tr>
+<tr>
+<td>Spectral contrast</td>
+<td>Capture the relative spectral information in each subband and utilize the spectral peak, spectral valley, and their dynamics as features -&gt; 12</td>
+</tr>
+<tr>
+<td>DWCH</td>
+<td>histograms of Daubechies wavelet co- efficients at different frequency subbands with different resolutions -&gt; 28</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：PsySound, Marsyas, Matlab</p>
+<p>P8. Music emotion recognition: A state of the art review(ISMIR2010 <em>Cited: 268’</em>)<br>“An overview of the most common acoustic features used for mood recognition”  </p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamics</td>
+<td>RMS-Energy</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>MFCCs, Spectral-Shape, Spectral-Contrast</td>
+</tr>
+<tr>
+<td>Harmony</td>
+<td>Roughness, Harmonic-Change, Key-Clarity, Majorness</td>
+</tr>
+<tr>
+<td>Register</td>
+<td>Chromagram, Chroma-Centroid and Deviation</td>
+</tr>
+<tr>
+<td>Rhythm</td>
+<td>Rhythm-Strength, Regularity, Tempo, Beat-Histograms</td>
+</tr>
+<tr>
+<td>Articulation</td>
+<td>Event-Density, Attack-Slope, Attack-Time</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：MIRtoolbox  </p>
+<p>P9. Machine recognition of music emotion: A review(TIST2012 <em>Cited: 139’</em>)<br>“briefly review some features that have been utilized in MER”</p>
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Energy</td>
+<td>Audio power, Total loudness, Specific loudness sensation coefficients(SONE)</td>
+</tr>
+<tr>
+<td>Rhythm</td>
+<td>Rhythm Strength, Rhythm Regularity, Rhythm Clarity, Average onset frequency, Average tempo</td>
+</tr>
+<tr>
+<td>Melody</td>
+<td>Salient Pitch, Chromagram center, Key clarity, Mode, Harmonic change</td>
+</tr>
+<tr>
+<td>Timbre</td>
+<td>MFCC</td>
+</tr>
+</tbody>
+</table>
+<p>Tools recommended：MA Toolbox, MIRtoolbox, Marsyas tool</p>
+<p>P10. Developing a benchmark for emotional analysis of music(PloSone2017)<br>This is a interesting competive workshop.<br>“Performance of the different feature-sets on valence, development and evaluation-sets of 2015, 20 fold cross-validation”<br><img src="/2017/04/27/MERFeature/journal.pone.0173392.t007.PNG" alt="journal.pone.0173392.t007.PNG" title=""><br>“Performance of the different feature-sets on arousal, development and evaluation-sets of 2015, 20 fold cross-validation”<br><img src="/2017/04/27/MERFeature/journal.pone.0173392.t008.PNG" alt="journal.pone.0173392.t008.PNG" title=""></p>
+<p>Tools recommended：OpenSMILE</p>
+<h2 id="Findings"><a href="#Findings" class="headerlink" title="Findings"></a>Findings</h2><ol>
+<li><p>Every lab has its own emo-features-set in music. Most common used features:<br>MFCCs, Loudness, Spectral features (centroid, flux, rolloff, flatness), Timbre, Rhythm, Pitch, Harmony, Zero crossing rate</p>
+</li>
+<li><p>Acoustic feature extraction has better use a number of tools to give a broad mix from which to select the best features:<br>Marsyas, MIRtoolbox, PsySound, OpenSMILE</p>
+</li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> MER </tag>
+            
+            <tag> feature </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[音乐情感计算相关期刊收集整理]]></title>
       <url>/2017/04/27/journals/</url>
       <content type="html"><![CDATA[<h2 id="SCI"><a href="#SCI" class="headerlink" title="SCI"></a>SCI</h2><ul>
@@ -96,6 +587,17 @@
     </entry>
     
     <entry>
+      <title></title>
+      <url>/2017/03/21/ApplicationMath/pgm/</url>
+      <content type="html"><![CDATA[<p>#Probably Graphic Model<br>简而言之，数形结合的思想。</p>
+<p>##贝叶斯网络<br>即有向图模型<br><img src="/2017/03/21/ApplicationMath/pgm/bayes.png" alt="bayes.png" title=""></p>
+<p>##马尔可夫随机场<br>即无向图模型<br><img src="/2017/03/21/ApplicationMath/pgm/makov.png" alt="makov.png" title=""></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python2.7 基础学习笔记]]></title>
       <url>/2016/12/26/Python/index/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -159,34 +661,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python Web]]></title>
-      <url>/2016/12/26/Python/PythonWeb/</url>
-      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
-<a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Socket通信]]></title>
       <url>/2016/12/26/Python/Socket/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -216,27 +690,101 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python面向对象编程]]></title>
-      <url>/2016/12/06/Python/PythonOOP/</url>
-      <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
+      <title><![CDATA[Python Web]]></title>
+      <url>/2016/12/26/Python/PythonWeb/</url>
+      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
 <a id="more"></a>
-<h2 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h2><p>通过在实例上调用方法可以直接操作对象内部的数据，但无需知道方法内部的实现细节。即，可以用类的方法来<code>封装</code>其数据和逻辑。</p>
-<p>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.name = name</div><div class="line"><span class="meta">... </span>            self.score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa = Student(<span class="string">'Lisa'</span>,<span class="number">80</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age </div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa.age </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'age'</span></div></pre></td></tr></table></figure>
-<h2 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h2><p>想要类的内部属性不被外部访问，可以加上前缀<code>__</code>将其定义为私有变量。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.__name = name</div><div class="line"><span class="meta">... </span>            self.__score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.__name</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></div></pre></td></tr></table></figure>
-<p>这样使得外部代码不能随意修改对象内部的状态。但也可以使用<code>get_name</code>或者<code>set_score</code>这样的方法获取或者修改（可以检查参数避免传入无效参数）类属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">return</span> self.__name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self,score)</span>:</span></div><div class="line">	<span class="keyword">if</span> <span class="number">0</span> &lt;= score &lt;= <span class="number">100</span>:</div><div class="line">			self.__score = score</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">raise</span> ValueError(<span class="string">'bad score'</span>)</div></pre></td></tr></table></figure>
-<p>但值得注意的是，还有一种以一个下划线<code>_</code>开头的实例变量名，比如<code>_name</code>，这样的实例变量名外部是可以访问的，但按照约定俗成的规定，看到这样变量的意思是：“虽然我可以访问，但请把我视为一个私有变量，不要随意访问。”</p>
-<h2 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h2><p>在定义一个class的时候可以从现有的class继承，新的class就是<code>子类(Subclass)</code>，被继承的class称为<code>基类、父类或超类(Superclass)</code>。继承可以把父类的所有功能都直接拿过来，子类只需要新增自己特有的方法，也可以把父类不合适的方法覆盖重写。</p>
-<p>有了继承，才能有多态。多态使得调用父类型的方法时不需要考虑其切确的子类型，在运行时解释器会根据该对象的确切类型决定具体方法。在调用类实例的方法时，尽量把变量当做父类类型，这样所有的子类类型都可以被正常接收。著名的“开闭”原则：</p>
-<ul>
-<li>对拓展开放：允许新增子类</li>
-<li>对修改封闭：不需要修改依赖父类的函数</li>
-</ul>
-<p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
-<h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
+<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
+<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
+<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
+<p>最大限度分离Python代码和HTML代码</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python错误、调试和测试]]></title>
+      <url>/2016/12/06/Python/PythonDebug/</url>
+      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
+<a id="more"></a>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
+<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
+<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
+<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
+<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
+<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	a simple dict</div><div class="line"></div><div class="line">	&gt;&gt;&gt; d1 = Dict()</div><div class="line">	&gt;&gt;&gt; d1['x'] = 100</div><div class="line">	&gt;&gt;&gt; d1.x</div><div class="line">	100</div><div class="line">	&gt;&gt;&gt; d1.y = 200</div><div class="line">	&gt;&gt;&gt; d1['y']</div><div class="line">	200</div><div class="line">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</div><div class="line">	&gt;&gt;&gt; d2.c</div><div class="line">	'3'</div><div class="line">    &gt;&gt;&gt; d2['empty']</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    KeyError: 'empty'</div><div class="line">    &gt;&gt;&gt; d2.empty</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    AttributeError: 'Dict' object has no attribute 'empty'</div><div class="line">    '''</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PythonIO编程]]></title>
+      <url>/2016/12/06/Python/PythonIO/</url>
+      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+<a id="more"></a>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
+<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -299,73 +847,27 @@
     </entry>
     
     <entry>
-      <title><![CDATA[PythonIO编程]]></title>
-      <url>/2016/12/06/Python/PythonIO/</url>
-      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+      <title><![CDATA[Python面向对象编程]]></title>
+      <url>/2016/12/06/Python/PythonOOP/</url>
+      <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
 <a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python错误、调试和测试]]></title>
-      <url>/2016/12/06/Python/PythonDebug/</url>
-      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-<a id="more"></a>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
-<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
-<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
-<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
-<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
-<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	a simple dict</div><div class="line"></div><div class="line">	&gt;&gt;&gt; d1 = Dict()</div><div class="line">	&gt;&gt;&gt; d1['x'] = 100</div><div class="line">	&gt;&gt;&gt; d1.x</div><div class="line">	100</div><div class="line">	&gt;&gt;&gt; d1.y = 200</div><div class="line">	&gt;&gt;&gt; d1['y']</div><div class="line">	200</div><div class="line">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</div><div class="line">	&gt;&gt;&gt; d2.c</div><div class="line">	'3'</div><div class="line">    &gt;&gt;&gt; d2['empty']</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    KeyError: 'empty'</div><div class="line">    &gt;&gt;&gt; d2.empty</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    AttributeError: 'Dict' object has no attribute 'empty'</div><div class="line">    '''</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<h2 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h2><p>通过在实例上调用方法可以直接操作对象内部的数据，但无需知道方法内部的实现细节。即，可以用类的方法来<code>封装</code>其数据和逻辑。</p>
+<p>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.name = name</div><div class="line"><span class="meta">... </span>            self.score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa = Student(<span class="string">'Lisa'</span>,<span class="number">80</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age </div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa.age </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'age'</span></div></pre></td></tr></table></figure>
+<h2 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h2><p>想要类的内部属性不被外部访问，可以加上前缀<code>__</code>将其定义为私有变量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.__name = name</div><div class="line"><span class="meta">... </span>            self.__score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.__name</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></div></pre></td></tr></table></figure>
+<p>这样使得外部代码不能随意修改对象内部的状态。但也可以使用<code>get_name</code>或者<code>set_score</code>这样的方法获取或者修改（可以检查参数避免传入无效参数）类属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">return</span> self.__name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self,score)</span>:</span></div><div class="line">	<span class="keyword">if</span> <span class="number">0</span> &lt;= score &lt;= <span class="number">100</span>:</div><div class="line">			self.__score = score</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">raise</span> ValueError(<span class="string">'bad score'</span>)</div></pre></td></tr></table></figure>
+<p>但值得注意的是，还有一种以一个下划线<code>_</code>开头的实例变量名，比如<code>_name</code>，这样的实例变量名外部是可以访问的，但按照约定俗成的规定，看到这样变量的意思是：“虽然我可以访问，但请把我视为一个私有变量，不要随意访问。”</p>
+<h2 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h2><p>在定义一个class的时候可以从现有的class继承，新的class就是<code>子类(Subclass)</code>，被继承的class称为<code>基类、父类或超类(Superclass)</code>。继承可以把父类的所有功能都直接拿过来，子类只需要新增自己特有的方法，也可以把父类不合适的方法覆盖重写。</p>
+<p>有了继承，才能有多态。多态使得调用父类型的方法时不需要考虑其切确的子类型，在运行时解释器会根据该对象的确切类型决定具体方法。在调用类实例的方法时，尽量把变量当做父类类型，这样所有的子类类型都可以被正常接收。著名的“开闭”原则：</p>
+<ul>
+<li>对拓展开放：允许新增子类</li>
+<li>对修改封闭：不需要修改依赖父类的函数</li>
+</ul>
+<p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
+<h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
