@@ -841,31 +841,6 @@
   </entry>
   
   <entry>
-    <title>Python进程和线程</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonMulTask/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonMulTask/</id>
-    <published>2016-12-06T03:05:07.000Z</published>
-    <updated>2017-04-27T02:52:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Python错误、调试和测试</title>
     <link href="http://yoursite.com/2016/12/06/Python/PythonDebug/"/>
     <id>http://yoursite.com/2016/12/06/Python/PythonDebug/</id>
@@ -923,6 +898,31 @@
     <summary type="html">
     
       &lt;p&gt;IO编程有两种模式，一种是&lt;code&gt;同步IO&lt;/code&gt;，一种是&lt;code&gt;异步IO&lt;/code&gt;。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python进程和线程</title>
+    <link href="http://yoursite.com/2016/12/06/Python/PythonMulTask/"/>
+    <id>http://yoursite.com/2016/12/06/Python/PythonMulTask/</id>
+    <published>2016-12-06T03:05:07.000Z</published>
+    <updated>2017-04-27T02:52:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
     
     </summary>
     
