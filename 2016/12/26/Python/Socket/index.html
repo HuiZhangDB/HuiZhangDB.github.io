@@ -12,8 +12,12 @@
 
 
 
+  <meta name="description" content="Socket通信"/>
 
 
+
+
+  <meta name="keywords" content="python," />
 
 
 
@@ -27,15 +31,23 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/categories/First/"/>
+<link rel="canonical" href="http://yoursite.com/2016/12/26/Python/Socket/"/>
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="HuisBlog">
-<meta property="og:url" content="http://yoursite.com/categories/First/index.html">
+<meta name="description" content="socket中TCP的三次握手建立连接  socket中TCP的四次握手释放连接  TCP客户端和服务器端通信例子：   客户端   服务器端">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socket通信">
+<meta property="og:url" content="http://yoursite.com/2016/12/26/Python/Socket/index.html">
 <meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="socket中TCP的三次握手建立连接  socket中TCP的四次握手释放连接  TCP客户端和服务器端通信例子：   客户端   服务器端">
+<meta property="og:image" content="http://yoursite.com/2016/12/26/Python/Socket/tcpsend.png">
+<meta property="og:image" content="http://yoursite.com/2016/12/26/Python/Socket/tcpend.png">
+<meta property="og:updated_time" content="2017-04-27T03:04:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HuisBlog">
+<meta name="twitter:title" content="Socket通信">
+<meta name="twitter:description" content="socket中TCP的三次握手建立连接  socket中TCP的四次握手释放连接  TCP客户端和服务器端通信例子：   客户端   服务器端">
+<meta name="twitter:image" content="http://yoursite.com/2016/12/26/Python/Socket/tcpsend.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -62,11 +74,7 @@
 
 
 
-    <title>
-  
-    First · HuisBlog
-  
-</title>
+    <title> Socket通信 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -205,58 +213,117 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Socket通信
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月26日
+        </span>
+      </div>
+    </header>
+
     
-      
-        <div class="archive-title category">
-          <h2 class="archive-name">First</h2>
-        </div>
-      
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket中TCP的三次握手建立连接"><span class="toc-text">socket中TCP的三次握手建立连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#socket中TCP的四次握手释放连接"><span class="toc-text">socket中TCP的四次握手释放连接</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <a id="more"></a>
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png" alt="tcpsend.png" title="">
+<!--![tcpsend](./img/tcpsend.png "tcp三次握手")-->
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png" alt="tcpend.png" title="">
+<!--![tcpsend](./img/tcpend.png "tcp四次握手")-->
+<p>TCP客户端和服务器端通信例子： </p>
+<ul>
+<li><a href="./testexample/tcp_client.py">客户端</a>  </li>
+<li><a href="./testexample/tcp_server.py">服务器端</a></li>
+</ul>
+
+      
+    </div>
 
     
       
       
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-26
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/26/NewBlog/" class="archive-post-link">
-            博客站点迁移
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-26
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/26/hello-world/" class="archive-post-link">
-            Hello World
-          </a>
-        </span>
-      </div>
-    
-  </section>
 
-  
-  <nav class="pagination">
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="http://yoursite.com">http://yoursite.com</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://yoursite.com/2016/12/26/Python/Socket/">http://yoursite.com/2016/12/26/Python/Socket/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
     
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/26/Python/PythonWeb/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python Web</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/26/Python/PythonMat/">
+        <span class="next-text nav-default">矩阵运算</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>  
       </main>
