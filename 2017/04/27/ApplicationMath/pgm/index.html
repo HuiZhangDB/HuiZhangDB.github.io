@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
   <head>
     
 <meta charset="UTF-8"/>
@@ -12,8 +12,12 @@
 
 
 
+  <meta name="description" content="Probably Graphic Model"/>
 
 
+
+
+  <meta name="keywords" content="Math," />
 
 
 
@@ -27,23 +31,23 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/03/21/ApplicationMath/pgm/"/>
+<link rel="canonical" href="http://yoursite.com/2017/04/27/ApplicationMath/pgm/"/>
 
 
-<meta name="description" content="#Probably Graphic Model简而言之，数形结合的思想。 ##贝叶斯网络即有向图模型 ##马尔可夫随机场即无向图模型">
-<meta name="keywords">
+<meta name="description" content="简而言之，数形结合的思想。 贝叶斯网络即有向图模型 马尔可夫随机场即无向图模型">
+<meta name="keywords" content="Math">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HuisBlog">
-<meta property="og:url" content="http://yoursite.com/2017/03/21/ApplicationMath/pgm/index.html">
+<meta property="og:title" content="Probably Graphic Model">
+<meta property="og:url" content="http://yoursite.com/2017/04/27/ApplicationMath/pgm/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="#Probably Graphic Model简而言之，数形结合的思想。 ##贝叶斯网络即有向图模型 ##马尔可夫随机场即无向图模型">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/ApplicationMath/pgm/bayes.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/ApplicationMath/pgm/makov.png">
-<meta property="og:updated_time" content="2017-04-27T06:48:26.000Z">
+<meta property="og:description" content="简而言之，数形结合的思想。 贝叶斯网络即有向图模型 马尔可夫随机场即无向图模型">
+<meta property="og:image" content="http://yoursite.com/2017/04/27/ApplicationMath/pgm/bayes.png">
+<meta property="og:image" content="http://yoursite.com/2017/04/27/ApplicationMath/pgm/makov.png">
+<meta property="og:updated_time" content="2017-04-27T06:53:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HuisBlog">
-<meta name="twitter:description" content="#Probably Graphic Model简而言之，数形结合的思想。 ##贝叶斯网络即有向图模型 ##马尔可夫随机场即无向图模型">
-<meta name="twitter:image" content="http://yoursite.com/2017/03/21/ApplicationMath/pgm/bayes.png">
+<meta name="twitter:title" content="Probably Graphic Model">
+<meta name="twitter:description" content="简而言之，数形结合的思想。 贝叶斯网络即有向图模型 马尔可夫随机场即无向图模型">
+<meta name="twitter:image" content="http://yoursite.com/2017/04/27/ApplicationMath/pgm/bayes.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -70,7 +74,7 @@
 
 
 
-    <title>  · HuisBlog </title>
+    <title> Probably Graphic Model · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -148,7 +152,7 @@
           <a class="menu-item-link" href="/">
             
             
-              首页
+              Home
             
           </a>
         </li>
@@ -157,7 +161,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              归档
+              Archives
             
           </a>
         </li>
@@ -166,7 +170,7 @@
           <a class="menu-item-link" href="/tags">
             
             
-              标签
+              Tags
             
           </a>
         </li>
@@ -175,7 +179,7 @@
           <a class="menu-item-link" href="/categories">
             
             
-              分类
+              Categories
             
           </a>
         </li>
@@ -184,7 +188,7 @@
           <a class="menu-item-link" href="/about">
             
             
-              关于
+              About
             
           </a>
         </li>
@@ -213,25 +217,32 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          
+          Probably Graphic Model
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年3月21日
+          Apr 27, 2017
         </span>
       </div>
     </header>
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#贝叶斯网络"><span class="toc-text">贝叶斯网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#马尔可夫随机场"><span class="toc-text">马尔可夫随机场</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>#Probably Graphic Model<br>简而言之，数形结合的思想。</p>
-<p>##贝叶斯网络<br>即有向图模型<br><img src="/2017/03/21/ApplicationMath/pgm/bayes.png" alt="bayes.png" title=""></p>
-<p>##马尔可夫随机场<br>即无向图模型<br><img src="/2017/03/21/ApplicationMath/pgm/makov.png" alt="makov.png" title=""></p>
+        <p>简而言之，数形结合的思想。</p>
+<h2 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h2><p>即有向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/bayes.png" alt="bayes.png" title=""></p>
+<h2 id="马尔可夫随机场"><a href="#马尔可夫随机场" class="headerlink" title="马尔可夫随机场"></a>马尔可夫随机场</h2><p>即无向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/makov.png" alt="makov.png" title=""></p>
 
       
     </div>
@@ -242,16 +253,16 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>作者: </span>
+      <span>Author: </span>
       <span>Hui Zhang</span>
     </p>
     <p class="copyright-item">
-      <span>来源: </span>
+      <span>Origin: </span>
       <a href="http://yoursite.com">http://yoursite.com</a>
     </p>
     <p class="copyright-item">
-      <span>链接: </span>
-      <a href="http://yoursite.com/2017/03/21/ApplicationMath/pgm/">http://yoursite.com/2017/03/21/ApplicationMath/pgm/</a>
+      <span>Link: </span>
+      <a href="http://yoursite.com/2017/04/27/ApplicationMath/pgm/">http://yoursite.com/2017/04/27/ApplicationMath/pgm/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -269,22 +280,22 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/Math/">Math</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/26/Python/index/">
+      <a class="prev" href="/2017/04/27/ApplicationMath/mc/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python2.7 基础学习笔记</span>
-        <span class="prev-text nav-mobile">上一篇</span>
+        <span class="prev-text nav-default">Markov Chains & HMM</span>
+        <span class="prev-text nav-mobile">Prev</span>
       </a>
     
-    
-      <a class="next" href="/2017/04/26/NewBlog/">
-        <span class="next-text nav-default">Github Pages + Hexo</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 
@@ -342,11 +353,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
   </span>
   
   <span class="theme-info">
-    主题 - 
+    Theme - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
@@ -413,7 +424,7 @@
         $content$
         <div class="read-more">
           <a href="$url$" class="read-more-link">
-            阅读更多
+            Read more..
           </a>
         </div>
       </div>
