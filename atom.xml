@@ -779,6 +779,36 @@
   </entry>
   
   <entry>
+    <title>Python Web</title>
+    <link href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/PythonWeb/</id>
+    <published>2016-12-26T08:32:19.000Z</published>
+    <updated>2017-04-27T03:08:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+<a id="more"></a>
+<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
+<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
+<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
+<p>最大限度分离Python代码和HTML代码</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;HTML简介&quot;&gt;&lt;a href=&quot;#HTML简介&quot; class=&quot;headerlink&quot; title=&quot;HTML简介&quot;&gt;&lt;/a&gt;HTML简介&lt;/h2&gt;&lt;p&gt;HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Socket通信</title>
     <link href="http://huisblog.cn/2016/12/26/Python/Socket/"/>
     <id>http://huisblog.cn/2016/12/26/Python/Socket/</id>
@@ -800,36 +830,6 @@
     
       &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;a href=&quot;#socket中TCP的三次握手建立连接&quot; class=&quot;headerlink&quot; title=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;/a&gt;socket中TCP的
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python Web</title>
-    <link href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
-    <id>http://huisblog.cn/2016/12/26/Python/PythonWeb/</id>
-    <published>2016-12-26T08:32:19.000Z</published>
-    <updated>2017-04-27T03:08:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
-<a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;HTML简介&quot;&gt;&lt;a href=&quot;#HTML简介&quot; class=&quot;headerlink&quot; title=&quot;HTML简介&quot;&gt;&lt;/a&gt;HTML简介&lt;/h2&gt;&lt;p&gt;HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。&lt;/p&gt;
     
     </summary>
     
@@ -930,6 +930,30 @@
     <summary type="html">
     
       &lt;p&gt;&lt;code&gt;数据封装&lt;/code&gt;、&lt;code&gt;继承&lt;/code&gt;和&lt;code&gt;多态&lt;/code&gt;是面向对象的三大特点，&lt;code&gt;类&lt;/code&gt;和&lt;code&gt;实例&lt;/code&gt;是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量&lt;code&gt;self&lt;/code&gt;，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python小贴士</title>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonTips/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonTips/</id>
+    <published>2016-12-06T03:05:07.000Z</published>
+    <updated>2017-04-27T03:07:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;with…as&quot;&gt;&lt;a href=&quot;#with…as&quot; class=&quot;headerlink&quot; title=&quot;with…as&quot;&gt;&lt;/a&gt;&lt;code&gt;with&lt;/code&gt;…&lt;code&gt;as&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;有一些任务，可能事先需要设置（setup），事后
     
     </summary>
     
@@ -1072,30 +1096,6 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python小贴士</title>
-    <link href="http://huisblog.cn/2016/12/06/Python/PythonTips/"/>
-    <id>http://huisblog.cn/2016/12/06/Python/PythonTips/</id>
-    <published>2016-12-06T03:05:07.000Z</published>
-    <updated>2017-04-27T03:07:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;with…as&quot;&gt;&lt;a href=&quot;#with…as&quot; class=&quot;headerlink&quot; title=&quot;with…as&quot;&gt;&lt;/a&gt;&lt;code&gt;with&lt;/code&gt;…&lt;code&gt;as&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;有一些任务，可能事先需要设置（setup），事后
     
     </summary>
     
