@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://huisblog.cn/"/>
   <updated>2017-04-27T06:53:52.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://huisblog.cn/</id>
   
   <author>
     <name>Hui Zhang</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Probably Graphic Model</title>
-    <link href="http://yoursite.com/2017/04/27/ApplicationMath/pgm/"/>
-    <id>http://yoursite.com/2017/04/27/ApplicationMath/pgm/</id>
+    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pgm/"/>
+    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pgm/</id>
     <published>2017-04-27T06:40:06.000Z</published>
     <updated>2017-04-27T06:53:52.000Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="应用工程数学" scheme="http://yoursite.com/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
+      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>Markov Chains &amp; HMM</title>
-    <link href="http://yoursite.com/2017/04/27/ApplicationMath/mc/"/>
-    <id>http://yoursite.com/2017/04/27/ApplicationMath/mc/</id>
+    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/mc/"/>
+    <id>http://huisblog.cn/2017/04/27/ApplicationMath/mc/</id>
     <published>2017-04-27T06:40:05.000Z</published>
     <updated>2017-04-27T06:48:45.000Z</updated>
     
@@ -73,17 +73,17 @@
     
     </summary>
     
-      <category term="应用工程数学" scheme="http://yoursite.com/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
+      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>PCA主成分分析</title>
-    <link href="http://yoursite.com/2017/04/27/ApplicationMath/pca/"/>
-    <id>http://yoursite.com/2017/04/27/ApplicationMath/pca/</id>
+    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pca/"/>
+    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pca/</id>
     <published>2017-04-27T06:40:03.000Z</published>
     <updated>2017-04-27T06:46:36.000Z</updated>
     
@@ -107,17 +107,17 @@
     
     </summary>
     
-      <category term="应用工程数学" scheme="http://yoursite.com/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
+      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>Point Esimation 点估计</title>
-    <link href="http://yoursite.com/2017/04/27/ApplicationMath/pe/"/>
-    <id>http://yoursite.com/2017/04/27/ApplicationMath/pe/</id>
+    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/"/>
+    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pe/</id>
     <published>2017-04-27T06:40:02.000Z</published>
     <updated>2017-04-27T06:47:14.000Z</updated>
     
@@ -137,17 +137,17 @@
     
     </summary>
     
-      <category term="应用工程数学" scheme="http://yoursite.com/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
+      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>聚类</title>
-    <link href="http://yoursite.com/2017/04/27/ApplicationMath/cluster/"/>
-    <id>http://yoursite.com/2017/04/27/ApplicationMath/cluster/</id>
+    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/cluster/"/>
+    <id>http://huisblog.cn/2017/04/27/ApplicationMath/cluster/</id>
     <published>2017-04-27T06:40:01.000Z</published>
     <updated>2017-04-27T06:51:16.000Z</updated>
     
@@ -211,17 +211,17 @@
     
     </summary>
     
-      <category term="应用工程数学" scheme="http://yoursite.com/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
+      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
   <entry>
     <title>音乐情感识别简介</title>
-    <link href="http://yoursite.com/2017/04/27/MERintro/"/>
-    <id>http://yoursite.com/2017/04/27/MERintro/</id>
+    <link href="http://huisblog.cn/2017/04/27/MERintro/"/>
+    <id>http://huisblog.cn/2017/04/27/MERintro/</id>
     <published>2017-04-27T06:30:54.000Z</published>
     <updated>2017-04-27T06:54:32.000Z</updated>
     
@@ -262,14 +262,14 @@
     </summary>
     
     
-      <category term="MER" scheme="http://yoursite.com/tags/MER/"/>
+      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
     
   </entry>
   
   <entry>
     <title>openSMILE</title>
-    <link href="http://yoursite.com/2017/04/27/openSMILE/"/>
-    <id>http://yoursite.com/2017/04/27/openSMILE/</id>
+    <link href="http://huisblog.cn/2017/04/27/openSMILE/"/>
+    <id>http://huisblog.cn/2017/04/27/openSMILE/</id>
     <published>2017-04-27T06:28:08.000Z</published>
     <updated>2017-04-27T06:29:47.000Z</updated>
     
@@ -295,18 +295,18 @@
     </summary>
     
     
-      <category term="MER" scheme="http://yoursite.com/tags/MER/"/>
+      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
     
-      <category term="feature" scheme="http://yoursite.com/tags/feature/"/>
+      <category term="feature" scheme="http://huisblog.cn/tags/feature/"/>
     
-      <category term="tool" scheme="http://yoursite.com/tags/tool/"/>
+      <category term="tool" scheme="http://huisblog.cn/tags/tool/"/>
     
   </entry>
   
   <entry>
     <title>Features in MER</title>
-    <link href="http://yoursite.com/2017/04/27/MERFeature/"/>
-    <id>http://yoursite.com/2017/04/27/MERFeature/</id>
+    <link href="http://huisblog.cn/2017/04/27/MERFeature/"/>
+    <id>http://huisblog.cn/2017/04/27/MERFeature/</id>
     <published>2017-04-27T06:18:24.000Z</published>
     <updated>2017-04-27T06:27:21.000Z</updated>
     
@@ -589,16 +589,16 @@
     </summary>
     
     
-      <category term="MER" scheme="http://yoursite.com/tags/MER/"/>
+      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
     
-      <category term="feature" scheme="http://yoursite.com/tags/feature/"/>
+      <category term="feature" scheme="http://huisblog.cn/tags/feature/"/>
     
   </entry>
   
   <entry>
     <title>音乐情感计算相关期刊收集整理</title>
-    <link href="http://yoursite.com/2017/04/27/journals/"/>
-    <id>http://yoursite.com/2017/04/27/journals/</id>
+    <link href="http://huisblog.cn/2017/04/27/journals/"/>
+    <id>http://huisblog.cn/2017/04/27/journals/</id>
     <published>2017-04-27T06:13:41.000Z</published>
     <updated>2017-04-27T06:55:09.000Z</updated>
     
@@ -630,14 +630,14 @@
     </summary>
     
     
-      <category term="MER" scheme="http://yoursite.com/tags/MER/"/>
+      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
     
   </entry>
   
   <entry>
     <title>Github Pages + Hexo</title>
-    <link href="http://yoursite.com/2017/04/26/NewBlog/"/>
-    <id>http://yoursite.com/2017/04/26/NewBlog/</id>
+    <link href="http://huisblog.cn/2017/04/26/NewBlog/"/>
+    <id>http://huisblog.cn/2017/04/26/NewBlog/</id>
     <published>2017-04-26T15:50:31.000Z</published>
     <updated>2017-04-27T06:11:42.000Z</updated>
     
@@ -697,19 +697,19 @@
     
     </summary>
     
-      <category term="博客" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="http://huisblog.cn/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+      <category term="github" scheme="http://huisblog.cn/tags/github/"/>
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://huisblog.cn/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Python2.7 基础学习笔记</title>
-    <link href="http://yoursite.com/2016/12/26/Python/index/"/>
-    <id>http://yoursite.com/2016/12/26/Python/index/</id>
+    <link href="http://huisblog.cn/2016/12/26/Python/index/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/index/</id>
     <published>2016-12-26T15:50:33.000Z</published>
     <updated>2017-04-27T05:37:50.000Z</updated>
     
@@ -747,17 +747,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>矩阵运算</title>
-    <link href="http://yoursite.com/2016/12/26/Python/PythonMat/"/>
-    <id>http://yoursite.com/2016/12/26/Python/PythonMat/</id>
+    <link href="http://huisblog.cn/2016/12/26/Python/PythonMat/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/PythonMat/</id>
     <published>2016-12-26T15:50:31.000Z</published>
     <updated>2017-04-27T03:10:35.000Z</updated>
     
@@ -771,17 +771,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Socket通信</title>
-    <link href="http://yoursite.com/2016/12/26/Python/Socket/"/>
-    <id>http://yoursite.com/2016/12/26/Python/Socket/</id>
+    <link href="http://huisblog.cn/2016/12/26/Python/Socket/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/Socket/</id>
     <published>2016-12-26T08:32:19.000Z</published>
     <updated>2017-04-27T05:21:18.000Z</updated>
     
@@ -803,17 +803,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python Web</title>
-    <link href="http://yoursite.com/2016/12/26/Python/PythonWeb/"/>
-    <id>http://yoursite.com/2016/12/26/Python/PythonWeb/</id>
+    <link href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/PythonWeb/</id>
     <published>2016-12-26T08:32:19.000Z</published>
     <updated>2017-04-27T03:08:10.000Z</updated>
     
@@ -833,17 +833,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>PythonIO编程</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonIO/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonIO/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonIO/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonIO/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T05:38:49.000Z</updated>
     
@@ -866,17 +866,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python进程和线程</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonMulTask/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonMulTask/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonMulTask/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T02:52:21.000Z</updated>
     
@@ -891,17 +891,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python面向对象编程</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonOOP/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonOOP/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonOOP/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonOOP/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T02:53:00.000Z</updated>
     
@@ -933,17 +933,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python正则表达式</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonRE/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonRE/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonRE/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonRE/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T03:07:49.000Z</updated>
     
@@ -1075,17 +1075,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python小贴士</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonTips/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonTips/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonTips/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonTips/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T03:07:58.000Z</updated>
     
@@ -1099,17 +1099,17 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Python面向对象高级编程</title>
-    <link href="http://yoursite.com/2016/12/06/Python/PythonAdOOP/"/>
-    <id>http://yoursite.com/2016/12/06/Python/PythonAdOOP/</id>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonAdOOP/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonAdOOP/</id>
     <published>2016-12-06T03:05:07.000Z</published>
     <updated>2017-04-27T03:05:32.000Z</updated>
     
@@ -1145,10 +1145,10 @@
     
     </summary>
     
-      <category term="Python基础" scheme="http://yoursite.com/categories/Python%E5%9F%BA%E7%A1%80/"/>
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
     
   </entry>
   
