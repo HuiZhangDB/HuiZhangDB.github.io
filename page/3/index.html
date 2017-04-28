@@ -60,6 +60,16 @@
 
   
 
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-98256409-2', 'auto');
+        ga('send', 'pageview');
+  </script>
+
 
 
     <title> HuisBlog </title>
@@ -225,7 +235,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/06/Python/PythonAdOOP/">Python面向对象高级编程</a>
+          <a class="post-link" href="/2016/12/06/Python/PythonTips/">Python小贴士</a>
         
       </h1>
 
@@ -243,15 +253,11 @@
       
         
         
-          
-        
 
         
-          <h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2016/12/06/Python/PythonAdOOP/" class="read-more-link">Read more..</a>
-          </div>
+          <h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+
         
       
     </div>
