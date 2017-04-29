@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="Python Web"/>
+  <meta name="description" content="多组SSH-Key公钥/私钥的配置"/>
 
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="ssh,github," />
 
 
 
@@ -31,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/04/29/Multissh/"/>
 
 
-<meta name="description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta name="keywords" content="python">
+<meta name="description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
+<meta name="keywords" content="ssh,github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python Web">
-<meta property="og:url" content="http://huisblog.cn/2016/12/26/Python/PythonWeb/index.html">
+<meta property="og:title" content="多组SSH-Key公钥/私钥的配置">
+<meta property="og:url" content="http://huisblog.cn/2017/04/29/Multissh/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta property="og:updated_time" content="2017-04-27T03:08:10.000Z">
+<meta property="og:description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
+<meta property="og:updated_time" content="2017-04-29T03:16:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python Web">
-<meta name="twitter:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
+<meta name="twitter:title" content="多组SSH-Key公钥/私钥的配置">
+<meta name="twitter:description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -81,7 +81,7 @@
 
 
 
-    <title> Python Web · HuisBlog </title>
+    <title> 多组SSH-Key公钥/私钥的配置 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -242,13 +242,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Python Web
+          多组SSH-Key公钥/私钥的配置
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 26, 2016
+          Apr 29, 2017
         </span>
       </div>
     </header>
@@ -258,21 +258,22 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML简介"><span class="toc-text">HTML简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSGI-Web-Server-Gateway-Interface"><span class="toc-text">WSGI(Web Server Gateway Interface)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Web框架"><span class="toc-text">使用Web框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#本地生成公私钥"><span class="toc-text">本地生成公私钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将公钥添加到账户"><span class="toc-text">将公钥添加到账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+        <p>由于在同时使用<code>Github</code>和<code>Git@OSchina</code>（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。</p>
 <a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+<h2 id="本地生成公私钥"><a href="#本地生成公私钥" class="headerlink" title="本地生成公私钥"></a>本地生成公私钥</h2><p>Step1. 本地生成ssh keys命令：<code>ssh-keygen -t rsa -C &quot;注册邮箱&quot;</code>，生成的公私秘钥会提示是否需要重命名，键入自定义名称（防止再次生成的秘钥覆盖之前的），可跳过密码设置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 生成github ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"githubEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/github_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># 生成git@oschina ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"git@oschinaEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/oschina_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>Step2. 配置<code>config</code>将两组秘钥对应到相应的远程仓库。在.ssh/目录下新建<code>config</code>文件，其中<code>Host</code>是一个别名，命名可以随意，用来进行远程连接，当然使用真实的主机名称也是可以的。<code>HostName</code>和<code>IdentityFile</code>是各自主机名称以及对应的秘钥文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#github configuration</span></div><div class="line">Host github.com</div><div class="line">	HostName github.com</div><div class="line">	IdentityFile ~/.ssh/github_rsa</div><div class="line">	User helenzhang2015@foxmail.com</div><div class="line"></div><div class="line"><span class="comment">#gitoschina configuration</span></div><div class="line">Host git.oschina.net</div><div class="line">	HostName git.oschina.net</div><div class="line">	IdentityFile ~/.ssh/oschina_rsa</div><div class="line">	User helenzhang2015@foxmail.com</div></pre></td></tr></table></figure>
+<h2 id="将公钥添加到账户"><a href="#将公钥添加到账户" class="headerlink" title="将公钥添加到账户"></a>将公钥添加到账户</h2><p>分别将生成的公钥添加到相应的Git账户</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>测试Git连接，提示是否建立连接：yes。成功后会提示<code>Welcome...</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line">$ ssh -T git@git.oschina.net</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -292,7 +293,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2016/12/26/Python/PythonWeb/">http://huisblog.cn/2016/12/26/Python/PythonWeb/</a>
+      <a href="http://huisblog.cn/2017/04/29/Multissh/">http://huisblog.cn/2017/04/29/Multissh/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -312,7 +313,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/ssh/">ssh</a>
+            
+              <a href="/tags/github/">github</a>
             
           </div>
         
@@ -320,18 +323,12 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Python/PythonDebug/">
+      <a class="prev" href="/2017/04/27/ApplicationMath/pgm/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python错误、调试和测试</span>
+        <span class="prev-text nav-default">Probably Graphic Model</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
-    
-      <a class="next" href="/2016/12/26/Python/Socket/">
-        <span class="next-text nav-default">Socket通信</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 
