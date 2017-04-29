@@ -8,8 +8,9 @@
       <content type="html"><![CDATA[<p>最近的任务目标：确定<code>音乐情感特征集（声学特征）</code>和<code>提取方法</code>  </p>
 <a id="more"></a>
 <p>为了确定要提取的音乐情感声学特征集<code>Acoustics Features Set for Music Emotion</code>，最近看了很多相关文章（<a href="/2017/04/27/MERFeature/" title="Features in MER">Features in MER</a>）。发现对于以前的音乐情感研究工作，研究人员多数使用<a href="http://marsyas.info/" target="_blank" rel="external">Marsyas</a>（最新版本为2015年发布）和<a href="https://cn.mathworks.com/matlabcentral/fileexchange/24583-mirtoolbox" target="_blank" rel="external">MIRtoolbox</a>（MATLAB工具包）。</p>
-<p>然而近年来有一个专用于情感计算和音乐信息检索的特征提取工具<code>openSMILE</code>异军突起，这是由TUM（德国慕尼黑工业大学）开发的开源工具，近年来多个Challenge（ISComparE, MediaEval, Emobase等）频繁使用其作为<code>Baseline feature dataset</code>的提取工具，<code>openSMILE</code>针对这几个挑战也在其发布的版本中包含了相应的<code>config</code>文件。（<a href="/2017/04/27/openSMILE/" title="openSMILE安装指南">openSMILE安装指南</a>）</p>
-<p>最终，我决定使用<code>the 2013 Computational Paralinguistics Evaluation (ComParE)</code>[1] 中使用的基准数据集（它同样在<code>MediaEval 2014</code>中被作为基线数据集[2]）。它在[3] 中表现出了评估speech, music, 以及 acoustic events的多维度情感鲁棒性。同时，使用<code>openSMILE</code>作为特征提取工具。</p>
+<p>然而近年来有一个专用于<code>情感计算</code>和<code>音乐信息检索</code>的特征提取工具<code>openSMILE</code>异军突起，这是由TUM（德国慕尼黑工业大学）开发的开源工具，近年来多个Challenge（ISComparE, MediaEval, Emobase等）频繁使用其作为<code>Baseline feature dataset</code>的提取工具，<code>openSMILE</code>针对这几个挑战也在其发布的版本中包含了相应的<code>config</code>文件。（<a href="/2017/04/27/openSMILE/" title="openSMILE安装指南">openSMILE安装指南</a>）</p>
+<p>最终，我决定使用<code>the 2013 Computational Paralinguistics Evaluation (ComParE)</code>[1] 提出的基线数据集（它同样在<code>MediaEval 2014</code>中被作为基线数据集[2]）。它在[3] 中表现出了评估speech, music, 以及 acoustic events的多维度情感鲁棒性。</p>
+<p>同时，我决定使用<code>openSMILE</code>作为特征提取工具。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Schuller B, Steidl S, Batliner A, et al. The INTERSPEECH 2013 computational paralinguistics challenge: social signals, conflict, emotion, autism[J]. 2013.<br>[2] Aljanaki A, Yang Y H, Soleymani M. Developing a benchmark for emotional analysis of music[J]. PloS one, 2017, 12(3): e0173392.<br>[3] Weninger F, Eyben F, Schuller B W, et al. On the acoustics of emotion in audio: what speech, music, and sound have in common[J]. 2013.</p>
 ]]></content>
       
@@ -589,7 +590,7 @@
 <h2 id="相关比赛"><a href="#相关比赛" class="headerlink" title="相关比赛"></a>相关比赛</h2><ul>
 <li><a href="http://compare.openaudio.eu/" target="_blank" rel="external">Interspeech Computational Paralinguistics ChallengE (ComParE)</a></li>
 <li><a href="http://www.multimediaeval.org/" target="_blank" rel="external">MediaEval</a> </li>
-<li></li>
+<li><a href="http://sspnet.eu/" target="_blank" rel="external">AVEC ACM MM</a></li>
 </ul>
 <h2 id="期刊类型"><a href="#期刊类型" class="headerlink" title="期刊类型"></a>期刊类型</h2><p>判断期刊是否是SCI/EI:<br>EI: <a href="https://www.engineeringvillage.com/search/quick.url" target="_blank" rel="external">Engineering Vallige</a> Database选择Compendex（IE网络版）<br>SCI: <a href="http://ip-science.thomsonreuters.com/mjl/" target="_blank" rel="external">期刊列表</a>，<a href="http://apps.webofknowledge.com/UA_GeneralSearch_input.do?product=UA&amp;search_mode=GeneralSearch&amp;SID=3CXjlEnOuKswueSjVDT&amp;preferencesSaved=" target="_blank" rel="external">查询文章</a>选择World of Science</p>
 ]]></content>
@@ -735,16 +736,17 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python Web]]></title>
-      <url>/2016/12/26/Python/PythonWeb/</url>
-      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
-<a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+      <title><![CDATA[Socket通信]]></title>
+      <url>/2016/12/26/Python/Socket/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png" alt="tcpsend.png" title="">
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png" alt="tcpend.png" title="">
+<p>TCP客户端和服务器端通信例子： </p>
+<ul>
+<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
+<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
+</li>
+</ul>
 ]]></content>
       
         <categories>
@@ -763,17 +765,16 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Socket通信]]></title>
-      <url>/2016/12/26/Python/Socket/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png" alt="tcpsend.png" title="">
-<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png" alt="tcpend.png" title="">
-<p>TCP客户端和服务器端通信例子： </p>
-<ul>
-<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
-<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
-</li>
-</ul>
+      <title><![CDATA[Python Web]]></title>
+      <url>/2016/12/26/Python/PythonWeb/</url>
+      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+<a id="more"></a>
+<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
+<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
+<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
+<p>最大限度分离Python代码和HTML代码</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
         <categories>
