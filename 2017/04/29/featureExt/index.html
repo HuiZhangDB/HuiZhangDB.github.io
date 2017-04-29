@@ -12,10 +12,12 @@
 
 
 
-  <meta name="description" content="Hi, this is Hui's blog - 卉的学习日志"/>
+  <meta name="description" content="MER 声学特征提取"/>
 
 
 
+
+  <meta name="keywords" content="MER,feature,tool," />
 
 
 
@@ -29,18 +31,20 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/tags/feature/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/04/29/featureExt/"/>
 
 
-<meta name="description" content="Hi, this is Hui&apos;s blog - 卉的学习日志">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HuisBlog">
-<meta property="og:url" content="http://huisblog.cn/tags/feature/index.html">
+<meta name="description" content="最近的任务目标：确定音乐情感特征集（声学特征）和提取方法">
+<meta name="keywords" content="MER,feature,tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MER 声学特征提取">
+<meta property="og:url" content="http://huisblog.cn/2017/04/29/featureExt/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="Hi, this is Hui&apos;s blog - 卉的学习日志">
+<meta property="og:description" content="最近的任务目标：确定音乐情感特征集（声学特征）和提取方法">
+<meta property="og:updated_time" content="2017-04-29T09:06:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HuisBlog">
-<meta name="twitter:description" content="Hi, this is Hui&apos;s blog - 卉的学习日志">
+<meta name="twitter:title" content="MER 声学特征提取">
+<meta name="twitter:description" content="最近的任务目标：确定音乐情感特征集（声学特征）和提取方法">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -77,11 +81,7 @@
 
 
 
-    <title>
-  
-    feature · HuisBlog
-  
-</title>
+    <title> MER 声学特征提取 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -238,73 +238,111 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          MER 声学特征提取
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 29, 2017
+        </span>
+      </div>
+    </header>
+
     
-      
-        <div class="archive-title tag">
-          <h2 class="archive-name">feature</h2>
-        </div>
-      
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>最近的任务目标：确定<code>音乐情感特征集（声学特征）</code>和<code>提取方法</code>  </p>
+<a id="more"></a>
+<p>为了确定要提取的音乐情感声学特征集<code>Acoustics Features Set for Music Emotion</code>，最近看了很多相关文章（<a href="/2017/04/27/MERFeature/" title="Features in MER">Features in MER</a>）。发现对于以前的音乐情感研究工作，研究人员多数使用<a href="http://marsyas.info/" target="_blank" rel="external">Marsyas</a>（最新版本为2015年发布）和<a href="https://cn.mathworks.com/matlabcentral/fileexchange/24583-mirtoolbox" target="_blank" rel="external">MIRtoolbox</a>（MATLAB工具包）。</p>
+<p>然而近年来有一个专用于情感计算和音乐信息检索的特征提取工具<code>openSMILE</code>异军突起，这是由TUM（德国慕尼黑工业大学）开发的开源工具，近年来多个Challenge（ISComparE, MediaEval, Emobase等）频繁使用其作为<code>Baseline feature dataset</code>的提取工具，<code>openSMILE</code>针对这几个挑战也在其发布的版本中包含了相应的<code>config</code>文件。（<a href="/2017/04/27/openSMILE/" title="openSMILE安装指南">openSMILE安装指南</a>）</p>
+<p>最终，我决定使用<code>the 2013 Computational Paralinguistics Evaluation (ComParE)</code>[1] 中使用的基准数据集（它同样在<code>MediaEval 2014</code>中被作为基线数据集[2]）。它在[3] 中表现出了评估speech, music, 以及 acoustic events的多维度情感鲁棒性。同时，使用<code>openSMILE</code>作为特征提取工具。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Schuller B, Steidl S, Batliner A, et al. The INTERSPEECH 2013 computational paralinguistics challenge: social signals, conflict, emotion, autism[J]. 2013.<br>[2] Aljanaki A, Yang Y H, Soleymani M. Developing a benchmark for emotional analysis of music[J]. PloS one, 2017, 12(3): e0173392.<br>[3] Weninger F, Eyben F, Schuller B W, et al. On the acoustics of emotion in audio: what speech, music, and sound have in common[J]. 2013.</p>
+
+      
+    </div>
 
     
       
       
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-29
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/29/featureExt/" class="archive-post-link">
-            MER 声学特征提取
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-27
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/27/openSMILE/" class="archive-post-link">
-            openSMILE
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-27
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/27/MERFeature/" class="archive-post-link">
-            Features in MER
-          </a>
-        </span>
-      </div>
-    
-  </section>
 
-  
-  <nav class="pagination">
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/04/29/featureExt/">http://huisblog.cn/2017/04/29/featureExt/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/MER/">MER</a>
+            
+              <a href="/tags/feature/">feature</a>
+            
+              <a href="/tags/tool/">tool</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/04/29/Multissh/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">多组SSH-Key公钥/私钥的配置</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>  
       </main>
