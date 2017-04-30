@@ -181,9 +181,12 @@
     <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/"/>
     <id>http://huisblog.cn/2017/04/27/ApplicationMath/pe/</id>
     <published>2017-04-27T06:40:02.000Z</published>
-    <updated>2017-04-30T01:33:41.000Z</updated>
+    <updated>2017-04-30T02:02:48.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="hoeffding不等式"><a href="#hoeffding不等式" class="headerlink" title="hoeffding不等式"></a>hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。</p>
+    <content type="html"><![CDATA[<h2 id="hoeffding不等式"><a href="#hoeffding不等式" class="headerlink" title="hoeffding不等式"></a>hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(ai&lt;=Xi&lt;=bi) = 1</div></pre></td></tr></table></figure>
+<p>则其期望满足：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</div></pre></td></tr></table></figure>
 <h2 id="Regression回归分析"><a href="#Regression回归分析" class="headerlink" title="Regression回归分析"></a>Regression回归分析</h2><p>Bias-Variance Tradeoff</p>
 <ul>
 <li>欠拟合 underfitting 高偏差 bias</li>
@@ -194,8 +197,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;hoeffding不等式&quot;&gt;&lt;a href=&quot;#hoeffding不等式&quot; class=&quot;headerlink&quot; title=&quot;hoeffding不等式&quot;&gt;&lt;/a&gt;hoeffding不等式&lt;/h2&gt;&lt;p&gt;用于确认精确度，适用于所有有界的随机变量。&lt;/p&gt;
-&lt;h2 
+      &lt;h2 id=&quot;hoeffding不等式&quot;&gt;&lt;a href=&quot;#hoeffding不等式&quot; class=&quot;headerlink&quot; title=&quot;hoeffding不等式&quot;&gt;&lt;/a&gt;hoeffding不等式&lt;/h2&gt;&lt;p&gt;用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变
     
     </summary>
     
@@ -912,6 +914,31 @@
   </entry>
   
   <entry>
+    <title>Python进程和线程</title>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonMulTask/</id>
+    <published>2016-12-06T03:05:07.000Z</published>
+    <updated>2017-04-27T02:52:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
+    
+    </summary>
+    
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python面向对象高级编程</title>
     <link href="http://huisblog.cn/2016/12/06/Python/PythonAdOOP/"/>
     <id>http://huisblog.cn/2016/12/06/Python/PythonAdOOP/</id>
@@ -980,31 +1007,6 @@
     <summary type="html">
     
       &lt;p&gt;IO编程有两种模式，一种是&lt;code&gt;同步IO&lt;/code&gt;，一种是&lt;code&gt;异步IO&lt;/code&gt;。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python进程和线程</title>
-    <link href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
-    <id>http://huisblog.cn/2016/12/06/Python/PythonMulTask/</id>
-    <published>2016-12-06T03:05:07.000Z</published>
-    <updated>2017-04-27T02:52:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
     
     </summary>
     
