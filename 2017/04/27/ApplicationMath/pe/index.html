@@ -34,17 +34,17 @@
 <link rel="canonical" href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/"/>
 
 
-<meta name="description" content="hoeffdingbu不等式用于确认精确度，适用于所有有界的随机变量。 1P(|X-EX|&amp;gt;=t) &amp;lt;= 2exp(-2(tn)^2 / ∑(bi-ai)^2) Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2">
+<meta name="description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。 Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2、正则化 regularization Polynomial Curve Fitting123Y = XA">
 <meta name="keywords" content="Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Point Esimation 点估计">
 <meta property="og:url" content="http://huisblog.cn/2017/04/27/ApplicationMath/pe/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="hoeffdingbu不等式用于确认精确度，适用于所有有界的随机变量。 1P(|X-EX|&amp;gt;=t) &amp;lt;= 2exp(-2(tn)^2 / ∑(bi-ai)^2) Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2">
-<meta property="og:updated_time" content="2017-04-27T06:47:14.000Z">
+<meta property="og:description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。 Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2、正则化 regularization Polynomial Curve Fitting123Y = XA">
+<meta property="og:updated_time" content="2017-04-30T01:33:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Point Esimation 点估计">
-<meta name="twitter:description" content="hoeffdingbu不等式用于确认精确度，适用于所有有界的随机变量。 1P(|X-EX|&amp;gt;=t) &amp;lt;= 2exp(-2(tn)^2 / ∑(bi-ai)^2) Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2">
+<meta name="twitter:description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。 Regression回归分析Bias-Variance Tradeoff  欠拟合 underfitting 高偏差 bias 过拟合 overfitting 高方差 variance  解决方法：1、减少选取的特征数量；2、正则化 regularization Polynomial Curve Fitting123Y = XA">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -258,15 +258,14 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hoeffdingbu不等式"><span class="toc-text">hoeffdingbu不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regression回归分析"><span class="toc-text">Regression回归分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polynomial-Curve-Fitting"><span class="toc-text">Polynomial Curve Fitting</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hoeffding不等式"><span class="toc-text">hoeffding不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regression回归分析"><span class="toc-text">Regression回归分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polynomial-Curve-Fitting"><span class="toc-text">Polynomial Curve Fitting</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="hoeffdingbu不等式"><a href="#hoeffdingbu不等式" class="headerlink" title="hoeffdingbu不等式"></a>hoeffdingbu不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|X-EX|&gt;=t) &lt;= 2exp(-2(tn)^2 / ∑(bi-ai)^2)</div></pre></td></tr></table></figure>
+        <h2 id="hoeffding不等式"><a href="#hoeffding不等式" class="headerlink" title="hoeffding不等式"></a>hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。</p>
 <h2 id="Regression回归分析"><a href="#Regression回归分析" class="headerlink" title="Regression回归分析"></a>Regression回归分析</h2><p>Bias-Variance Tradeoff</p>
 <ul>
 <li>欠拟合 underfitting 高偏差 bias</li>
