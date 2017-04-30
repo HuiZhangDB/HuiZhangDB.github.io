@@ -140,7 +140,7 @@
     <entry>
       <title><![CDATA[Point Esimation 点估计]]></title>
       <url>/2017/04/27/ApplicationMath/pe/</url>
-      <content type="html"><![CDATA[<h2 id="hoeffding不等式"><a href="#hoeffding不等式" class="headerlink" title="hoeffding不等式"></a>hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
+      <content type="html"><![CDATA[<h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(ai&lt;=Xi&lt;=bi) = 1</div></pre></td></tr></table></figure>
 <p>则其期望满足：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</div></pre></td></tr></table></figure>

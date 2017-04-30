@@ -34,17 +34,17 @@
 <link rel="canonical" href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/"/>
 
 
-<meta name="description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
+<meta name="description" content="Hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
 <meta name="keywords" content="Math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Point Esimation 点估计">
 <meta property="og:url" content="http://huisblog.cn/2017/04/27/ApplicationMath/pe/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
-<meta property="og:updated_time" content="2017-04-30T02:02:48.000Z">
+<meta property="og:description" content="Hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
+<meta property="og:updated_time" content="2017-04-30T02:04:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Point Esimation 点估计">
-<meta name="twitter:description" content="hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
+<meta name="twitter:description" content="Hoeffding不等式用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是几乎有界的变量，即满足   1P(ai&amp;lt;=Xi&amp;lt;=bi) = 1 则其期望满足： 1P(|mean(X)-E(mean(X))|&amp;gt;=t) &amp;lt;= 2exp(-2(nt)^2/sum((bi - ai)^2)) Regression回归分析Bias-Variance T">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -258,14 +258,14 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hoeffding不等式"><span class="toc-text">hoeffding不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regression回归分析"><span class="toc-text">Regression回归分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polynomial-Curve-Fitting"><span class="toc-text">Polynomial Curve Fitting</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hoeffding不等式"><span class="toc-text">Hoeffding不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regression回归分析"><span class="toc-text">Regression回归分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polynomial-Curve-Fitting"><span class="toc-text">Polynomial Curve Fitting</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="hoeffding不等式"><a href="#hoeffding不等式" class="headerlink" title="hoeffding不等式"></a>hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
+        <h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(ai&lt;=Xi&lt;=bi) = 1</div></pre></td></tr></table></figure>
 <p>则其期望满足：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</div></pre></td></tr></table></figure>
