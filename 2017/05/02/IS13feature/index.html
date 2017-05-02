@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="多组SSH-Key公钥/私钥的配置"/>
+  <meta name="description" content="2013 ComParE Feature Set"/>
 
 
 
 
-  <meta name="keywords" content="ssh,github," />
+  <meta name="keywords" content="MER,feature," />
 
 
 
@@ -31,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2017/04/29/Multissh/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/05/02/IS13feature/"/>
 
 
-<meta name="description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
-<meta name="keywords" content="ssh,github">
+<meta name="description" content="This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains 6373 features. It consists of some gen">
+<meta name="keywords" content="MER,feature">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多组SSH-Key公钥/私钥的配置">
-<meta property="og:url" content="http://huisblog.cn/2017/04/29/Multissh/index.html">
+<meta property="og:title" content="2013 ComParE Feature Set">
+<meta property="og:url" content="http://huisblog.cn/2017/05/02/IS13feature/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
-<meta property="og:updated_time" content="2017-05-02T06:11:24.000Z">
+<meta property="og:description" content="This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains 6373 features. It consists of some gen">
+<meta property="og:updated_time" content="2017-05-02T06:07:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多组SSH-Key公钥/私钥的配置">
-<meta name="twitter:description" content="由于在同时使用Github和Git@OSchina（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。">
+<meta name="twitter:title" content="2013 ComParE Feature Set">
+<meta name="twitter:description" content="This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains 6373 features. It consists of some gen">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -81,7 +81,7 @@
 
 
 
-    <title> 多组SSH-Key公钥/私钥的配置 · HuisBlog </title>
+    <title> 2013 ComParE Feature Set · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -242,13 +242,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          多组SSH-Key公钥/私钥的配置
+          2013 ComParE Feature Set
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Apr 29, 2017
+          May 2, 2017
         </span>
       </div>
     </header>
@@ -258,22 +258,63 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#本地生成公私钥"><span class="toc-text">本地生成公私钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将公钥添加到账户"><span class="toc-text">将公钥添加到账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#65-Acoustic-low-level-descriptors-LLDs"><span class="toc-text">65 Acoustic low-level descriptors(LLDs)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ENERGY-RELATED-LLD"><span class="toc-text">4 ENERGY RELATED LLD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-SPECTRAL-LLD"><span class="toc-text">55 SPECTRAL LLD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-VOICING-RELATED-LLD"><span class="toc-text">6 VOICING RELATED LLD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Statistical-functionals"><span class="toc-text">Statistical functionals</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FUNCTIONALS-APPLIED-TO-LLD-deta-LLD"><span class="toc-text">FUNCTIONALS APPLIED TO LLD/deta_LLD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FUNCTIONALS-APPLIED-TO-LLD-ONLY"><span class="toc-text">FUNCTIONALS APPLIED TO LLD ONLY</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>由于在同时使用<code>Github</code>和<code>Git@OSchina</code>（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。</p>
+        <p>This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains <code>6373</code> features. It consists of some <code>generic acoustic emotion descriptors</code> and their <code>statistical functionals</code>.</p>
 <a id="more"></a>
-<h2 id="本地生成公私钥"><a href="#本地生成公私钥" class="headerlink" title="本地生成公私钥"></a>本地生成公私钥</h2><p>Step1. 本地生成ssh keys命令：<code>ssh-keygen -t rsa -C &quot;注册邮箱&quot;</code>，生成的公私秘钥会提示是否需要重命名，键入自定义名称（防止再次生成的秘钥覆盖之前的），可跳过密码设置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 生成github ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"githubEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/github_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># 生成git@oschina ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"git@oschinaEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/oschina_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>Step2. 配置<code>config</code>将两组秘钥对应到相应的远程仓库。在.ssh/目录下新建<code>config</code>文件，其中<code>Host</code>是一个别名，命名可以随意，用来进行远程连接，当然使用真实的主机名称也是可以的。<code>HostName</code>和<code>IdentityFile</code>是各自主机名称以及对应的秘钥文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#github configuration</span></div><div class="line">Host github.com</div><div class="line">	HostName github.com</div><div class="line">	IdentityFile ~/.ssh/github_rsa</div><div class="line">	User githubEmail</div><div class="line"></div><div class="line"><span class="comment">#gitoschina configuration</span></div><div class="line">Host git.oschina.net</div><div class="line">	HostName git.oschina.net</div><div class="line">	IdentityFile ~/.ssh/oschina_rsa</div><div class="line">	User git@oschinaEmail</div></pre></td></tr></table></figure>
-<h2 id="将公钥添加到账户"><a href="#将公钥添加到账户" class="headerlink" title="将公钥添加到账户"></a>将公钥添加到账户</h2><p>分别将生成的公钥添加到相应的Git账户</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>测试Git连接，提示是否建立连接：yes。成功后会提示<code>Welcome...</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line">$ ssh -T git@git.oschina.net</div></pre></td></tr></table></figure>
+<h2 id="65-Acoustic-low-level-descriptors-LLDs"><a href="#65-Acoustic-low-level-descriptors-LLDs" class="headerlink" title="65 Acoustic low-level descriptors(LLDs)"></a>65 Acoustic low-level descriptors(LLDs)</h2><p>The low-level descriptors cover a broad set of descriptors from the fields of <code>speech processing</code>, <code>Music Information Retrieval</code>, and <code>general sound analysis</code>. The set includes <code>energy</code>, <code>spectral</code>, and <code>voicing related low-level descriptors (LLDs)</code> including logarithmic harmonic-to-noise ratio (HNR), spectral harmonicity, and psychoacoustic spectral sharpness. Details are shown below.[2]</p>
+<h3 id="4-ENERGY-RELATED-LLD"><a href="#4-ENERGY-RELATED-LLD" class="headerlink" title="4 ENERGY RELATED LLD"></a>4 ENERGY RELATED LLD</h3><ul>
+<li>Sum of auditory spectrum (loudness)</li>
+<li>Sum of RASTA-style filtered auditory spectrum </li>
+<li>RMS energy </li>
+<li>zero-crossing rate</li>
+</ul>
+<h3 id="55-SPECTRAL-LLD"><a href="#55-SPECTRAL-LLD" class="headerlink" title="55 SPECTRAL LLD"></a>55 SPECTRAL LLD</h3><ul>
+<li>RASTA-style auditory spectrum, bands 1–26 (0–8 kHz) </li>
+<li>MFCC 1–14</li>
+<li>Spectral energy 250–650 Hz, 1 k–4 kHz</li>
+<li>Spectral roll off point 0.25, 0.50, 0.75, 0.90</li>
+<li>Spectral flux, centroid, entropy, slope </li>
+<li>Psychoacoustic sharpness, harmonicity </li>
+<li>Spectral variance, skewness, kurtosis</li>
+</ul>
+<h3 id="6-VOICING-RELATED-LLD"><a href="#6-VOICING-RELATED-LLD" class="headerlink" title="6 VOICING RELATED LLD"></a>6 VOICING RELATED LLD</h3><ul>
+<li>F 0 (SHS and viterbi smoothing)</li>
+<li>Prob. of voice</li>
+<li>Log. HNR, Jitter (local, delta), Shimmer (local)</li>
+</ul>
+<h2 id="Statistical-functionals"><a href="#Statistical-functionals" class="headerlink" title="Statistical functionals"></a>Statistical functionals</h2><p>Statistical functionals include mean, moments, quartiles, 1- and 99-percentiles, as well as contour related measurements such as (relative) rise and fall times, amplitudes and standard deviations of local maxima (‘peaks’), and linear and quadratic regression coefficients.</p>
+<h3 id="FUNCTIONALS-APPLIED-TO-LLD-deta-LLD"><a href="#FUNCTIONALS-APPLIED-TO-LLD-deta-LLD" class="headerlink" title="FUNCTIONALS APPLIED TO LLD/deta_LLD"></a>FUNCTIONALS APPLIED TO LLD/deta_LLD</h3><ul>
+<li>Quartiles 1–3, 3 inter-quartile ranges</li>
+<li>1% Percentile (~=min), 99% percentile (~=max) </li>
+<li>Percentile range 1–99%</li>
+<li>Position of min/max, range (max   min) </li>
+<li>Arithmetic mean, root quadratic mean</li>
+<li>Contour centroid, flatness</li>
+<li>Standard deviation, skewness, kurtosis</li>
+<li>Rel. duration LLD is above 25/50/75/90% range </li>
+<li>Rel. duration LLD is rising</li>
+<li>Rel. duration LLD has positive curvature</li>
+<li>Gain of linear prediction (LP), LP coefficients 1–5 </li>
+<li>Mean, max, min, SD of segment length</li>
+</ul>
+<h3 id="FUNCTIONALS-APPLIED-TO-LLD-ONLY"><a href="#FUNCTIONALS-APPLIED-TO-LLD-ONLY" class="headerlink" title="FUNCTIONALS APPLIED TO LLD ONLY"></a>FUNCTIONALS APPLIED TO LLD ONLY</h3><ul>
+<li>Mean value of peaks</li>
+<li>Mean value of peaks – arithmetic mean </li>
+<li>Mean/SD of inter peak distances</li>
+<li>Amplitude mean of peaks, of minima</li>
+<li>Amplitude range of peaks</li>
+<li>Mean/SD of rising/falling slopes</li>
+<li>Linear regression slope, offset, quadratic error </li>
+<li>Quadratic regression a, b, offset, quadratic error </li>
+<li>Percentage of non-zero frames</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Schuller B, Steidl S, Batliner A, et al. The INTERSPEECH 2013 computational paralinguistics challenge: social signals, conflict, emotion, autism[J]. 2013.<br>[2] Weninger F, Eyben F, Schuller B W, et al. On the acoustics of emotion in audio: what speech, music, and sound have in common[J]. 2013.</p>
 
       
     </div>
@@ -293,7 +334,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2017/04/29/Multissh/">http://huisblog.cn/2017/04/29/Multissh/</a>
+      <a href="http://huisblog.cn/2017/05/02/IS13feature/">http://huisblog.cn/2017/05/02/IS13feature/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -313,9 +354,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/ssh/">ssh</a>
+              <a href="/tags/MER/">MER</a>
             
-              <a href="/tags/github/">github</a>
+              <a href="/tags/feature/">feature</a>
             
           </div>
         
@@ -323,18 +364,12 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/04/27/ApplicationMath/pgm/">
+      <a class="prev" href="/2017/04/29/featureExt/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Probably Graphic Model</span>
+        <span class="prev-text nav-default">MER 声学特征提取</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
-    
-      <a class="next" href="/2017/04/29/featureExt/">
-        <span class="next-text nav-default">MER 声学特征提取</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 
