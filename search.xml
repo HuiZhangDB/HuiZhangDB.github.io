@@ -3,6 +3,38 @@
   
     
     <entry>
+      <title><![CDATA[在博客中插入数学公式]]></title>
+      <url>/2017/05/02/tex/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>Markdown本身并不支持数学公式的书写，使用<a href="https://www.mathjax.org/" target="_blank" rel="external">MathJax</a>来给我的博客插入公式只需要两步：  </p>
+<ol>
+<li>链接MathJax到要包含公式的网页中；  </li>
+<li>将公式放入网页让MathJax可以展示它。</li>
+</ol>
+<p><a href="https://mathjax-chinese-doc.readthedocs.io/en/latest/start.html" target="_blank" rel="external">中文版入门指南</a><br><a id="more"></a></p>
+<h2 id="到内容分发服务的安全链接"><a href="#到内容分发服务的安全链接" class="headerlink" title="到内容分发服务的安全链接"></a>到内容分发服务的安全链接</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span> <span class="keyword">async</span></div><div class="line">  src=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="插入公式"><a href="#插入公式" class="headerlink" title="插入公式"></a>插入公式</h2><p>行内公式使用<code>\\(...\\)</code>，两个<code>\</code>有一个是转义字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">这是一个行内公式\\(c = a+b\\)</div></pre></td></tr></table></figure>
+<p>效果是：<br>这是一个行内公式\(c = a+b\)</p>
+<p>行间公式使用<code>$$...$$</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这是一个行间公式</div><div class="line">$$ E = mc^&#123;2&#125; $$</div></pre></td></tr></table></figure>
+<p>这是一个行间公式<br>$$ E = mc^{2}$$</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> tool </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2013 ComParE Feature Set]]></title>
       <url>/2017/05/02/IS13feature/</url>
       <content type="html"><![CDATA[<p>This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains <code>6373</code> features. It consists of some <code>generic acoustic emotion descriptors</code> and their <code>statistical functionals</code>.</p>
@@ -868,28 +900,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python面向对象高级编程]]></title>
       <url>/2016/12/06/Python/PythonAdOOP/</url>
       <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
@@ -945,6 +955,28 @@
 <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
 <h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
 <h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
