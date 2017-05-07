@@ -900,28 +900,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python面向对象高级编程]]></title>
       <url>/2016/12/06/Python/PythonAdOOP/</url>
       <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
@@ -977,6 +955,28 @@
 <h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
 <h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
 <h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
