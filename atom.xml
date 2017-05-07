@@ -1040,6 +1040,31 @@
   </entry>
   
   <entry>
+    <title>Python进程和线程</title>
+    <link href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
+    <id>http://huisblog.cn/2016/12/06/Python/PythonMulTask/</id>
+    <published>2016-12-06T03:05:07.000Z</published>
+    <updated>2017-04-27T02:52:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
+    
+    </summary>
+    
+      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python面向对象高级编程</title>
     <link href="http://huisblog.cn/2016/12/06/Python/PythonAdOOP/"/>
     <id>http://huisblog.cn/2016/12/06/Python/PythonAdOOP/</id>
@@ -1075,39 +1100,6 @@
     
       &lt;h2 id=&quot;实例动态绑定&quot;&gt;&lt;a href=&quot;#实例动态绑定&quot; class=&quot;headerlink&quot; title=&quot;实例动态绑定&quot;&gt;&lt;/a&gt;实例动态绑定&lt;/h2&gt;&lt;p&gt;通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。&lt;/p&gt;
 &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;addmethod&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Student.addmethod = MethodType(addmethod,&lt;span class=&quot;keyword&quot;&gt;None&lt;/span&gt;,Student)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PythonIO编程</title>
-    <link href="http://huisblog.cn/2016/12/06/Python/PythonIO/"/>
-    <id>http://huisblog.cn/2016/12/06/Python/PythonIO/</id>
-    <published>2016-12-06T03:05:07.000Z</published>
-    <updated>2017-04-27T05:38:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
-<a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;IO编程有两种模式，一种是&lt;code&gt;同步IO&lt;/code&gt;，一种是&lt;code&gt;异步IO&lt;/code&gt;。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。&lt;/p&gt;
     
     </summary>
     
