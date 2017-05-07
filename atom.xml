@@ -834,7 +834,7 @@
     <link href="http://huisblog.cn/2017/04/26/NewBlog/"/>
     <id>http://huisblog.cn/2017/04/26/NewBlog/</id>
     <published>2017-04-26T15:50:31.000Z</published>
-    <updated>2017-05-07T08:56:17.000Z</updated>
+    <updated>2017-05-07T09:00:15.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="博客站点迁移"><a href="#博客站点迁移" class="headerlink" title="博客站点迁移"></a>博客站点迁移</h1><p>阿里云服务器快要到期不想再续，遂决定将博客迁移到免费的<code>GitHub Pages</code>上。</p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>Github Pages</code>+<code>Hexo</code>(不使用<code>Jekyll</code>是因为没有找到好看的主题)  </p>
@@ -877,11 +877,11 @@
 <p>接下来就可以开始自由写作啦~</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo new (post) title</div><div class="line">...writing</div><div class="line">$ hexo clean</div><div class="line">$ hexo d -g</div></pre></td></tr></table></figure>
 <p>为了方便文章管理，Hexo提供了可视化写作插件<a href="https://github.com/nihgwu/hexo-hey" target="_blank" rel="external">hey</a>，优点是可以拖拽图片，缺点是不方便随时写作。  </p>
-<h2 id="给博客添加统计分析"><a href="#给博客添加统计分析" class="headerlink" title="给博客添加统计分析"></a>给博客添加统计分析</h2><p>主题<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="external">even</a>提供了对于百度统计和Google统计的支持，只需要修改主题配置文件中的<code>baidu_analytics</code>或<code>google_analytics</code>字段，填写<code>analytics id</code>就可以开启统计。</p>
+<h2 id="第三方服务设置"><a href="#第三方服务设置" class="headerlink" title="第三方服务设置"></a>第三方服务设置</h2><h3 id="给博客添加统计分析"><a href="#给博客添加统计分析" class="headerlink" title="给博客添加统计分析"></a>给博客添加统计分析</h3><p>主题<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="external">even</a>提供了对于百度统计和Google统计的支持，只需要修改主题配置文件中的<code>baidu_analytics</code>或<code>google_analytics</code>字段，填写<code>analytics id</code>就可以开启统计。</p>
 <p>例如开启百度统计：<br>step1. 在百度统计网站注册账号<br>step2. 添加自有网站<br>step3. 获取统计代码，得到其中的<code>baidu analytics id</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">  hm.src = <span class="string">"https://hm.baidu.com/hm.js?this_code_is_the_baidu_analysis_id"</span>;</div><div class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; </div><div class="line">  s.parentNode.insertBefore(hm, s);</div><div class="line">&#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <p>step4. 将<code>baidu analytics id</code>填入主题配置文件的<code>baidu_analytics</code>字段。<br>step5. 百度统计网站上检查代码成功，过一会就可以查看分析报告啦！</p>
-<h2 id="给博客添加评论服务"><a href="#给博客添加评论服务" class="headerlink" title="给博客添加评论服务"></a>给博客添加评论服务</h2><p>主题<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="external">even</a>提供了对于多说、Disqus和网易云跟帖的支持，由于多说即将关闭，本博客选择使用网易云跟帖。</p>
+<h3 id="给博客添加评论服务"><a href="#给博客添加评论服务" class="headerlink" title="给博客添加评论服务"></a>给博客添加评论服务</h3><p>主题<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="external">even</a>提供了对于多说、Disqus和网易云跟帖的支持，由于多说即将关闭，本博客选择使用网易云跟帖。</p>
 <ol>
 <li>在<a href="https://gentie.163.com/" target="_blank" rel="external">网易云跟帖</a>注册账号，进入后台管理，设置站点信息，获取代码；</li>
 <li>修改主题配置文件中的<code>netease_key</code>字段，开启网易云跟帖；</li>
