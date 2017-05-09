@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-05-02T07:45:08.000Z</updated>
+  <updated>2017-05-09T15:05:04.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Music Information Retrieval</title>
+    <link href="http://huisblog.cn/2017/05/09/mirlec/"/>
+    <id>http://huisblog.cn/2017/05/09/mirlec/</id>
+    <published>2017-05-09T15:03:18.000Z</published>
+    <updated>2017-05-09T15:05:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>台湾国立清华大学开设了一门<code>Music Information Retrieval</code>课程来介绍一些音乐信息检索的基础技术，主讲教师是在MIR领域有名的大牛<code>Yi-Hsuan Yang</code>和<code>Li Su</code>。虽然没有视频公开课，但是在其<a href="https://twtmir.wordpress.com/" target="_blank" rel="external">课程网站</a>上公开了授课PPT，值得对这方面感兴趣的同学翻看一下。</p>
+<a id="more"></a>
+<h2 id="Music-Essences"><a href="#Music-Essences" class="headerlink" title="Music Essences"></a>Music Essences</h2><ul>
+<li>Pitch<br>Frequency</li>
+<li>Loudness<br>Dynamic, Loudness, Intensity</li>
+<li>Timbre<br>Energy features, Temporal features, Spectral features, harmonic feaures</li>
+</ul>
+<h2 id="Signal-Processing"><a href="#Signal-Processing" class="headerlink" title="Signal Processing"></a>Signal Processing</h2><ul>
+<li>STFT</li>
+</ul>
+<h2 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks"></a>Tasks</h2><ul>
+<li>Pitch Detection</li>
+<li>Classification</li>
+<li>Synchronization</li>
+<li>Separation</li>
+<li>Tagging/Recomment</li>
+<li>Structure Analysis</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;台湾国立清华大学开设了一门&lt;code&gt;Music Information Retrieval&lt;/code&gt;课程来介绍一些音乐信息检索的基础技术，主讲教师是在MIR领域有名的大牛&lt;code&gt;Yi-Hsuan Yang&lt;/code&gt;和&lt;code&gt;Li Su&lt;/code&gt;。虽然没有视频公开课，但是在其&lt;a href=&quot;https://twtmir.wordpress.com/&quot;&gt;课程网站&lt;/a&gt;上公开了授课PPT，值得对这方面感兴趣的同学翻看一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
+    
+  </entry>
   
   <entry>
     <title>在博客中插入数学公式</title>
@@ -790,11 +828,13 @@
     <link href="http://huisblog.cn/2017/04/27/journals/"/>
     <id>http://huisblog.cn/2017/04/27/journals/</id>
     <published>2017-04-27T06:13:41.000Z</published>
-    <updated>2017-04-29T09:11:20.000Z</updated>
+    <updated>2017-05-09T06:52:15.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="SCI"><a href="#SCI" class="headerlink" title="SCI"></a>SCI</h2><ul>
 <li>TIST<br><a href="http://tist.acm.org/index.cfm" target="_blank" rel="external">ACM Transactions on Intelligent Systems and Technology</a></li>
 <li>TAC<br><a href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165369" target="_blank" rel="external">IEEE Transactions on Affective Computing</a></li>
+<li>TMM<br><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia" target="_blank" rel="external">IEEE Transactions on Multimedia</a></li>
+<li>TAP<br><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-signal-processing" target="_blank" rel="external">IEEE Transactions on Signal Processing</a></li>
 </ul>
 <a id="more"></a>
 <h2 id="EI"><a href="#EI" class="headerlink" title="EI"></a>EI</h2><ul>
@@ -802,15 +842,16 @@
 <li>JAIST<br><a href="https://www.asist.org/publications/jasist/" target="_blank" rel="external">Journal of the Association for Information Science and Technology</a></li>
 </ul>
 <h2 id="相关会议"><a href="#相关会议" class="headerlink" title="相关会议"></a>相关会议</h2><ul>
-<li>ICMC<br>[International Computer Music Conference]  </li>
-<li>ICASSP<br>[IEEE International Conference on Acoustics, Speech<br>and Signal Processing]</li>
-<li>MM<br>[ACM Multimedia]</li>
-<li>ISMIR<br>[International Society for Music Information<br>Retrieval Conference]</li>
+<li>ICMC<br>International Computer Music Conference  </li>
+<li>ICASSP<br>IEEE International Conference on Acoustics, Speech<br>and Signal Processing</li>
+<li>MM<br>ACM Multimedia</li>
+<li>ISMIR<br>International Society for Music Information<br>Retrieval Conference</li>
 </ul>
 <h2 id="相关比赛"><a href="#相关比赛" class="headerlink" title="相关比赛"></a>相关比赛</h2><ul>
 <li><a href="http://compare.openaudio.eu/" target="_blank" rel="external">Interspeech Computational Paralinguistics ChallengE (ComParE)</a></li>
 <li><a href="http://www.multimediaeval.org/" target="_blank" rel="external">MediaEval</a> </li>
 <li><a href="http://sspnet.eu/" target="_blank" rel="external">AVEC ACM MM</a></li>
+<li><a href="http://www.music-ir.org/mirex/wiki/MIREX_HOME" target="_blank" rel="external">MIREX</a></li>
 </ul>
 <h2 id="期刊类型"><a href="#期刊类型" class="headerlink" title="期刊类型"></a>期刊类型</h2><p>判断期刊是否是SCI/EI:<br>EI: <a href="https://www.engineeringvillage.com/search/quick.url" target="_blank" rel="external">Engineering Vallige</a> Database选择Compendex（IE网络版）<br>SCI: <a href="http://ip-science.thomsonreuters.com/mjl/" target="_blank" rel="external">期刊列表</a>，<a href="http://apps.webofknowledge.com/UA_GeneralSearch_input.do?product=UA&amp;search_mode=GeneralSearch&amp;SID=3CXjlEnOuKswueSjVDT&amp;preferencesSaved=" target="_blank" rel="external">查询文章</a>选择World of Science</p>
 ]]></content>
@@ -820,6 +861,8 @@
       &lt;h2 id=&quot;SCI&quot;&gt;&lt;a href=&quot;#SCI&quot; class=&quot;headerlink&quot; title=&quot;SCI&quot;&gt;&lt;/a&gt;SCI&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;TIST&lt;br&gt;&lt;a href=&quot;http://tist.acm.org/index.cfm&quot;&gt;ACM Transactions on Intelligent Systems and Technology&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;TAC&lt;br&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165369&quot;&gt;IEEE Transactions on Affective Computing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TMM&lt;br&gt;&lt;a href=&quot;https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia&quot;&gt;IEEE Transactions on Multimedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TAP&lt;br&gt;&lt;a href=&quot;https://signalprocessingsociety.org/publications-resources/ieee-transactions-signal-processing&quot;&gt;IEEE Transactions on Signal Processing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -985,38 +1028,6 @@
   </entry>
   
   <entry>
-    <title>Socket通信</title>
-    <link href="http://huisblog.cn/2016/12/26/Python/Socket/"/>
-    <id>http://huisblog.cn/2016/12/26/Python/Socket/</id>
-    <published>2016-12-26T08:32:19.000Z</published>
-    <updated>2017-04-27T05:21:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a>
-<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png" alt="tcpsend.png" title="">
-<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png" alt="tcpend.png" title="">
-<p>TCP客户端和服务器端通信例子： </p>
-<ul>
-<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
-<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;a href=&quot;#socket中TCP的三次握手建立连接&quot; class=&quot;headerlink&quot; title=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;/a&gt;socket中TCP的
-    
-    </summary>
-    
-      <category term="Python基础" scheme="http://huisblog.cn/categories/Python%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="python" scheme="http://huisblog.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Python Web</title>
     <link href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
     <id>http://huisblog.cn/2016/12/26/Python/PythonWeb/</id>
@@ -1047,20 +1058,27 @@
   </entry>
   
   <entry>
-    <title>Python进程和线程</title>
-    <link href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
-    <id>http://huisblog.cn/2016/12/06/Python/PythonMulTask/</id>
-    <published>2016-12-06T03:05:07.000Z</published>
-    <updated>2017-04-27T02:52:21.000Z</updated>
+    <title>Socket通信</title>
+    <link href="http://huisblog.cn/2016/12/26/Python/Socket/"/>
+    <id>http://huisblog.cn/2016/12/26/Python/Socket/</id>
+    <published>2016-12-26T08:32:19.000Z</published>
+    <updated>2017-04-27T05:21:18.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+    <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png" alt="tcpsend.png" title="">
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png" alt="tcpend.png" title="">
+<p>TCP客户端和服务器端通信例子： </p>
+<ul>
+<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
+<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
+</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;多进程&quot;&gt;&lt;a href=&quot;#多进程&quot; class=&quot;headerlink&quot; title=&quot;多进程&quot;&gt;&lt;/a&gt;多进程&lt;/h2&gt;&lt;p&gt;先略过多任务部分。。蓝瘦香菇。。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;感谢网上恩师&lt;a href=&quot;http://www.liaoxuef
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;a href=&quot;#socket中TCP的三次握手建立连接&quot; class=&quot;headerlink&quot; title=&quot;socket中TCP的三次握手建立连接&quot;&gt;&lt;/a&gt;socket中TCP的
     
     </summary>
     
