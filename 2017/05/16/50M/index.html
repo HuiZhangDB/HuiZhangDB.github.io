@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="Python进程和线程"/>
+  <meta name="description" content="50首流行音乐的收集处理"/>
 
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="MER,dataset," />
 
 
 
@@ -31,20 +31,24 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/05/16/50M/"/>
 
 
-<meta name="description" content="多进程先略过多任务部分。。蓝瘦香菇。。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
-<meta name="keywords" content="python">
+<meta name="description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
+<meta name="keywords" content="MER,dataset">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python进程和线程">
-<meta property="og:url" content="http://huisblog.cn/2016/12/06/Python/PythonMulTask/index.html">
+<meta property="og:title" content="50首流行音乐的收集处理">
+<meta property="og:url" content="http://huisblog.cn/2017/05/16/50M/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="多进程先略过多任务部分。。蓝瘦香菇。。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
-<meta property="og:updated_time" content="2017-04-27T02:52:21.000Z">
+<meta property="og:description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
+<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/V.png">
+<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/A.png">
+<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/VA.png">
+<meta property="og:updated_time" content="2017-05-16T02:40:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python进程和线程">
-<meta name="twitter:description" content="多进程先略过多任务部分。。蓝瘦香菇。。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
+<meta name="twitter:title" content="50首流行音乐的收集处理">
+<meta name="twitter:description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
+<meta name="twitter:image" content="http://huisblog.cn/2017/05/16/50M/V.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -81,7 +85,7 @@
 
 
 
-    <title> Python进程和线程 · HuisBlog </title>
+    <title> 50首流行音乐的收集处理 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -242,13 +246,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Python进程和线程
+          50首流行音乐的收集处理
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 6, 2016
+          May 16, 2017
         </span>
       </div>
     </header>
@@ -258,15 +262,43 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多进程"><span class="toc-text">多进程</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验目的"><span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#音乐收集和预处理"><span class="toc-text">音乐收集和预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征提取"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理打分数据，得到情感标签"><span class="toc-text">处理打分数据，得到情感标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单过一下分类流程"><span class="toc-text">简单过一下分类流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发现问题和拟解决方案"><span class="toc-text">发现问题和拟解决方案</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+        <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。</p>
+<a id="more"></a>
+<h2 id="音乐收集和预处理"><a href="#音乐收集和预处理" class="headerlink" title="音乐收集和预处理"></a>音乐收集和预处理</h2><p>从<a href="https://y.qq.com/n/yqq/toplist/107.html" target="_blank" rel="external">英国UK榜第19周榜单</a>下载流行乐37首，分发给13位同学裁剪并打分。（每人3首左右，这里音乐不重复打分，但在正式实验中每首歌需要10个左右受试者打分）最后回收到：</p>
+<ul>
+<li>34首音乐片段（裁剪高潮部分，30秒左右，正式实验中需要45秒左右）</li>
+<li>音乐曲名、作者、排行等元信息</li>
+<li>愉悦度和唤醒度打分（取值区间[-5,5]）</li>
+</ul>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><p>使用<code>openSMILE</code>批量提取歌曲特征，得到<code>IS13features.arff</code>特征文件，包含了34首歌曲，每首6373维特征向量（使用<a href="/2017/05/02/IS13feature/" title="2013 ComParE Feature Set">2013 ComParE Feature Set</a>音乐情感特征集）。</p>
+<h2 id="处理打分数据，得到情感标签"><a href="#处理打分数据，得到情感标签" class="headerlink" title="处理打分数据，得到情感标签"></a>处理打分数据，得到情感标签</h2><p>根据打分给每首歌打三个标签<code>情感正负</code>（即愉悦度的正负值），<code>情感强弱</code>（即唤醒度的正负值），<code>四种基本情感</code>（即VA二维平面的四个象限：高兴、惊恐、厌烦、轻松）。</p>
+<p>将歌曲的特征向量和情感标签写入文件<code>IS13features_withlabels.arff</code>。</p>
+<h2 id="简单过一下分类流程"><a href="#简单过一下分类流程" class="headerlink" title="简单过一下分类流程"></a>简单过一下分类流程</h2><p>使用<code>Weka</code>中的<code>libsvm</code>对音乐情感进行简单分类。（注意这里只是简单过一下分类流程，以后真实应用中是不会这样做的，如在VA模型的2维空间中做回归分析）  </p>
+<p>10-fold交叉验证结果：  </p>
+<ol>
+<li><p>情感正负(V)  </p>
+<img src="/2017/05/16/50M/V.png" alt="V.png" title="">
+</li>
+<li><p>情感强弱(A)  </p>
+<img src="/2017/05/16/50M/A.png" alt="A.png" title="">
+</li>
+<li><p>四种基本情感(VA)  </p>
+<img src="/2017/05/16/50M/VA.png" alt="VA.png" title="">
+</li>
+</ol>
+<h2 id="发现问题和拟解决方案"><a href="#发现问题和拟解决方案" class="headerlink" title="发现问题和拟解决方案"></a>发现问题和拟解决方案</h2><ol>
+<li>在音乐打分前没有规范音乐文件名（没有给每首音乐相应的ID），给音乐文件与打分数据的联结处理带来麻烦 –&gt; 可以使用批处理给音乐规范ID并将其原文件名中包含的信息（歌曲名字、作者）写到专门的<code>metadata</code>文件中。</li>
+<li><code>metadata</code>文件中还应该包含歌曲的排名和风格等元素 –&gt; 这些需要爬虫支持（人工搜集还是不友好的。。）</li>
+<li><code>ffmpeg</code>MP3转WAV的时候报Warning，发现这次使用的音乐裁剪工具没有修改MP3的文件信息，可能会对以后的应用埋下隐患。（感觉是暴力裁剪的，文件头里的duration字段，frame字段等和裁剪后的文件真实信息不匹配）–&gt; 换一个裁剪工具（可以试试也用ffmpeg）</li>
+<li>受试者裁剪肯定是不行的 –&gt; 机器裁剪还是我们人工裁剪？</li>
+</ol>
 
       
     </div>
@@ -286,7 +318,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2016/12/06/Python/PythonMulTask/">http://huisblog.cn/2016/12/06/Python/PythonMulTask/</a>
+      <a href="http://huisblog.cn/2017/05/16/50M/">http://huisblog.cn/2017/05/16/50M/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -306,7 +338,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/MER/">MER</a>
+            
+              <a href="/tags/dataset/">dataset</a>
             
           </div>
         
@@ -314,18 +348,12 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Python/PythonIO/">
+      <a class="prev" href="/2017/05/09/mirlec/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">PythonIO编程</span>
+        <span class="prev-text nav-default">Music Information Retrieval</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
-    
-      <a class="next" href="/2016/12/06/Python/PythonRE/">
-        <span class="next-text nav-default">Python正则表达式</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 
