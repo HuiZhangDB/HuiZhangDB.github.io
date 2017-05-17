@@ -3,6 +3,48 @@
   
     
     <entry>
+      <title><![CDATA[《the Craft of Research》第一部分]]></title>
+      <url>/2017/05/17/ResearchCraft/P1/</url>
+      <content type="html"><![CDATA[<p><a href="http://mypage.zju.edu.cn/en/zhangkejun" target="_blank" rel="external">导师</a>推荐的一本书<em>the Craft of Research</em>，今天终于开始拜读，希望能有一些对于研究工作的启发。</p>
+<a id="more"></a>
+<h2 id="Thinking-in-print"><a href="#Thinking-in-print" class="headerlink" title="Thinking in print"></a>Thinking in print</h2><h3 id="什么是研究？"><a href="#什么是研究？" class="headerlink" title="什么是研究？"></a>什么是研究？</h3><p>研究是一个搜集资料，回答问题以解决难题的过程。</p>
+<h3 id="为什么要写下来？"><a href="#为什么要写下来？" class="headerlink" title="为什么要写下来？"></a>为什么要写下来？</h3><p>以书面形式来思考有助于记忆、了解和获得新的观点。<br><code>“只有从快速混乱的思维中将特定的想法分离出来，并以一种有组织、有条理的形式确定下来，才能知道自己真正能思考什么。”</code></p>
+<h3 id="研究报告为什么要正式？"><a href="#研究报告为什么要正式？" class="headerlink" title="研究报告为什么要正式？"></a>研究报告为什么要正式？</h3><p>要以读者的角度来思考。以别人的标准和价值去检验自己的想法可以让我们更加理解自己和自己的想法。为别人写作会比为自己写作的要求更严格。</p>
+<h2 id="与读者对话"><a href="#与读者对话" class="headerlink" title="与读者对话"></a>与读者对话</h2><h3 id="明确作者的角色"><a href="#明确作者的角色" class="headerlink" title="明确作者的角色"></a>明确作者的角色</h3><ul>
+<li>我找到一些真的很有趣的东西</li>
+<li>对你很重要的实际难题，我找到了一个解决方案</li>
+<li>我找到了一个对于你而言很重要的问题的答案</li>
+</ul>
+<h3 id="明确读者的角色"><a href="#明确读者的角色" class="headerlink" title="明确读者的角色"></a>明确读者的角色</h3><ul>
+<li>用一些我不知道但有趣的事情来让我愉悦 –&gt; 对我的题目一无所知的一般读者？</li>
+<li>帮我解决实际问题 –&gt; 信息充分的一般人员?</li>
+<li>帮助我了解更多的事物 –&gt; 专业人员?</li>
+</ul>
+<h3 id="团队写作"><a href="#团队写作" class="headerlink" title="团队写作"></a>团队写作</h3><p>成功合作的三个关键：经常讨论(talk a lot)、容许异议(agree to disagree)、组织与规划(organize and plan)<br>团体工作的三个策略：分工委派(delete and delegate)、同步进行(work side by side)、轮流进行(take turns)</p>
+<h2 id="给研究新手的建议"><a href="#给研究新手的建议" class="headerlink" title="给研究新手的建议"></a>给研究新手的建议</h2><ol>
+<li>明白不确定感和焦虑是无法避免的，不要持续跟自己过不去，这是缺乏经验的现象；</li>
+<li>随时书写概述、评论和问题；</li>
+<li>把整个过程分成可处理的数个步骤；</li>
+<li>与导师及时沟通，期待他们的帮助。</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> the Craft of Research </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> efficiency </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[50首流行音乐的收集处理]]></title>
       <url>/2017/05/16/50M/</url>
       <content type="html"><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。</p>
@@ -988,79 +1030,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python面向对象编程]]></title>
-      <url>/2016/12/06/Python/PythonOOP/</url>
-      <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
-<a id="more"></a>
-<h2 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h2><p>通过在实例上调用方法可以直接操作对象内部的数据，但无需知道方法内部的实现细节。即，可以用类的方法来<code>封装</code>其数据和逻辑。</p>
-<p>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.name = name</div><div class="line"><span class="meta">... </span>            self.score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa = Student(<span class="string">'Lisa'</span>,<span class="number">80</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age </div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa.age </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'age'</span></div></pre></td></tr></table></figure>
-<h2 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h2><p>想要类的内部属性不被外部访问，可以加上前缀<code>__</code>将其定义为私有变量。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.__name = name</div><div class="line"><span class="meta">... </span>            self.__score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.__name</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></div></pre></td></tr></table></figure>
-<p>这样使得外部代码不能随意修改对象内部的状态。但也可以使用<code>get_name</code>或者<code>set_score</code>这样的方法获取或者修改（可以检查参数避免传入无效参数）类属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">return</span> self.__name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self,score)</span>:</span></div><div class="line">	<span class="keyword">if</span> <span class="number">0</span> &lt;= score &lt;= <span class="number">100</span>:</div><div class="line">			self.__score = score</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">raise</span> ValueError(<span class="string">'bad score'</span>)</div></pre></td></tr></table></figure>
-<p>但值得注意的是，还有一种以一个下划线<code>_</code>开头的实例变量名，比如<code>_name</code>，这样的实例变量名外部是可以访问的，但按照约定俗成的规定，看到这样变量的意思是：“虽然我可以访问，但请把我视为一个私有变量，不要随意访问。”</p>
-<h2 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h2><p>在定义一个class的时候可以从现有的class继承，新的class就是<code>子类(Subclass)</code>，被继承的class称为<code>基类、父类或超类(Superclass)</code>。继承可以把父类的所有功能都直接拿过来，子类只需要新增自己特有的方法，也可以把父类不合适的方法覆盖重写。</p>
-<p>有了继承，才能有多态。多态使得调用父类型的方法时不需要考虑其切确的子类型，在运行时解释器会根据该对象的确切类型决定具体方法。在调用类实例的方法时，尽量把变量当做父类类型，这样所有的子类类型都可以被正常接收。著名的“开闭”原则：</p>
-<ul>
-<li>对拓展开放：允许新增子类</li>
-<li>对修改封闭：不需要修改依赖父类的函数</li>
-</ul>
-<p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
-<h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python错误、调试和测试]]></title>
-      <url>/2016/12/06/Python/PythonDebug/</url>
-      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-<a id="more"></a>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
-<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
-<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
-<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
-<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
-<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	a simple dict</div><div class="line"></div><div class="line">	&gt;&gt;&gt; d1 = Dict()</div><div class="line">	&gt;&gt;&gt; d1['x'] = 100</div><div class="line">	&gt;&gt;&gt; d1.x</div><div class="line">	100</div><div class="line">	&gt;&gt;&gt; d1.y = 200</div><div class="line">	&gt;&gt;&gt; d1['y']</div><div class="line">	200</div><div class="line">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</div><div class="line">	&gt;&gt;&gt; d2.c</div><div class="line">	'3'</div><div class="line">    &gt;&gt;&gt; d2['empty']</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    KeyError: 'empty'</div><div class="line">    &gt;&gt;&gt; d2.empty</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    AttributeError: 'Dict' object has no attribute 'empty'</div><div class="line">    '''</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python进程和线程]]></title>
       <url>/2016/12/06/Python/PythonMulTask/</url>
       <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
@@ -1083,9 +1052,27 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python小贴士]]></title>
-      <url>/2016/12/06/Python/PythonTips/</url>
-      <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+      <title><![CDATA[Python面向对象编程]]></title>
+      <url>/2016/12/06/Python/PythonOOP/</url>
+      <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
+<a id="more"></a>
+<h2 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h2><p>通过在实例上调用方法可以直接操作对象内部的数据，但无需知道方法内部的实现细节。即，可以用类的方法来<code>封装</code>其数据和逻辑。</p>
+<p>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.name = name</div><div class="line"><span class="meta">... </span>            self.score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa = Student(<span class="string">'Lisa'</span>,<span class="number">80</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.age </div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lisa.age </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'age'</span></div></pre></td></tr></table></figure>
+<h2 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h2><p>想要类的内部属性不被外部访问，可以加上前缀<code>__</code>将其定义为私有变量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line"><span class="meta">... </span>            self.__name = name</div><div class="line"><span class="meta">... </span>            self.__score = score</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">print_score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(self.name, self.score)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart = Student(<span class="string">'Bart'</span>,<span class="number">98</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>bart.__name</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></div></pre></td></tr></table></figure>
+<p>这样使得外部代码不能随意修改对象内部的状态。但也可以使用<code>get_name</code>或者<code>set_score</code>这样的方法获取或者修改（可以检查参数避免传入无效参数）类属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">return</span> self.__name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self,score)</span>:</span></div><div class="line">	<span class="keyword">if</span> <span class="number">0</span> &lt;= score &lt;= <span class="number">100</span>:</div><div class="line">			self.__score = score</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">raise</span> ValueError(<span class="string">'bad score'</span>)</div></pre></td></tr></table></figure>
+<p>但值得注意的是，还有一种以一个下划线<code>_</code>开头的实例变量名，比如<code>_name</code>，这样的实例变量名外部是可以访问的，但按照约定俗成的规定，看到这样变量的意思是：“虽然我可以访问，但请把我视为一个私有变量，不要随意访问。”</p>
+<h2 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h2><p>在定义一个class的时候可以从现有的class继承，新的class就是<code>子类(Subclass)</code>，被继承的class称为<code>基类、父类或超类(Superclass)</code>。继承可以把父类的所有功能都直接拿过来，子类只需要新增自己特有的方法，也可以把父类不合适的方法覆盖重写。</p>
+<p>有了继承，才能有多态。多态使得调用父类型的方法时不需要考虑其切确的子类型，在运行时解释器会根据该对象的确切类型决定具体方法。在调用类实例的方法时，尽量把变量当做父类类型，这样所有的子类类型都可以被正常接收。著名的“开闭”原则：</p>
+<ul>
+<li>对拓展开放：允许新增子类</li>
+<li>对修改封闭：不需要修改依赖父类的函数</li>
+</ul>
+<p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
+<h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -1192,18 +1179,42 @@
     </entry>
     
     <entry>
-      <title><![CDATA[PythonIO编程]]></title>
-      <url>/2016/12/06/Python/PythonIO/</url>
-      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+      <title><![CDATA[Python小贴士]]></title>
+      <url>/2016/12/06/Python/PythonTips/</url>
+      <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python错误、调试和测试]]></title>
+      <url>/2016/12/06/Python/PythonDebug/</url>
+      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
 <a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
+<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
+<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
+<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
+<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
+<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	a simple dict</div><div class="line"></div><div class="line">	&gt;&gt;&gt; d1 = Dict()</div><div class="line">	&gt;&gt;&gt; d1['x'] = 100</div><div class="line">	&gt;&gt;&gt; d1.x</div><div class="line">	100</div><div class="line">	&gt;&gt;&gt; d1.y = 200</div><div class="line">	&gt;&gt;&gt; d1['y']</div><div class="line">	200</div><div class="line">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</div><div class="line">	&gt;&gt;&gt; d2.c</div><div class="line">	'3'</div><div class="line">    &gt;&gt;&gt; d2['empty']</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    KeyError: 'empty'</div><div class="line">    &gt;&gt;&gt; d2.empty</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    AttributeError: 'Dict' object has no attribute 'empty'</div><div class="line">    '''</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -1247,6 +1258,37 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__slots__</div><div class="line">__len__</div><div class="line">__str__</div><div class="line">__repr__</div><div class="line">__iter__</div><div class="line">__getitem__</div><div class="line">__getattr__</div><div class="line">__call__  <span class="comment">#可使用callable()来判断对象是否是“可调用”对象</span></div></pre></td></tr></table></figure>
 <h2 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h2><p><code>type()</code>既可以返回一个对象的类型，还可以创建出新的类型。<br><code>metaclass</code>允许创建类或者修改类，可以把类看成是metaclass创建出的来的“实例”。</p>
 <p><em>正常情况下不会碰到需要使用<code>metaclass</code>的情况，所以现在先略过。</em></p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PythonIO编程]]></title>
+      <url>/2016/12/06/Python/PythonIO/</url>
+      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+<a id="more"></a>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
+<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
