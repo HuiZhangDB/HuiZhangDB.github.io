@@ -240,6 +240,91 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/05/25/dft/">离散傅里叶变换(DFT)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 25, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>对于音频信号处理而言，<code>离散傅里叶变化(DFT)</code>是最最常用的函数工具。它将信号的时域采样变换为其<code>离散时间傅里叶变化(DTFT)</code>的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。</p>
+<p>在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。</p>
+          <div class="read-more">
+            <a href="/2017/05/25/dft/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/18/ASPbasic/">音频信号处理基础数学和工具</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 18, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>本文记录一下学习<code>音频信号处理(Audio Signal Processing)</code>过程中遇到的基础数学和实用工具。</p>
+          <div class="read-more">
+            <a href="/2017/05/18/ASPbasic/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/05/17/ResearchCraft/P1/">《the Craft of Research》第一部分</a>
         
       </h1>
@@ -566,102 +651,6 @@
           <p>简而言之，数形结合的思想。</p>
 <h2 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h2><p>即有向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/bayes.png" alt="bayes.png" title=""></p>
 <h2 id="马尔可夫随机场"><a href="#马尔可夫随机场" class="headerlink" title="马尔可夫随机场"></a>马尔可夫随机场</h2><p>即无向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/makov.png" alt="makov.png" title=""></p>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/04/27/ApplicationMath/mc/">Markov Chains & HMM</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 27, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>会其意，知其形。</p>
-<h2 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h2><p>服从马尔可夫性（无记忆性）：当前状态只与前一个状态有关，与更往前的状态无关。</p>
-<h2 id="HMM-Hiden-Markov-Model"><a href="#HMM-Hiden-Markov-Model" class="headerlink" title="HMM(Hiden Markov Model)"></a>HMM(Hiden Markov Model)</h2><p>一个概率模型，用于描述系统隐性状态的转移和隐性状态的表现（输出）概率。</p>
-<ul>
-<li>可见状态链</li>
-<li>隐含状态链    <img src="/2017/04/27/ApplicationMath/mc/chains.jpg" alt="chains.jpg" title=""></li>
-<li>隐含状态数量  </li>
-<li>隐含状态之间的转换概率(transition probability)    <img src="/2017/04/27/ApplicationMath/mc/transition.jpg" alt="transition.jpg" title=""></li>
-<li>隐含状态到可见状态的输出概率(emission probability)    <img src="/2017/04/27/ApplicationMath/mc/emission.jpg" alt="emission.jpg" title="">  
-</li>
-</ul>
-<h3 id="HMM能做什么，怎么做？"><a href="#HMM能做什么，怎么做？" class="headerlink" title="HMM能做什么，怎么做？"></a>HMM能做什么，怎么做？</h3><ol>
-<li>估计(evaluation)<br> 转换概率+输出概率 -&gt; 可见状态出现的概率 （动态规划、forward algorithm）</li>
-<li>解码(decoding)<br> 转换概率+输出概率+可见状态链 -&gt; 隐含状态链 （极大似然、Viterbi algorithm）      </li>
-<li>学习(learning)<br> a. 有可见状态链和隐含状态链-&gt;HMM模型<br> b. 只有可见状态链-&gt;HMM模型</li>
-</ol>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/04/27/ApplicationMath/pca/">PCA主成分分析</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 27, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <ol>
-<li>零均值化：每个属性值减去其均值</li>
-<li>求协方差矩阵</li>
-<li>求协方差矩阵的特征值和特征向量</li>
-<li>保留主成分</li>
-</ol>
 
         
       
