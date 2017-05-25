@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-05-25T09:57:24.000Z</updated>
+  <updated>2017-05-25T10:02:28.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -20,20 +20,28 @@
     <link href="http://huisblog.cn/2017/05/25/dft/"/>
     <id>http://huisblog.cn/2017/05/25/dft/</id>
     <published>2017-05-25T09:46:15.000Z</published>
-    <updated>2017-05-25T09:57:24.000Z</updated>
+    <updated>2017-05-25T10:02:28.000Z</updated>
     
-    <content type="html"><![CDATA[<p>对于音频信号处理而言，<code>离散傅里叶变化(DFT)</code>是最最常用的函数工具。它将信号的时域采样变换为其<code>离散时间傅里叶变化(DTFT)</code>的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。</p>
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>对于音频信号处理而言，<code>离散傅里叶变化(DFT)</code>是最最常用的函数工具。它将信号的时域采样变换为其<code>离散时间傅里叶变化(DTFT)</code>的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。</p>
 <p>在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。</p>
 <a id="more"></a>
-<p>DFT的变化等式为：<br>$$ X[k]=  \sum_{n=0}^{N-1}{x[n]e^{−j2{\pi}kn/N}}   (k=0,…,N−1) $$</p>
+<p>DFT的变化等式为：<br>$$X[k]=  \sum_{n=0}^{N-1}{x[n]e^{−j2{\pi}kn/N}}   (k=0,…,N−1)$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># DFT的Python实现</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFT</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Input:</div><div class="line">        x (numpy array) = input time sequence of N samples</div><div class="line">    Output:</div><div class="line">        X (numpy array) = The N point DFT of the input sequence x</div><div class="line">    """</div><div class="line"></div><div class="line">    N = len(x)</div><div class="line">    n = np.arange(N)</div><div class="line">    X = np.array([])</div><div class="line"></div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(N):</div><div class="line">        Xk = sum(x*np.conjugate(np.exp(<span class="number">1j</span>*<span class="number">2</span>*np.pi*k/N * n)))</div><div class="line">        X = np.append(X, Xk)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> X</div></pre></td></tr></table></figure>
-<p>DFT的逆变化：<br>$$ x[n]=  \frac{1}{N}\sum_{k=0}^{N-1}{X[k]e^{j2{\pi}nk/N}}   (n=0,…,N−1) $$</p>
+<p>DFT的逆变化：</p>
+<p>$$x[n]=  \frac{1}{N}\sum_{k=0}^{N-1}{X[k]e^{j2{\pi}nk/N}}   (n=0,…,N−1)$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># IDFT的Python实现</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">IDFT</span><span class="params">(x)</span>:</span></div><div class="line">     <span class="string">"""</span></div><div class="line">    Input:</div><div class="line">        X (numpy array) = frequency spectrum (length N)</div><div class="line">    Output:</div><div class="line">        The function should return a numpy array of length N </div><div class="line">        x (numpy array) = The N point IDFT of the frequency spectrum X</div><div class="line">    """</div><div class="line">    </div><div class="line">    x = np.array([])</div><div class="line">    N = len(X)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(N):</div><div class="line">        xn = <span class="number">1.0</span>/N * sum(X*np.exp(<span class="number">1j</span>*<span class="number">2</span>*np.pi*n/N * np.arange(N)))</div><div class="line">        x = np.append(x,xn)</div><div class="line">        </div><div class="line">    <span class="keyword">return</span> x</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;对于音频信号处理而言，&lt;code&gt;离散傅里叶变化(DFT)&lt;/code&gt;是最最常用的函数工具。它将信号的时域采样变换为其&lt;code&gt;离散时间傅里叶变化(DTFT)&lt;/code&gt;的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。&lt;/p&gt;
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;对于音频信号处理而言，&lt;code&gt;离散傅里叶变化(DFT)&lt;/code&gt;是最最常用的函数工具。它将信号的时域采样变换为其&lt;code&gt;离散时间傅里叶变化(DTFT)&lt;/code&gt;的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。&lt;/p&gt;
 &lt;p&gt;在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DFT，也应当将其看作其周期延拓的变换。&lt;/p&gt;
     
     </summary>
@@ -227,7 +235,7 @@
     <link href="http://huisblog.cn/2017/05/02/tex/"/>
     <id>http://huisblog.cn/2017/05/02/tex/</id>
     <published>2017-05-02T07:09:59.000Z</published>
-    <updated>2017-05-02T07:45:08.000Z</updated>
+    <updated>2017-05-25T10:02:05.000Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -244,7 +252,7 @@
 <p>效果是：<br>这是一个行内公式\(c = a+b\)</p>
 <p>行间公式使用<code>$$...$$</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这是一个行间公式</div><div class="line">$$ E = mc^&#123;2&#125; $$</div></pre></td></tr></table></figure>
-<p>这是一个行间公式<br>$$ E = mc^{2}$$</p>
+<p>这是一个行间公式<br>$$ E = mc^{2} $$</p>
 ]]></content>
     
     <summary type="html">
