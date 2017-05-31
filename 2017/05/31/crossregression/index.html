@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="交叉数据集和交叉文化下的音乐情感识别"/>
+
+
+
+
+  <meta name="keywords" content="MER,dataset," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/05/31/crossregression/"/>
+
+
+<meta name="description" content="本文是作者在阅读Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs这篇论文后的阅读笔记和总结感想。">
+<meta name="keywords" content="MER,dataset">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交叉数据集和交叉文化下的音乐情感识别">
+<meta property="og:url" content="http://huisblog.cn/2017/05/31/crossregression/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="本文是作者在阅读Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs这篇论文后的阅读笔记和总结感想。">
+<meta property="og:image" content="http://huisblog.cn/2017/05/31/crossregression/features.png">
+<meta property="og:image" content="http://huisblog.cn/2017/05/31/crossregression/experiments.png">
+<meta property="og:updated_time" content="2017-05-31T16:07:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="交叉数据集和交叉文化下的音乐情感识别">
+<meta name="twitter:description" content="本文是作者在阅读Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs这篇论文后的阅读笔记和总结感想。">
+<meta name="twitter:image" content="http://huisblog.cn/2017/05/31/crossregression/features.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 交叉数据集和交叉文化下的音乐情感识别 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          交叉数据集和交叉文化下的音乐情感识别
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 31, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#研究概述"><span class="toc-text">研究概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验材料"><span class="toc-text">实验材料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3个不同文化背景下的流行音乐数据集"><span class="toc-text">3个不同文化背景下的流行音乐数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5种声学特征（15个特征集合）"><span class="toc-text">5种声学特征（15个特征集合）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1个回归算法"><span class="toc-text">1个回归算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验设计"><span class="toc-text">实验设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验结果"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题一-情感回归的音频特征"><span class="toc-text">[问题一] 情感回归的音频特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题二-交叉数据集通用性"><span class="toc-text">[问题二] 交叉数据集通用性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启发和收获"><span class="toc-text">启发和收获</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>本文是作者在阅读<em>Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs</em>这篇论文后的阅读笔记和总结感想。</p>
+<a id="more"></a>
+<h2 id="研究概述"><a href="#研究概述" class="headerlink" title="研究概述"></a>研究概述</h2><p>很少有人研究情感回归模型在交叉数据集中的泛化能力（generalizability），或者说通用性，尤其是跨文化的音乐情感研究就更少了。<em>Hu X</em>和<em>Yang Y H</em>提取了3个不同文化背景流行音乐数据集的5种音乐情感特征集，评估了它们训练的情感回归模型的性能，特别是在交叉数据集上的适用性。</p>
+<p>他们还设计进行了5个实验来探究<code>数据集大小</code>、<code>标记可靠性</code>、<code>音乐文化背景</code>和<code>注释者文化背景</code>对情感回归模型的<code>性能(performances)</code>以及<code>泛化能力(generalizability)</code>的影响。</p>
+<p>整个研究回答了两个问题:</p>
+<ol>
+<li>哪种声学特征对音乐情感回归影响最大？在单一数据集内或者交叉数据集的情况下一样吗？</li>
+<li>使用一个数据集训练的情感回归模型适用于另一个数据集吗？数据集的大小、标记可靠程度和文化背景如何影响模型在交叉数据集下的泛化能力。</li>
+</ol>
+<h2 id="实验材料"><a href="#实验材料" class="headerlink" title="实验材料"></a>实验材料</h2><h3 id="3个不同文化背景下的流行音乐数据集"><a href="#3个不同文化背景下的流行音乐数据集" class="headerlink" title="3个不同文化背景下的流行音乐数据集"></a>3个不同文化背景下的流行音乐数据集</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>MER60</th>
+<th>CH818</th>
+<th>AMG1608</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Music</td>
+<td>Format</td>
+<td>Audio (mp3)</td>
+<td>Audio (mp3)</td>
+<td>Audio (mp3)</td>
+</tr>
+<tr>
+<td></td>
+<td>Size</td>
+<td>60</td>
+<td>818</td>
+<td>1608</td>
+</tr>
+<tr>
+<td></td>
+<td>Culture</td>
+<td>Western</td>
+<td>Chinese</td>
+<td>Western</td>
+</tr>
+<tr>
+<td></td>
+<td>Length</td>
+<td>30 seconds</td>
+<td>30 seconds</td>
+<td>30 seconds</td>
+</tr>
+<tr>
+<td></td>
+<td>Segment selection</td>
+<td><code>Chorus part</code>; <code>manual selected</code></td>
+<td><code>Segment with the strongest emotion</code></td>
+<td>Audio previews from 7 digital</td>
+</tr>
+<tr>
+<td>Annotators</td>
+<td>Type</td>
+<td>Volunteers</td>
+<td><code>Experts</code></td>
+<td>MTurk workers</td>
+</tr>
+<tr>
+<td></td>
+<td>Culture</td>
+<td>Chinese</td>
+<td>Chinese</td>
+<td>Western</td>
+</tr>
+<tr>
+<td></td>
+<td>Number</td>
+<td>40 per clip</td>
+<td>3 per clip</td>
+<td>15–32 per clip</td>
+</tr>
+<tr>
+<td></td>
+<td>Scale</td>
+<td>Continuous [-5, 5]</td>
+<td>Continuous [-10, 10]</td>
+<td>Continuous [-1, 1]</td>
+</tr>
+<tr>
+<td>Annotations</td>
+<td>Dimensions</td>
+<td>V.A.</td>
+<td>V.A.</td>
+<td>V.A.</td>
+</tr>
+<tr>
+<td></td>
+<td>Interface</td>
+<td>2-D interactive interface</td>
+<td>two separate sliding bars</td>
+<td>2-D interactive interface</td>
+</tr>
+<tr>
+<td></td>
+<td>Emotion</td>
+<td>Intended</td>
+<td>Intended</td>
+<td>Intended</td>
+</tr>
+<tr>
+<td></td>
+<td>\(\alpha\)</td>
+<td>V: 0.387; A: 0.704</td>
+<td>V: 0.491; A: 0.617</td>
+<td>V: 0.306; A: 0.458</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>其中，\(\alpha\)是指<code>Krippendorff’s alpha</code>，用以量化标记可靠性；</li>
+<li>CH818使用回归模型自动识别提取了情感最为强烈\((|valence|^2+|arousal|^2)\)的30秒；</li>
+<li>CH818用<code>Pearson相关系数</code>表明了3个专家的打分是合理的（和均值非常接近）；</li>
+<li>AMG1608的每10个音乐片段中有1个复制，如果复制的音乐片段打分误差超过10%，该注释者的打分数据将会被删除。</li>
+</ul>
+<h3 id="5种声学特征（15个特征集合）"><a href="#5种声学特征（15个特征集合）" class="headerlink" title="5种声学特征（15个特征集合）"></a>5种声学特征（15个特征集合）</h3><img src="/2017/05/31/crossregression/features.png" alt="features.png" title="">
+<h3 id="1个回归算法"><a href="#1个回归算法" class="headerlink" title="1个回归算法"></a>1个回归算法</h3><ul>
+<li><code>Support Vector Regression(SVR)</code>模型 </li>
+<li>使用<code>径向基函数(RBF)</code>作为核函数</li>
+<li>通过<code>网格搜索</code>优化参数C和gamma</li>
+</ul>
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><p>首先，分别在2个维度下，评估15个单一数据集在9个数据集组合上（3个单一数据集，6个交叉数据集）的回归表现，用<code>step-wise forward feature selection algorithm</code>（一种贪婪算法，用局部最优近似全局最优）来选择特征集组合。</p>
+<p>使用上述步骤中选择的特征进行5个实验：</p>
+<img src="/2017/05/31/crossregression/experiments.png" alt="experiments.png" title="">
+<ul>
+<li>实验1用以表明融合特征集比单一特征集效果有所提升；</li>
+<li>实验2控制数据集大小，与实验1比较以验证数据集大小对预测能力的影响；</li>
+<li>实验3控制训练集标记的可靠程度，与实验2比较以验证训练集标记可靠性对预测能力的影响；</li>
+<li>实验4控制训练集和测试集的标记可靠性，与实验3比较以验证测试集标记可靠性对预测能力的影响；</li>
+<li>实验5改变训练集和测试集的标记可靠性，得到一系列组合，以量化标记可靠程度对预测能力的影响。</li>
+</ul>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><h3 id="问题一-情感回归的音频特征"><a href="#问题一-情感回归的音频特征" class="headerlink" title="[问题一] 情感回归的音频特征"></a>[问题一] 情感回归的音频特征</h3><ol>
+<li>愉悦度维度的特征选择：loudness_ psysound、harmony_psysound、timbre_psysound；</li>
+<li>唤醒度维度的特征选择：timbre_psysound、rhythm_mirtb；</li>
+<li>单独的<code>Loudness</code>和<code>Timbre</code>特征在愉悦度和唤醒度上表现都非常好；</li>
+<li>单独的<code>Rhythm</code>特征对愉悦度预测有效；</li>
+<li>单独的<code>Chroma</code>特征有助于唤醒度预测，且对单一数据集内的愉悦度预测有用；</li>
+<li><code>Harmony</code>特征有利于单一数据集内的愉悦度预测，但与唤醒度预测无关；</li>
+<li>多种特征的联合可以提高模型的预测能力，尤其是在愉悦度维度。</li>
+</ol>
+<h3 id="问题二-交叉数据集通用性"><a href="#问题二-交叉数据集通用性" class="headerlink" title="[问题二] 交叉数据集通用性"></a>[问题二] 交叉数据集通用性</h3><ol>
+<li>训练集越大，愉悦度和唤醒度的预测越好；</li>
+<li>平衡训练集和测试集的标记可靠性对交叉数据集愉悦度预测有用，而可靠程度越高，唤醒度预测越准；</li>
+<li>在愉悦度维度，相同的文化背景对交叉数据集预测非常重要，如果歌曲本身和打标签的人都是不同文化背景下的，那么模型的泛化能力将无法保证，除非训练集和测试集都有相当高的标记可靠性；但文化背景对唤醒度预测影响不大，只要相关数据集的标记可靠性不是太低，情感回归模型在交叉数据集的表现和单一数据集内的表现相似。</li>
+</ol>
+<h2 id="启发和收获"><a href="#启发和收获" class="headerlink" title="启发和收获"></a>启发和收获</h2><ol>
+<li>数据集标签的评估量化数值<code>Krippendorff’s alpha</code></li>
+<li>AMG1608注释者的标记质量控制策略</li>
+<li>多特征集的融合互补有助于提高预测能力</li>
+<li>该论文的实验设计逻辑非常严谨，变量控制严格，值得学习；</li>
+<li>实验的结果分析和结论不一样，结果分析应该就实验数据表现的方方面面都做以分析，甚至可以发掘到意料之外的有意思信息；而结论则是回答实验之初提出的问题。</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <em>Hu X, Yang Y H. Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs[J]. IEEE Transactions on Affective Computing, 2016.</em></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/05/31/crossregression/">http://huisblog.cn/2017/05/31/crossregression/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/MER/">MER</a>
+            
+              <a href="/tags/dataset/">dataset</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/25/dft/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">离散傅里叶变换(DFT)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+  <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "b964390f0f11417ca56be3bb7bdc9f02",
+      target: "cloud-tie-wrapper"
+    };
+  </script>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
