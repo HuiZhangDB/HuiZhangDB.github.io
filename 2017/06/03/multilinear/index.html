@@ -34,17 +34,17 @@
 <link rel="canonical" href="http://huisblog.cn/2017/06/03/multilinear/"/>
 
 
-<meta name="description" content="多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begin{bmatr">
+<meta name="description" content="多变量线性回归多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begi">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多变量线性回归">
 <meta property="og:url" content="http://huisblog.cn/2017/06/03/multilinear/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begin{bmatr">
-<meta property="og:updated_time" content="2017-06-03T07:47:02.000Z">
+<meta property="og:description" content="多变量线性回归多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begi">
+<meta property="og:updated_time" content="2017-06-03T08:21:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多变量线性回归">
-<meta name="twitter:description" content="多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begin{bmatr">
+<meta name="twitter:description" content="多变量线性回归多变量线性回归假设函数多变量假设函数的标准形式(multivariable hypothesis function)   $$\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begi">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -258,7 +258,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量线性回归假设函数"><span class="toc-text">多变量线性回归假设函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量的梯度下降"><span class="toc-text">多变量的梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多项式回归"><span class="toc-text">多项式回归</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用法方程-Normal-Equation-进行参数计算"><span class="toc-text">使用法方程(Normal Equation)进行参数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#法方程不可逆"><span class="toc-text">法方程不可逆</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多变量线性回归"><span class="toc-text">多变量线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量线性回归假设函数"><span class="toc-text">多变量线性回归假设函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多变量的梯度下降"><span class="toc-text">多变量的梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多项式回归"><span class="toc-text">多项式回归</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用法方程-Normal-Equation-进行参数计算"><span class="toc-text">使用法方程(Normal Equation)进行参数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#法方程不可逆"><span class="toc-text">法方程不可逆</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
@@ -268,7 +268,7 @@
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-<h2 id="多变量线性回归假设函数"><a href="#多变量线性回归假设函数" class="headerlink" title="多变量线性回归假设函数"></a>多变量线性回归假设函数</h2><p>多变量假设函数的标准形式(multivariable hypothesis function)  </p>
+<h1 id="多变量线性回归"><a href="#多变量线性回归" class="headerlink" title="多变量线性回归"></a>多变量线性回归</h1><h2 id="多变量线性回归假设函数"><a href="#多变量线性回归假设函数" class="headerlink" title="多变量线性回归假设函数"></a>多变量线性回归假设函数</h2><p>多变量假设函数的标准形式(multivariable hypothesis function)  </p>
 <p>$$<br>\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x\end{align*}<br>$$</p>
 <a id="more"></a>
 <h2 id="多变量的梯度下降"><a href="#多变量的梯度下降" class="headerlink" title="多变量的梯度下降"></a>多变量的梯度下降</h2><p>$$<br>\begin{align*}&amp; \text{Repeat until convergence:} \; \lbrace \newline \; &amp; \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; &amp; \text{for j := 0…n}\newline \rbrace\end{align*}<br>$$</p>
