@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/05/02/tex/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="Markdown本身并不支持数学公式的书写，使用MathJax来给我的博客插入公式只需要两步：    链接MathJax到要包含公式的网页中；   将公式放入网页让MathJax可以展示它。  中文版入门指南">
-<meta property="og:updated_time" content="2017-06-03T07:09:52.000Z">
+<meta property="og:updated_time" content="2017-06-03T09:02:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在博客中插入数学公式">
 <meta name="twitter:description" content="Markdown本身并不支持数学公式的书写，使用MathJax来给我的博客插入公式只需要两步：    链接MathJax到要包含公式的网页中；   将公式放入网页让MathJax可以展示它。  中文版入门指南">
@@ -258,7 +258,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#到内容分发服务的安全链接"><span class="toc-text">到内容分发服务的安全链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入公式"><span class="toc-text">插入公式</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#到内容分发服务的安全链接"><span class="toc-text">到内容分发服务的安全链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入公式"><span class="toc-text">插入公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo与Mathjax的转义冲突"><span class="toc-text">Hexo与Mathjax的转义冲突</span></a></li></ol>
     </div>
   </div>
 
@@ -281,6 +281,28 @@
 <p>行间公式使用<code>$$...$$</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这是一个行间公式</div><div class="line">$$ E = mc^&#123;2&#125; $$</div></pre></td></tr></table></figure>
 <p>这是一个行间公式<br>$$ E = mc^{2} $$</p>
+<h2 id="Hexo与Mathjax的转义冲突"><a href="#Hexo与Mathjax的转义冲突" class="headerlink" title="Hexo与Mathjax的转义冲突"></a>Hexo与Mathjax的转义冲突</h2><p>按照以上两个步骤，按理来说应该就可以成功显示数学公式了。但是，有些时候会发现一些复杂的数学公式不能成功解析，原因是Hexo本身与Mathjax有一些特殊符号是互相冲突的：</p>
+<ul>
+<li><code>_</code>的转义，在markdown中，<code>_</code>代表斜体，但在LaTeX中却是下标的意思；</li>
+<li><code>\\</code>在markdown中会被定义为<code>\</code>，但在LaTeX中却代表换行；</li>
+<li><code>*</code>在markdown中也是粗斜体的表示符号，在LaTeX中也被使用。</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000007261752" target="_blank" rel="external">Hexo下mathjax的转义问题</a>提到了一些解决办法：</p>
+<ol>
+<li>手动转义：最直接，但通用型差，在其他markdown引擎中会解析失败；</li>
+<li>更换Hexo的markdown引擎：把Hexo默认的渲染markdown的引擎换掉，感觉有点过重了；</li>
+<li>修改Hexo渲染源码：修改Hexo的渲染源码，不改变文章内容，可迁移。</li>
+</ol>
+<p>建议使用第3种办法，修改Hexo的渲染源码<code>nodes_modules/marked/lib/marked.js</code>:</p>
+<p>S1. 去掉<code>\</code>的转义：<br>将文件中的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([\\`*&#123;&#125;\[\]()# +\-.!_&gt;])/</span>,</div></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*&#123;&#125;\[\]()# +\-.!_&gt;])/</span>,</div></pre></td></tr></table></figure>
+<p>S2. 去掉特殊符号<code>_</code>：<br>找到斜体符号定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">em: <span class="regexp">/^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</div></pre></td></tr></table></figure>
+<p>去掉<code>_</code>的定义，修改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">em:<span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</div></pre></td></tr></table></figure>
+<p>修改完这两处后，LaTeX公式中的<code>_</code>和<code>\\</code>就不会解析错误啦。但值得注意的是<code>*</code>的问题没有被解决，不过<code>*</code>在LaTeX中使用并不多，markdown也同样需要一个表示粗斜体的符号，所以不在渲染文件中更改<code>*</code>的定义。这样就需要我们在写数学公式的时候注意<code>*</code>的使用了（例如，<code>\begin{align*}</code>应该改为<code>\begin{align}</code>）。</p>
 
       
     </div>
