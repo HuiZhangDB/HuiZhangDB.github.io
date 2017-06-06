@@ -355,7 +355,7 @@
 <p>P3. 对称性(Symmetry)：<br>$$\begin{align} x[n]real \Leftrightarrow \mathfrak{R}(X[k])even{\quad}and{\quad}\mathfrak{I}(X[k])odd \newline \Leftrightarrow |X[k]|even \quad and \quad \angle{X[k]}odd \quad \end{align}$$</p>
 <p>$$\begin{align} x[n]real\&amp;even \Leftrightarrow \mathfrak{R}(X[k])even{\quad}and{\quad}\mathfrak{I}(X[k])=0 \newline \Leftrightarrow |X[k]|even \quad and \quad \angle{X[k]}=n\pi \quad \end{align}$$</p>
 <p>P4. 卷积定理(Convolution)<br>$$x_1[n]\otimes x_2[n] \Leftrightarrow X_1[K]X_2[K]$$</p>
-<h2 id="DFT中处理方法"><a href="#DFT中处理方法" class="headerlink" title="DFT中处理方法"></a>DFT中处理方法</h2><ul>
+<h2 id="DFT中的处理方法"><a href="#DFT中的处理方法" class="headerlink" title="DFT中的处理方法"></a>DFT中的处理方法</h2><ul>
 <li>Energy conservation  </li>
 <li>Phase unwrapping</li>
 <li>Zero padding</li>

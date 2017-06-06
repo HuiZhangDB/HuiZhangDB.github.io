@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/05/25/dft/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="对于音频信号处理而言，离散傅里叶变化(DFT)是最最常用的函数工具。它将信号的时域采样变换为其离散时间傅里叶变化(DTFT)的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。 在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DF">
-<meta property="og:updated_time" content="2017-06-06T12:26:20.000Z">
+<meta property="og:updated_time" content="2017-06-06T12:33:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="离散傅里叶变换(DFT)">
 <meta name="twitter:description" content="对于音频信号处理而言，离散傅里叶变化(DFT)是最最常用的函数工具。它将信号的时域采样变换为其离散时间傅里叶变化(DTFT)的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。 在形式上，变换两端（时域和频域上）的序列是有限长的，而实际上这两组序列都应当被认为是离散周期信号的主值序列。即使对有限长的离散信号作DF">
@@ -258,7 +258,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT的几条重要性质"><span class="toc-text">DFT的几条重要性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT中处理方法"><span class="toc-text">DFT中处理方法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT的几条重要性质"><span class="toc-text">DFT的几条重要性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DFT中的处理方法"><span class="toc-text">DFT中的处理方法</span></a></li></ol>
     </div>
   </div>
 
@@ -281,7 +281,7 @@
 <p>P3. 对称性(Symmetry)：<br>$$\begin{align} x[n]real \Leftrightarrow \mathfrak{R}(X[k])even{\quad}and{\quad}\mathfrak{I}(X[k])odd \newline \Leftrightarrow |X[k]|even \quad and \quad \angle{X[k]}odd \quad \end{align}$$</p>
 <p>$$\begin{align} x[n]real\&amp;even \Leftrightarrow \mathfrak{R}(X[k])even{\quad}and{\quad}\mathfrak{I}(X[k])=0 \newline \Leftrightarrow |X[k]|even \quad and \quad \angle{X[k]}=n\pi \quad \end{align}$$</p>
 <p>P4. 卷积定理(Convolution)<br>$$x_1[n]\otimes x_2[n] \Leftrightarrow X_1[K]X_2[K]$$</p>
-<h2 id="DFT中处理方法"><a href="#DFT中处理方法" class="headerlink" title="DFT中处理方法"></a>DFT中处理方法</h2><ul>
+<h2 id="DFT中的处理方法"><a href="#DFT中的处理方法" class="headerlink" title="DFT中的处理方法"></a>DFT中的处理方法</h2><ul>
 <li>Energy conservation  </li>
 <li>Phase unwrapping</li>
 <li>Zero padding</li>
