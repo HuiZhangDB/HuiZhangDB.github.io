@@ -8,7 +8,7 @@
       <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-<h2 id="Why-Neuronal-Networks"><a href="#Why-Neuronal-Networks" class="headerlink" title="Why Neuronal Networks?"></a>Why Neuronal Networks?</h2><p>当遇到<code>特征数量很大(n is large)</code>的<code>复杂非线性问题</code>时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。</p>
+<h2 id="Why-Neural-Networks"><a href="#Why-Neural-Networks" class="headerlink" title="Why Neural Networks?"></a>Why Neural Networks?</h2><p>当遇到<code>特征数量很大(n is large)</code>的<code>复杂非线性问题</code>时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。</p>
 <p>神经网络其实很早就出现了(A pretty old algorithm)，始于80年代，90年代有所衰减而现在又火了起来（计算机计算能力的提升）。神经网络模拟人脑神经的计算机制，在解决许多机器学习问题时有很好的效果。</p>
 <p>人脑使用一种学习算法来处理无数不同的问题，这使得我们模拟它的计算机制成为可能。人脑甚至可以学习任何传感数据，这让神经网络成为最有可能实现人工智能的方法。</p>
 <a id="more"></a>
