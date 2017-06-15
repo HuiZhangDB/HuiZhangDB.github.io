@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-06-06T01:48:08.000Z</updated>
+  <updated>2017-06-15T08:57:19.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>神经网络(Neural Networks)</title>
+    <link href="http://huisblog.cn/2017/06/15/neuralnetwork/"/>
+    <id>http://huisblog.cn/2017/06/15/neuralnetwork/</id>
+    <published>2017-06-15T08:54:11.000Z</published>
+    <updated>2017-06-15T08:57:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="Why-Neurons-Networks"><a href="#Why-Neurons-Networks" class="headerlink" title="Why Neurons Networks?"></a>Why Neurons Networks?</h2><p>当遇到<code>特征数量很大(n is large)</code>的<code>复杂非线性问题</code>时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。</p>
+<p>神经网络其实很早就出现了(A pretty old algorithm)，始于80年代，90年代有所衰减而现在又火了起来（计算机计算能力的提升）。神经网络模拟人脑神经的计算机制，在解决许多机器学习问题时有很好的效果。</p>
+<p>人脑使用一种学习算法来处理无数不同的问题，这使得我们模拟它的计算机制成为可能。人脑甚至可以学习任何传感数据，这让神经网络成为最有可能实现人工智能的方法。</p>
+<a id="more"></a>
+<h2 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h2><p>最简单的神经网络表达式：</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline \end{bmatrix}\rightarrow\begin{bmatrix}   \newline \end{bmatrix}\rightarrow h_\theta(x)$$</p>
+<p>这是一个只有2层的神经网络，第1层<code>输入层</code>\(\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline \end{bmatrix}\)和第2层<code>输出层</code>\(h_\theta(x)\)。</p>
+<p>输入层和输出层之间可以有中间层节点，称为<code>隐藏层(hidden layers)</code>。有一个隐藏层的神经网络可以表示为：</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline x_3\end{bmatrix}\rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \newline a_3^{(2)} \newline \end{bmatrix}\rightarrow h_\theta(x)$$</p>
+<p>$$\begin{align}&amp; a_i^{(j)} = \text{“activation” of unit i in layer j} \newline&amp; \Theta^{(j)} = \text{matrix of weights controlling function mapping from layer j to layer j+1}\end{align}$$</p>
+<p>每个激活节点的计算方式：</p>
+<p>$$\begin{align} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3) \newline a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3) \newline a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3) \newline h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)}) \newline \end{align}$$</p>
+<p>值得注意的是，如果神经网络在第\(j\)层有\(s_j\)个节点，在第\(j+1\)层有\(s_{j+1}\)个节点，那么\(\Theta^{(j)}\)的维度会是\(s_{j+1}\times(s_j +1)\)。</p>
+<p>增加隐藏层可以解决更多的复杂非线性问题。</p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="二元逻辑运算"><a href="#二元逻辑运算" class="headerlink" title="二元逻辑运算"></a>二元逻辑运算</h3><p>神经网络可以实现所有的逻辑门，例如：</p>
+<p>$$\begin{align}AND:\newline\Theta^{(1)} &amp;=\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix} \newline NOR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}10 &amp; -20 &amp; -20\end{bmatrix} \newline OR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix} \newline\end{align}$$</p>
+<h3 id="多类分类"><a href="#多类分类" class="headerlink" title="多类分类"></a>多类分类</h3><p>比如将数据分为4类，表达式可以是：</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline … \newline x_n\end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(2)} \newline a_1^{(2)} \newline a_2^{(2)} \newline … \newline \end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(3)} \newline a_1^{(3)} \newline a_2^{(3)} \newline …\newline \end{bmatrix}\rightarrow … \rightarrow \begin{bmatrix}h_\Theta(x)_1 \newline h_\Theta(x)_2 \newline h_\Theta(x)_3 \newline h_\Theta(x)_4\end{bmatrix}$$</p>
+<p>分别训练4个假设函数，表示每个分类的可能性，取可能性最大的标签为分类结果。</p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>神经网络的损失函数标准形式：<br>$$\begin{gather} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}_k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}_k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather}$$</p>
+<p>$$\begin{align}&amp; L = \text{ total number of layers in the network} \newline&amp; s_l = \text{number of units (not counting bias unit) in layer (l)}\newline&amp; K = \text{number of output units/classes}\end{align}$$</p>
+<p>注意，第\(l\)层的\(\Theta^{(l)}\)矩阵大小为\(s_{l+1}\times (s_l + 1)\)，因此正则项\(\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\)是除去截距项(\(\Theta^{(l)}\)第一列)的所有\(\theta\)的平方和。</p>
+<p>这个损失函数\(J(\Theta)\)是非凸的，因此使用梯度下降可能只能得到局部最优值。</p>
+<h2 id="反向传播-Backprogation"><a href="#反向传播-Backprogation" class="headerlink" title="反向传播(Backprogation)"></a>反向传播(Backprogation)</h2><p><code>反向传播算法</code>是用于计算损失函数偏导\(\dfrac{\partial}{\partial \Theta_{i,j}^{(l)}}J(\Theta)\)的算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Given training set &#123;(x(1),y(1))⋯(x(m),y(m))&#125;, set Δ(l)i,j := 0 for all (l,i,j), (hence you end up having a matrix full of zeros)</div><div class="line"></div><div class="line">For training example t =1 to m:</div><div class="line">1. Set a(1) := x(t)</div><div class="line">2. Perform forward propagation to compute a(l) for l=2,3,…,L</div><div class="line">3. Using y(t), compute delta(L) = a(L)−y(t)</div><div class="line">4. Compute delta(L−1),delta(L−2),…,delta(2) using delta(l) = ((Θ(l))&apos;delta(l+1)) .∗ a(l) .∗ (1−a(l))</div><div class="line">5. Delta(l):= Delta(l)+ delta(l+1)(a(l))&apos;</div><div class="line">6. Regularization as the following equation.</div></pre></td></tr></table></figure>
+<p>$$\begin{align}&amp; D_{i,j}^{(l)} = \frac{1}{m}(\Delta_{i,j}^{(l)} + \lambda \Theta_{i,j}^{(l)}) \quad \text{if (j \neq 0)}\newline&amp;  D_{i,j}^{(l)} = \frac{1}{m}\Delta_{i,j}^{(l)} \quad \text{if (j = 0)}\end{align}$$</p>
+<p>最后得到的\(D_{i,j}^{(l)}\)即要求的偏导\(\dfrac{\partial}{\partial \Theta_{i,j}^{(l)}}J(\Theta)\)。</p>
+<p>可以使用<code>梯度检查(Gradient Checking)</code>来检查反向传播算法实现得是否正确。其依据：<br>$$\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}$$</p>
+<p>对于每一个\(\Theta^{(j)}\)即：</p>
+<p>$$\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}$$</p>
+<p>当\(\epsilon = 10^{-4} \)时，可以保证其数学意义（足够小），再小的话计算机在计算的时候会出现数值错误，梯度检查的MATLAB实现：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">epsilon = <span class="number">1e-4</span>;</div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n,</div><div class="line">  thetaPlus = theta;</div><div class="line">  thetaPlus(<span class="built_in">i</span>) += epsilon;</div><div class="line">  thetaMinus = theta;</div><div class="line">  thetaMinus(<span class="built_in">i</span>) -= epsilon;</div><div class="line">  gradApprox(<span class="built_in">i</span>) = (J(thetaPlus) - J(thetaMinus))/(<span class="number">2</span>*epsilon)</div><div class="line"><span class="keyword">end</span>;</div></pre></td></tr></table></figure>
+<h2 id="神经网络的使用和训练"><a href="#神经网络的使用和训练" class="headerlink" title="神经网络的使用和训练"></a>神经网络的使用和训练</h2><h3 id="神经网络的结构"><a href="#神经网络的结构" class="headerlink" title="神经网络的结构"></a>神经网络的结构</h3><p>在准备使用神经网络来解决问题时，首先要设计神经网络的结构，包括有多少层隐藏层以及每层有多少节点：</p>
+<ol>
+<li>输入层节点数，即特征\(x^{(i)}\)的维度；</li>
+<li>输出层节点数，即分类的类数；</li>
+<li>隐藏层数目和每层的节点数，通常越多越好，但必须平衡随之增加的计算代价；</li>
+<li>默认原则：1个隐藏层，如果有1个以上的隐藏层，那么建议每层的节点数一样。</li>
+</ol>
+<h3 id="训练神经网络"><a href="#训练神经网络" class="headerlink" title="训练神经网络"></a>训练神经网络</h3><ol>
+<li>随机生成每层的\(\Theta^{(l)}\)；</li>
+<li>使用正向传播算出每个训练数据\(x^{(i)}\)的预测值\(h_{\Theta}(x^{(i)})\)；</li>
+<li>实现损失函数；</li>
+<li>使用反向传播算法实现损失函数偏导计算；</li>
+<li>使用梯度检查确保反向传播算法正确实现；</li>
+<li>使用梯度下降或其他优化算法来最小化损失函数，得到最终的\(\Theta^{(l)}\)值。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;Why-Neurons-Networks&quot;&gt;&lt;a href=&quot;#Why-Neurons-Networks&quot; class=&quot;headerlink&quot; title=&quot;Why Neurons Networks?&quot;&gt;&lt;/a&gt;Why Neurons Networks?&lt;/h2&gt;&lt;p&gt;当遇到&lt;code&gt;特征数量很大(n is large)&lt;/code&gt;的&lt;code&gt;复杂非线性问题&lt;/code&gt;时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。&lt;/p&gt;
+&lt;p&gt;神经网络其实很早就出现了(A pretty old algorithm)，始于80年代，90年代有所衰减而现在又火了起来（计算机计算能力的提升）。神经网络模拟人脑神经的计算机制，在解决许多机器学习问题时有很好的效果。&lt;/p&gt;
+&lt;p&gt;人脑使用一种学习算法来处理无数不同的问题，这使得我们模拟它的计算机制成为可能。人脑甚至可以学习任何传感数据，这让神经网络成为最有可能实现人工智能的方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
   
   <entry>
     <title>逻辑回归(Logistic Regression)</title>
@@ -1105,298 +1183,6 @@
       <category term="feature" scheme="http://huisblog.cn/tags/feature/"/>
     
       <category term="tool" scheme="http://huisblog.cn/tags/tool/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Features in MER</title>
-    <link href="http://huisblog.cn/2017/04/27/MERFeature/"/>
-    <id>http://huisblog.cn/2017/04/27/MERFeature/</id>
-    <published>2017-04-27T06:18:24.000Z</published>
-    <updated>2017-04-27T06:27:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Analysis-Content"><a href="#Analysis-Content" class="headerlink" title="Analysis Content"></a>Analysis Content</h2><ul>
-<li>Text-Content   (Web-Documents, Social-Tags, Lyrics)  </li>
-<li>Audio-Content  （Acoustic Features）</li>
-</ul>
-<a id="more"></a>
-<h2 id="Audio-Content"><a href="#Audio-Content" class="headerlink" title="Audio-Content"></a>Audio-Content</h2><p>P1. Measurement and time series analysis of emotion in music(Schubert1999 <em>Cited: 118’</em>)<br>A very old book introducing measurement and time series analysis of emotion in music.</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Loudnedss related</td>
-<td>Dynamics</td>
-</tr>
-<tr>
-<td>Pitch related</td>
-<td>Mean pitch, Pitch range, Variation in pitch, Melodic contour, Register, Mode, Timbre, Harmony</td>
-</tr>
-<tr>
-<td>Duration related</td>
-<td>Tempo, Articulation, Note onset, Vibrato, Rhythm, Metre</td>
-</tr>
-</tbody>
-</table>
-<p>P2. Automatic mood detection from acoustic music data(ISMIR2003 <em>Cited: 233’</em>)<br>“It was indicated that mode, intensity, timbre and rhythm are of great significance in arousing different music moods. However, mode is very difficult to obtain from acoustic data (Hinn, 1996). Therefore, only the rest three features are extracted and used in our mood detection system.”</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Intensity</td>
-<td>Root mean-square (RMS) level in decibels</td>
-</tr>
-<tr>
-<td>Rhythm</td>
-<td>Average strength, Average correlation peak, Average tempo</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>Spectral Shape Features: Centroid, Bandwidth, Roll off, Spectral Flux; Spectral Contrast Features: Sub-band Peak, Sub-band Valley, Sub-band Average</td>
-</tr>
-</tbody>
-</table>
-<p>P3. Disambiguating Music Emotion Using Software Agents(ISMIR2004 <em>Cited: 118’</em>)<br>This paper confirmed the results of P2 which found that emotional intensity was highly correlated with rhythm and timbre features.</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tempo</td>
-<td>Beats per Minute (BPM)</td>
-</tr>
-<tr>
-<td>LLD</td>
-<td>Low-level standard descriptors from the MPEG-7 audio standard (12 attributes)</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>Spectral centroid, Spectral rolloff, Spectral flux, Spectral kurtosis</td>
-</tr>
-<tr>
-<td>Intensity</td>
-<td>Labels of intensity from 0 to 9 were applied to instances by a human listener</td>
-</tr>
-<tr>
-<td>Another 12 attributes</td>
-<td>Generated by a genetic algorithm using the Sony Extractor Discovery System (EDS)</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：Wavelet tools, MPEG-7 Low Level Descriptors, Sony Extractor Discovery System (EDS)  </p>
-<p>P4. Modeling emotional content of music using system identification(TSMC2005 <em>Cited: 104’</em>)</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Dynamiscs</td>
-<td>Loudness level, Short term max.loudness</td>
-</tr>
-<tr>
-<td>Mean Pitch</td>
-<td>Power spectrum centroid, Mean STFT centroid</td>
-</tr>
-<tr>
-<td>Pitch Variation</td>
-<td>Mean STFT Flux, Std dev. STFT flux, Std dev. STFT centroid</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>Timbral Width, Mean STFT rolloff, Std. dev. STFT rolloff, Sharpness(Zwicker and Fastl)</td>
-</tr>
-<tr>
-<td>Harmony</td>
-<td>Spectral dissonance(Hutchinson and Knopoff), Spectral dissonance(Sethares), Tonal dissonance(Hutchinson and Knopoff), Tonal dissonance(Sethares), Complex tonalness</td>
-</tr>
-<tr>
-<td>Tempo</td>
-<td>Beats Per Minute</td>
-</tr>
-<tr>
-<td>Texture</td>
-<td>Multiplicity</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：PsySound, Marsyas</p>
-<p>P5. Music Emotion Classification: A Fuzzy Approach(ACM MM2006 <em>Cited: 142’</em>)<br>This paper used PsySound2 to extract music features and choose 15 features as recommended in P1. “begins with all 15 features and then greedily removes the worst feature sequentially until no more accuracy improvement can be obtained.” Same as <a href="./papers/popmusic.22.pdf">Detecting and Classifying Emotion in Popular Music</a>(JCIS2006 <em>Cited: 22’</em>)</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Loudnedss related</td>
-<td>Dynamics</td>
-</tr>
-<tr>
-<td>Pitch related</td>
-<td>Mean pitch, Pitch range, Variation in pitch, Melodic contour, Register, Mode, Timbre, Harmony</td>
-</tr>
-<tr>
-<td>Duration related</td>
-<td>Tempo, Articulation, Note onset, Vibrato, Rhythm, Metre</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：PsySound2</p>
-<p>P6. Multi-Label Classification of Music into Emotions(ISMIR2008 <em>Cited: 529’</em>)  </p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Rhythm</td>
-<td>The two highest peaks and computing their amplitudes, their BMPs (beats per minute) and the high-to-low ratio of their BPMs; Summing the histogram bins between 40-90, 90-140 and 140- 250 BPMs respectively. -&gt; 8</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>the first 13 MFCCs, spectral centroid, spectral rolloff and spectral flux for per frame -&gt; 16 -&gt; The mean, std, mean std and std std over all frames -&gt; 64</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：Marsyas tool</p>
-<p>P7. A regression approach to music emotion recognition(TASLP2008 <em>Cited: 319’</em>)<br>“extract musical features and construct a 114-dimension feature space”</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PsySound</td>
-<td>Loudness, Level, Dissonance, Pitch -&gt; 44</td>
-</tr>
-<tr>
-<td>Marsyas</td>
-<td>Spectral centroid, Spectral rolloff, Spectral flux, Time domain zero-crossing and Mel-frequency cep- stral coefficient (MFCC) -&gt; 19, 6 rhythmic content features (by beat and tempo detection), 5 pitch content features (by multi- pitch detection) -&gt; 30</td>
-</tr>
-<tr>
-<td>Spectral contrast</td>
-<td>Capture the relative spectral information in each subband and utilize the spectral peak, spectral valley, and their dynamics as features -&gt; 12</td>
-</tr>
-<tr>
-<td>DWCH</td>
-<td>histograms of Daubechies wavelet co- efficients at different frequency subbands with different resolutions -&gt; 28</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：PsySound, Marsyas, Matlab</p>
-<p>P8. Music emotion recognition: A state of the art review(ISMIR2010 <em>Cited: 268’</em>)<br>“An overview of the most common acoustic features used for mood recognition”  </p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Dynamics</td>
-<td>RMS-Energy</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>MFCCs, Spectral-Shape, Spectral-Contrast</td>
-</tr>
-<tr>
-<td>Harmony</td>
-<td>Roughness, Harmonic-Change, Key-Clarity, Majorness</td>
-</tr>
-<tr>
-<td>Register</td>
-<td>Chromagram, Chroma-Centroid and Deviation</td>
-</tr>
-<tr>
-<td>Rhythm</td>
-<td>Rhythm-Strength, Regularity, Tempo, Beat-Histograms</td>
-</tr>
-<tr>
-<td>Articulation</td>
-<td>Event-Density, Attack-Slope, Attack-Time</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：MIRtoolbox  </p>
-<p>P9. Machine recognition of music emotion: A review(TIST2012 <em>Cited: 139’</em>)<br>“briefly review some features that have been utilized in MER”</p>
-<table>
-<thead>
-<tr>
-<th>Types</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Energy</td>
-<td>Audio power, Total loudness, Specific loudness sensation coefficients(SONE)</td>
-</tr>
-<tr>
-<td>Rhythm</td>
-<td>Rhythm Strength, Rhythm Regularity, Rhythm Clarity, Average onset frequency, Average tempo</td>
-</tr>
-<tr>
-<td>Melody</td>
-<td>Salient Pitch, Chromagram center, Key clarity, Mode, Harmonic change</td>
-</tr>
-<tr>
-<td>Timbre</td>
-<td>MFCC</td>
-</tr>
-</tbody>
-</table>
-<p>Tools recommended：MA Toolbox, MIRtoolbox, Marsyas tool</p>
-<p>P10. Developing a benchmark for emotional analysis of music(PloSone2017)<br>This is a interesting competive workshop.<br>“Performance of the different feature-sets on valence, development and evaluation-sets of 2015, 20 fold cross-validation”<br><img src="/2017/04/27/MERFeature/journal.pone.0173392.t007.PNG" alt="journal.pone.0173392.t007.PNG" title=""><br>“Performance of the different feature-sets on arousal, development and evaluation-sets of 2015, 20 fold cross-validation”<br><img src="/2017/04/27/MERFeature/journal.pone.0173392.t008.PNG" alt="journal.pone.0173392.t008.PNG" title=""></p>
-<p>Tools recommended：OpenSMILE</p>
-<h2 id="Findings"><a href="#Findings" class="headerlink" title="Findings"></a>Findings</h2><ol>
-<li><p>Every lab has its own emo-features-set in music. Most common used features:<br>MFCCs, Loudness, Spectral features (centroid, flux, rolloff, flatness), Timbre, Rhythm, Pitch, Harmony, Zero crossing rate</p>
-</li>
-<li><p>Acoustic feature extraction has better use a number of tools to give a broad mix from which to select the best features:<br>Marsyas, MIRtoolbox, PsySound, OpenSMILE</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Analysis-Content&quot;&gt;&lt;a href=&quot;#Analysis-Content&quot; class=&quot;headerlink&quot; title=&quot;Analysis Content&quot;&gt;&lt;/a&gt;Analysis Content&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Text-Content   (Web-Documents, Social-Tags, Lyrics)  &lt;/li&gt;
-&lt;li&gt;Audio-Content  （Acoustic Features）&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
-    
-      <category term="feature" scheme="http://huisblog.cn/tags/feature/"/>
     
   </entry>
   
