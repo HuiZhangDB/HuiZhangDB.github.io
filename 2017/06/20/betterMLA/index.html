@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="提升学习算法性能"/>
+
+
+
+
+  <meta name="keywords" content="ML," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/06/20/betterMLA/"/>
+
+
+<meta name="description" content="在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：  增加训练数据   减小特征集   增加特征   增加多项式特征 减小\(\lambda\)   变大\(\lambda\)   …  然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提升学习算法性能">
+<meta property="og:url" content="http://huisblog.cn/2017/06/20/betterMLA/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：  增加训练数据   减小特征集   增加特征   增加多项式特征 减小\(\lambda\)   变大\(\lambda\)   …  然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧">
+<meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/BV.png">
+<meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/highB.png">
+<meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/highV.png">
+<meta property="og:updated_time" content="2017-06-20T13:57:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="提升学习算法性能">
+<meta name="twitter:description" content="在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：  增加训练数据   减小特征集   增加特征   增加多项式特征 减小\(\lambda\)   变大\(\lambda\)   …  然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧">
+<meta name="twitter:image" content="http://huisblog.cn/2017/06/20/betterMLA/BV.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 提升学习算法性能 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          提升学习算法性能
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jun 20, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#评估假设函数"><span class="toc-text">评估假设函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习诊断"><span class="toc-text">机器学习诊断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#诊断高偏差和高方差"><span class="toc-text">诊断高偏差和高方差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习曲线-Learning-Curves"><span class="toc-text">学习曲线(Learning Curves)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在高偏差的时候"><span class="toc-text">在高偏差的时候</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在高方差的时候"><span class="toc-text">在高方差的时候</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理方法小结"><span class="toc-text">处理方法小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一般化流程"><span class="toc-text">一般化流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#偏态数据-skewed-data"><span class="toc-text">偏态数据(skewed data)</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：</p>
+<ul>
+<li>增加训练数据  </li>
+<li>减小特征集  </li>
+<li>增加特征  </li>
+<li>增加多项式特征</li>
+<li>减小\(\lambda\)  </li>
+<li>变大\(\lambda\)  </li>
+<li>…</li>
+</ul>
+<p>然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧被称为<code>机器学习诊断(machine learning diagnostics)</code>。</p>
+<a id="more"></a>
+<h2 id="评估假设函数"><a href="#评估假设函数" class="headerlink" title="评估假设函数"></a>评估假设函数</h2><p>在解决一个机器学习问题时，我们往往会选择不同的模型来训练学习算法，然后评估比较其效果。那么怎样的评估是正确有效的呢？一个常用的方法是，将数据集分为三部分：  </p>
+<ol>
+<li>训练集(60%)：使用训练集计算每一个模型的优化参数\(\Theta\)；</li>
+<li>交叉验证集(20%)：使用验证集计算每个模型的误差，选出误差最小的模型；</li>
+<li>测试集(20%)：使用测试集计算误差最小模型的<code>通用误差(generalization error)</code>。</li>
+</ol>
+<p>注意：设置交叉验证集的目的是将验证集误差与测试集误差区分开来，使得测试集误差可以作为通用误差的评估依据。我们在选择模型时针对验证集做了优化（因为选的是最小误差的验证集），因此验证集误差是会小于测试集误差的。</p>
+<h2 id="机器学习诊断"><a href="#机器学习诊断" class="headerlink" title="机器学习诊断"></a>机器学习诊断</h2><h3 id="诊断高偏差和高方差"><a href="#诊断高偏差和高方差" class="headerlink" title="诊断高偏差和高方差"></a>诊断高偏差和高方差</h3><ul>
+<li>高偏差（欠拟合）：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都会很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)；</li>
+<li>高方差（过拟合）：：\(J_{train}(\Theta)\)会很小，\(J_{CV}(\Theta)\)会远大于\(J_{train}(\Theta)\)。</li>
+</ul>
+<p>例如下图：</p>
+<img src="/2017/06/20/betterMLA/BV.png" alt="BV.png" title="">
+<p>正则化系数\(\lambda\)选择不合理也可能导致欠拟合或者过拟合，因此\(\lambda\)可以和不同模型组合在一起进行实验选择：</p>
+<ol>
+<li>创建一组\(\lambda\)；</li>
+<li>创建一组假设函数；</li>
+<li>迭代学习每个\(\lambda\)与假设函数组合的\(\Theta\)；</li>
+<li>对每一个\(\Theta\)计算验证集上的错误率（计算错误率不加入正则项）；</li>
+<li>选择误差最小的组合；</li>
+<li>计算测试集误差来评估它是否有好的通用性。</li>
+</ol>
+<h3 id="学习曲线-Learning-Curves"><a href="#学习曲线-Learning-Curves" class="headerlink" title="学习曲线(Learning Curves)"></a>学习曲线(Learning Curves)</h3><p>学习曲线是错误率随训练集大小的变化而变化的曲线，可以用来诊断欠拟合和过拟合问题。</p>
+<h4 id="在高偏差的时候"><a href="#在高偏差的时候" class="headerlink" title="在高偏差的时候"></a>在高偏差的时候</h4><ul>
+<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)。</li>
+</ul>
+<p>当出现高偏差的时候，加大训练集并不能带来多大的帮助：</p>
+<img src="/2017/06/20/betterMLA/highB.png" alt="highB.png" title="">
+<h4 id="在高方差的时候"><a href="#在高方差的时候" class="headerlink" title="在高方差的时候"></a>在高方差的时候</h4><ul>
+<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J_{train}(\Theta)\)随着训练集增大而变大，\(J_{CV}(\Theta)\)随着训练增大而变小，但不会趋于平缓，且\(J_{CV}(\Theta) &lt; J_{train}(\Theta)\)并差距依旧明显。</li>
+</ul>
+<p>当出现高方差的时候，加大训练集可能会提高性能：</p>
+<img src="/2017/06/20/betterMLA/highV.png" alt="highV.png" title="">
+<h3 id="处理方法小结"><a href="#处理方法小结" class="headerlink" title="处理方法小结"></a>处理方法小结</h3><ul>
+<li>增加训练数据  &lt;– 高方差</li>
+<li>减小特征集  &lt;– 高方差</li>
+<li>增加特征  &lt;– 高偏差</li>
+<li>增加多项式特征 &lt;– 高偏差</li>
+<li>减小\(\lambda\)  &lt;– 高偏差</li>
+<li>变大\(\lambda\)  &lt;– 高方差</li>
+</ul>
+<p>特别的，对于神经网络：  </p>
+<ul>
+<li>较低阶的多项式（模型复杂度低）可能导致高偏差和低方差。在这种情况下，模型拟合结果差；</li>
+<li>较高阶的多项式（模型复杂度高）拟合训练集非常好，拟合测试集非常不好，导致训练数据上的低偏差和高方差。</li>
+<li>实际上，我们希望达到两者之间的状态，即在拟合数据好的情况下也保证通用性好。</li>
+</ul>
+<h2 id="一般化流程"><a href="#一般化流程" class="headerlink" title="一般化流程"></a>一般化流程</h2><p>一般来说，解决机器学习问题的推荐方法是：</p>
+<ol>
+<li>从一个简单的算法开始，快速实现，尽早在验证集上测试看一下效果；</li>
+<li>画出学习曲线来决定是否要增加数据、特征等；</li>
+<li>进行实验，计算验证集误差，尝试找出大部分错误的来源趋势。</li>
+</ol>
+<p>在选择使用的特征和模型时，始终要考虑两个问题：<br>Q1. 如果是人类专家来根据这些给出的特征进行预测，Ta能不能做出有效判断？即，使用的特征是否含有足够的有效信息；<br>Q2. 使用的模型是否具有足够的复杂度来解决这个问题？多参数的复杂算法和大的训练数据集相结合可以有效解决高偏差问题，同时不至于带来高方差。</p>
+<h2 id="偏态数据-skewed-data"><a href="#偏态数据-skewed-data" class="headerlink" title="偏态数据(skewed data)"></a>偏态数据(skewed data)</h2><p>当训练数据中正负例数量非常不均衡时，比如正例远远少于负例（检测癌症患者的实验中，患病者的数目远远少于未患病者的数目），这样的数据就叫做<code>偏态数据(skewed data)</code>。</p>
+<p>在遇到偏态数据时，只使用<code>正确率(accuracy)</code>作为<code>误差评估指标(error metrics)</code>是不合适的，因为这可能会导致明显错误的选择。比如，在诊断是否患该症的问题中始终得到不患病的结果可以得到很高的正确率，但这样的诊断方式是显然不对的。</p>
+<p>所以，需要有新的指标来衡量算法效果。常用的有<code>精确度(Precision)</code>和<code>查全率(Recall)</code>。</p>
+<p>定义混淆矩阵如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>实际值1</th>
+<th>实际值0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类值1</td>
+<td>Ture Positive</td>
+<td>False Positive</td>
+</tr>
+<tr>
+<td>分类值0</td>
+<td>False Negative</td>
+<td>Ture Negative</td>
+</tr>
+</tbody>
+</table>
+<p>$$\begin{align} Precision = \frac{True Positive}{Ture Positive + False Positive} \newline \newline Recall = \frac{True Positive}{Ture Positive + False Negative}\end{align}$$</p>
+<p>使用精确度和查全率可以有效消除单独使用正确率带来的偏态数据处理不当问题。</p>
+<p>但是，这样带来的另一个问题是，有了多个衡量性能的标准。而我们知道，有一个单独的实数作为<code>误差评估指标</code>(A single real number evaluation metric)是非常重要且必要的。同时，为了权衡精确度和查全率（设置分类阈值），可以使用<code>F1 Score</code>来作为误差评估指标：</p>
+<p>$$\begin{align} F_1 Score = 2\frac{Precision\times Recall}{Precision+ Recall}\end{align}$$</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/06/20/betterMLA/">http://huisblog.cn/2017/06/20/betterMLA/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/06/15/neuralnetwork/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">神经网络(Neural Networks)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+  <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "b964390f0f11417ca56be3bb7bdc9f02",
+      target: "cloud-tie-wrapper"
+    };
+  </script>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

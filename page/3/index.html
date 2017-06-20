@@ -240,6 +240,55 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/04/27/openSMILE/">openSMILE</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 27, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
+<p>S2. 下载依赖工具库  </p>
+<ul>
+<li>autotools(automake, autoconf, libtool, and m4)  </li>
+<li>make</li>
+<li>GNU C and C++ compiler gcc and g++</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ brew install automake</div><div class="line">$ brew install autoconf</div><div class="line">$ brew install libtool</div><div class="line">$ brew install m4</div><div class="line">$ brew install gcc</div></pre></td></tr></table></figure>
+<p>S3. 解压并安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ tar-zxvf opensmile-X.X.X.tar.gz</div><div class="line">$ cd opensmile-X.X.X</div><div class="line">$ sh buildStandalone.sh</div></pre></td></tr></table></figure>
+<p>S4. 测试安装是否成功  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ SMILExtract -h</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/04/27/MERFeature/">Features in MER</a>
         
       </h1>
@@ -565,46 +614,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/06/Python/PythonMulTask/">Python进程和线程</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 6, 2016
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/06/Python/PythonAdOOP/">Python面向对象高级编程</a>
+          <a class="post-link" href="/2016/12/06/Python/PythonOOP/">Python面向对象编程</a>
         
       </h1>
 
@@ -626,10 +636,9 @@
         
 
         
-          <h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
+          <p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
           <div class="read-more">
-            <a href="/2016/12/06/Python/PythonAdOOP/" class="read-more-link">Read more..</a>
+            <a href="/2016/12/06/Python/PythonOOP/" class="read-more-link">Read more..</a>
           </div>
         
       

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-06-15T15:38:51.000Z</updated>
+  <updated>2017-06-20T13:57:41.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,142 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>提升学习算法性能</title>
+    <link href="http://huisblog.cn/2017/06/20/betterMLA/"/>
+    <id>http://huisblog.cn/2017/06/20/betterMLA/</id>
+    <published>2017-06-20T13:54:51.000Z</published>
+    <updated>2017-06-20T13:57:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：</p>
+<ul>
+<li>增加训练数据  </li>
+<li>减小特征集  </li>
+<li>增加特征  </li>
+<li>增加多项式特征</li>
+<li>减小\(\lambda\)  </li>
+<li>变大\(\lambda\)  </li>
+<li>…</li>
+</ul>
+<p>然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧被称为<code>机器学习诊断(machine learning diagnostics)</code>。</p>
+<a id="more"></a>
+<h2 id="评估假设函数"><a href="#评估假设函数" class="headerlink" title="评估假设函数"></a>评估假设函数</h2><p>在解决一个机器学习问题时，我们往往会选择不同的模型来训练学习算法，然后评估比较其效果。那么怎样的评估是正确有效的呢？一个常用的方法是，将数据集分为三部分：  </p>
+<ol>
+<li>训练集(60%)：使用训练集计算每一个模型的优化参数\(\Theta\)；</li>
+<li>交叉验证集(20%)：使用验证集计算每个模型的误差，选出误差最小的模型；</li>
+<li>测试集(20%)：使用测试集计算误差最小模型的<code>通用误差(generalization error)</code>。</li>
+</ol>
+<p>注意：设置交叉验证集的目的是将验证集误差与测试集误差区分开来，使得测试集误差可以作为通用误差的评估依据。我们在选择模型时针对验证集做了优化（因为选的是最小误差的验证集），因此验证集误差是会小于测试集误差的。</p>
+<h2 id="机器学习诊断"><a href="#机器学习诊断" class="headerlink" title="机器学习诊断"></a>机器学习诊断</h2><h3 id="诊断高偏差和高方差"><a href="#诊断高偏差和高方差" class="headerlink" title="诊断高偏差和高方差"></a>诊断高偏差和高方差</h3><ul>
+<li>高偏差（欠拟合）：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都会很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)；</li>
+<li>高方差（过拟合）：：\(J_{train}(\Theta)\)会很小，\(J_{CV}(\Theta)\)会远大于\(J_{train}(\Theta)\)。</li>
+</ul>
+<p>例如下图：</p>
+<img src="/2017/06/20/betterMLA/BV.png" alt="BV.png" title="">
+<p>正则化系数\(\lambda\)选择不合理也可能导致欠拟合或者过拟合，因此\(\lambda\)可以和不同模型组合在一起进行实验选择：</p>
+<ol>
+<li>创建一组\(\lambda\)；</li>
+<li>创建一组假设函数；</li>
+<li>迭代学习每个\(\lambda\)与假设函数组合的\(\Theta\)；</li>
+<li>对每一个\(\Theta\)计算验证集上的错误率（计算错误率不加入正则项）；</li>
+<li>选择误差最小的组合；</li>
+<li>计算测试集误差来评估它是否有好的通用性。</li>
+</ol>
+<h3 id="学习曲线-Learning-Curves"><a href="#学习曲线-Learning-Curves" class="headerlink" title="学习曲线(Learning Curves)"></a>学习曲线(Learning Curves)</h3><p>学习曲线是错误率随训练集大小的变化而变化的曲线，可以用来诊断欠拟合和过拟合问题。</p>
+<h4 id="在高偏差的时候"><a href="#在高偏差的时候" class="headerlink" title="在高偏差的时候"></a>在高偏差的时候</h4><ul>
+<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)。</li>
+</ul>
+<p>当出现高偏差的时候，加大训练集并不能带来多大的帮助：</p>
+<img src="/2017/06/20/betterMLA/highB.png" alt="highB.png" title="">
+<h4 id="在高方差的时候"><a href="#在高方差的时候" class="headerlink" title="在高方差的时候"></a>在高方差的时候</h4><ul>
+<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J_{train}(\Theta)\)随着训练集增大而变大，\(J_{CV}(\Theta)\)随着训练增大而变小，但不会趋于平缓，且\(J_{CV}(\Theta) &lt; J_{train}(\Theta)\)并差距依旧明显。</li>
+</ul>
+<p>当出现高方差的时候，加大训练集可能会提高性能：</p>
+<img src="/2017/06/20/betterMLA/highV.png" alt="highV.png" title="">
+<h3 id="处理方法小结"><a href="#处理方法小结" class="headerlink" title="处理方法小结"></a>处理方法小结</h3><ul>
+<li>增加训练数据  &lt;– 高方差</li>
+<li>减小特征集  &lt;– 高方差</li>
+<li>增加特征  &lt;– 高偏差</li>
+<li>增加多项式特征 &lt;– 高偏差</li>
+<li>减小\(\lambda\)  &lt;– 高偏差</li>
+<li>变大\(\lambda\)  &lt;– 高方差</li>
+</ul>
+<p>特别的，对于神经网络：  </p>
+<ul>
+<li>较低阶的多项式（模型复杂度低）可能导致高偏差和低方差。在这种情况下，模型拟合结果差；</li>
+<li>较高阶的多项式（模型复杂度高）拟合训练集非常好，拟合测试集非常不好，导致训练数据上的低偏差和高方差。</li>
+<li>实际上，我们希望达到两者之间的状态，即在拟合数据好的情况下也保证通用性好。</li>
+</ul>
+<h2 id="一般化流程"><a href="#一般化流程" class="headerlink" title="一般化流程"></a>一般化流程</h2><p>一般来说，解决机器学习问题的推荐方法是：</p>
+<ol>
+<li>从一个简单的算法开始，快速实现，尽早在验证集上测试看一下效果；</li>
+<li>画出学习曲线来决定是否要增加数据、特征等；</li>
+<li>进行实验，计算验证集误差，尝试找出大部分错误的来源趋势。</li>
+</ol>
+<p>在选择使用的特征和模型时，始终要考虑两个问题：<br>Q1. 如果是人类专家来根据这些给出的特征进行预测，Ta能不能做出有效判断？即，使用的特征是否含有足够的有效信息；<br>Q2. 使用的模型是否具有足够的复杂度来解决这个问题？多参数的复杂算法和大的训练数据集相结合可以有效解决高偏差问题，同时不至于带来高方差。</p>
+<h2 id="偏态数据-skewed-data"><a href="#偏态数据-skewed-data" class="headerlink" title="偏态数据(skewed data)"></a>偏态数据(skewed data)</h2><p>当训练数据中正负例数量非常不均衡时，比如正例远远少于负例（检测癌症患者的实验中，患病者的数目远远少于未患病者的数目），这样的数据就叫做<code>偏态数据(skewed data)</code>。</p>
+<p>在遇到偏态数据时，只使用<code>正确率(accuracy)</code>作为<code>误差评估指标(error metrics)</code>是不合适的，因为这可能会导致明显错误的选择。比如，在诊断是否患该症的问题中始终得到不患病的结果可以得到很高的正确率，但这样的诊断方式是显然不对的。</p>
+<p>所以，需要有新的指标来衡量算法效果。常用的有<code>精确度(Precision)</code>和<code>查全率(Recall)</code>。</p>
+<p>定义混淆矩阵如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>实际值1</th>
+<th>实际值0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类值1</td>
+<td>Ture Positive</td>
+<td>False Positive</td>
+</tr>
+<tr>
+<td>分类值0</td>
+<td>False Negative</td>
+<td>Ture Negative</td>
+</tr>
+</tbody>
+</table>
+<p>$$\begin{align} Precision = \frac{True Positive}{Ture Positive + False Positive} \newline \newline Recall = \frac{True Positive}{Ture Positive + False Negative}\end{align}$$</p>
+<p>使用精确度和查全率可以有效消除单独使用正确率带来的偏态数据处理不当问题。</p>
+<p>但是，这样带来的另一个问题是，有了多个衡量性能的标准。而我们知道，有一个单独的实数作为<code>误差评估指标</code>(A single real number evaluation metric)是非常重要且必要的。同时，为了权衡精确度和查全率（设置分类阈值），可以使用<code>F1 Score</code>来作为误差评估指标：</p>
+<p>$$\begin{align} F_1 Score = 2\frac{Precision\times Recall}{Precision+ Recall}\end{align}$$</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加训练数据  &lt;/li&gt;
+&lt;li&gt;减小特征集  &lt;/li&gt;
+&lt;li&gt;增加特征  &lt;/li&gt;
+&lt;li&gt;增加多项式特征&lt;/li&gt;
+&lt;li&gt;减小\(\lambda\)  &lt;/li&gt;
+&lt;li&gt;变大\(\lambda\)  &lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧被称为&lt;code&gt;机器学习诊断(machine learning diagnostics)&lt;/code&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
   
   <entry>
     <title>神经网络(Neural Networks)</title>
@@ -1146,43 +1282,6 @@
     
     
       <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>openSMILE</title>
-    <link href="http://huisblog.cn/2017/04/27/openSMILE/"/>
-    <id>http://huisblog.cn/2017/04/27/openSMILE/</id>
-    <published>2017-04-27T06:28:08.000Z</published>
-    <updated>2017-04-27T06:29:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
-<p>S2. 下载依赖工具库  </p>
-<ul>
-<li>autotools(automake, autoconf, libtool, and m4)  </li>
-<li>make</li>
-<li>GNU C and C++ compiler gcc and g++</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ brew install automake</div><div class="line">$ brew install autoconf</div><div class="line">$ brew install libtool</div><div class="line">$ brew install m4</div><div class="line">$ brew install gcc</div></pre></td></tr></table></figure>
-<p>S3. 解压并安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ tar-zxvf opensmile-X.X.X.tar.gz</div><div class="line">$ cd opensmile-X.X.X</div><div class="line">$ sh buildStandalone.sh</div></pre></td></tr></table></figure>
-<p>S4. 测试安装是否成功  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ SMILExtract -h</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;S1. 下载最新的稳定版本&lt;a href=&quot;http://audeering.com/technology/opensmile/#download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;openSMILE&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;S2. 下载依赖工具
-    
-    </summary>
-    
-    
-      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
-    
-      <category term="feature" scheme="http://huisblog.cn/tags/feature/"/>
-    
-      <category term="tool" scheme="http://huisblog.cn/tags/tool/"/>
     
   </entry>
   
