@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="支持向量机(SVM)"/>
+
+
+
+
+  <meta name="keywords" content="ML," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/06/26/svm/"/>
+
+
+<meta name="description" content="支持向量机的假设函数和损失函数回忆一下逻辑回归的损失函数： $$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$ 支持向量机的损失函数与之类似： $">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支持向量机(SVM)">
+<meta property="og:url" content="http://huisblog.cn/2017/06/26/svm/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="支持向量机的假设函数和损失函数回忆一下逻辑回归的损失函数： $$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$ 支持向量机的损失函数与之类似： $">
+<meta property="og:image" content="http://huisblog.cn/2017/06/26/svm/cost1.png">
+<meta property="og:image" content="http://huisblog.cn/2017/06/26/svm/cost0.png">
+<meta property="og:updated_time" content="2017-06-26T13:18:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支持向量机(SVM)">
+<meta name="twitter:description" content="支持向量机的假设函数和损失函数回忆一下逻辑回归的损失函数： $$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$ 支持向量机的损失函数与之类似： $">
+<meta name="twitter:image" content="http://huisblog.cn/2017/06/26/svm/cost1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 支持向量机(SVM) · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          支持向量机(SVM)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jun 26, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持向量机的假设函数和损失函数"><span class="toc-text">支持向量机的假设函数和损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Large-Margin-Classification"><span class="toc-text">Large Margin Classification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核函数-Kernels"><span class="toc-text">核函数(Kernels)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用SVM"><span class="toc-text">使用SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑回归和SVM"><span class="toc-text">逻辑回归和SVM</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="支持向量机的假设函数和损失函数"><a href="#支持向量机的假设函数和损失函数" class="headerlink" title="支持向量机的假设函数和损失函数"></a>支持向量机的假设函数和损失函数</h2><p>回忆一下逻辑回归的损失函数：</p>
+<p>$$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$</p>
+<p>支持向量机的损失函数与之类似：</p>
+<p>$$min_\theta C\sum_{i=1}^{m}[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})]+\frac{1}{2}\sum_{j=1}^n\theta_j^2$$</p>
+<a id="more"></a>
+<p>\(cost_{1}(z) \quad (y=1)\)：</p>
+<img src="/2017/06/26/svm/cost1.png" alt="cost1.png" title="">
+<p>\(cost_{0}(z) \quad (y=0)\)：</p>
+<img src="/2017/06/26/svm/cost0.png" alt="cost0.png" title="">
+<p>注意到除了从\(-log((1-)\frac{1}{1+e^z})\)到\(cost_{0/1}(z)\)的变化外，用于<code>trade-off</code>的\(\lambda\)也在支持向量机中通常以参数\(C\)的形式出现，\(C\)可以理解为\(\frac{1}{\lambda}\)。</p>
+<p>支持向量机的假设函数：</p>
+<p>$$\begin{equation}<br>h_\theta(x)=\begin{cases}<br>1 &amp; \text{if}\quad \theta^Tx\ge 0 \\<br>0 &amp; \text{otherwise}<br>\end{cases}<br>\end{equation}$$</p>
+<h2 id="Large-Margin-Classification"><a href="#Large-Margin-Classification" class="headerlink" title="Large Margin Classification"></a>Large Margin Classification</h2><p>SVM常常被称作为<code>Large Margin Classification</code>，为什么呢？因为它对于决策边界要求更加严格：</p>
+<ul>
+<li>如果\(y=1\)，我们想要\(\theta^Tx \ge 1\)（而不是\(\ge 0\)）；</li>
+<li>如果\(y=0\)，我们想要\(\theta^Tx \le -1\)（而不是\(&lt; 0\)）；</li>
+</ul>
+<p>当满足以上条件时，\(cost_{0/1}(z)=0\)，从而将\(minJ(\theta)\)转化为以下的凸优化问题：</p>
+<p>$$\begin{align}&amp; min_\theta\frac{1}{2}\sum_{j=1}^{n}\theta_j^2 \ <br>&amp; s.t. \begin{cases}<br>\theta^Tx^{(i)}\ge 1 &amp; \text{if} \quad y^{(i)}=1 \\<br>\theta^Tx^{(i)}\le -1 &amp; \text{if} \quad y^{(i)}=0<br>\end{cases}<br>\end{align}$$</p>
+<p>将\(x^{(i)}\)在向量\(\theta\)上的投影写作\(p^{(i)}\)，可以变化形式为：</p>
+<p>$$\begin{align}&amp; min_\theta\frac{1}{2}\sum_{j=1}^{n}\theta_j^2 \ <br>&amp; s.t. \begin{cases}<br>p^{(i)}||\theta||\ge 1 &amp; \text{if} \quad y^{(i)}=1 \\<br>p^{(i)}||\theta||\le -1 &amp; \text{if} \quad y^{(i)}=0<br>\end{cases}<br>\end{align}$$</p>
+<p>\(\theta\)向量是决策边界\(\theta^Tx=0\)的法向量，为了使\(||\theta||\)（即目标函数）尽量小，在条件限制下，\(p\)就要尽可能大，即\(x\)在\(\theta\)方向的投影尽可能大，这就使得决策边界离两边数据尽可能远。</p>
+<p>SVM是凸函数优化，最后的结果是全局最优点，不需要担心局部最优问题。</p>
+<h2 id="核函数-Kernels"><a href="#核函数-Kernels" class="headerlink" title="核函数(Kernels)"></a>核函数(Kernels)</h2><p>核函数将一系列特征\(x_1,…x_n\)映射到另一组特征\(f_1,…\)上，可以给SVM加上非线性性质。它有两个重要概念：</p>
+<ol>
+<li><code>地标点(landmarks)</code>：\(l^{(1)},…,l^{(n)}\)；</li>
+<li><code>近似度(Similarity)</code>:<br>$$similarity(x,l)=1\quad \text{if}\quad x\approx l\ \\similarity(x,l)=0\quad \text{if (x) is far away form }l$$</li>
+</ol>
+<p>地标点一般直接使用训练集中的点\(l^{(1)} = x^{(1)},…,l^{(m)} = x^{(m)}\)；<br>常用的近似度函数有:</p>
+<ul>
+<li><code>线性核函数(linear kernel)</code>：线性核函数其实就是不用核函数，\(f_n = x_n\)；</li>
+<li><code>高斯核函数(Gaussian kernel)</code>：\(f_m = similarity(x,l)=exp(-\frac{||x-l^{(m)}||}{2\sigma^2})\)</li>
+</ul>
+<p>在高斯核函数中，\(\sigma\)也可以起到<code>trade-off</code>的作用：</p>
+<ul>
+<li>\(\sigma\)过小：高方差、低偏差；</li>
+<li>\(\sigma\)过大：高偏差、低方差。</li>
+</ul>
+<h2 id="使用SVM"><a href="#使用SVM" class="headerlink" title="使用SVM"></a>使用SVM</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1. First choose parameter C and kernel;</div><div class="line">2. Given training data: (x1,y1),(x2,y2)...(xm,ym), choose l1=x1,..., lm=xm;</div><div class="line">3. mapping features using similarity:</div><div class="line">	f1 = similarity(x,l1)</div><div class="line">	.</div><div class="line">	.</div><div class="line">	.</div><div class="line">	fm = similarity(x,lm)</div><div class="line"></div><div class="line">4. Feature scaling</div><div class="line">5. traing svm with f, C, sigma(hypotyhesis: predict y=1 if theta*f &gt;= 0)</div></pre></td></tr></table></figure>
+<h2 id="逻辑回归和SVM"><a href="#逻辑回归和SVM" class="headerlink" title="逻辑回归和SVM"></a>逻辑回归和SVM</h2><ol>
+<li>\(n\)很大（和\(m\)相近）：使用逻辑回归或者不带核函数的（或者线性核函数）的SVM，这两者效果类似，不用复杂的非线性特征以防止过拟合；</li>
+<li>\(n\)很小，\(m\)不大不小 (intermediate) ：使用带高斯核的SVM；</li>
+<li>\(n\)很小，\(m\)很大：增加特征，然后使用逻辑回归或者不带核函数的SVM。</li>
+</ol>
+<p>神经网络在以上三种情况下都表现很好，但是训练速度很慢。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/06/26/svm/">http://huisblog.cn/2017/06/26/svm/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/06/20/betterMLA/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">提升学习算法性能</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+  <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "b964390f0f11417ca56be3bb7bdc9f02",
+      target: "cloud-tie-wrapper"
+    };
+  </script>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

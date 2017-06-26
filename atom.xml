@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-06-20T13:57:41.000Z</updated>
+  <updated>2017-06-26T13:18:17.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>支持向量机(SVM)</title>
+    <link href="http://huisblog.cn/2017/06/26/svm/"/>
+    <id>http://huisblog.cn/2017/06/26/svm/</id>
+    <published>2017-06-26T13:10:58.000Z</published>
+    <updated>2017-06-26T13:18:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="支持向量机的假设函数和损失函数"><a href="#支持向量机的假设函数和损失函数" class="headerlink" title="支持向量机的假设函数和损失函数"></a>支持向量机的假设函数和损失函数</h2><p>回忆一下逻辑回归的损失函数：</p>
+<p>$$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$</p>
+<p>支持向量机的损失函数与之类似：</p>
+<p>$$min_\theta C\sum_{i=1}^{m}[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})]+\frac{1}{2}\sum_{j=1}^n\theta_j^2$$</p>
+<a id="more"></a>
+<p>\(cost_{1}(z) \quad (y=1)\)：</p>
+<img src="/2017/06/26/svm/cost1.png" alt="cost1.png" title="">
+<p>\(cost_{0}(z) \quad (y=0)\)：</p>
+<img src="/2017/06/26/svm/cost0.png" alt="cost0.png" title="">
+<p>注意到除了从\(-log((1-)\frac{1}{1+e^z})\)到\(cost_{0/1}(z)\)的变化外，用于<code>trade-off</code>的\(\lambda\)也在支持向量机中通常以参数\(C\)的形式出现，\(C\)可以理解为\(\frac{1}{\lambda}\)。</p>
+<p>支持向量机的假设函数：</p>
+<p>$$\begin{equation}<br>h_\theta(x)=\begin{cases}<br>1 &amp; \text{if}\quad \theta^Tx\ge 0 \\<br>0 &amp; \text{otherwise}<br>\end{cases}<br>\end{equation}$$</p>
+<h2 id="Large-Margin-Classification"><a href="#Large-Margin-Classification" class="headerlink" title="Large Margin Classification"></a>Large Margin Classification</h2><p>SVM常常被称作为<code>Large Margin Classification</code>，为什么呢？因为它对于决策边界要求更加严格：</p>
+<ul>
+<li>如果\(y=1\)，我们想要\(\theta^Tx \ge 1\)（而不是\(\ge 0\)）；</li>
+<li>如果\(y=0\)，我们想要\(\theta^Tx \le -1\)（而不是\(&lt; 0\)）；</li>
+</ul>
+<p>当满足以上条件时，\(cost_{0/1}(z)=0\)，从而将\(minJ(\theta)\)转化为以下的凸优化问题：</p>
+<p>$$\begin{align}&amp; min_\theta\frac{1}{2}\sum_{j=1}^{n}\theta_j^2 \ <br>&amp; s.t. \begin{cases}<br>\theta^Tx^{(i)}\ge 1 &amp; \text{if} \quad y^{(i)}=1 \\<br>\theta^Tx^{(i)}\le -1 &amp; \text{if} \quad y^{(i)}=0<br>\end{cases}<br>\end{align}$$</p>
+<p>将\(x^{(i)}\)在向量\(\theta\)上的投影写作\(p^{(i)}\)，可以变化形式为：</p>
+<p>$$\begin{align}&amp; min_\theta\frac{1}{2}\sum_{j=1}^{n}\theta_j^2 \ <br>&amp; s.t. \begin{cases}<br>p^{(i)}||\theta||\ge 1 &amp; \text{if} \quad y^{(i)}=1 \\<br>p^{(i)}||\theta||\le -1 &amp; \text{if} \quad y^{(i)}=0<br>\end{cases}<br>\end{align}$$</p>
+<p>\(\theta\)向量是决策边界\(\theta^Tx=0\)的法向量，为了使\(||\theta||\)（即目标函数）尽量小，在条件限制下，\(p\)就要尽可能大，即\(x\)在\(\theta\)方向的投影尽可能大，这就使得决策边界离两边数据尽可能远。</p>
+<p>SVM是凸函数优化，最后的结果是全局最优点，不需要担心局部最优问题。</p>
+<h2 id="核函数-Kernels"><a href="#核函数-Kernels" class="headerlink" title="核函数(Kernels)"></a>核函数(Kernels)</h2><p>核函数将一系列特征\(x_1,…x_n\)映射到另一组特征\(f_1,…\)上，可以给SVM加上非线性性质。它有两个重要概念：</p>
+<ol>
+<li><code>地标点(landmarks)</code>：\(l^{(1)},…,l^{(n)}\)；</li>
+<li><code>近似度(Similarity)</code>:<br>$$similarity(x,l)=1\quad \text{if}\quad x\approx l\ \\similarity(x,l)=0\quad \text{if (x) is far away form }l$$</li>
+</ol>
+<p>地标点一般直接使用训练集中的点\(l^{(1)} = x^{(1)},…,l^{(m)} = x^{(m)}\)；<br>常用的近似度函数有:</p>
+<ul>
+<li><code>线性核函数(linear kernel)</code>：线性核函数其实就是不用核函数，\(f_n = x_n\)；</li>
+<li><code>高斯核函数(Gaussian kernel)</code>：\(f_m = similarity(x,l)=exp(-\frac{||x-l^{(m)}||}{2\sigma^2})\)</li>
+</ul>
+<p>在高斯核函数中，\(\sigma\)也可以起到<code>trade-off</code>的作用：</p>
+<ul>
+<li>\(\sigma\)过小：高方差、低偏差；</li>
+<li>\(\sigma\)过大：高偏差、低方差。</li>
+</ul>
+<h2 id="使用SVM"><a href="#使用SVM" class="headerlink" title="使用SVM"></a>使用SVM</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1. First choose parameter C and kernel;</div><div class="line">2. Given training data: (x1,y1),(x2,y2)...(xm,ym), choose l1=x1,..., lm=xm;</div><div class="line">3. mapping features using similarity:</div><div class="line">	f1 = similarity(x,l1)</div><div class="line">	.</div><div class="line">	.</div><div class="line">	.</div><div class="line">	fm = similarity(x,lm)</div><div class="line"></div><div class="line">4. Feature scaling</div><div class="line">5. traing svm with f, C, sigma(hypotyhesis: predict y=1 if theta*f &gt;= 0)</div></pre></td></tr></table></figure>
+<h2 id="逻辑回归和SVM"><a href="#逻辑回归和SVM" class="headerlink" title="逻辑回归和SVM"></a>逻辑回归和SVM</h2><ol>
+<li>\(n\)很大（和\(m\)相近）：使用逻辑回归或者不带核函数的（或者线性核函数）的SVM，这两者效果类似，不用复杂的非线性特征以防止过拟合；</li>
+<li>\(n\)很小，\(m\)不大不小 (intermediate) ：使用带高斯核的SVM；</li>
+<li>\(n\)很小，\(m\)很大：增加特征，然后使用逻辑回归或者不带核函数的SVM。</li>
+</ol>
+<p>神经网络在以上三种情况下都表现很好，但是训练速度很慢。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;支持向量机的假设函数和损失函数&quot;&gt;&lt;a href=&quot;#支持向量机的假设函数和损失函数&quot; class=&quot;headerlink&quot; title=&quot;支持向量机的假设函数和损失函数&quot;&gt;&lt;/a&gt;支持向量机的假设函数和损失函数&lt;/h2&gt;&lt;p&gt;回忆一下逻辑回归的损失函数：&lt;/p&gt;
+&lt;p&gt;$$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$&lt;/p&gt;
+&lt;p&gt;支持向量机的损失函数与之类似：&lt;/p&gt;
+&lt;p&gt;$$min_\theta C\sum_{i=1}^{m}[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})]+\frac{1}{2}\sum_{j=1}^n\theta_j^2$$&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
   
   <entry>
     <title>提升学习算法性能</title>
@@ -1234,54 +1311,6 @@
     
     
       <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>音乐情感识别简介</title>
-    <link href="http://huisblog.cn/2017/04/27/MERintro/"/>
-    <id>http://huisblog.cn/2017/04/27/MERintro/</id>
-    <published>2017-04-27T06:30:54.000Z</published>
-    <updated>2017-04-27T06:54:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
-</li>
-<li><p>音乐情感识别的基础框架：  </p>
-<img src="/2017/04/27/MERintro/merc1-1.png" alt="音乐情感识别概略图" title="音乐情感识别概略图">
-</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><p>音乐情感识别的四个问题：  </p>
-<ol>
-<li>情感描述的歧义和粒度（不同情感术语之间的模糊边界，少的情感类别不足以描述丰富的情感而多的会增加难度降低准确率）；  </li>
-<li>情感注释的认知负载；  </li>
-<li>情绪感知的主观性；  </li>
-<li>低层特征和高层感知之间的语义鸿沟。  <img src="/2017/04/27/MERintro/merc1-2.png" alt="四个问题" title="四个问题">
-</li>
-</ol>
-</li>
-<li><p>《Music Emotion Recognizition》概览  </p>
-<img src="/2017/04/27/MERintro/merc1-3.png" alt="本书概览" title="本书概览">
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;音乐情感识别的重要性：&lt;br&gt;1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;音乐情感识别的基础框架：  &lt;/p&gt;
-&lt;img src=&quot;/2017/04/27/MERintro/merc1-1.png&quot; alt=&quot;音乐情感识别概略图&quot; title=&quot;音乐情感识别概略图&quot;&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="MER" scheme="http://huisblog.cn/tags/MER/"/>
     
   </entry>
   
