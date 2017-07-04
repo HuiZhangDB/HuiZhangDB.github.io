@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="K-means和PCA"/>
+
+
+
+
+  <meta name="keywords" content="ML," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/07/04/ng_cluster/"/>
+
+
+<meta name="description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K-means和PCA">
+<meta property="og:url" content="http://huisblog.cn/2017/07/04/ng_cluster/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
+<meta property="og:updated_time" content="2017-07-04T08:54:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="K-means和PCA">
+<meta name="twitter:description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> K-means和PCA · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          K-means和PCA
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jul 4, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-means"><span class="toc-text">K-means</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优化目标"><span class="toc-text">优化目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机初始化"><span class="toc-text">随机初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择聚类数目"><span class="toc-text">选择聚类数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCA"><span class="toc-text">PCA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优化目标-1"><span class="toc-text">优化目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择主成分数量"><span class="toc-text">选择主成分数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用-1"><span class="toc-text">应用</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p><code>K-means</code>是一个常用且有效的聚类算法。它的算法可以描述为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Firstly randomly initiallize the K centroids mu1,mu2,...,muk;</div><div class="line">Repeat&#123;</div><div class="line">	% Cluster assignment step</div><div class="line">	for i = <span class="number">1</span> to m</div><div class="line">		ci = index of cluster centroid cloest to xi;</div><div class="line">	% Move centroid</div><div class="line">	for k = <span class="number">1</span> to k</div><div class="line">		muk = mean of points xs assigned to cluster k;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h3><p>像逻辑回归等监督学习算法一样，<code>K-means</code>等无监督学习算法同样有损失函数来作为优化目标：</p>
+<p>$$min_{c,\mu}J(c^{(1)},…,c^{(m)},\mu_1,…,.\mu_K) = \frac{1}{m}||x^{(i)}-\mu_{c^{(i)}}||^2$$</p>
+<p>\(minJ\)表示我们的优化目标是最小化同类点到聚类中心的距离。</p>
+<h3 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h3><p>当\(K\)值较小的时候，初始中心点的位置对最后的聚类结果有非常大的影响。只随机生成一组初始点可能会导致最后的结果是局部最优解<code>local optima</code>。因此，当\(K\)值较小的时候，我们可以使用多组初始中心点以避免这个问题：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">For <span class="built_in">i</span> = <span class="number">1</span> to <span class="number">100</span> &#123;	Randomly initialize K-means;</div><div class="line">	Run K-means. Get c1...cm, mu1,...,muk;</div><div class="line">	Compute cost function/distortion;&#125;</div><div class="line">Pick clustering that gave lowest cost J</div></pre></td></tr></table></figure>
+<h3 id="选择聚类数目"><a href="#选择聚类数目" class="headerlink" title="选择聚类数目"></a>选择聚类数目</h3><p>怎样选择聚类数目\(K\)是一个很难说的问题，有时就算是人类专家在看到一组可视化数据后都很难给出精准的答案。现有的选择\(K\)的算法有<code>ELbow Method</code>，但它对很多情况都并不适用。通常来说，决定\(K\)的大小需要我们根据具体问题和之后的目标来具体分析。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
+<li>市场分割</li>
+<li>社交网络分析</li>
+<li>计算集群组织</li>
+<li>天文数据分析</li>
+</ol>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p><code>PCA</code>也是最常用的无监督算法之一，它的算法可以描述为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> Feature Preprocessing: feature scaling and mean normaliza1on;</div><div class="line"><span class="number">2.</span> Compute covariance matrix:</div><div class="line">	Sigma = <span class="number">1</span>/m * X' * X;</div><div class="line"><span class="number">3.</span> Compute eigenvectors of matrix Sigma:</div><div class="line">	[U,S,V] = svd(Sigma);</div><div class="line"><span class="number">4.</span> Ureduce = U(:,<span class="number">1</span>:k);</div><div class="line"><span class="number">5.</span> Xreduce = X * Ureduce;</div><div class="line"><span class="number">6.</span> Xrecover = Xreduce * Ureduce';</div></pre></td></tr></table></figure>
+<h3 id="优化目标-1"><a href="#优化目标-1" class="headerlink" title="优化目标"></a>优化目标</h3><p>PCA的目标可以描述为：要找到最合适的一组向量\(\mu^{(1)},…,\mu^{(k)}\)，将原始数据映射到这组向量围成的新的特征空间中，使其<code>投影距离最小(minimize the projec1on error)</code>。</p>
+<h3 id="选择主成分数量"><a href="#选择主成分数量" class="headerlink" title="选择主成分数量"></a>选择主成分数量</h3><p>通常，我们可以用到达一定<code>保留方差(retained variance)</code>的最小\(k\)值来作为主成分数量。可以看一个保留了99%方差的例子：</p>
+<p>$$\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)}-x^{(1)}_{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2} \le 0.01 $$</p>
+<p>上述值可以通过协方差矩阵奇异值分解后得到的\(S\)来计算，\(S\)是一个对角矩阵，上述不等式等同于：</p>
+<p>$$\frac{\sum_{i=1}^kS_{ii}}{\sum_{i=1}^mS_{ii}}\ge 0.99$$</p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>应该用于：</p>
+<ol>
+<li>数据压缩：减小数据储存代价、加快运算速度（\(k&lt;n\)，由保留方差计算）；</li>
+<li>数据可视化（\(k=2 \quad or\quad k=3\)）</li>
+</ol>
+<p>错误的应用：</p>
+<ol>
+<li>减小特征集以防止过拟合：PCA只分析了特征之间\(x_1,…x_n\)的关系，并没有考虑特征的变化对\(y\)的影响，使用PCA可能会丢失和\(y\)相关的重要信息。因此防止过拟合不应该用PCA，而应该使用正则化。</li>
+<li>在机器学习系统的开始设计阶段使用：应该先使用原始数据，只有在原始数据效果不好（太慢之类的）时候再考虑用PCA。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/07/04/ng_cluster/">http://huisblog.cn/2017/07/04/ng_cluster/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ML/">ML</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/06/26/svm/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">支持向量机(SVM)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+  <script>
+    var cloudTieConfig = {
+      url: document.location.href, 
+      sourceId: "",
+      productKey: "b964390f0f11417ca56be3bb7bdc9f02",
+      target: "cloud-tie-wrapper"
+    };
+  </script>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-06-26T13:18:17.000Z</updated>
+  <updated>2017-07-04T08:54:19.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>K-means和PCA</title>
+    <link href="http://huisblog.cn/2017/07/04/ng_cluster/"/>
+    <id>http://huisblog.cn/2017/07/04/ng_cluster/</id>
+    <published>2017-07-04T08:45:02.000Z</published>
+    <updated>2017-07-04T08:54:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p><code>K-means</code>是一个常用且有效的聚类算法。它的算法可以描述为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Firstly randomly initiallize the K centroids mu1,mu2,...,muk;</div><div class="line">Repeat&#123;</div><div class="line">	% Cluster assignment step</div><div class="line">	for i = <span class="number">1</span> to m</div><div class="line">		ci = index of cluster centroid cloest to xi;</div><div class="line">	% Move centroid</div><div class="line">	for k = <span class="number">1</span> to k</div><div class="line">		muk = mean of points xs assigned to cluster k;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h3><p>像逻辑回归等监督学习算法一样，<code>K-means</code>等无监督学习算法同样有损失函数来作为优化目标：</p>
+<p>$$min_{c,\mu}J(c^{(1)},…,c^{(m)},\mu_1,…,.\mu_K) = \frac{1}{m}||x^{(i)}-\mu_{c^{(i)}}||^2$$</p>
+<p>\(minJ\)表示我们的优化目标是最小化同类点到聚类中心的距离。</p>
+<h3 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h3><p>当\(K\)值较小的时候，初始中心点的位置对最后的聚类结果有非常大的影响。只随机生成一组初始点可能会导致最后的结果是局部最优解<code>local optima</code>。因此，当\(K\)值较小的时候，我们可以使用多组初始中心点以避免这个问题：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">For <span class="built_in">i</span> = <span class="number">1</span> to <span class="number">100</span> &#123;	Randomly initialize K-means;</div><div class="line">	Run K-means. Get c1...cm, mu1,...,muk;</div><div class="line">	Compute cost function/distortion;&#125;</div><div class="line">Pick clustering that gave lowest cost J</div></pre></td></tr></table></figure>
+<h3 id="选择聚类数目"><a href="#选择聚类数目" class="headerlink" title="选择聚类数目"></a>选择聚类数目</h3><p>怎样选择聚类数目\(K\)是一个很难说的问题，有时就算是人类专家在看到一组可视化数据后都很难给出精准的答案。现有的选择\(K\)的算法有<code>ELbow Method</code>，但它对很多情况都并不适用。通常来说，决定\(K\)的大小需要我们根据具体问题和之后的目标来具体分析。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
+<li>市场分割</li>
+<li>社交网络分析</li>
+<li>计算集群组织</li>
+<li>天文数据分析</li>
+</ol>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p><code>PCA</code>也是最常用的无监督算法之一，它的算法可以描述为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> Feature Preprocessing: feature scaling and mean normaliza1on;</div><div class="line"><span class="number">2.</span> Compute covariance matrix:</div><div class="line">	Sigma = <span class="number">1</span>/m * X' * X;</div><div class="line"><span class="number">3.</span> Compute eigenvectors of matrix Sigma:</div><div class="line">	[U,S,V] = svd(Sigma);</div><div class="line"><span class="number">4.</span> Ureduce = U(:,<span class="number">1</span>:k);</div><div class="line"><span class="number">5.</span> Xreduce = X * Ureduce;</div><div class="line"><span class="number">6.</span> Xrecover = Xreduce * Ureduce';</div></pre></td></tr></table></figure>
+<h3 id="优化目标-1"><a href="#优化目标-1" class="headerlink" title="优化目标"></a>优化目标</h3><p>PCA的目标可以描述为：要找到最合适的一组向量\(\mu^{(1)},…,\mu^{(k)}\)，将原始数据映射到这组向量围成的新的特征空间中，使其<code>投影距离最小(minimize the projec1on error)</code>。</p>
+<h3 id="选择主成分数量"><a href="#选择主成分数量" class="headerlink" title="选择主成分数量"></a>选择主成分数量</h3><p>通常，我们可以用到达一定<code>保留方差(retained variance)</code>的最小\(k\)值来作为主成分数量。可以看一个保留了99%方差的例子：</p>
+<p>$$\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)}-x^{(1)}_{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2} \le 0.01 $$</p>
+<p>上述值可以通过协方差矩阵奇异值分解后得到的\(S\)来计算，\(S\)是一个对角矩阵，上述不等式等同于：</p>
+<p>$$\frac{\sum_{i=1}^kS_{ii}}{\sum_{i=1}^mS_{ii}}\ge 0.99$$</p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>应该用于：</p>
+<ol>
+<li>数据压缩：减小数据储存代价、加快运算速度（\(k&lt;n\)，由保留方差计算）；</li>
+<li>数据可视化（\(k=2 \quad or\quad k=3\)）</li>
+</ol>
+<p>错误的应用：</p>
+<ol>
+<li>减小特征集以防止过拟合：PCA只分析了特征之间\(x_1,…x_n\)的关系，并没有考虑特征的变化对\(y\)的影响，使用PCA可能会丢失和\(y\)相关的重要信息。因此防止过拟合不应该用PCA，而应该使用正则化。</li>
+<li>在机器学习系统的开始设计阶段使用：应该先使用原始数据，只有在原始数据效果不好（太慢之类的）时候再考虑用PCA。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;K-means&quot;&gt;&lt;a href=&quot;#K-means&quot; class=&quot;headerlink&quot; title=&quot;K-means&quot;&gt;&lt;/a&gt;K-means&lt;/h2&gt;&lt;p&gt;&lt;code&gt;K-means&lt;/code&gt;是一个常用且有效的聚类算法。它的算法可以描述为：&lt;/p&gt;
+&lt;figure class=&quot;highlight matlab&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Firstly randomly initiallize the K centroids mu1,mu2,...,muk;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Repeat&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	% Cluster assignment step&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	for i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; to m&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		ci = index of cluster centroid cloest to xi;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	% Move centroid&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	for k = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; to k&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		muk = mean of points xs assigned to cluster k;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
   
   <entry>
     <title>支持向量机(SVM)</title>
@@ -1230,80 +1292,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;Hoeffding不等式&quot;&gt;&lt;a href=&quot;#Hoeffding不等式&quot; class=&quot;headerlink&quot; title=&quot;Hoeffding不等式&quot;&gt;&lt;/a&gt;Hoeffding不等式&lt;/h2&gt;&lt;p&gt;用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变
-    
-    </summary>
-    
-      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
-    
-    
-      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>聚类</title>
-    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/cluster/"/>
-    <id>http://huisblog.cn/2017/04/27/ApplicationMath/cluster/</id>
-    <published>2017-04-27T06:40:01.000Z</published>
-    <updated>2017-04-27T06:51:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="相似性衡量"><a href="#相似性衡量" class="headerlink" title="相似性衡量"></a>相似性衡量</h2><ul>
-<li>距离</li>
-<li>相似性</li>
-<li>核函数</li>
-<li>DTW（dynamic time warping 一种特殊的距离算法）</li>
-</ul>
-<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
-<li><p>划分聚类(Partition-based methods)<br>确认聚类数量，挑选初始点 -&gt; 类内的点足够近，类间的点足够远。</p>
-</li>
-<li><p>密度聚类(Density-based methods)<br>指定圈的最大半径，包含的最少点数量 -&gt; 画圈。</p>
-</li>
-<li><p>模型聚类(Model-based methods)<br>基于概率模型和神经网络模型 -&gt; 同一类属于同一概率分布</p>
-</li>
-<li><p>层次聚类(Hierarchical methods)<br>自下而上法 (bottom-up) 和自上而下法 (top-down)，根据linkage迭代联合或者排异。</p>
-</li>
-<li><p>网格聚类(Grid-based methods)<br>将数据空间划分为网格单元，将数据对象集映射到网格单元中。计算每个单元的密度，根据阈值确定高密度单元 -&gt; 相近的高密度单元组成类</p>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="常用聚类算法"><a href="#常用聚类算法" class="headerlink" title="常用聚类算法"></a>常用聚类算法</h3><p><a href="http://scikit-learn.org/stable/modules/clustering.html#clustering" target="_blank" rel="external">Overview of clustering methods</a>  </p>
-<ul>
-<li><p>k-means</p>
-<img src="/2017/04/27/ApplicationMath/cluster/kmeans01.png" alt="kmeans01.png" title="">
-<img src="/2017/04/27/ApplicationMath/cluster/kmeans02.png" alt="kmeans02.png" title="">
-</li>
-<li><p>GMM</p>
-<img src="/2017/04/27/ApplicationMath/cluster/gmm01.png" alt="gmm01.png" title="">
-<img src="/2017/04/27/ApplicationMath/cluster/gmm02.png" alt="gmm02.png" title="">
-</li>
-</ul>
-<h2 id="数据简化"><a href="#数据简化" class="headerlink" title="数据简化"></a>数据简化</h2><ul>
-<li>变化</li>
-<li>降维</li>
-<li>抽样</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;相似性衡量&quot;&gt;&lt;a href=&quot;#相似性衡量&quot; class=&quot;headerlink&quot; title=&quot;相似性衡量&quot;&gt;&lt;/a&gt;相似性衡量&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;距离&lt;/li&gt;
-&lt;li&gt;相似性&lt;/li&gt;
-&lt;li&gt;核函数&lt;/li&gt;
-&lt;li&gt;DTW（dynamic time warping 一种特殊的距离算法）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;聚类算法&quot;&gt;&lt;a href=&quot;#聚类算法&quot; class=&quot;headerlink&quot; title=&quot;聚类算法&quot;&gt;&lt;/a&gt;聚类算法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;划分聚类(Partition-based methods)&lt;br&gt;确认聚类数量，挑选初始点 -&amp;gt; 类内的点足够近，类间的点足够远。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;密度聚类(Density-based methods)&lt;br&gt;指定圈的最大半径，包含的最少点数量 -&amp;gt; 画圈。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;模型聚类(Model-based methods)&lt;br&gt;基于概率模型和神经网络模型 -&amp;gt; 同一类属于同一概率分布&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;层次聚类(Hierarchical methods)&lt;br&gt;自下而上法 (bottom-up) 和自上而下法 (top-down)，根据linkage迭代联合或者排异。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;网格聚类(Grid-based methods)&lt;br&gt;将数据空间划分为网格单元，将数据对象集映射到网格单元中。计算每个单元的密度，根据阈值确定高密度单元 -&amp;gt; 相近的高密度单元组成类&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
