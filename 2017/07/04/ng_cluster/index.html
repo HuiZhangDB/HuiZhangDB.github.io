@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/07/04/ng_cluster/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
-<meta property="og:updated_time" content="2017-07-04T08:54:19.000Z">
+<meta property="og:updated_time" content="2017-07-04T08:59:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K-means和PCA">
 <meta name="twitter:description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
@@ -275,7 +275,7 @@
 <p>$$min_{c,\mu}J(c^{(1)},…,c^{(m)},\mu_1,…,.\mu_K) = \frac{1}{m}||x^{(i)}-\mu_{c^{(i)}}||^2$$</p>
 <p>\(minJ\)表示我们的优化目标是最小化同类点到聚类中心的距离。</p>
 <h3 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h3><p>当\(K\)值较小的时候，初始中心点的位置对最后的聚类结果有非常大的影响。只随机生成一组初始点可能会导致最后的结果是局部最优解<code>local optima</code>。因此，当\(K\)值较小的时候，我们可以使用多组初始中心点以避免这个问题：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">For <span class="built_in">i</span> = <span class="number">1</span> to <span class="number">100</span> &#123;	Randomly initialize K-means;</div><div class="line">	Run K-means. Get c1...cm, mu1,...,muk;</div><div class="line">	Compute cost function/distortion;&#125;</div><div class="line">Pick clustering that gave lowest cost J</div></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> to <span class="number">100</span> &#123;</div><div class="line">	Randomly initialize K-means;</div><div class="line">	Run K-means, get c1,...,cm, mu1,...,muk;</div><div class="line">	Compute cost function/distortion; </div><div class="line">&#125;</div><div class="line"></div><div class="line">Choose the cluster that gave the lowest cost J.</div></pre></td></tr></table></figure>
 <h3 id="选择聚类数目"><a href="#选择聚类数目" class="headerlink" title="选择聚类数目"></a>选择聚类数目</h3><p>怎样选择聚类数目\(K\)是一个很难说的问题，有时就算是人类专家在看到一组可视化数据后都很难给出精准的答案。现有的选择\(K\)的算法有<code>ELbow Method</code>，但它对很多情况都并不适用。通常来说，决定\(K\)的大小需要我们根据具体问题和之后的目标来具体分析。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
 <li>市场分割</li>
