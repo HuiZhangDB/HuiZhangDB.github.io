@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-07-04T08:59:56.000Z</updated>
+  <updated>2017-09-11T13:22:05.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,264 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>推荐系统(Recommender Systems)</title>
+    <link href="http://huisblog.cn/2017/09/11/recsys/"/>
+    <id>http://huisblog.cn/2017/09/11/recsys/</id>
+    <published>2017-09-11T13:18:14.000Z</published>
+    <updated>2017-09-11T13:22:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：<br>已知一些用户对一些电影的评分，预测用户对未评价电影的评分。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>用户1</th>
+<th>用户2</th>
+<th>用户3</th>
+<th>用户4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电影1</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>电影2</td>
+<td>5</td>
+<td>?</td>
+<td>?</td>
+<td>1</td>
+</tr>
+<tr>
+<td>电影3</td>
+<td>?</td>
+<td>4</td>
+<td>0</td>
+<td>?</td>
+</tr>
+<tr>
+<td>电影4</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>电影5</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>即，已知：</p>
+<ol>
+<li>\(n_u=\) 用户数量；</li>
+<li>\(n_m=\) 电影数量；</li>
+<li>\(r(i,j)=1\) 如果用户\(j\)给电影\(i\)打了分，否则为0；</li>
+<li>\(y^{(i,j)}=\) 用户\(j\)给电影\(i\)打的分数（只有当\(r(i,j)=1\)时才有定义）；</li>
+<li>\(m^{(j)}=\) 用户\(j\)打分了的电影数量；</li>
+</ol>
+<p>估计：</p>
+<ol>
+<li>\(\theta^{(j)}=\) 用户\(j\)的参数向量；</li>
+<li>\(x^{(i)}=\) 电影\(i\)的特征向量；</li>
+<li>对于用户\(j\)，电影\(i\)，预测\((\theta^{(j)})^T(x^{(i)})\)</li>
+</ol>
+<h2 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h2><p>根据已知每个电影的特征\(x^{(i)}\)，学习用户偏好\(\theta^{(1)},…,\theta^{(n_u)}\)，则损失函数为：</p>
+<p>$$min_{\theta^{(1)},…,\theta^{(n_u)}}\frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>梯度下降：</p>
+<p>$$\theta_k^{(j)} := \theta_k^{(j)} - \alpha\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}\quad (for\quad k=0 )\ \theta_k^{(j)} := \theta_k^{(j)} - \alpha(\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}+\lambda\theta_k^{(j)}\quad)\quad (for\quad k\neq0 )$$</p>
+<h2 id="使用协同过滤的推荐系统"><a href="#使用协同过滤的推荐系统" class="headerlink" title="使用协同过滤的推荐系统"></a>使用协同过滤的推荐系统</h2><p>若我们事先知道各用户的偏好参数 \(\theta^{(j)}\)，则可以学习电影的特征：</p>
+<p>$$min_{x^{(1)},…,x^{(n_m)}}\frac{1}{2}\sum_{i=1}^{n_m}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2$$</p>
+<p>那么：<br>给出\(x^{(1)},…,x^{(n_m)}\)和电影评分，可以估计\(\theta^{(1)},…,\theta^{(n_u)}\)；<br>给出\(\theta^{(1)},…,\theta^{(n_u)}\)和电影评分，可以估计\(x^{(1)},…,x^{(n_m)}\)。</p>
+<p>这似乎是一个“先有鸡还是先有蛋”的问题，其实我们在解决这个问题时，可以先随机生成 \(\theta\)，然后估计\(x\)，接着根据\(x\)再次估计一组新的\(\theta\)，如此循环最后可以收敛到一组足够合理的结果。</p>
+<p>$$ Guess\quad\theta \to x\to\theta\to x\to …$$</p>
+<p>以上就是协同过滤的思想。但为了提高计算效率，实际上\(x^{(1)},…,x^{(n_m)}\)和\(\theta^{(1)},…,\theta^{(n_u)}\)是同时考虑的，这样可以将损失函数定义为：</p>
+<p>$$J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})=\frac{1}{2}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2\+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>协同过滤算法：</p>
+<ol>
+<li>使用小的随机值初始化\(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)}\)；</li>
+<li>使用梯度下降最小化损失函数\(J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})\)；</li>
+<li>对偏好参数为\(\theta\)的用户和特征值为（学习到的）\(x\)的电影，预测其打分\(\theta^Tx\)</li>
+</ol>
+<blockquote>
+<p>此时不再需要截距项：<br>\(x^{(i)}\in \mathbb{R}^n\)<br>\(\theta^{(j)}\in \mathbb{R}^n\)  </p>
+</blockquote>
+<p>协同过滤算法的向量化实现即低秩矩阵分解(Low Rank Matrix Factorization)的过程。</p>
+<h3 id="Mean-Normalization"><a href="#Mean-Normalization" class="headerlink" title="Mean Normalization"></a>Mean Normalization</h3><p>在使用协同过滤算法时应该将打分矩阵均值正规化。因为对于无法得知偏好的新用户(初始化\(\theta^T=[0,0,…]\))，均值正规化可以避免\(\theta\)和\(x\)的最优解都是零矩阵（最后的结果其实就是把其他已知打分的均值赋给了新用户）。</p>
+<h3 id="寻找相关电影"><a href="#寻找相关电影" class="headerlink" title="寻找相关电影"></a>寻找相关电影</h3><p>可以根据电影相似性进行推荐：比如对于喜欢电影\(i\)的用户，我们在学习其它电影的特征后将与电影\(i\)最相似的5个电影就是5个最小\(||x^{(i)}-x^{(j)}||\)的电影推荐给这个用户。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;问题定义&quot;&gt;&lt;a href=&quot;#问题定义&quot; class=&quot;headerlink&quot; title=&quot;问题定义&quot;&gt;&lt;/a&gt;问题定义&lt;/h2&gt;&lt;p&gt;本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：&lt;br&gt;已知一些用户对一些电影的评分，预测用户对未评价电影的评分。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;用户1&lt;/th&gt;
+&lt;th&gt;用户2&lt;/th&gt;
+&lt;th&gt;用户3&lt;/th&gt;
+&lt;th&gt;用户4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;电影1&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;电影2&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;电影3&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;电影4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;电影5&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>异常检测(Anomaly Detection)</title>
+    <link href="http://huisblog.cn/2017/09/11/anodet/"/>
+    <id>http://huisblog.cn/2017/09/11/anodet/</id>
+    <published>2017-09-11T13:14:58.000Z</published>
+    <updated>2017-09-11T13:16:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="使用高斯分布探测异常值"><a href="#使用高斯分布探测异常值" class="headerlink" title="使用高斯分布探测异常值"></a>使用高斯分布探测异常值</h2><p>假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)</p>
+<ol>
+<li>选择标识异常的特征\(x_i\);</li>
+<li>学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\)</li>
+<li>对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&lt;\epsilon\)则报异常</li>
+</ol>
+<p>可使用混淆矩阵评估效果，并使用交叉验证集来选择\(\epsilon\)。</p>
+<a id="more"></a>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>一般在选定特征之前会使用直方图描绘一下数据特征，看其是否符合高斯分布。<br>对于非高斯分布的特征而言，按照经验来说，可以尝试\(log(x+b)\)或者\(x^{1/b}\)是否满足要求。</p>
+<p>在理想情况下，我们希望对于正常点来说\(p(x)\)足够大，而对于异常点来说\(p(x)\)足够小；<br>但是更普遍的情况是\(p(x)\)在正常点和异常点上都很大。在这些情况下我们就要考虑添加更加恰当的特征。<br>例如在机器状态监控中，选用的异常特征有：  </p>
+<ol>
+<li>\(x_1=\) 内存占用</li>
+<li>\(x_2=\) 磁盘访问</li>
+<li>\(x_3=\) CPU负载</li>
+<li>\(x_4=\) 网络流量</li>
+</ol>
+<p>但\(x_3, x_4\)在异常情况和非异常情况下都有可能极大或者极小，因此可以考虑添加特征：<br>$$x_5=\frac{CPU负载}{网络流量},\quad x_6=\frac{(CPU负载)^2}{网络流量}$$</p>
+<h2 id="异常检测与监督学习"><a href="#异常检测与监督学习" class="headerlink" title="异常检测与监督学习"></a>异常检测与监督学习</h2><table>
+<thead>
+<tr>
+<th>异常检测</th>
+<th>监督学习</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正例数量非常少(一般0-20)</td>
+<td>非常多的正例和负例</td>
+</tr>
+<tr>
+<td>负例数量非常多</td>
+<td></td>
+</tr>
+<tr>
+<td>异常值很“多样”，很难根据现有正例数据学习异常特征</td>
+<td>有足够的正例以供学习其特征，将来出现的正例很可能与训练集中已有的某些相似</td>
+</tr>
+<tr>
+<td>将来出现的异常可能和现有的异常值完全不同</td>
+<td></td>
+</tr>
+<tr>
+<td>举例：</td>
+<td></td>
+</tr>
+<tr>
+<td>诈骗检测</td>
+<td>垃圾邮件分类</td>
+</tr>
+<tr>
+<td>制造业 (比如飞机引擎)</td>
+<td>天气预报 (晴/雨/其它)</td>
+</tr>
+<tr>
+<td>数据中心的机器监控</td>
+<td>癌症检测</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;使用高斯分布探测异常值&quot;&gt;&lt;a href=&quot;#使用高斯分布探测异常值&quot; class=&quot;headerlink&quot; title=&quot;使用高斯分布探测异常值&quot;&gt;&lt;/a&gt;使用高斯分布探测异常值&lt;/h2&gt;&lt;p&gt;假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;选择标识异常的特征\(x_i\);&lt;/li&gt;
+&lt;li&gt;学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\)&lt;/li&gt;
+&lt;li&gt;对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&amp;lt;\epsilon\)则报异常&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可使用混淆矩阵评估效果，并使用交叉验证集来选择\(\epsilon\)。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="NG_ML" scheme="http://huisblog.cn/categories/NG-ML/"/>
+    
+    
+      <category term="ML" scheme="http://huisblog.cn/tags/ML/"/>
+    
+  </entry>
   
   <entry>
     <title>K-means和PCA</title>
@@ -1226,72 +1484,6 @@
     
       &lt;p&gt;会其意，知其形。&lt;/p&gt;
 &lt;h2 id=&quot;Markov-Chain&quot;&gt;&lt;a href=&quot;#Markov-Chain&quot; class=&quot;headerlink&quot; title=&quot;Markov Chain&quot;&gt;&lt;/a&gt;Markov Chain&lt;/h2&gt;&lt;p&gt;服从马尔可夫性（无记忆性）：
-    
-    </summary>
-    
-      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
-    
-    
-      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PCA主成分分析</title>
-    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pca/"/>
-    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pca/</id>
-    <published>2017-04-27T06:40:03.000Z</published>
-    <updated>2017-04-27T06:46:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>零均值化：每个属性值减去其均值</li>
-<li>求协方差矩阵</li>
-<li>求协方差矩阵的特征值和特征向量</li>
-<li>保留主成分</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;零均值化：每个属性值减去其均值&lt;/li&gt;
-&lt;li&gt;求协方差矩阵&lt;/li&gt;
-&lt;li&gt;求协方差矩阵的特征值和特征向量&lt;/li&gt;
-&lt;li&gt;保留主成分&lt;/li&gt;
-&lt;/ol&gt;
-
-    
-    </summary>
-    
-      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
-    
-    
-      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Point Esimation 点估计</title>
-    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/"/>
-    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pe/</id>
-    <published>2017-04-27T06:40:02.000Z</published>
-    <updated>2017-04-30T02:04:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(ai&lt;=Xi&lt;=bi) = 1</div></pre></td></tr></table></figure>
-<p>则其期望满足：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</div></pre></td></tr></table></figure>
-<h2 id="Regression回归分析"><a href="#Regression回归分析" class="headerlink" title="Regression回归分析"></a>Regression回归分析</h2><p>Bias-Variance Tradeoff</p>
-<ul>
-<li>欠拟合 underfitting 高偏差 bias</li>
-<li>过拟合 overfitting 高方差 variance</li>
-</ul>
-<p>解决方法：1、减少选取的特征数量；2、正则化 regularization</p>
-<h2 id="Polynomial-Curve-Fitting"><a href="#Polynomial-Curve-Fitting" class="headerlink" title="Polynomial Curve Fitting"></a>Polynomial Curve Fitting</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Y = XA </div><div class="line">#使用法向量计算最小二乘法结果</div><div class="line">A = (X.T * X) * X.T * Y</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Hoeffding不等式&quot;&gt;&lt;a href=&quot;#Hoeffding不等式&quot; class=&quot;headerlink&quot; title=&quot;Hoeffding不等式&quot;&gt;&lt;/a&gt;Hoeffding不等式&lt;/h2&gt;&lt;p&gt;用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变
     
     </summary>
     

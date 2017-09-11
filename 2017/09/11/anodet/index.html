@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="Python Web"/>
+  <meta name="description" content="异常检测(Anomaly Detection)"/>
 
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="ML," />
 
 
 
@@ -31,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/09/11/anodet/"/>
 
 
-<meta name="description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta name="keywords" content="python">
+<meta name="description" content="使用高斯分布探测异常值假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)  选择标识异常的特征\(x_i\); 学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\) 对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&amp;lt;">
+<meta name="keywords" content="ML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python Web">
-<meta property="og:url" content="http://huisblog.cn/2016/12/26/Python/PythonWeb/index.html">
+<meta property="og:title" content="异常检测(Anomaly Detection)">
+<meta property="og:url" content="http://huisblog.cn/2017/09/11/anodet/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta property="og:updated_time" content="2017-04-27T03:08:10.000Z">
+<meta property="og:description" content="使用高斯分布探测异常值假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)  选择标识异常的特征\(x_i\); 学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\) 对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&amp;lt;">
+<meta property="og:updated_time" content="2017-09-11T13:16:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python Web">
-<meta name="twitter:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
+<meta name="twitter:title" content="异常检测(Anomaly Detection)">
+<meta name="twitter:description" content="使用高斯分布探测异常值假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)  选择标识异常的特征\(x_i\); 学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\) 对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&amp;lt;">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -81,7 +81,7 @@
 
 
 
-    <title> Python Web · HuisBlog </title>
+    <title> 异常检测(Anomaly Detection) · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -242,13 +242,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Python Web
+          异常检测(Anomaly Detection)
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 26, 2016
+          Sep 11, 2017
         </span>
       </div>
     </header>
@@ -258,21 +258,75 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML简介"><span class="toc-text">HTML简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSGI-Web-Server-Gateway-Interface"><span class="toc-text">WSGI(Web Server Gateway Interface)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Web框架"><span class="toc-text">使用Web框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用高斯分布探测异常值"><span class="toc-text">使用高斯分布探测异常值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征选择"><span class="toc-text">特征选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常检测与监督学习"><span class="toc-text">异常检测与监督学习</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="使用高斯分布探测异常值"><a href="#使用高斯分布探测异常值" class="headerlink" title="使用高斯分布探测异常值"></a>使用高斯分布探测异常值</h2><p>假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)</p>
+<ol>
+<li>选择标识异常的特征\(x_i\);</li>
+<li>学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\)</li>
+<li>对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&lt;\epsilon\)则报异常</li>
+</ol>
+<p>可使用混淆矩阵评估效果，并使用交叉验证集来选择\(\epsilon\)。</p>
 <a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>一般在选定特征之前会使用直方图描绘一下数据特征，看其是否符合高斯分布。<br>对于非高斯分布的特征而言，按照经验来说，可以尝试\(log(x+b)\)或者\(x^{1/b}\)是否满足要求。</p>
+<p>在理想情况下，我们希望对于正常点来说\(p(x)\)足够大，而对于异常点来说\(p(x)\)足够小；<br>但是更普遍的情况是\(p(x)\)在正常点和异常点上都很大。在这些情况下我们就要考虑添加更加恰当的特征。<br>例如在机器状态监控中，选用的异常特征有：  </p>
+<ol>
+<li>\(x_1=\) 内存占用</li>
+<li>\(x_2=\) 磁盘访问</li>
+<li>\(x_3=\) CPU负载</li>
+<li>\(x_4=\) 网络流量</li>
+</ol>
+<p>但\(x_3, x_4\)在异常情况和非异常情况下都有可能极大或者极小，因此可以考虑添加特征：<br>$$x_5=\frac{CPU负载}{网络流量},\quad x_6=\frac{(CPU负载)^2}{网络流量}$$</p>
+<h2 id="异常检测与监督学习"><a href="#异常检测与监督学习" class="headerlink" title="异常检测与监督学习"></a>异常检测与监督学习</h2><table>
+<thead>
+<tr>
+<th>异常检测</th>
+<th>监督学习</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正例数量非常少(一般0-20)</td>
+<td>非常多的正例和负例</td>
+</tr>
+<tr>
+<td>负例数量非常多</td>
+<td></td>
+</tr>
+<tr>
+<td>异常值很“多样”，很难根据现有正例数据学习异常特征</td>
+<td>有足够的正例以供学习其特征，将来出现的正例很可能与训练集中已有的某些相似</td>
+</tr>
+<tr>
+<td>将来出现的异常可能和现有的异常值完全不同</td>
+<td></td>
+</tr>
+<tr>
+<td>举例：</td>
+<td></td>
+</tr>
+<tr>
+<td>诈骗检测</td>
+<td>垃圾邮件分类</td>
+</tr>
+<tr>
+<td>制造业 (比如飞机引擎)</td>
+<td>天气预报 (晴/雨/其它)</td>
+</tr>
+<tr>
+<td>数据中心的机器监控</td>
+<td>癌症检测</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -292,7 +346,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2016/12/26/Python/PythonWeb/">http://huisblog.cn/2016/12/26/Python/PythonWeb/</a>
+      <a href="http://huisblog.cn/2017/09/11/anodet/">http://huisblog.cn/2017/09/11/anodet/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -312,7 +366,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/ML/">ML</a>
             
           </div>
         
@@ -320,15 +374,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Python/PythonRE/">
+      <a class="prev" href="/2017/07/04/ng_cluster/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python正则表达式</span>
+        <span class="prev-text nav-default">K-means和PCA</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2016/12/26/Python/Socket/">
-        <span class="next-text nav-default">Socket通信</span>
+      <a class="next" href="/2017/09/11/recsys/">
+        <span class="next-text nav-default">推荐系统(Recommender Systems)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

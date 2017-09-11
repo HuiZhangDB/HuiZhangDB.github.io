@@ -240,6 +240,152 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/09/11/recsys/">推荐系统(Recommender Systems)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Sep 11, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：<br>已知一些用户对一些电影的评分，预测用户对未评价电影的评分。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>用户1</th>
+<th>用户2</th>
+<th>用户3</th>
+<th>用户4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电影1</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>电影2</td>
+<td>5</td>
+<td>?</td>
+<td>?</td>
+<td>1</td>
+</tr>
+<tr>
+<td>电影3</td>
+<td>?</td>
+<td>4</td>
+<td>0</td>
+<td>?</td>
+</tr>
+<tr>
+<td>电影4</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>电影5</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+          <div class="read-more">
+            <a href="/2017/09/11/recsys/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/11/anodet/">异常检测(Anomaly Detection)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Sep 11, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="使用高斯分布探测异常值"><a href="#使用高斯分布探测异常值" class="headerlink" title="使用高斯分布探测异常值"></a>使用高斯分布探测异常值</h2><p>假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)</p>
+<ol>
+<li>选择标识异常的特征\(x_i\);</li>
+<li>学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\)</li>
+<li>对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&lt;\epsilon\)则报异常</li>
+</ol>
+<p>可使用混淆矩阵评估效果，并使用交叉验证集来选择\(\epsilon\)。</p>
+          <div class="read-more">
+            <a href="/2017/09/11/anodet/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/07/04/ng_cluster/">K-means和PCA</a>
         
       </h1>
@@ -617,90 +763,6 @@
 <p>DFT的变化等式为：<br>$$X[k]=  \sum_{n=0}^{N-1}{x[n]e^{−j2{\pi}kn/N}}   (k=0,…,N−1)$$<br>
           <div class="read-more">
             <a href="/2017/05/25/dft/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/05/18/ASPbasic/">音频信号处理基础数学和工具</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          May 18, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>本文记录一下学习<code>音频信号处理(Audio Signal Processing)</code>过程中遇到的基础数学和实用工具。</p>
-          <div class="read-more">
-            <a href="/2017/05/18/ASPbasic/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/05/17/ResearchCraft/P1/">《the Craft of Research》第一部分</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          May 17, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="http://mypage.zju.edu.cn/en/zhangkejun">导师</a>推荐的一本书<em>the Craft of Research</em>，今天终于开始拜读，希望能有一些对于研究工作的启发。</p>
-          <div class="read-more">
-            <a href="/2017/05/17/ResearchCraft/P1/" class="read-more-link">Read more..</a>
           </div>
         
       

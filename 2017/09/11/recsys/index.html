@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="Python Web"/>
+  <meta name="description" content="推荐系统(Recommender Systems)"/>
 
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="ML," />
 
 
 
@@ -31,20 +31,20 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2016/12/26/Python/PythonWeb/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/09/11/recsys/"/>
 
 
-<meta name="description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta name="keywords" content="python">
+<meta name="description" content="问题定义本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：已知一些用户对一些电影的评分，预测用户对未评价电影的评分。     用户1 用户2 用户3 用户4     电影1 5 5 0 0   电影2 5 ? ? 1   电影3 ? 4 0 ?   电影4 0 0 4 5   电影5 0 0 4 ?">
+<meta name="keywords" content="ML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python Web">
-<meta property="og:url" content="http://huisblog.cn/2016/12/26/Python/PythonWeb/index.html">
+<meta property="og:title" content="推荐系统(Recommender Systems)">
+<meta property="og:url" content="http://huisblog.cn/2017/09/11/recsys/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
-<meta property="og:updated_time" content="2017-04-27T03:08:10.000Z">
+<meta property="og:description" content="问题定义本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：已知一些用户对一些电影的评分，预测用户对未评价电影的评分。     用户1 用户2 用户3 用户4     电影1 5 5 0 0   电影2 5 ? ? 1   电影3 ? 4 0 ?   电影4 0 0 4 5   电影5 0 0 4 ?">
+<meta property="og:updated_time" content="2017-09-11T13:22:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python Web">
-<meta name="twitter:description" content="HTML简介HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。">
+<meta name="twitter:title" content="推荐系统(Recommender Systems)">
+<meta name="twitter:description" content="问题定义本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：已知一些用户对一些电影的评分，预测用户对未评价电影的评分。     用户1 用户2 用户3 用户4     电影1 5 5 0 0   电影2 5 ? ? 1   电影3 ? 4 0 ?   电影4 0 0 4 5   电影5 0 0 4 ?">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -81,7 +81,7 @@
 
 
 
-    <title> Python Web · HuisBlog </title>
+    <title> 推荐系统(Recommender Systems) · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -242,13 +242,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Python Web
+          推荐系统(Recommender Systems)
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 26, 2016
+          Sep 11, 2017
         </span>
       </div>
     </header>
@@ -258,21 +258,103 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML简介"><span class="toc-text">HTML简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSGI-Web-Server-Gateway-Interface"><span class="toc-text">WSGI(Web Server Gateway Interface)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Web框架"><span class="toc-text">使用Web框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题定义"><span class="toc-text">问题定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于内容的推荐系统"><span class="toc-text">基于内容的推荐系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用协同过滤的推荐系统"><span class="toc-text">使用协同过滤的推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mean-Normalization"><span class="toc-text">Mean Normalization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相关电影"><span class="toc-text">寻找相关电影</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：<br>已知一些用户对一些电影的评分，预测用户对未评价电影的评分。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>用户1</th>
+<th>用户2</th>
+<th>用户3</th>
+<th>用户4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电影1</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>电影2</td>
+<td>5</td>
+<td>?</td>
+<td>?</td>
+<td>1</td>
+</tr>
+<tr>
+<td>电影3</td>
+<td>?</td>
+<td>4</td>
+<td>0</td>
+<td>?</td>
+</tr>
+<tr>
+<td>电影4</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>电影5</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
 <a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+<p>即，已知：</p>
+<ol>
+<li>\(n_u=\) 用户数量；</li>
+<li>\(n_m=\) 电影数量；</li>
+<li>\(r(i,j)=1\) 如果用户\(j\)给电影\(i\)打了分，否则为0；</li>
+<li>\(y^{(i,j)}=\) 用户\(j\)给电影\(i\)打的分数（只有当\(r(i,j)=1\)时才有定义）；</li>
+<li>\(m^{(j)}=\) 用户\(j\)打分了的电影数量；</li>
+</ol>
+<p>估计：</p>
+<ol>
+<li>\(\theta^{(j)}=\) 用户\(j\)的参数向量；</li>
+<li>\(x^{(i)}=\) 电影\(i\)的特征向量；</li>
+<li>对于用户\(j\)，电影\(i\)，预测\((\theta^{(j)})^T(x^{(i)})\)</li>
+</ol>
+<h2 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h2><p>根据已知每个电影的特征\(x^{(i)}\)，学习用户偏好\(\theta^{(1)},…,\theta^{(n_u)}\)，则损失函数为：</p>
+<p>$$min_{\theta^{(1)},…,\theta^{(n_u)}}\frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>梯度下降：</p>
+<p>$$\theta_k^{(j)} := \theta_k^{(j)} - \alpha\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}\quad (for\quad k=0 )\ \theta_k^{(j)} := \theta_k^{(j)} - \alpha(\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}+\lambda\theta_k^{(j)}\quad)\quad (for\quad k\neq0 )$$</p>
+<h2 id="使用协同过滤的推荐系统"><a href="#使用协同过滤的推荐系统" class="headerlink" title="使用协同过滤的推荐系统"></a>使用协同过滤的推荐系统</h2><p>若我们事先知道各用户的偏好参数 \(\theta^{(j)}\)，则可以学习电影的特征：</p>
+<p>$$min_{x^{(1)},…,x^{(n_m)}}\frac{1}{2}\sum_{i=1}^{n_m}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2$$</p>
+<p>那么：<br>给出\(x^{(1)},…,x^{(n_m)}\)和电影评分，可以估计\(\theta^{(1)},…,\theta^{(n_u)}\)；<br>给出\(\theta^{(1)},…,\theta^{(n_u)}\)和电影评分，可以估计\(x^{(1)},…,x^{(n_m)}\)。</p>
+<p>这似乎是一个“先有鸡还是先有蛋”的问题，其实我们在解决这个问题时，可以先随机生成 \(\theta\)，然后估计\(x\)，接着根据\(x\)再次估计一组新的\(\theta\)，如此循环最后可以收敛到一组足够合理的结果。</p>
+<p>$$ Guess\quad\theta \to x\to\theta\to x\to …$$</p>
+<p>以上就是协同过滤的思想。但为了提高计算效率，实际上\(x^{(1)},…,x^{(n_m)}\)和\(\theta^{(1)},…,\theta^{(n_u)}\)是同时考虑的，这样可以将损失函数定义为：</p>
+<p>$$J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})=\frac{1}{2}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2\+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>协同过滤算法：</p>
+<ol>
+<li>使用小的随机值初始化\(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)}\)；</li>
+<li>使用梯度下降最小化损失函数\(J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})\)；</li>
+<li>对偏好参数为\(\theta\)的用户和特征值为（学习到的）\(x\)的电影，预测其打分\(\theta^Tx\)</li>
+</ol>
+<blockquote>
+<p>此时不再需要截距项：<br>\(x^{(i)}\in \mathbb{R}^n\)<br>\(\theta^{(j)}\in \mathbb{R}^n\)  </p>
+</blockquote>
+<p>协同过滤算法的向量化实现即低秩矩阵分解(Low Rank Matrix Factorization)的过程。</p>
+<h3 id="Mean-Normalization"><a href="#Mean-Normalization" class="headerlink" title="Mean Normalization"></a>Mean Normalization</h3><p>在使用协同过滤算法时应该将打分矩阵均值正规化。因为对于无法得知偏好的新用户(初始化\(\theta^T=[0,0,…]\))，均值正规化可以避免\(\theta\)和\(x\)的最优解都是零矩阵（最后的结果其实就是把其他已知打分的均值赋给了新用户）。</p>
+<h3 id="寻找相关电影"><a href="#寻找相关电影" class="headerlink" title="寻找相关电影"></a>寻找相关电影</h3><p>可以根据电影相似性进行推荐：比如对于喜欢电影\(i\)的用户，我们在学习其它电影的特征后将与电影\(i\)最相似的5个电影就是5个最小\(||x^{(i)}-x^{(j)}||\)的电影推荐给这个用户。</p>
 
       
     </div>
@@ -292,7 +374,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2016/12/26/Python/PythonWeb/">http://huisblog.cn/2016/12/26/Python/PythonWeb/</a>
+      <a href="http://huisblog.cn/2017/09/11/recsys/">http://huisblog.cn/2017/09/11/recsys/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -312,7 +394,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/ML/">ML</a>
             
           </div>
         
@@ -320,18 +402,12 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Python/PythonRE/">
+      <a class="prev" href="/2017/09/11/anodet/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python正则表达式</span>
+        <span class="prev-text nav-default">异常检测(Anomaly Detection)</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
-    
-      <a class="next" href="/2016/12/26/Python/Socket/">
-        <span class="next-text nav-default">Socket通信</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 

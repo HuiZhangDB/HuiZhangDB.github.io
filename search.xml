@@ -3,6 +3,198 @@
   
     
     <entry>
+      <title><![CDATA[推荐系统(Recommender Systems)]]></title>
+      <url>/2017/09/11/recsys/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：<br>已知一些用户对一些电影的评分，预测用户对未评价电影的评分。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>用户1</th>
+<th>用户2</th>
+<th>用户3</th>
+<th>用户4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电影1</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>电影2</td>
+<td>5</td>
+<td>?</td>
+<td>?</td>
+<td>1</td>
+</tr>
+<tr>
+<td>电影3</td>
+<td>?</td>
+<td>4</td>
+<td>0</td>
+<td>?</td>
+</tr>
+<tr>
+<td>电影4</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>电影5</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>即，已知：</p>
+<ol>
+<li>\(n_u=\) 用户数量；</li>
+<li>\(n_m=\) 电影数量；</li>
+<li>\(r(i,j)=1\) 如果用户\(j\)给电影\(i\)打了分，否则为0；</li>
+<li>\(y^{(i,j)}=\) 用户\(j\)给电影\(i\)打的分数（只有当\(r(i,j)=1\)时才有定义）；</li>
+<li>\(m^{(j)}=\) 用户\(j\)打分了的电影数量；</li>
+</ol>
+<p>估计：</p>
+<ol>
+<li>\(\theta^{(j)}=\) 用户\(j\)的参数向量；</li>
+<li>\(x^{(i)}=\) 电影\(i\)的特征向量；</li>
+<li>对于用户\(j\)，电影\(i\)，预测\((\theta^{(j)})^T(x^{(i)})\)</li>
+</ol>
+<h2 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h2><p>根据已知每个电影的特征\(x^{(i)}\)，学习用户偏好\(\theta^{(1)},…,\theta^{(n_u)}\)，则损失函数为：</p>
+<p>$$min_{\theta^{(1)},…,\theta^{(n_u)}}\frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>梯度下降：</p>
+<p>$$\theta_k^{(j)} := \theta_k^{(j)} - \alpha\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}\quad (for\quad k=0 )\ \theta_k^{(j)} := \theta_k^{(j)} - \alpha(\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}+\lambda\theta_k^{(j)}\quad)\quad (for\quad k\neq0 )$$</p>
+<h2 id="使用协同过滤的推荐系统"><a href="#使用协同过滤的推荐系统" class="headerlink" title="使用协同过滤的推荐系统"></a>使用协同过滤的推荐系统</h2><p>若我们事先知道各用户的偏好参数 \(\theta^{(j)}\)，则可以学习电影的特征：</p>
+<p>$$min_{x^{(1)},…,x^{(n_m)}}\frac{1}{2}\sum_{i=1}^{n_m}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2$$</p>
+<p>那么：<br>给出\(x^{(1)},…,x^{(n_m)}\)和电影评分，可以估计\(\theta^{(1)},…,\theta^{(n_u)}\)；<br>给出\(\theta^{(1)},…,\theta^{(n_u)}\)和电影评分，可以估计\(x^{(1)},…,x^{(n_m)}\)。</p>
+<p>这似乎是一个“先有鸡还是先有蛋”的问题，其实我们在解决这个问题时，可以先随机生成 \(\theta\)，然后估计\(x\)，接着根据\(x\)再次估计一组新的\(\theta\)，如此循环最后可以收敛到一组足够合理的结果。</p>
+<p>$$ Guess\quad\theta \to x\to\theta\to x\to …$$</p>
+<p>以上就是协同过滤的思想。但为了提高计算效率，实际上\(x^{(1)},…,x^{(n_m)}\)和\(\theta^{(1)},…,\theta^{(n_u)}\)是同时考虑的，这样可以将损失函数定义为：</p>
+<p>$$J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})=\frac{1}{2}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2\+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>协同过滤算法：</p>
+<ol>
+<li>使用小的随机值初始化\(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)}\)；</li>
+<li>使用梯度下降最小化损失函数\(J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})\)；</li>
+<li>对偏好参数为\(\theta\)的用户和特征值为（学习到的）\(x\)的电影，预测其打分\(\theta^Tx\)</li>
+</ol>
+<blockquote>
+<p>此时不再需要截距项：<br>\(x^{(i)}\in \mathbb{R}^n\)<br>\(\theta^{(j)}\in \mathbb{R}^n\)  </p>
+</blockquote>
+<p>协同过滤算法的向量化实现即低秩矩阵分解(Low Rank Matrix Factorization)的过程。</p>
+<h3 id="Mean-Normalization"><a href="#Mean-Normalization" class="headerlink" title="Mean Normalization"></a>Mean Normalization</h3><p>在使用协同过滤算法时应该将打分矩阵均值正规化。因为对于无法得知偏好的新用户(初始化\(\theta^T=[0,0,…]\))，均值正规化可以避免\(\theta\)和\(x\)的最优解都是零矩阵（最后的结果其实就是把其他已知打分的均值赋给了新用户）。</p>
+<h3 id="寻找相关电影"><a href="#寻找相关电影" class="headerlink" title="寻找相关电影"></a>寻找相关电影</h3><p>可以根据电影相似性进行推荐：比如对于喜欢电影\(i\)的用户，我们在学习其它电影的特征后将与电影\(i\)最相似的5个电影就是5个最小\(||x^{(i)}-x^{(j)}||\)的电影推荐给这个用户。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> NG_ML </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[异常检测(Anomaly Detection)]]></title>
+      <url>/2017/09/11/anodet/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="使用高斯分布探测异常值"><a href="#使用高斯分布探测异常值" class="headerlink" title="使用高斯分布探测异常值"></a>使用高斯分布探测异常值</h2><p>假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)</p>
+<ol>
+<li>选择标识异常的特征\(x_i\);</li>
+<li>学习参数\(\mu_1,…,\mu_n, \sigma_1^2,…,\sigma_n^2\)</li>
+<li>对于测试点\(x\)，计算\(p(x)\)，若\(p(x)&lt;\epsilon\)则报异常</li>
+</ol>
+<p>可使用混淆矩阵评估效果，并使用交叉验证集来选择\(\epsilon\)。</p>
+<a id="more"></a>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>一般在选定特征之前会使用直方图描绘一下数据特征，看其是否符合高斯分布。<br>对于非高斯分布的特征而言，按照经验来说，可以尝试\(log(x+b)\)或者\(x^{1/b}\)是否满足要求。</p>
+<p>在理想情况下，我们希望对于正常点来说\(p(x)\)足够大，而对于异常点来说\(p(x)\)足够小；<br>但是更普遍的情况是\(p(x)\)在正常点和异常点上都很大。在这些情况下我们就要考虑添加更加恰当的特征。<br>例如在机器状态监控中，选用的异常特征有：  </p>
+<ol>
+<li>\(x_1=\) 内存占用</li>
+<li>\(x_2=\) 磁盘访问</li>
+<li>\(x_3=\) CPU负载</li>
+<li>\(x_4=\) 网络流量</li>
+</ol>
+<p>但\(x_3, x_4\)在异常情况和非异常情况下都有可能极大或者极小，因此可以考虑添加特征：<br>$$x_5=\frac{CPU负载}{网络流量},\quad x_6=\frac{(CPU负载)^2}{网络流量}$$</p>
+<h2 id="异常检测与监督学习"><a href="#异常检测与监督学习" class="headerlink" title="异常检测与监督学习"></a>异常检测与监督学习</h2><table>
+<thead>
+<tr>
+<th>异常检测</th>
+<th>监督学习</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正例数量非常少(一般0-20)</td>
+<td>非常多的正例和负例</td>
+</tr>
+<tr>
+<td>负例数量非常多</td>
+<td></td>
+</tr>
+<tr>
+<td>异常值很“多样”，很难根据现有正例数据学习异常特征</td>
+<td>有足够的正例以供学习其特征，将来出现的正例很可能与训练集中已有的某些相似</td>
+</tr>
+<tr>
+<td>将来出现的异常可能和现有的异常值完全不同</td>
+<td></td>
+</tr>
+<tr>
+<td>举例：</td>
+<td></td>
+</tr>
+<tr>
+<td>诈骗检测</td>
+<td>垃圾邮件分类</td>
+</tr>
+<tr>
+<td>制造业 (比如飞机引擎)</td>
+<td>天气预报 (晴/雨/其它)</td>
+</tr>
+<tr>
+<td>数据中心的机器监控</td>
+<td>癌症检测</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> NG_ML </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[K-means和PCA]]></title>
       <url>/2017/07/04/ng_cluster/</url>
       <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -1784,6 +1976,28 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python错误、调试和测试]]></title>
       <url>/2016/12/06/Python/PythonDebug/</url>
       <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
@@ -1798,80 +2012,6 @@
 <h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line">	a simple dict</div><div class="line"></div><div class="line">	&gt;&gt;&gt; d1 = Dict()</div><div class="line">	&gt;&gt;&gt; d1['x'] = 100</div><div class="line">	&gt;&gt;&gt; d1.x</div><div class="line">	100</div><div class="line">	&gt;&gt;&gt; d1.y = 200</div><div class="line">	&gt;&gt;&gt; d1['y']</div><div class="line">	200</div><div class="line">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</div><div class="line">	&gt;&gt;&gt; d2.c</div><div class="line">	'3'</div><div class="line">    &gt;&gt;&gt; d2['empty']</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    KeyError: 'empty'</div><div class="line">    &gt;&gt;&gt; d2.empty</div><div class="line">    Traceback (most recent call last):</div><div class="line">        ...</div><div class="line">    AttributeError: 'Dict' object has no attribute 'empty'</div><div class="line">    '''</div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python面向对象高级编程]]></title>
-      <url>/2016/12/06/Python/PythonAdOOP/</url>
-      <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>如果想要限制class的属性，可以使用特殊变量<code>__slots__</code>来限制该class能添加的属性：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    __slots__ = (<span class="string">'name'</span>,<span class="string">'age'</span>)<span class="comment">#用tuple定义允许绑定的属性名称</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Micheal'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">90</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'score'</span></div></pre></td></tr></table></figure>
-<p>需要注意的是，<code>__score__</code>中定义的属性仅对当前类起作用，对继承的子类是不起作用的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">GraduateStudent</span><span class="params">(Student)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">pass</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g = GraduateStudent()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score</div><div class="line"><span class="number">99</span></div></pre></td></tr></table></figure>
-<h2 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h2><p><code>@property</code>是Python内置的一个装饰器，可以把一个getter方法变成属性，同时还会创建另一个装饰器<code>@xxx.setter</code>，负责把一个setter方法变成属性赋值，这样我们就拥有了一个可控的属性操作。如果只定义getter方法而不定义setter方法就会得到一个只读属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self._score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self._score = value</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score</div><div class="line"><span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">101</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">10</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must between <span class="number">0</span>~<span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="string">'a'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">8</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must be an integer</div></pre></td></tr></table></figure>
-<p>注意这里的<code>score</code>是一个property对象，getter方法和setter方法重用了这个名字，而<code>_score</code>是私有属性。实际属性值储存在<code>_score</code>中，<code>score</code>则为这个私有变量提供接口。如果混淆了两者就会出现可怕的bug：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self.score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self.score = value<span class="comment">#这里会无法停止循环调用score的setter方法</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  ...</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">11</span>, <span class="keyword">in</span> score</div><div class="line">RuntimeError: maximum recursion depth exceeded</div></pre></td></tr></table></figure>
-<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>一个子类可以通过多重继承同时获得多个父类的所有功能。</p>
-<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>在设计类的继承关系时，通常主线都是单一继承下来的，例如，<code>Dog</code>继承自<code>Animal</code>。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让<code>Dog</code>除了继承自<code>Animal</code>之外再同时继承<code>Runnable</code>。这种设计通常称之为<code>Mixin</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,Runnable)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>为了更好地看出继承关系，我们把<code>Runnable</code>和<code>Flyable</code>改为<code>RunnableMixin</code>和<code>FlyableMixin</code>。类似的，还可以定义出肉食动物<code>CarnivorousMixin</code>和植食动物<code>HerbivoresMixin</code>，让某个动物同时拥有好几个Mixin：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,RunnableMixin,CarnivorousMixin)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>Mixin的目的就是给一个类增加多个功能，这样在设计类的时候，我们优先考虑通过多重继承来组合多个Mixin的功能，而不是设计多层次的复杂的继承关系。</p>
-<p>Python允许使用多重继承，因此Mixin是一种常见设计。而只允许单一继承的语言（如Java）不能使用Mixin的设计。</p>
-<h2 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h2><p>Python中有许多特殊用途的函数可以帮助我们定制类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__slots__</div><div class="line">__len__</div><div class="line">__str__</div><div class="line">__repr__</div><div class="line">__iter__</div><div class="line">__getitem__</div><div class="line">__getattr__</div><div class="line">__call__  <span class="comment">#可使用callable()来判断对象是否是“可调用”对象</span></div></pre></td></tr></table></figure>
-<h2 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h2><p><code>type()</code>既可以返回一个对象的类型，还可以创建出新的类型。<br><code>metaclass</code>允许创建类或者修改类，可以把类看成是metaclass创建出的来的“实例”。</p>
-<p><em>正常情况下不会碰到需要使用<code>metaclass</code>的情况，所以现在先略过。</em></p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[PythonIO编程]]></title>
-      <url>/2016/12/06/Python/PythonIO/</url>
-      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
-<a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -1912,6 +2052,28 @@
 <p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
 <h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python小贴士]]></title>
+      <url>/2016/12/06/Python/PythonTips/</url>
+      <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -2018,9 +2180,18 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python小贴士]]></title>
-      <url>/2016/12/06/Python/PythonTips/</url>
-      <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+      <title><![CDATA[PythonIO编程]]></title>
+      <url>/2016/12/06/Python/PythonIO/</url>
+      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+<a id="more"></a>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
+<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -2040,9 +2211,30 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+      <title><![CDATA[Python面向对象高级编程]]></title>
+      <url>/2016/12/06/Python/PythonAdOOP/</url>
+      <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>如果想要限制class的属性，可以使用特殊变量<code>__slots__</code>来限制该class能添加的属性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    __slots__ = (<span class="string">'name'</span>,<span class="string">'age'</span>)<span class="comment">#用tuple定义允许绑定的属性名称</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Micheal'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">90</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'score'</span></div></pre></td></tr></table></figure>
+<p>需要注意的是，<code>__score__</code>中定义的属性仅对当前类起作用，对继承的子类是不起作用的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">GraduateStudent</span><span class="params">(Student)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">pass</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g = GraduateStudent()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score</div><div class="line"><span class="number">99</span></div></pre></td></tr></table></figure>
+<h2 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h2><p><code>@property</code>是Python内置的一个装饰器，可以把一个getter方法变成属性，同时还会创建另一个装饰器<code>@xxx.setter</code>，负责把一个setter方法变成属性赋值，这样我们就拥有了一个可控的属性操作。如果只定义getter方法而不定义setter方法就会得到一个只读属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self._score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self._score = value</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score</div><div class="line"><span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">101</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">10</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must between <span class="number">0</span>~<span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="string">'a'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">8</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must be an integer</div></pre></td></tr></table></figure>
+<p>注意这里的<code>score</code>是一个property对象，getter方法和setter方法重用了这个名字，而<code>_score</code>是私有属性。实际属性值储存在<code>_score</code>中，<code>score</code>则为这个私有变量提供接口。如果混淆了两者就会出现可怕的bug：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self.score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self.score = value<span class="comment">#这里会无法停止循环调用score的setter方法</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  ...</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">11</span>, <span class="keyword">in</span> score</div><div class="line">RuntimeError: maximum recursion depth exceeded</div></pre></td></tr></table></figure>
+<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>一个子类可以通过多重继承同时获得多个父类的所有功能。</p>
+<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>在设计类的继承关系时，通常主线都是单一继承下来的，例如，<code>Dog</code>继承自<code>Animal</code>。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让<code>Dog</code>除了继承自<code>Animal</code>之外再同时继承<code>Runnable</code>。这种设计通常称之为<code>Mixin</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,Runnable)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>为了更好地看出继承关系，我们把<code>Runnable</code>和<code>Flyable</code>改为<code>RunnableMixin</code>和<code>FlyableMixin</code>。类似的，还可以定义出肉食动物<code>CarnivorousMixin</code>和植食动物<code>HerbivoresMixin</code>，让某个动物同时拥有好几个Mixin：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,RunnableMixin,CarnivorousMixin)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>Mixin的目的就是给一个类增加多个功能，这样在设计类的时候，我们优先考虑通过多重继承来组合多个Mixin的功能，而不是设计多层次的复杂的继承关系。</p>
+<p>Python允许使用多重继承，因此Mixin是一种常见设计。而只允许单一继承的语言（如Java）不能使用Mixin的设计。</p>
+<h2 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h2><p>Python中有许多特殊用途的函数可以帮助我们定制类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__slots__</div><div class="line">__len__</div><div class="line">__str__</div><div class="line">__repr__</div><div class="line">__iter__</div><div class="line">__getitem__</div><div class="line">__getattr__</div><div class="line">__call__  <span class="comment">#可使用callable()来判断对象是否是“可调用”对象</span></div></pre></td></tr></table></figure>
+<h2 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h2><p><code>type()</code>既可以返回一个对象的类型，还可以创建出新的类型。<br><code>metaclass</code>允许创建类或者修改类，可以把类看成是metaclass创建出的来的“实例”。</p>
+<p><em>正常情况下不会碰到需要使用<code>metaclass</code>的情况，所以现在先略过。</em></p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
