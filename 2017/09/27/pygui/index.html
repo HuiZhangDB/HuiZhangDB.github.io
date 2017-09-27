@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Python GUI"/>
+
+
+
+
+  <meta name="keywords" content="PyGUI," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/09/27/pygui/"/>
+
+
+<meta name="description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
+<meta name="keywords" content="PyGUI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python GUI">
+<meta property="og:url" content="http://huisblog.cn/2017/09/27/pygui/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
+<meta property="og:updated_time" content="2017-09-27T06:41:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python GUI">
+<meta name="twitter:description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Python GUI · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python GUI
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Sep 27, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PyQt"><span class="toc-text">PyQt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-PyInstaller-打包可执行程序"><span class="toc-text">使用 PyInstaller 打包可执行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意在打包后系统路径会发生变化"><span class="toc-text">注意在打包后系统路径会发生变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包数据文件"><span class="toc-text">打包数据文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始打包"><span class="toc-text">开始打包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附：使用PyQt过程中遇到的问题"><span class="toc-text">附：使用PyQt过程中遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QSound不能播放音乐"><span class="toc-text">QSound不能播放音乐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QMediaPlayer没有声音"><span class="toc-text">QMediaPlayer没有声音</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QMediaPlayer-duration数据错误"><span class="toc-text">QMediaPlayer.duration数据错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QMediaPlaylist循环播放"><span class="toc-text">QMediaPlaylist循环播放</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的<code>Python</code>来写。<br>在<code>Python图形界面编程</code>中常用的工具包有：</p>
+<a id="more"></a>
+<ul>
+<li><a href="https://www.riverbankcomputing.com/software/pyqt" target="_blank" rel="external">PyQt</a> (Python和Qt库的成功融合)</li>
+<li><a href="https://www.wxpython.org/" target="_blank" rel="external">wxPython</a> (wxWidgets的Python封装)</li>
+<li><a href="https://wiki.python.org/moin/TkInter/" target="_blank" rel="external">Tkinter</a> (Python的标准GUI工具包)</li>
+</ul>
+<p>这次使用的是<code>PyQt</code>（相关文档和资料比较多）。</p>
+<h2 id="PyQt"><a href="#PyQt" class="headerlink" title="PyQt"></a>PyQt</h2><p>使用Qt开发程序可以从<code>Qt Widgets</code>或/和<code>Qt Quick</code>开始（<a href="http://blog.csdn.net/liang19890820/article/details/54141552" target="_blank" rel="external">Qt Widgets、QML、Qt Quick的区别</a>）。我们对实验工具的界面要求不高，可以直接使用<code>Qt Widgets</code>开发。它有几个重要的概念：</p>
+<p>C1. UI 界面实现</p>
+<blockquote>
+<p>QApplication</p>
+<blockquote>
+<p>QWidget</p>
+</blockquote>
+</blockquote>
+<p>C2. 组件通信</p>
+<blockquote>
+<p>Signal &amp; Slot （信号槽机制）</p>
+</blockquote>
+<h2 id="使用-PyInstaller-打包可执行程序"><a href="#使用-PyInstaller-打包可执行程序" class="headerlink" title="使用 PyInstaller 打包可执行程序"></a>使用 PyInstaller 打包可执行程序</h2><h3 id="注意在打包后系统路径会发生变化"><a href="#注意在打包后系统路径会发生变化" class="headerlink" title="注意在打包后系统路径会发生变化"></a>注意在打包后系统路径会发生变化</h3><p>平时几种常用的获取当前运行脚本路径的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">print(__file__)</div><div class="line">print(os.path.realpath(__file__))</div><div class="line">print(<span class="string">'using sys.executable:'</span>, repr(os.path.dirname(os.path.realpath(sys.executable))))</div><div class="line">print(<span class="string">'using sys.argv[0]:'</span>, repr(os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))))</div><div class="line">print(os.path.split(sys.argv[<span class="number">0</span>]))</div><div class="line">print(sys.path[<span class="number">0</span>])</div></pre></td></tr></table></figure>
+<p>在工程中的运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/Users/huizhang/Desktop/testpath/path.py</div><div class="line">/Users/huizhang/Desktop/testpath/path.py</div><div class="line">using sys.executable: <span class="string">'/usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/bin'</span></div><div class="line">using sys.argv[<span class="number">0</span>]: <span class="string">'/Users/huizhang/Desktop/testpath'</span></div><div class="line">(<span class="string">'/Users/huizhang/Desktop/testpath'</span>, <span class="string">'path.py'</span>)</div><div class="line">/Users/huizhang/Desktop/testpath</div></pre></td></tr></table></figure>
+<p>打包后的运行结果：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">path.py</div><div class="line">/Users/huizhang/path.py</div><div class="line">using sys.executable: <span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span></div><div class="line">using sys.argv[0]: <span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span></div><div class="line">(<span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span>, <span class="string">'path'</span>)</div><div class="line">/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS/base_library.zip</div></pre></td></tr></table></figure>
+<h3 id="打包数据文件"><a href="#打包数据文件" class="headerlink" title="打包数据文件"></a>打包数据文件</h3><p><code>pyinstaller</code>命令不能直接将工程中的数据文件一起打包，要实现这一步必须修改<code>.spec</code>文件。<a href="http://legendtkl.com/2015/11/06/pyinstaller/" target="_blank" rel="external">legendtkl的博客</a>中有<code>PyInstaller</code>的简介中文教程，也可以直接查看<a href="https://pythonhosted.org/PyInstaller/spec-files.html" target="_blank" rel="external">官方文档</a>。</p>
+<p>添加数据文件只需要在<code>a.datas</code>里面添加二元组即可，二元组第一个参数<code>&#39;/mygame/data&#39;</code>是要添加的数据文件的本地索引，第二个参数<code>&#39;data&#39;</code>是在打包后的工程中的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">added_files = [</div><div class="line">         ( &apos;/mygame/data&apos;, &apos;data&apos; ),</div><div class="line">         ( &apos;/mygame/sfx/*.mp3&apos;, &apos;sfx&apos; ),</div><div class="line">         ( &apos;src/README.txt&apos;, &apos;.&apos; )</div><div class="line">         ]</div><div class="line">         </div><div class="line">    a = Analysis(...</div><div class="line">         datas = added_files,</div><div class="line">         ...</div><div class="line">         )</div></pre></td></tr></table></figure>
+<p><code>PyInstaller</code>会把打包的位置存在<code>sys._MEIPASS</code>，可以测试一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">img = os.path.join(<span class="string">"res"</span>,<span class="string">"img"</span>,<span class="string">"test.jpg"</span>)</div><div class="line"></div><div class="line">base_path0 = os.path.abspath(<span class="string">"."</span>)</div><div class="line">base_path1 = os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    base_path2 = sys._MEIPASS</div><div class="line"><span class="keyword">except</span> Exception:</div><div class="line">    <span class="comment"># PyInstaller打包前sys._MEIPASS不存在</span></div><div class="line">    base_path2 = os.path.abspath(<span class="string">"."</span>)</div><div class="line"></div><div class="line">print(<span class="string">"img0: "</span>,os.path.join(base_path0,img))</div><div class="line">print(<span class="string">"img1: "</span>,os.path.join(base_path1,img))</div><div class="line">print(<span class="string">"img2: "</span>,os.path.join(base_path2,img))</div></pre></td></tr></table></figure>
+<p>工程中的运行结果都一样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 路径都正确</span></div><div class="line">img0:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg </div><div class="line">img1:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg</div><div class="line">img2:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg</div></pre></td></tr></table></figure>
+<p>打包后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># img0错误，img1和img2正确</span></div><div class="line">img0:  /Users/huizhang/res/img/test.jpg </div><div class="line">img1:  /Users/huizhang/Desktop/testinstaller/dist/test.app/Contents/MacOS/res/img/test.jpg</div><div class="line">img2:  /Users/huizhang/Desktop/testinstaller/dist/test.app/Contents/MacOS/res/img/test.jpg</div></pre></td></tr></table></figure>
+<h3 id="开始打包"><a href="#开始打包" class="headerlink" title="开始打包"></a>开始打包</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> my_project_dir</div><div class="line"><span class="comment"># -w 参数指定打包为一个文件(.app)，-n 设置应用名，-i 设置应用图标。</span></div><div class="line">pyi-makespec -w -n MyAppName -i appicon.icns MyMainScript.py</div><div class="line"><span class="comment"># 修改.spec文件中的 datas 以添加数据文件</span></div><div class="line">pyinstaller MyAppName.spec</div><div class="line"><span class="comment"># 生成 built 文件夹和 dist 文件夹，打包好的文件在 dist 中。</span></div></pre></td></tr></table></figure>
+<h2 id="附：使用PyQt过程中遇到的问题"><a href="#附：使用PyQt过程中遇到的问题" class="headerlink" title="附：使用PyQt过程中遇到的问题"></a>附：使用PyQt过程中遇到的问题</h2><h3 id="QSound不能播放音乐"><a href="#QSound不能播放音乐" class="headerlink" title="QSound不能播放音乐"></a>QSound不能播放音乐</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">QSoundEffect(qaudio): Error decoding source</div></pre></td></tr></table></figure>
+<p>QSound只能播放<code>.wav</code></p>
+<h3 id="QMediaPlayer没有声音"><a href="#QMediaPlayer没有声音" class="headerlink" title="QMediaPlayer没有声音"></a>QMediaPlayer没有声音</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">no error but no sound</div></pre></td></tr></table></figure>
+<p>QUrl.fromLocalFile只能使用绝对路径</p>
+<h3 id="QMediaPlayer-duration数据错误"><a href="#QMediaPlayer-duration数据错误" class="headerlink" title="QMediaPlayer.duration数据错误"></a>QMediaPlayer.duration数据错误</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">QMediaPlayer.duration() == <span class="number">0</span></div></pre></td></tr></table></figure>
+<p><code>QMediaPlayer.setMedia()</code>是异步执行的，如果在这个方法后马上调用<code>QMediaPlayer.duration()</code>得到的将是错误的值，因为<code>QMediaPlayer.setMedia()</code>还未设置好。应该在<code>durationchanged</code>信号发出后重新给其赋值。</p>
+<h3 id="QMediaPlaylist循环播放"><a href="#QMediaPlaylist循环播放" class="headerlink" title="QMediaPlaylist循环播放"></a>QMediaPlaylist循环播放</h3><p>设置只播一首歌时<code>setPlaybackMode(CurrentItemOnce)</code>，每次本首歌曲播完index会被重置为<code>-1</code>。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/09/27/pygui/">http://huisblog.cn/2017/09/27/pygui/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/PyGUI/">PyGUI</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/11/recsys/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">推荐系统(Recommender Systems)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
