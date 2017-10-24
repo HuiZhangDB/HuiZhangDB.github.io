@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huisblog.cn/"/>
-  <updated>2017-09-27T06:41:15.000Z</updated>
+  <updated>2017-10-24T03:54:56.000Z</updated>
   <id>http://huisblog.cn/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FFmpeg实用操作</title>
+    <link href="http://huisblog.cn/2017/10/24/ffmpeg/"/>
+    <id>http://huisblog.cn/2017/10/24/ffmpeg/</id>
+    <published>2017-10-24T03:53:55.000Z</published>
+    <updated>2017-10-24T03:54:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>最近的实验中有许多音频处理的工作，使用<code>FFmpeg</code>较为频繁，本文用于记录实验中使用过的操作（<a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax" target="_blank" rel="external">官方文档</a>）以及其中遇到的一些问题（感谢<a href="http://davidaq.com/tutorial/2014/11/20/ffmpeg-commands.html" target="_blank" rel="external">DavidAQ</a>的答疑解惑）。<br><a id="more"></a></p>
+<h3 id="转格式"><a href="#转格式" class="headerlink" title="转格式"></a>转格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i Input.mp3 Output.wav</span></div></pre></td></tr></table></figure>
+<h3 id="截取"><a href="#截取" class="headerlink" title="截取"></a>截取</h3><p>官网提供的命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i Input.mp3 -ss Starttime -t Duration Output.mp3</span></div></pre></td></tr></table></figure>
+<p>但是经过FFmpeg处理的音频文件，在苹果系统(OSX, IOS)以及苹果的播放器(ITunes, QuickTime)上往往会显示错误的长度时间。这是<code>FFmpeg</code>的Bug，需要添加参数<code>-write_xing</code>规避：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i Input.mp3 -write_xing 0 -ss Starttime -t Duration Output.mp3</span></div></pre></td></tr></table></figure>
+<p>或者指定音频编码器直接复制原来的编码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ffmpeg -ss Starttime -i Input.mp3 -t Duration -acodec copy Output.mp3</span></div></pre></td></tr></table></figure>
+<p>把<code>-ss</code>提到<code>-i</code>前面作为输入文件的处理参数，这样会先跳转到<code>Starttime</code>再开始解码，而原来的会从开始解码然后丢弃掉<code>Starttime</code>之前的结果，同时<code>-acodec copy</code>表示音频的编码不会发生改变，这样会大大提高速度。</p>
+<blockquote>
+<p>注意处理文件如果不是图片，不要让输入文件与输出文件相同，覆盖后会出现神奇的Bug。</p>
+</blockquote>
+<h3 id="淡入（淡出）"><a href="#淡入（淡出）" class="headerlink" title="淡入（淡出）"></a>淡入（淡出）</h3><p><code>FFmpeg</code>的音频过滤器可以实现这一效果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i Input.mp3 -write_xing 0 -af afade=t=<span class="keyword">in</span>:ss=0:d=15 Output.mp3</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;最近的实验中有许多音频处理的工作，使用&lt;code&gt;FFmpeg&lt;/code&gt;较为频繁，本文用于记录实验中使用过的操作（&lt;a href=&quot;https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax&quot;&gt;官方文档&lt;/a&gt;）以及其中遇到的一些问题（感谢&lt;a href=&quot;http://davidaq.com/tutorial/2014/11/20/ffmpeg-commands.html&quot;&gt;DavidAQ&lt;/a&gt;的答疑解惑）。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ffmpeg" scheme="http://huisblog.cn/tags/ffmpeg/"/>
+    
+  </entry>
   
   <entry>
     <title>Python GUI</title>
@@ -1496,32 +1536,6 @@
       <category term="ssh" scheme="http://huisblog.cn/tags/ssh/"/>
     
       <category term="github" scheme="http://huisblog.cn/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Probably Graphic Model</title>
-    <link href="http://huisblog.cn/2017/04/27/ApplicationMath/pgm/"/>
-    <id>http://huisblog.cn/2017/04/27/ApplicationMath/pgm/</id>
-    <published>2017-04-27T06:40:06.000Z</published>
-    <updated>2017-04-27T06:53:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>简而言之，数形结合的思想。</p>
-<h2 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h2><p>即有向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/bayes.png" alt="bayes.png" title=""></p>
-<h2 id="马尔可夫随机场"><a href="#马尔可夫随机场" class="headerlink" title="马尔可夫随机场"></a>马尔可夫随机场</h2><p>即无向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/makov.png" alt="makov.png" title=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;简而言之，数形结合的思想。&lt;/p&gt;
-&lt;h2 id=&quot;贝叶斯网络&quot;&gt;&lt;a href=&quot;#贝叶斯网络&quot; class=&quot;headerlink&quot; title=&quot;贝叶斯网络&quot;&gt;&lt;/a&gt;贝叶斯网络&lt;/h2&gt;&lt;p&gt;即有向图模型&lt;br&gt;&lt;img src=&quot;/2017/04/27/Appli
-    
-    </summary>
-    
-      <category term="应用工程数学" scheme="http://huisblog.cn/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/"/>
-    
-    
-      <category term="Math" scheme="http://huisblog.cn/tags/Math/"/>
     
   </entry>
   
