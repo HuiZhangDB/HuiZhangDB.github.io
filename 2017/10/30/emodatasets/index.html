@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="50首流行音乐的收集处理"/>
+  <meta name="description" content="音乐情感数据集"/>
 
 
 
 
-  <meta name="keywords" content="MER,dataset," />
+  <meta name="keywords" content="MIR," />
 
 
 
@@ -31,25 +31,21 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2017/05/16/50M/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/10/30/emodatasets/"/>
 
 
-<meta name="description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
-<meta name="keywords" content="MER,dataset">
+<meta name="description" content="本文收集了一些带情感标签的音乐数据库：">
+<meta name="keywords" content="MIR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="50首流行音乐的收集处理">
-<meta property="og:url" content="http://huisblog.cn/2017/05/16/50M/index.html">
+<meta property="og:title" content="音乐情感数据集">
+<meta property="og:url" content="http://huisblog.cn/2017/10/30/emodatasets/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
+<meta property="og:description" content="本文收集了一些带情感标签的音乐数据库：">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/V.png">
-<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/A.png">
-<meta property="og:image" content="http://huisblog.cn/2017/05/16/50M/VA.png">
-<meta property="og:updated_time" content="2017-05-16T02:40:23.000Z">
+<meta property="og:updated_time" content="2017-10-31T05:14:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="50首流行音乐的收集处理">
-<meta name="twitter:description" content="实验目的为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。">
-<meta name="twitter:image" content="http://huisblog.cn/2017/05/16/50M/V.png">
+<meta name="twitter:title" content="音乐情感数据集">
+<meta name="twitter:description" content="本文收集了一些带情感标签的音乐数据库：">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -86,7 +82,7 @@
 
 
 
-    <title> 50首流行音乐的收集处理 · HuisBlog </title>
+    <title> 音乐情感数据集 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -247,59 +243,101 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          50首流行音乐的收集处理
+          音乐情感数据集
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          May 16, 2017
+          Oct 30, 2017
         </span>
       </div>
     </header>
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实验目的"><span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#音乐收集和预处理"><span class="toc-text">音乐收集和预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征提取"><span class="toc-text">特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理打分数据，得到情感标签"><span class="toc-text">处理打分数据，得到情感标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单过一下分类流程"><span class="toc-text">简单过一下分类流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发现问题和拟解决方案"><span class="toc-text">发现问题和拟解决方案</span></a></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。</p>
-<a id="more"></a>
-<h2 id="音乐收集和预处理"><a href="#音乐收集和预处理" class="headerlink" title="音乐收集和预处理"></a>音乐收集和预处理</h2><p>从<a href="https://y.qq.com/n/yqq/toplist/107.html" target="_blank" rel="external">英国UK榜第19周榜单</a>下载流行乐37首，分发给13位同学裁剪并打分。（每人3首左右，这里音乐不重复打分，但在正式实验中每首歌需要10个左右受试者打分）最后回收到：</p>
-<ul>
-<li>34首音乐片段（裁剪高潮部分，30秒左右，正式实验中需要45秒左右）</li>
-<li>音乐曲名、作者、排行等元信息</li>
-<li>愉悦度和唤醒度打分（取值区间[-5,5]）</li>
-</ul>
-<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><p>使用<code>openSMILE</code>批量提取歌曲特征，得到<code>IS13features.arff</code>特征文件，包含了34首歌曲，每首6373维特征向量（使用<a href="/2017/05/02/IS13feature/" title="2013 ComParE Feature Set">2013 ComParE Feature Set</a>音乐情感特征集）。</p>
-<h2 id="处理打分数据，得到情感标签"><a href="#处理打分数据，得到情感标签" class="headerlink" title="处理打分数据，得到情感标签"></a>处理打分数据，得到情感标签</h2><p>根据打分给每首歌打三个标签<code>情感正负</code>（即愉悦度的正负值），<code>情感强弱</code>（即唤醒度的正负值），<code>四种基本情感</code>（即VA二维平面的四个象限：高兴、惊恐、厌烦、轻松）。</p>
-<p>将歌曲的特征向量和情感标签写入文件<code>IS13features_withlabels.arff</code>。</p>
-<h2 id="简单过一下分类流程"><a href="#简单过一下分类流程" class="headerlink" title="简单过一下分类流程"></a>简单过一下分类流程</h2><p>使用<code>Weka</code>中的<code>libsvm</code>对音乐情感进行简单分类。（注意这里只是简单过一下分类流程，以后真实应用中是不会这样做的，如在VA模型的2维空间中做回归分析）  </p>
-<p>10-fold交叉验证结果：  </p>
-<ol>
-<li><p>情感正负(V)  </p>
-<img src="/2017/05/16/50M/V.png">
-</li>
-<li><p>情感强弱(A)  </p>
-<img src="/2017/05/16/50M/A.png">
-</li>
-<li><p>四种基本情感(VA)  </p>
-<img src="/2017/05/16/50M/VA.png">
-</li>
-</ol>
-<h2 id="发现问题和拟解决方案"><a href="#发现问题和拟解决方案" class="headerlink" title="发现问题和拟解决方案"></a>发现问题和拟解决方案</h2><ol>
-<li>在音乐打分前没有规范音乐文件名（没有给每首音乐相应的ID），给音乐文件与打分数据的联结处理带来麻烦 –&gt; 可以使用批处理给音乐规范ID并将其原文件名中包含的信息（歌曲名字、作者）写到专门的<code>metadata</code>文件中。</li>
-<li><code>metadata</code>文件中还应该包含歌曲的排名和风格等元素 –&gt; 这些需要爬虫支持（人工搜集还是不友好的。。）</li>
-<li><code>ffmpeg</code>MP3转WAV的时候报Warning，发现这次使用的音乐裁剪工具没有修改MP3的文件信息，可能会对以后的应用埋下隐患。（感觉是暴力裁剪的，文件头里的duration字段，frame字段等和裁剪后的文件真实信息不匹配）–&gt; 换一个裁剪工具（可以试试也用ffmpeg）</li>
-<li>受试者裁剪肯定是不行的 –&gt; 机器裁剪还是我们人工裁剪？</li>
-</ol>
+        <p>本文收集了一些带情感标签的音乐数据库：<br><a id="more"></a></p>
+<table>
+<thead>
+<tr>
+<th>DATASET</th>
+<th>META DATA</th>
+<th>CONTENTS</th>
+<th>WITH AUDIO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://amg1608.blogspot.ca" target="_blank" rel="external">Amg1608</a></td>
+<td>valence &amp; arousal</td>
+<td>1608 excerpts (30s)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="http://cvml.unige.ch/databases/DEAM" target="_blank" rel="external">DEAM</a></td>
+<td>valence &amp; arousal</td>
+<td>1802 excerpts</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="http://www.eecs.qmul.ac.uk/mmv/datasets/deap/readme.html" target="_blank" rel="external">DEAPDataset</a></td>
+<td>valence &amp; arousal &amp; dominance &amp; physiological data</td>
+<td>120 music video excerpts</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="http://cvml.unige.ch/databases/emoMusic" target="_blank" rel="external">emoMusic</a></td>
+<td>arousal &amp; valence</td>
+<td>744 excerpts (45s)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="http://www.projects.science.uu.nl/memotion/emotifydata/" target="_blank" rel="external">Emotify</a></td>
+<td>induced emotion</td>
+<td>400 excerpts</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="https://hilab.di.ionio.gr/en/music-information-research/" target="_blank" rel="external">GMD</a></td>
+<td>genre &amp; valence &amp; arousal</td>
+<td>1400 songs</td>
+<td>downloadable</td>
+</tr>
+<tr>
+<td><a href="http://csea.phhp.ufl.edu/media/iadsmessage.html" target="_blank" rel="external">IADS</a></td>
+<td>valence &amp; arousal &amp; dominance</td>
+<td>111 sound snippets</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="https://github.com/johnglover/modal" target="_blank" rel="external">MOODetector:Bi-Modal</a></td>
+<td>lyrics &amp; valence &amp; arousal</td>
+<td>133 excerpts</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="https://github.com/johnglover/modal" target="_blank" rel="external">MOODetector:Multi-Modal</a></td>
+<td>lyrics &amp; MIDI &amp; mood</td>
+<td>903 excerpts (30s)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="http://music.ece.drexel.edu/research/emotion/moodswingsturk" target="_blank" rel="external">moodswings</a></td>
+<td>arousal &amp; valence</td>
+<td>240 excerpts (30s)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/research/projects2/past-projects/coe/materials/emotion/soundtracks/Index" target="_blank" rel="external">SoundTracks</a></td>
+<td>valence &amp; energy &amp; tension &amp; mood</td>
+<td>360+110 excerpts</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -319,7 +357,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2017/05/16/50M/">http://huisblog.cn/2017/05/16/50M/</a>
+      <a href="http://huisblog.cn/2017/10/30/emodatasets/">http://huisblog.cn/2017/10/30/emodatasets/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -339,9 +377,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/MER/">MER</a>
-            
-              <a href="/tags/dataset/">dataset</a>
+              <a href="/tags/MIR/">MIR</a>
             
           </div>
         
@@ -349,15 +385,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/05/17/ResearchCraft/P1/">
+      <a class="prev" href="/2017/10/31/updatenode/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">《the Craft of Research》第一部分</span>
+        <span class="prev-text nav-default">Node更新到8.0+导致的一些问题</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/05/09/mirlec/">
-        <span class="next-text nav-default">Music Information Retrieval</span>
+      <a class="next" href="/2017/10/24/ffmpeg/">
+        <span class="next-text nav-default">FFmpeg实用操作</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

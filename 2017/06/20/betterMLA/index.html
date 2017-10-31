@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/06/20/betterMLA/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：  增加训练数据   减小特征集   增加特征   增加多项式特征 减小\(\lambda\)   变大\(\lambda\)   …  然而，这些方法并不是在所有情况下都适用的，有时候，花很多时间增加训练数据也许根本不能使分类结果变得更好。因此，我们需要使用一些简单的技巧来选择使用哪些方法，这样的技巧">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/BV.png">
 <meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/highB.png">
 <meta property="og:image" content="http://huisblog.cn/2017/06/20/betterMLA/highV.png">
@@ -292,11 +293,11 @@
 </ol>
 <p>注意：设置交叉验证集的目的是将验证集误差与测试集误差区分开来，使得测试集误差可以作为通用误差的评估依据。我们在选择模型时针对验证集做了优化（因为选的是最小误差的验证集），因此验证集误差是会小于测试集误差的。</p>
 <h2 id="机器学习诊断"><a href="#机器学习诊断" class="headerlink" title="机器学习诊断"></a>机器学习诊断</h2><h3 id="诊断高偏差和高方差"><a href="#诊断高偏差和高方差" class="headerlink" title="诊断高偏差和高方差"></a>诊断高偏差和高方差</h3><ul>
-<li>高偏差（欠拟合）：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都会很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)；</li>
-<li>高方差（过拟合）：：\(J_{train}(\Theta)\)会很小，\(J_{CV}(\Theta)\)会远大于\(J_{train}(\Theta)\)。</li>
+<li>高偏差（欠拟合）：\(J<em>{train}(\Theta)\)和\(J</em>{CV}(\Theta)\)都会很大，且\(J<em>{CV}(\Theta) \approx J</em>{train}(\Theta)\)；</li>
+<li>高方差（过拟合）：：\(J<em>{train}(\Theta)\)会很小，\(J</em>{CV}(\Theta)\)会远大于\(J_{train}(\Theta)\)。</li>
 </ul>
 <p>例如下图：</p>
-<img src="/2017/06/20/betterMLA/BV.png" alt="BV.png" title="">
+<img src="/2017/06/20/betterMLA/BV.png">
 <p>正则化系数\(\lambda\)选择不合理也可能导致欠拟合或者过拟合，因此\(\lambda\)可以和不同模型组合在一起进行实验选择：</p>
 <ol>
 <li>创建一组\(\lambda\)；</li>
@@ -308,17 +309,17 @@
 </ol>
 <h3 id="学习曲线-Learning-Curves"><a href="#学习曲线-Learning-Curves" class="headerlink" title="学习曲线(Learning Curves)"></a>学习曲线(Learning Curves)</h3><p>学习曲线是错误率随训练集大小的变化而变化的曲线，可以用来诊断欠拟合和过拟合问题。</p>
 <h4 id="在高偏差的时候"><a href="#在高偏差的时候" class="headerlink" title="在高偏差的时候"></a>在高偏差的时候</h4><ul>
-<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
-<li>训练集大：\(J_{train}(\Theta)\)和\(J_{CV}(\Theta)\)都很大，且\(J_{CV}(\Theta) \approx J_{train}(\Theta)\)。</li>
+<li>训练集小：\(J<em>{train}(\Theta)\)小，\(J</em>{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J<em>{train}(\Theta)\)和\(J</em>{CV}(\Theta)\)都很大，且\(J<em>{CV}(\Theta) \approx J</em>{train}(\Theta)\)。</li>
 </ul>
 <p>当出现高偏差的时候，加大训练集并不能带来多大的帮助：</p>
-<img src="/2017/06/20/betterMLA/highB.png" alt="highB.png" title="">
+<img src="/2017/06/20/betterMLA/highB.png">
 <h4 id="在高方差的时候"><a href="#在高方差的时候" class="headerlink" title="在高方差的时候"></a>在高方差的时候</h4><ul>
-<li>训练集小：\(J_{train}(\Theta)\)小，\(J_{CV}(\Theta)\)大；</li>
-<li>训练集大：\(J_{train}(\Theta)\)随着训练集增大而变大，\(J_{CV}(\Theta)\)随着训练增大而变小，但不会趋于平缓，且\(J_{CV}(\Theta) &lt; J_{train}(\Theta)\)并差距依旧明显。</li>
+<li>训练集小：\(J<em>{train}(\Theta)\)小，\(J</em>{CV}(\Theta)\)大；</li>
+<li>训练集大：\(J<em>{train}(\Theta)\)随着训练集增大而变大，\(J</em>{CV}(\Theta)\)随着训练增大而变小，但不会趋于平缓，且\(J<em>{CV}(\Theta) &lt; J</em>{train}(\Theta)\)并差距依旧明显。</li>
 </ul>
 <p>当出现高方差的时候，加大训练集可能会提高性能：</p>
-<img src="/2017/06/20/betterMLA/highV.png" alt="highV.png" title="">
+<img src="/2017/06/20/betterMLA/highV.png">
 <h3 id="处理方法小结"><a href="#处理方法小结" class="headerlink" title="处理方法小结"></a>处理方法小结</h3><ul>
 <li>增加训练数据  &lt;– 高方差</li>
 <li>减小特征集  &lt;– 高方差</li>
@@ -416,15 +417,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/06/15/neuralnetwork/">
+      <a class="prev" href="/2017/06/26/svm/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">神经网络(Neural Networks)</span>
+        <span class="prev-text nav-default">支持向量机(SVM)</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/06/26/svm/">
-        <span class="next-text nav-default">支持向量机(SVM)</span>
+      <a class="next" href="/2017/06/15/neuralnetwork/">
+        <span class="next-text nav-default">神经网络(Neural Networks)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

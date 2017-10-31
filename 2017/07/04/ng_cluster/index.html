@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/07/04/ng_cluster/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="K-meansK-means是一个常用且有效的聚类算法。它的算法可以描述为： 123456789Firstly randomly initiallize the K centroids mu1,mu2,...,muk;Repeat&amp;#123;	% Cluster assignment step	for i = 1 to m		ci = index of cluster centroid cl">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-07-04T08:59:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K-means和PCA">
@@ -272,7 +273,7 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Firstly randomly initiallize the K centroids mu1,mu2,...,muk;</div><div class="line">Repeat&#123;</div><div class="line">	% Cluster assignment step</div><div class="line">	for i = <span class="number">1</span> to m</div><div class="line">		ci = index of cluster centroid cloest to xi;</div><div class="line">	% Move centroid</div><div class="line">	for k = <span class="number">1</span> to k</div><div class="line">		muk = mean of points xs assigned to cluster k;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h3><p>像逻辑回归等监督学习算法一样，<code>K-means</code>等无监督学习算法同样有损失函数来作为优化目标：</p>
-<p>$$min_{c,\mu}J(c^{(1)},…,c^{(m)},\mu_1,…,.\mu_K) = \frac{1}{m}||x^{(i)}-\mu_{c^{(i)}}||^2$$</p>
+<p>$$min_{c,\mu}J(c^{(1)},…,c^{(m)},\mu_1,…,.\mu<em>K) = \frac{1}{m}||x^{(i)}-\mu</em>{c^{(i)}}||^2$$</p>
 <p>\(minJ\)表示我们的优化目标是最小化同类点到聚类中心的距离。</p>
 <h3 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h3><p>当\(K\)值较小的时候，初始中心点的位置对最后的聚类结果有非常大的影响。只随机生成一组初始点可能会导致最后的结果是局部最优解<code>local optima</code>。因此，当\(K\)值较小的时候，我们可以使用多组初始中心点以避免这个问题：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> to <span class="number">100</span> &#123;</div><div class="line">	Randomly initialize K-means;</div><div class="line">	Run K-means, get c1,...,cm, mu1,...,muk;</div><div class="line">	Compute cost function/distortion; </div><div class="line">&#125;</div><div class="line"></div><div class="line">Choose the cluster that gave the lowest cost J.</div></pre></td></tr></table></figure>
@@ -287,9 +288,9 @@
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> Feature Preprocessing: feature scaling and mean normaliza1on;</div><div class="line"><span class="number">2.</span> Compute covariance matrix:</div><div class="line">	Sigma = <span class="number">1</span>/m * X' * X;</div><div class="line"><span class="number">3.</span> Compute eigenvectors of matrix Sigma:</div><div class="line">	[U,S,V] = svd(Sigma);</div><div class="line"><span class="number">4.</span> Ureduce = U(:,<span class="number">1</span>:k);</div><div class="line"><span class="number">5.</span> Xreduce = X * Ureduce;</div><div class="line"><span class="number">6.</span> Xrecover = Xreduce * Ureduce';</div></pre></td></tr></table></figure>
 <h3 id="优化目标-1"><a href="#优化目标-1" class="headerlink" title="优化目标"></a>优化目标</h3><p>PCA的目标可以描述为：要找到最合适的一组向量\(\mu^{(1)},…,\mu^{(k)}\)，将原始数据映射到这组向量围成的新的特征空间中，使其<code>投影距离最小(minimize the projec1on error)</code>。</p>
 <h3 id="选择主成分数量"><a href="#选择主成分数量" class="headerlink" title="选择主成分数量"></a>选择主成分数量</h3><p>通常，我们可以用到达一定<code>保留方差(retained variance)</code>的最小\(k\)值来作为主成分数量。可以看一个保留了99%方差的例子：</p>
-<p>$$\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)}-x^{(1)}_{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2} \le 0.01 $$</p>
+<p>$$\frac{\frac{1}{m}\sum<em>{i=1}^m||x^{(i)}-x^{(1)}</em>{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)}||^2} \le 0.01 $$</p>
 <p>上述值可以通过协方差矩阵奇异值分解后得到的\(S\)来计算，\(S\)是一个对角矩阵，上述不等式等同于：</p>
-<p>$$\frac{\sum_{i=1}^kS_{ii}}{\sum_{i=1}^mS_{ii}}\ge 0.99$$</p>
+<p>$$\frac{\sum<em>{i=1}^kS</em>{ii}}{\sum<em>{i=1}^mS</em>{ii}}\ge 0.99$$</p>
 <h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>应该用于：</p>
 <ol>
 <li>数据压缩：减小数据储存代价、加快运算速度（\(k&lt;n\)，由保留方差计算）；</li>
@@ -347,15 +348,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/06/26/svm/">
+      <a class="prev" href="/2017/09/11/anodet/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">支持向量机(SVM)</span>
+        <span class="prev-text nav-default">异常检测(Anomaly Detection)</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/09/11/anodet/">
-        <span class="next-text nav-default">异常检测(Anomaly Detection)</span>
+      <a class="next" href="/2017/06/26/svm/">
+        <span class="next-text nav-default">支持向量机(SVM)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

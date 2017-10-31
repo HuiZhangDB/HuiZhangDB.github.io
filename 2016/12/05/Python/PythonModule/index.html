@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2016/12/05/Python/PythonModule/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="包可以使用包package来组织模块，每一个包目录下都有一个__init__.py的文件，这个文件是必须存在的，否则Python会将其视为普通目录而不是一个包。__init__.py可以是空文件，也可以有Python代码，因为__init__.py本身就是一个模块，而它的模块名就是package。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-04-27T03:07:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python模块">
@@ -267,7 +268,7 @@
       
         <h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>可以使用包<code>package</code>来组织模块，每一个包目录下都有一个<code>__init__.py</code>的文件，这个文件是必须存在的，否则Python会将其视为普通目录而不是一个包。<code>__init__.py</code>可以是空文件，也可以有Python代码，因为<code>__init__.py</code>本身就是一个模块，而它的模块名就是<code>package</code>。</p>
 <a id="more"></a>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">__author__ = 'huizhang</div><div class="line">#!/usr/bin/env python</div><div class="line"># coding = utf-8</div><div class="line"></div><div class="line">'This is the comment of the document. The first string of any python file is its comment.'</div><div class="line"></div><div class="line">import sys</div><div class="line"></div><div class="line">def BasicEx():</div><div class="line">    args = sys.argv   #sys模块的agrv变量将命令行的所有参数储存在了一个list中，argv至少有一个元素，因为第一个参数永远是该.py文件的名称</div><div class="line">    if len(args) == 1:</div><div class="line">        print 'Hello, word!'</div><div class="line">    elif len(args) == 2:</div><div class="line">        print 'Hello, %s!' %args[1]</div><div class="line">    else:</div><div class="line">        print 'Too many arguments!'</div><div class="line"></div><div class="line">if __name__ == '__main__': </div><div class="line">    BasicEx()</div><div class="line">    #在使用命令行运行.py文件时，Python解释器将一个特殊变量__name__置为'__main___'，而如果在其他地方导入该模块，if判断将失效。因此这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">__author__ = <span class="string">'huizhang</span></div><div class="line"><span class="string">#!/usr/bin/env python</span></div><div class="line"><span class="string"># coding = utf-8</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">'</span>This <span class="keyword">is</span> the comment of the document. The first string of any python file <span class="keyword">is</span> its comment.<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">import sys</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">def BasicEx():</span></div><div class="line"><span class="string">    args = sys.argv   #sys模块的agrv变量将命令行的所有参数储存在了一个list中，argv至少有一个元素，因为第一个参数永远是该.py文件的名称</span></div><div class="line"><span class="string">    if len(args) == 1:</span></div><div class="line"><span class="string">        print '</span>Hello, word!<span class="string">'</span></div><div class="line"><span class="string">    elif len(args) == 2:</span></div><div class="line"><span class="string">        print '</span>Hello, %s!<span class="string">' %args[1]</span></div><div class="line"><span class="string">    else:</span></div><div class="line"><span class="string">        print '</span>Too many arguments!<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">if __name__ == '</span>__main__<span class="string">': </span></div><div class="line"><span class="string">    BasicEx()</span></div><div class="line"><span class="string">    #在使用命令行运行.py文件时，Python解释器将一个特殊变量__name__置为'</span>__main___<span class="string">'，而如果在其他地方导入该模块，if判断将失效。因此这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。</span></div></pre></td></tr></table></figure>
 <p>在上述代码中，第2、3行是标准注释，第2行使得<code>BasicEx.py</code>可以直接在Unix/Linux/Mac上运行，第3行注释表示文件本身使用的是标准UTF-8编码。在命令行运行该文件的效果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python BasicEx.py </div><div class="line">Hello, word!</div><div class="line">$ python BasicEx.py Hui</div><div class="line">Hello, Hui!</div><div class="line">$ python BasicEx.py Hui haha</div><div class="line">Too many arguments!</div></pre></td></tr></table></figure>
 <p>而在启动Python交互环境之后：</p>
@@ -351,15 +352,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/04/Python/PythonFunction/">
+      <a class="prev" href="/2016/12/06/Python/PythonIO/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python函数式编程</span>
+        <span class="prev-text nav-default">PythonIO编程</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2016/12/06/Python/PythonDebug/">
-        <span class="next-text nav-default">Python错误、调试和测试</span>
+      <a class="next" href="/2016/12/04/Python/PythonFunction/">
+        <span class="next-text nav-default">Python函数式编程</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

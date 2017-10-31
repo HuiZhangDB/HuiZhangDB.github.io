@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/05/31/crossregression/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文是作者在阅读Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs这篇论文后的阅读笔记和总结感想。">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2017/05/31/crossregression/features.png">
 <meta property="og:image" content="http://huisblog.cn/2017/05/31/crossregression/experiments.png">
 <meta property="og:updated_time" content="2017-05-31T16:07:54.000Z">
@@ -390,7 +391,7 @@
 <li>CH818用<code>Pearson相关系数</code>表明了3个专家的打分是合理的（和均值非常接近）；</li>
 <li>AMG1608的每10个音乐片段中有1个复制，如果复制的音乐片段打分误差超过10%，该注释者的打分数据将会被删除。</li>
 </ul>
-<h3 id="5种声学特征（15个特征集合）"><a href="#5种声学特征（15个特征集合）" class="headerlink" title="5种声学特征（15个特征集合）"></a>5种声学特征（15个特征集合）</h3><img src="/2017/05/31/crossregression/features.png" alt="features.png" title="">
+<h3 id="5种声学特征（15个特征集合）"><a href="#5种声学特征（15个特征集合）" class="headerlink" title="5种声学特征（15个特征集合）"></a>5种声学特征（15个特征集合）</h3><img src="/2017/05/31/crossregression/features.png">
 <h3 id="1个回归算法"><a href="#1个回归算法" class="headerlink" title="1个回归算法"></a>1个回归算法</h3><ul>
 <li><code>Support Vector Regression(SVR)</code>模型 </li>
 <li>使用<code>径向基函数(RBF)</code>作为核函数</li>
@@ -398,7 +399,7 @@
 </ul>
 <h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><p>首先，分别在2个维度下，评估15个单一数据集在9个数据集组合上（3个单一数据集，6个交叉数据集）的回归表现，用<code>step-wise forward feature selection algorithm</code>（一种贪婪算法，用局部最优近似全局最优）来选择特征集组合。</p>
 <p>使用上述步骤中选择的特征进行5个实验：</p>
-<img src="/2017/05/31/crossregression/experiments.png" alt="experiments.png" title="">
+<img src="/2017/05/31/crossregression/experiments.png">
 <ul>
 <li>实验1用以表明融合特征集比单一特征集效果有所提升；</li>
 <li>实验2控制数据集大小，与实验1比较以验证数据集大小对预测能力的影响；</li>
@@ -477,15 +478,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/05/25/dft/">
+      <a class="prev" href="/2017/06/03/multilinear/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">离散傅里叶变换(DFT)</span>
+        <span class="prev-text nav-default">多变量线性回归</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/06/03/multilinear/">
-        <span class="next-text nav-default">多变量线性回归</span>
+      <a class="next" href="/2017/05/25/dft/">
+        <span class="next-text nav-default">离散傅里叶变换(DFT)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/04/26/NewBlog/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="博客站点迁移阿里云服务器快要到期不想再续，遂决定将博客迁移到免费的GitHub Pages上。 概述Github Pages+Hexo(不使用Jekyll是因为没有找到好看的主题)    在GitHub上创建GitHub Pages 配置本地Hexo环境，并与GitHub Pages绑定 绑定域名">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2017/04/26/NewBlog/1493223050689.png">
 <meta property="og:image" content="http://huisblog.cn/2017/04/26/NewBlog/1493223087552.png">
 <meta property="og:updated_time" content="2017-09-15T14:42:28.000Z">
@@ -276,14 +277,14 @@
 <li>绑定域名</li>
 </ol>
 <a id="more"></a>
-<h2 id="创建Github-Pages"><a href="#创建Github-Pages" class="headerlink" title="创建Github Pages"></a>创建Github Pages</h2><p>直接在<code>GitHub</code>网站上创建一个仓库，仓库名必须为<code>myusername.github.io</code>。<br><img src="/2017/04/26/NewBlog/1493223050689.png" alt="1493223050689.png" title=""></p>
+<h2 id="创建Github-Pages"><a href="#创建Github-Pages" class="headerlink" title="创建Github Pages"></a>创建Github Pages</h2><p>直接在<code>GitHub</code>网站上创建一个仓库，仓库名必须为<code>myusername.github.io</code>。<br><img src="/2017/04/26/NewBlog/1493223050689.png"></p>
 <h2 id="安装并配置Hexo"><a href="#安装并配置Hexo" class="headerlink" title="安装并配置Hexo"></a>安装并配置Hexo</h2><p>Step1. 根据<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo中文文档</a>中的提示进行安装：  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#先安装依赖库Node.js（假定已经安装好了Git）</div><div class="line">$ brew install Node.js</div><div class="line">#下载安装Hexo</div><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
 <p>Step2. 开始在本地建站</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init &lt;Blogfolder&gt;</div><div class="line">$ cd &lt;Blogfolder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
 <p>Step3. 在博客文件根目录下打开终端，启动本地服务器查看建站是否成功。成功后可以在<code>localhost:4000</code>浏览博客Hello World。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure>
-<img src="/2017/04/26/NewBlog/1493223087552.png" alt="1493223087552.png" title="">
+<img src="/2017/04/26/NewBlog/1493223087552.png">
 <p>Step4. 根据<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Hexo配置文档</a>部署网站到<code>github pages</code><br>a. 修改站点配置文件<code>_config.yml</code>(Blogfolder/_config.yml)中的Deployment模块，把其中repo字段的值替换成自己github pages提交代码的git地址。(如果使用ssh，将<code>repo</code>改为相应ssh地址)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/HuiZhangDB/HuiZhangDB.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <p>b.安装Hexo的Git部署插件<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="external">hexo-deployer-git</a></p>
@@ -311,7 +312,7 @@
 <p>为了方便文章管理，Hexo提供了可视化写作插件<a href="https://github.com/nihgwu/hexo-hey" target="_blank" rel="external">hey</a>，优点是可以拖拽图片，缺点是不方便随时写作。  </p>
 <h2 id="第三方服务设置"><a href="#第三方服务设置" class="headerlink" title="第三方服务设置"></a>第三方服务设置</h2><h3 id="添加统计分析"><a href="#添加统计分析" class="headerlink" title="添加统计分析"></a>添加统计分析</h3><p>主题<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="external">even</a>提供了对于百度统计和Google统计的支持，只需要修改主题配置文件中的<code>baidu_analytics</code>或<code>google_analytics</code>字段，填写<code>analytics id</code>就可以开启统计。</p>
 <p>例如开启百度统计：<br>step1. 在百度统计网站注册账号<br>step2. 添加自有网站<br>step3. 获取统计代码，得到其中的<code>baidu analytics id</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">  hm.src = <span class="string">"https://hm.baidu.com/hm.js?this_code_is_the_baidu_analysis_id"</span>;</div><div class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; </div><div class="line">  s.parentNode.insertBefore(hm, s);</div><div class="line">&#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">  hm.src = <span class="string">"https://hm.baidu.com/hm.js?this_code_is_the_baidu_analysis_id"</span>;</div><div class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; </div><div class="line">  s.parentNode.insertBefore(hm, s);</div><div class="line">&#125;)();</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
 <p>step4. 将<code>baidu analytics id</code>填入主题配置文件的<code>baidu_analytics</code>字段。<br>step5. 百度统计网站上检查代码成功，过一会就可以查看分析报告啦！</p>
 <!--### 添加评论服务
 主题[even](https://github.com/ahonn/hexo-theme-even)提供了对于多说、Disqus和网易云跟帖的支持，由于多说即将关闭，本博客选择使用网易云跟帖。
@@ -371,15 +372,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/26/Python/index/">
+      <a class="prev" href="/2017/04/27/journals/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python2.7 基础学习笔记</span>
+        <span class="prev-text nav-default">音乐情感计算相关期刊收集整理</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/04/27/journals/">
-        <span class="next-text nav-default">音乐情感计算相关期刊收集整理</span>
+      <a class="next" href="/2016/12/26/Python/index/">
+        <span class="next-text nav-default">Python2.7 基础学习笔记</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/09/11/recsys/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="问题定义本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：已知一些用户对一些电影的评分，预测用户对未评价电影的评分。     用户1 用户2 用户3 用户4     电影1 5 5 0 0   电影2 5 ? ? 1   电影3 ? 4 0 ?   电影4 0 0 4 5   电影5 0 0 4 ?">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-09-11T13:22:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统(Recommender Systems)">
@@ -333,16 +334,16 @@
 <li>对于用户\(j\)，电影\(i\)，预测\((\theta^{(j)})^T(x^{(i)})\)</li>
 </ol>
 <h2 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h2><p>根据已知每个电影的特征\(x^{(i)}\)，学习用户偏好\(\theta^{(1)},…,\theta^{(n_u)}\)，则损失函数为：</p>
-<p>$$min_{\theta^{(1)},…,\theta^{(n_u)}}\frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>$$min_{\theta^{(1)},…,\theta^{(n<em>u)}}\frac{1}{2}\sum</em>{j=1}^{n<em>u}\sum</em>{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n<em>u}\sum</em>{k=1}^{n}(\theta_k^{(j)})^2$$</p>
 <p>梯度下降：</p>
-<p>$$\theta_k^{(j)} := \theta_k^{(j)} - \alpha\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}\quad (for\quad k=0 )\ \theta_k^{(j)} := \theta_k^{(j)} - \alpha(\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}+\lambda\theta_k^{(j)}\quad)\quad (for\quad k\neq0 )$$</p>
+<p>$$\theta_k^{(j)} := \theta<em>k^{(j)} - \alpha\sum</em>{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}\quad (for\quad k=0 )\ \theta_k^{(j)} := \theta<em>k^{(j)} - \alpha(\sum</em>{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})x^{(i)}+\lambda\theta_k^{(j)}\quad)\quad (for\quad k\neq0 )$$</p>
 <h2 id="使用协同过滤的推荐系统"><a href="#使用协同过滤的推荐系统" class="headerlink" title="使用协同过滤的推荐系统"></a>使用协同过滤的推荐系统</h2><p>若我们事先知道各用户的偏好参数 \(\theta^{(j)}\)，则可以学习电影的特征：</p>
-<p>$$min_{x^{(1)},…,x^{(n_m)}}\frac{1}{2}\sum_{i=1}^{n_m}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2$$</p>
+<p>$$min_{x^{(1)},…,x^{(n<em>m)}}\frac{1}{2}\sum</em>{i=1}^{n<em>m}\sum</em>{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum_{i=1}^{n<em>m}\sum</em>{k=1}^{n}(x_k^{(j)})^2$$</p>
 <p>那么：<br>给出\(x^{(1)},…,x^{(n_m)}\)和电影评分，可以估计\(\theta^{(1)},…,\theta^{(n_u)}\)；<br>给出\(\theta^{(1)},…,\theta^{(n_u)}\)和电影评分，可以估计\(x^{(1)},…,x^{(n_m)}\)。</p>
 <p>这似乎是一个“先有鸡还是先有蛋”的问题，其实我们在解决这个问题时，可以先随机生成 \(\theta\)，然后估计\(x\)，接着根据\(x\)再次估计一组新的\(\theta\)，如此循环最后可以收敛到一组足够合理的结果。</p>
 <p>$$ Guess\quad\theta \to x\to\theta\to x\to …$$</p>
 <p>以上就是协同过滤的思想。但为了提高计算效率，实际上\(x^{(1)},…,x^{(n_m)}\)和\(\theta^{(1)},…,\theta^{(n_u)}\)是同时考虑的，这样可以将损失函数定义为：</p>
-<p>$$J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)})=\frac{1}{2}\sum_{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2\+\frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(j)})^2+\frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(\theta_k^{(j)})^2$$</p>
+<p>$$J(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n<em>u)})=\frac{1}{2}\sum</em>{i:r(i,j)=1}((\theta^{(j)})^Tx^{(i)}-y^{(i,j)})^2\+\frac{\lambda}{2}\sum_{i=1}^{n<em>m}\sum</em>{k=1}^{n}(x<em>k^{(j)})^2+\frac{\lambda}{2}\sum</em>{j=1}^{n<em>u}\sum</em>{k=1}^{n}(\theta_k^{(j)})^2$$</p>
 <p>协同过滤算法：</p>
 <ol>
 <li>使用小的随机值初始化\(x^{(1)},…,x^{(n_m)},\theta^{(1)},…,\theta^{(n_u)}\)；</li>
@@ -402,15 +403,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/09/11/anodet/">
+      <a class="prev" href="/2017/09/27/pygui/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">异常检测(Anomaly Detection)</span>
+        <span class="prev-text nav-default">Python GUI</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/09/27/pygui/">
-        <span class="next-text nav-default">Python GUI</span>
+      <a class="next" href="/2017/09/11/anodet/">
+        <span class="next-text nav-default">异常检测(Anomaly Detection)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

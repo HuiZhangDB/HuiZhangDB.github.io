@@ -41,6 +41,7 @@
 <meta property="og:url" content="http://huisblog.cn/2017/06/15/neuralnetwork/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="Why Neural Networks?当遇到特征数量很大(n is large)的复杂非线性问题时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。 神经网络其实很早就出现了(A pretty old al">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-06-15T15:38:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络(Neural Networks)">
@@ -273,28 +274,28 @@
 <p>人脑使用一种学习算法来处理无数不同的问题，这使得我们模拟它的计算机制成为可能。人脑甚至可以学习任何传感数据，这让神经网络成为最有可能实现人工智能的方法。</p>
 <a id="more"></a>
 <h2 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h2><p>最简单的神经网络表达式：</p>
-<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline \end{bmatrix}\rightarrow\begin{bmatrix}   \newline \end{bmatrix}\rightarrow h_\theta(x)$$</p>
-<p>这是一个只有2层的神经网络，第1层<code>输入层</code>\(\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline \end{bmatrix}\)和第2层<code>输出层</code>\(h_\theta(x)\)。</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x<em>2 \newline \end{bmatrix}\rightarrow\begin{bmatrix}\ \ \ \newline \end{bmatrix}\rightarrow h</em>\theta(x)$$</p>
+<p>这是一个只有2层的神经网络，第1层<code>输入层</code>\(\begin{bmatrix}x_0 \newline x_1 \newline x<em>2 \newline \end{bmatrix}\)和第2层<code>输出层</code>\(h</em>\theta(x)\)。</p>
 <p>输入层和输出层之间可以有中间层节点，称为<code>隐藏层(hidden layers)</code>。有一个隐藏层的神经网络可以表示为：</p>
-<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline x_3\end{bmatrix}\rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \newline a_3^{(2)} \newline \end{bmatrix}\rightarrow h_\theta(x)$$</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline x_3\end{bmatrix}\rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \newline a<em>3^{(2)} \newline \end{bmatrix}\rightarrow h</em>\theta(x)$$</p>
 <p>$$\begin{align}&amp; a_i^{(j)} = \text{“activation” of unit i in layer j} \newline&amp; \Theta^{(j)} = \text{matrix of weights controlling function mapping from layer j to layer j+1}\end{align}$$</p>
 <p>每个激活节点的计算方式：</p>
-<p>$$\begin{align} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3) \newline a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3) \newline a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3) \newline h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)}) \newline \end{align}$$</p>
-<p>值得注意的是，如果神经网络在第\(j\)层有\(s_j\)个节点，在第\(j+1\)层有\(s_{j+1}\)个节点，那么\(\Theta^{(j)}\)的维度会是\(s_{j+1}\times(s_j +1)\)。</p>
+<p>$$\begin{align} a<em>1^{(2)} = g(\Theta</em>{10}^{(1)}x<em>0 + \Theta</em>{11}^{(1)}x<em>1 + \Theta</em>{12}^{(1)}x<em>2 + \Theta</em>{13}^{(1)}x_3) \newline a<em>2^{(2)} = g(\Theta</em>{20}^{(1)}x<em>0 + \Theta</em>{21}^{(1)}x<em>1 + \Theta</em>{22}^{(1)}x<em>2 + \Theta</em>{23}^{(1)}x_3) \newline a<em>3^{(2)} = g(\Theta</em>{30}^{(1)}x<em>0 + \Theta</em>{31}^{(1)}x<em>1 + \Theta</em>{32}^{(1)}x<em>2 + \Theta</em>{33}^{(1)}x<em>3) \newline h</em>\Theta(x) = a<em>1^{(3)} = g(\Theta</em>{10}^{(2)}a<em>0^{(2)} + \Theta</em>{11}^{(2)}a<em>1^{(2)} + \Theta</em>{12}^{(2)}a<em>2^{(2)} + \Theta</em>{13}^{(2)}a_3^{(2)}) \newline \end{align}$$</p>
+<p>值得注意的是，如果神经网络在第\(j\)层有\(s<em>j\)个节点，在第\(j+1\)层有\(s</em>{j+1}\)个节点，那么\(\Theta^{(j)}\)的维度会是\(s_{j+1}\times(s_j +1)\)。</p>
 <p>增加隐藏层可以解决更多的复杂非线性问题。</p>
 <h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="二元逻辑运算"><a href="#二元逻辑运算" class="headerlink" title="二元逻辑运算"></a>二元逻辑运算</h3><p>神经网络可以实现所有的逻辑门，例如：</p>
 <p>$$\begin{align}AND:\newline\Theta^{(1)} &amp;=\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix} \newline NOR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}10 &amp; -20 &amp; -20\end{bmatrix} \newline OR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix} \newline\end{align}$$</p>
 <h3 id="多类分类"><a href="#多类分类" class="headerlink" title="多类分类"></a>多类分类</h3><p>比如将数据分为4类，表达式可以是：</p>
-<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline … \newline x_n\end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(2)} \newline a_1^{(2)} \newline a_2^{(2)} \newline … \newline \end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(3)} \newline a_1^{(3)} \newline a_2^{(3)} \newline …\newline \end{bmatrix}\rightarrow … \rightarrow \begin{bmatrix}h_\Theta(x)_1 \newline h_\Theta(x)_2 \newline h_\Theta(x)_3 \newline h_\Theta(x)_4\end{bmatrix}$$</p>
+<p>$$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline … \newline x_n\end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(2)} \newline a_1^{(2)} \newline a_2^{(2)} \newline … \newline \end{bmatrix}\rightarrow\begin{bmatrix}a_0^{(3)} \newline a_1^{(3)} \newline a<em>2^{(3)} \newline …\newline \end{bmatrix}\rightarrow … \rightarrow \begin{bmatrix}h</em>\Theta(x)<em>1 \newline h</em>\Theta(x)<em>2 \newline h</em>\Theta(x)<em>3 \newline h</em>\Theta(x)_4\end{bmatrix}$$</p>
 <p>分别训练4个假设函数，表示每个分类的可能性，取可能性最大的标签为分类结果。</p>
-<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>神经网络的损失函数标准形式：<br>$$\begin{gather} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}_k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}_k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather}$$</p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>神经网络的损失函数标准形式：<br>$$\begin{gather} J(\Theta) = - \frac{1}{m} \sum<em>{i=1}^m \sum</em>{k=1}^K \left[y^{(i)}<em>k \log ((h</em>\Theta (x^{(i)}))_k) + (1 - y^{(i)}<em>k)\log (1 - (h</em>\Theta(x^{(i)}))<em>k)\right] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1} \sum_{i=1}^{s<em>l} \sum</em>{j=1}^{s<em>{l+1}} ( \Theta</em>{j,i}^{(l)})^2\end{gather}$$</p>
 <p>$$\begin{align}&amp; L = \text{ total number of layers in the network} \newline&amp; s_l = \text{number of units (not counting bias unit) in layer (l)}\newline&amp; K = \text{number of output units/classes}\end{align}$$</p>
-<p>注意，第\(l\)层的\(\Theta^{(l)}\)矩阵大小为\(s_{l+1}\times (s_l + 1)\)，因此正则项\(\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\)是除去截距项(\(\Theta^{(l)}\)第一列)的所有\(\theta\)的平方和。</p>
+<p>注意，第\(l\)层的\(\Theta^{(l)}\)矩阵大小为\(s_{l+1}\times (s<em>l + 1)\)，因此正则项\(\sum</em>{l=1}^{L-1} \sum_{i=1}^{s<em>l} \sum</em>{j=1}^{s<em>{l+1}} ( \Theta</em>{j,i}^{(l)})^2\)是除去截距项(\(\Theta^{(l)}\)第一列)的所有\(\theta\)的平方和。</p>
 <p>这个损失函数\(J(\Theta)\)是非凸的，因此使用梯度下降可能只能得到局部最优值。</p>
 <h2 id="反向传播-Backprogation"><a href="#反向传播-Backprogation" class="headerlink" title="反向传播(Backprogation)"></a>反向传播(Backprogation)</h2><p><code>反向传播算法</code>是用于计算损失函数偏导\(\dfrac{\partial}{\partial \Theta_{i,j}^{(l)}}J(\Theta)\)的算法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Given training set &#123;(x(1),y(1))⋯(x(m),y(m))&#125;, set Δ(l)i,j := 0 for all (l,i,j), (hence you end up having a matrix full of zeros)</div><div class="line"></div><div class="line">For training example t =1 to m:</div><div class="line">1. Set a(1) := x(t)</div><div class="line">2. Perform forward propagation to compute a(l) for l=2,3,…,L</div><div class="line">3. Using y(t), compute delta(L) = a(L)−y(t)</div><div class="line">4. Compute delta(L−1),delta(L−2),…,delta(2) using delta(l) = ((Θ(l))&apos;delta(l+1)) .∗ a(l) .∗ (1−a(l))</div><div class="line">5. Delta(l):= Delta(l)+ delta(l+1)(a(l))&apos;</div><div class="line">6. Regularization as the following equation.</div></pre></td></tr></table></figure>
-<p>$$\begin{align}&amp; D_{i,j}^{(l)} = \frac{1}{m}(\Delta_{i,j}^{(l)} + \lambda \Theta_{i,j}^{(l)}) \quad \text{if (j \neq 0)}\newline&amp;  D_{i,j}^{(l)} = \frac{1}{m}\Delta_{i,j}^{(l)} \quad \text{if (j = 0)}\end{align}$$</p>
-<p>最后得到的\(D_{i,j}^{(l)}\)即要求的偏导\(\dfrac{\partial}{\partial \Theta_{i,j}^{(l)}}J(\Theta)\)。</p>
+<p>$$\begin{align}&amp; D<em>{i,j}^{(l)} = \frac{1}{m}(\Delta</em>{i,j}^{(l)} + \lambda \Theta<em>{i,j}^{(l)}) \quad \text{if (j \neq 0)}\newline&amp;  D</em>{i,j}^{(l)} = \frac{1}{m}\Delta_{i,j}^{(l)} \quad \text{if (j = 0)}\end{align}$$</p>
+<p>最后得到的\(D<em>{i,j}^{(l)}\)即要求的偏导\(\dfrac{\partial}{\partial \Theta</em>{i,j}^{(l)}}J(\Theta)\)。</p>
 <p>可以使用<code>梯度检查(Gradient Checking)</code>来检查反向传播算法实现得是否正确。其依据：<br>$$\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}$$</p>
 <p>对于每一个\(\Theta^{(j)}\)即：</p>
 <p>$$\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}$$</p>
@@ -362,15 +363,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/06/03/logisticreg/">
+      <a class="prev" href="/2017/06/20/betterMLA/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">逻辑回归(Logistic Regression)</span>
+        <span class="prev-text nav-default">提升学习算法性能</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2017/06/20/betterMLA/">
-        <span class="next-text nav-default">提升学习算法性能</span>
+      <a class="next" href="/2017/06/03/logisticreg/">
+        <span class="next-text nav-default">逻辑回归(Logistic Regression)</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>

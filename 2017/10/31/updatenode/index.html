@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Node更新到8.0+导致的一些问题"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/10/31/updatenode/"/>
+
+
+<meta name="description" content="最近更新了Node.js，结果在使用hexo new post的时候开始报错：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node更新到8.0+导致的一些问题">
+<meta property="og:url" content="http://huisblog.cn/2017/10/31/updatenode/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="最近更新了Node.js，结果在使用hexo new post的时候开始报错：">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-31T06:06:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node更新到8.0+导致的一些问题">
+<meta name="twitter:description" content="最近更新了Node.js，结果在使用hexo new post的时候开始报错：">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Node更新到8.0+导致的一些问题 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Node更新到8.0+导致的一些问题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 31, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#报错一-dyld"><span class="toc-text">报错一 dyld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报错二-DTraceProviderBindings-node"><span class="toc-text">报错二 DTraceProviderBindings.node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报错三-DeprecationWarning"><span class="toc-text">报错三 DeprecationWarning</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>最近更新了<code>Node.js</code>，结果在使用<code>hexo new post</code>的时候开始报错：<br><a id="more"></a></p>
+<h3 id="报错一-dyld"><a href="#报错一-dyld" class="headerlink" title="报错一 dyld"></a>报错一 dyld</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.58.dylib</div><div class="line">  Referenced from: /usr/local/bin/node</div><div class="line">  Reason: image not found</div><div class="line">Abort trap: 6</div></pre></td></tr></table></figure>
+<p>重新安装<code>node</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall node --without-icu4c</div></pre></td></tr></table></figure>
+<p>成功解决！</p>
+<h3 id="报错二-DTraceProviderBindings-node"><a href="#报错二-DTraceProviderBindings-node" class="headerlink" title="报错二 DTraceProviderBindings.node"></a>报错二 DTraceProviderBindings.node</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">Error: The module &apos;/usr/local/lib/node_modules/hexo-cli/node_modules/dtrace-provider/build/Release/DTraceProviderBindings.node&apos;</div><div class="line">was compiled against a different Node.js version using</div><div class="line">NODE_MODULE_VERSION 51. This version of Node.js requires</div><div class="line">NODE_MODULE_VERSION 57. Please try re-compiling or re-installing</div><div class="line">the module (for instance, using `npm rebuild` or `npm install`).</div><div class="line">    at Object.Module._extensions..node (module.js:641:18)</div><div class="line">    at Module.load (module.js:531:32)</div><div class="line">    at tryModuleLoad (module.js:494:12)</div><div class="line">    at Function.Module._load (module.js:486:3)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/dtrace-provider/dtrace-provider.js:17:23)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">    at Object.Module._extensions..js (module.js:623:10)</div><div class="line">    at Module.load (module.js:531:32)</div><div class="line">    at tryModuleLoad (module.js:494:12)</div><div class="line">    at Function.Module._load (module.js:486:3)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/bunyan/lib/bunyan.js:79:18)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">&#123; Error: Cannot find module &apos;./build/default/DTraceProviderBindings&apos;</div><div class="line">    at Function.Module._resolveFilename (module.js:513:15)</div><div class="line">    at Function.Module._load (module.js:463:25)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/dtrace-provider/dtrace-provider.js:17:23)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">    at Object.Module._extensions..js (module.js:623:10)</div><div class="line">    at Module.load (module.js:531:32)</div><div class="line">    at tryModuleLoad (module.js:494:12)</div><div class="line">    at Function.Module._load (module.js:486:3)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/bunyan/lib/bunyan.js:79:18)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">    at Object.Module._extensions..js (module.js:623:10)</div><div class="line">    at Module.load (module.js:531:32) code: &apos;MODULE_NOT_FOUND&apos; &#125;</div><div class="line">&#123; Error: Cannot find module &apos;./build/Debug/DTraceProviderBindings&apos;</div><div class="line">    at Function.Module._resolveFilename (module.js:513:15)</div><div class="line">    at Function.Module._load (module.js:463:25)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/dtrace-provider/dtrace-provider.js:17:23)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">    at Object.Module._extensions..js (module.js:623:10)</div><div class="line">    at Module.load (module.js:531:32)</div><div class="line">    at tryModuleLoad (module.js:494:12)</div><div class="line">    at Function.Module._load (module.js:486:3)</div><div class="line">    at Module.require (module.js:556:17)</div><div class="line">    at require (internal/module.js:11:18)</div><div class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/hexo-cli/node_modules/bunyan/lib/bunyan.js:79:18)</div><div class="line">    at Module._compile (module.js:612:30)</div><div class="line">    at Object.Module._extensions..js (module.js:623:10)</div><div class="line">    at Module.load (module.js:531:32) code: &apos;MODULE_NOT_FOUND&apos; &#125;</div></pre></td></tr></table></figure>
+<p><code>DTraceProviderBindings</code>针对的<code>node</code>版本错误，刚开始以为是<code>node_module</code>没有更新，因此重新安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ rm -rf node_modules</div><div class="line">$ npm install</div><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
+<p>没有解决，继续报错。。尝试重新安装<code>hexo命令行工具</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<p>成功解决！</p>
+<h3 id="报错三-DeprecationWarning"><a href="#报错三-DeprecationWarning" class="headerlink" title="报错三 DeprecationWarning"></a>报错三 DeprecationWarning</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(node:14238) [DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.</div></pre></td></tr></table></figure>
+<p><code>DeprecationWarning</code>函数已经弃用，使用<code>--debug</code>参数调试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo version --debug  </div><div class="line">DEBUG Plugin loaded: hexo-deployer-git                                     </div><div class="line">[DEP0061] DeprecationWarning: fs.SyncWriteStream is deprecated.</div></pre></td></tr></table></figure>
+<p>发现是<code>hexo-deployer-git</code>的问题，更新这个模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm update hexo-deployer-git</div></pre></td></tr></table></figure>
+<p>没有成功，删除包再重新安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm uninstall hexo-deployer-git</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>成功解决！</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2017/10/31/updatenode/">http://huisblog.cn/2017/10/31/updatenode/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/10/30/emodatasets/">
+        <span class="next-text nav-default">音乐情感数据集</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
