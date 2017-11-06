@@ -631,9 +631,9 @@
 </script>
 
 <h2 id="支持向量机的假设函数和损失函数"><a href="#支持向量机的假设函数和损失函数" class="headerlink" title="支持向量机的假设函数和损失函数"></a>支持向量机的假设函数和损失函数</h2><p>回忆一下逻辑回归的损失函数：</p>
-<p>$$min<em>\theta\frac{1}{m}\sum</em>{i=1}^{m}[y^{(i)}(-logh<em>\theta(x^{(i)})+(1-y^{(i)})(-log(1-h</em>\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$</p>
+<p>$$min_\theta\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}(-logh_\theta(x^{(i)})+(1-y^{(i)})(-log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2$$</p>
 <p>支持向量机的损失函数与之类似：</p>
-<p>$$min<em>\theta C\sum</em>{i=1}^{m}[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost<em>0(\theta^Tx^{(i)})]+\frac{1}{2}\sum</em>{j=1}^n\theta_j^2$$</p>
+<p>$$min_\theta C\sum_{i=1}^{m}[y^{(i)}cost_1(\theta^Tx^{(i)})+(1-y^{(i)})cost_0(\theta^Tx^{(i)})]+\frac{1}{2}\sum_{j=1}^n\theta_j^2$$</p>
           <div class="read-more">
             <a href="/2017/06/26/svm/" class="read-more-link">Read more..</a>
           </div>
