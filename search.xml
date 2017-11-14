@@ -112,7 +112,7 @@
 <tr>
 <td><a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/research/projects2/past-projects/coe/materials/emotion/soundtracks/Index" target="_blank" rel="external">SoundTracks</a></td>
 <td>valence &amp; energy &amp; tension &amp; mood</td>
-<td>360+110 excerpts</td>
+<td>360 +110 excerpts</td>
 <td>yes</td>
 </tr>
 </tbody>
@@ -2193,37 +2193,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[PythonIO编程]]></title>
-      <url>/2016/12/06/Python/PythonIO/</url>
-      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
-<a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python面向对象高级编程]]></title>
       <url>/2016/12/06/Python/PythonAdOOP/</url>
       <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
@@ -2267,9 +2236,73 @@
     </entry>
     
     <entry>
+      <title><![CDATA[PythonIO编程]]></title>
+      <url>/2016/12/06/Python/PythonIO/</url>
+      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+<a id="more"></a>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
+<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python进程和线程]]></title>
       <url>/2016/12/06/Python/PythonMulTask/</url>
       <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python错误、调试和测试]]></title>
+      <url>/2016/12/06/Python/PythonDebug/</url>
+      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
+<a id="more"></a>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
+<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
+<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
+<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
+<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
+<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line"><span class="string">	a simple dict</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1 = Dict()</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['x'] = 100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.x</span></div><div class="line"><span class="string">	100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.y = 200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['y']</span></div><div class="line"><span class="string">	200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2.c</span></div><div class="line"><span class="string">	'3'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2['empty']</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    KeyError: 'empty'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2.empty</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    AttributeError: 'Dict' object has no attribute 'empty'</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -2419,39 +2452,6 @@
       <title><![CDATA[Python小贴士]]></title>
       <url>/2016/12/06/Python/PythonTips/</url>
       <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python错误、调试和测试]]></title>
-      <url>/2016/12/06/Python/PythonDebug/</url>
-      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-<a id="more"></a>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
-<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
-<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
-<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
-<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
-<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line"><span class="string">	a simple dict</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1 = Dict()</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['x'] = 100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.x</span></div><div class="line"><span class="string">	100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.y = 200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['y']</span></div><div class="line"><span class="string">	200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2.c</span></div><div class="line"><span class="string">	'3'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2['empty']</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    KeyError: 'empty'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2.empty</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    AttributeError: 'Dict' object has no attribute 'empty'</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
