@@ -2181,17 +2181,16 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Socket通信]]></title>
-      <url>/2016/12/26/Python/Socket/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png">
-<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png">
-<p>TCP客户端和服务器端通信例子： </p>
-<ul>
-<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
-<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
-</li>
-</ul>
+      <title><![CDATA[Python Web]]></title>
+      <url>/2016/12/26/Python/PythonWeb/</url>
+      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+<a id="more"></a>
+<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
+<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
+<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
+<p>最大限度分离Python代码和HTML代码</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
         <categories>
@@ -2210,16 +2209,17 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python Web]]></title>
-      <url>/2016/12/26/Python/PythonWeb/</url>
-      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
-<a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+      <title><![CDATA[Socket通信]]></title>
+      <url>/2016/12/26/Python/Socket/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png">
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png">
+<p>TCP客户端和服务器端通信例子： </p>
+<ul>
+<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
+<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
+</li>
+</ul>
 ]]></content>
       
         <categories>
