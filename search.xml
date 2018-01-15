@@ -2302,28 +2302,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python面向对象编程]]></title>
       <url>/2016/12/06/Python/PythonOOP/</url>
       <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
@@ -2345,6 +2323,28 @@
 <p>任何时候，如果没有合适的类可以继承，就继承自object类。</p>
 <h2 id="获取对象信息"><a href="#获取对象信息" class="headerlink" title="获取对象信息"></a>获取对象信息</h2><p>在不知道对象信息的时候可以使用内置函数剖析对象获得内部数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type(<span class="number">123</span>)              <span class="comment">#返回一个type类型，指明对象类型</span></div><div class="line">isinstance(<span class="string">'a'</span>,str)    <span class="comment">#返回布尔值，判断对象是否是某种类型</span></div><div class="line">dir(<span class="string">'ABC'</span>)             <span class="comment">#返回一个list，包含对象的所有属性和方法</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
