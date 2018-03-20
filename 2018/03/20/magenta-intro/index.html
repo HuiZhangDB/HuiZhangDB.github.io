@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="使用Magenta生成音乐"/>
+
+
+
+
+  <meta name="keywords" content="music,midi,magenta," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/03/20/magenta-intro/"/>
+
+
+<meta name="description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
+<meta name="keywords" content="music,midi,magenta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Magenta生成音乐">
+<meta property="og:url" content="http://huisblog.cn/2018/03/20/magenta-intro/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-20T14:16:34.724Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Magenta生成音乐">
+<meta name="twitter:description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 使用Magenta生成音乐 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          使用Magenta生成音乐
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 20, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装和配置支持Python3的Magenta环境"><span class="toc-text">安装和配置支持Python3的Magenta环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Melody-RNN模型生成旋律"><span class="toc-text">使用Melody RNN模型生成旋律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#播放和评估MIDI效果"><span class="toc-text">播放和评估MIDI效果</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>最近开始入门计算机自动作曲领域（<code>算法作曲(algorithmic composition)</code>或称<code>自动作曲(automated composition)</code>）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间序列）服从某种概率分布，求解这个分布的近似解（或者加上和声，求解它们的联合概率分布模型）。</p>
+<p><a href="https://github.com/tensorflow/magenta/blob/master/README.md#using-magenta" target="_blank" rel="external">Magenta</a> 是Google Brain团队使用深度学习研究自动作曲的开源项目，本文将简单描述使用Magenta生成MIDI音乐的过程。</p>
+<a id="more"></a>
+<h2 id="安装和配置支持Python3的Magenta环境"><a href="#安装和配置支持Python3的Magenta环境" class="headerlink" title="安装和配置支持Python3的Magenta环境"></a>安装和配置支持Python3的Magenta环境</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装[Miniconda for python3](https://conda.io/miniconda.html)</span></div><div class="line">$ sh Miniconda3-latest-MacOSX-x86_64.sh</div><div class="line"></div><div class="line"><span class="comment"># 创建Magenta的conda环境</span></div><div class="line">$ conda create -n magenta python=3.6 jupyter</div><div class="line"></div><div class="line"><span class="comment"># 激活环境</span></div><div class="line">$ <span class="built_in">source</span> activate magenta</div><div class="line"></div><div class="line"><span class="comment"># 安装pip包</span></div><div class="line">pip3 install magenta</div></pre></td></tr></table></figure>
+<h2 id="使用Melody-RNN模型生成旋律"><a href="#使用Melody-RNN模型生成旋律" class="headerlink" title="使用Melody RNN模型生成旋律"></a>使用Melody RNN模型生成旋律</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下载配置文件[basic_rnn/lookback_rnn/attention_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)</span></div><div class="line"></div><div class="line">$ <span class="built_in">source</span> activate magenta</div><div class="line">$ BUNDLE_PATH=&lt;absolute path of .mag file&gt;</div><div class="line">$ CONFIG=&lt;one of <span class="string">'basic_rnn'</span>, <span class="string">'lookback_rnn'</span>, or <span class="string">'attention_rnn'</span>, matching the bundle&gt;</div><div class="line"></div><div class="line">$ melody_rnn_generate \</div><div class="line">--config=<span class="variable">$&#123;CONFIG&#125;</span> \</div><div class="line">--bundle_file=<span class="variable">$&#123;BUNDLE_PATH&#125;</span> \</div><div class="line">--output_dir=/tmp/melody_rnn/generated \</div><div class="line">--num_outputs=10 \</div><div class="line">--num_steps=128 \</div><div class="line">--primer_melody=<span class="string">"[60]"</span></div><div class="line"></div><div class="line"><span class="comment"># num_outputs表示生成旋律的数量</span></div><div class="line"><span class="comment"># num_steps表示以16分音符为单位的旋律长度</span></div><div class="line"><span class="comment"># primer_melody是输入的初始音高（如：小星星[60, -2, 60, -2, 67, -2, 67, -2]）</span></div><div class="line"><span class="comment"># primer_melody可以被primer_midi替换：--primer_midi=&lt;absolute path to magenta/models/melody_rnn/primer.mid&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="播放和评估MIDI效果"><a href="#播放和评估MIDI效果" class="headerlink" title="播放和评估MIDI效果"></a>播放和评估MIDI效果</h2><p>安装<a href="https://github.com/FluidSynth/fluidsynth" target="_blank" rel="external">FluidSynth</a>MIDI合成器:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install fluidsynth</div></pre></td></tr></table></figure>
+<p>并下载<a href="https://musescore.org/zh-hans/node/36171#sf2-soundfonts" target="_blank" rel="external">SoundFont</a>，为MIDI合成器提供乐器录音和音效。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ fluidsynth /path/to/soundfont.sf2 /path/to/MIDI.mid</div></pre></td></tr></table></figure>
+<blockquote>
+<p>或者其实可以直接使用<a href="https://musescore.org/zh-hans/download" target="_blank" rel="external">musescore</a>来播放，好处是有GUI可以直接可视化乐谱！</p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2018/03/20/magenta-intro/">http://huisblog.cn/2018/03/20/magenta-intro/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/music/">music</a>
+            
+              <a href="/tags/midi/">midi</a>
+            
+              <a href="/tags/magenta/">magenta</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/03/12/basic-music/">
+        <span class="next-text nav-default">基本乐理知识</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
