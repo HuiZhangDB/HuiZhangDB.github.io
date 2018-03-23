@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="《TDD - Python Web》学习笔记"/>
+
+
+
+
+  <meta name="keywords" content="python,web," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/03/23/web-tdd/"/>
+
+
+<meta name="description" content="Test-Driven-Development for Python Web 开源学习链接中有本书的最新版内容以及相关讨论，非常值得阅读学习。">
+<meta name="keywords" content="python,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《TDD - Python Web》学习笔记">
+<meta property="og:url" content="http://huisblog.cn/2018/03/23/web-tdd/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="Test-Driven-Development for Python Web 开源学习链接中有本书的最新版内容以及相关讨论，非常值得阅读学习。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://huisblog.cn/2018/03/23/web-tdd/tdd.png">
+<meta property="og:updated_time" content="2018-03-23T04:30:02.315Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《TDD - Python Web》学习笔记">
+<meta name="twitter:description" content="Test-Driven-Development for Python Web 开源学习链接中有本书的最新版内容以及相关讨论，非常值得阅读学习。">
+<meta name="twitter:image" content="http://huisblog.cn/2018/03/23/web-tdd/tdd.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 《TDD - Python Web》学习笔记 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          《TDD - Python Web》学习笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 23, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TDD中的重要概念"><span class="toc-text">TDD中的重要概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动化测试金字塔"><span class="toc-text">自动化测试金字塔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试的不同类型"><span class="toc-text">测试的不同类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网站开发中的有趣知识点"><span class="toc-text">网站开发中的有趣知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展学习"><span class="toc-text">拓展学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习收获"><span class="toc-text">学习收获</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="http://www.obeythetestinggoat.com/" target="_blank" rel="external">Test-Driven-Development for Python Web 开源学习链接</a>中有本书的最新版内容以及相关讨论，非常值得阅读学习。<br><a id="more"></a></p>
+<h2 id="TDD中的重要概念"><a href="#TDD中的重要概念" class="headerlink" title="TDD中的重要概念"></a>TDD中的重要概念</h2><h3 id="自动化测试金字塔"><a href="#自动化测试金字塔" class="headerlink" title="自动化测试金字塔"></a>自动化测试金字塔</h3><p>单元测试-&gt;组件测试(-&gt;集成测试-&gt;系统测试-&gt;人工探索式测试)。单元测试和验收测试首先是文档，然后才是测试。它们当然可以验证系统是否达到了具体指标，但它们更为重要的目的是如实描述系统的设计、结构和行为。</p>
+<ul>
+<li>单元测试：测试大多数异常路径。可以说是程序员写给程序员的<code>正式设计文档</code>，描述低层结构以及代码行为；</li>
+<li>功能测试（/组件测试/验收测试）：测试成功路径、极端情况、边界状态和可选路径。业务方和QA一起完成的<code>正式需求文档</code>，描述系统功能；</li>
+<li>集成测试：测试大型系统中各组件间的正常通信（各组件是否协调）；</li>
+<li>系统测试：最终的集成测试，测试系统是否已正确组装完毕。</li>
+</ul>
+<h3 id="测试的不同类型"><a href="#测试的不同类型" class="headerlink" title="测试的不同类型"></a>测试的不同类型</h3><ul>
+<li><p>隔离测试（或者说纯粹的单元测试）与整合测试(integrated tests)<br>单元测试的主要作用是验证应用的逻辑是否正确。隔离测试是纯粹的单元测试，它只测试一部分代码，且只有这部分代码（比如一个函数）能够让测试失败。而如果这个函数依赖于其他系统且破坏这个系统会导致测试失败，就说明这是整合测试。</p>
+</li>
+<li><p>集成测试(Integration tests)<br>集成测试用于检查被你控制的代码是否和你无法控制的外部系统完好集成。集成测试往往也是整合测试。</p>
+</li>
+<li><p>系统测试<br>如果说集成测试检查的是与外部系统的集成情况，那么系统测试就是检查应用内部多个系统间的集成情况。例如：检查数据库、静态文件和服务器配置在一起是否能正常运行。</p>
+</li>
+</ul>
+<h2 id="网站开发中的有趣知识点"><a href="#网站开发中的有趣知识点" class="headerlink" title="网站开发中的有趣知识点"></a>网站开发中的有趣知识点</h2><ul>
+<li><p>用户故事：从用户的角度描述应用该如何运行，用来组织功能测试。</p>
+</li>
+<li><p>预期失败：意料之中的失败，驱动开发。</p>
+</li>
+<li><p>“不测试常量”规则：单元测试的规则之一是“不测试常量”——单元测试要测试的其实是逻辑、流程控制和配置。</p>
+</li>
+<li><p>重构：重构是指在功能不变的前提下改进代码，其首要原则是不能没有测试（保证重构前后的表现一致）。记住，重构时，修改代码或者测试，但不能同时修改。</p>
+</li>
+<li><p>模板：模板是<code>Django</code>中一个很强大的功能，它能把Python变量代入HTML文本；还能使用模板标签来使用模板句法：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; var &#125;&#125; - 引入Python变量</div><div class="line">&#123;% block replaceable_part %&#125;&#123;% endblock %&#125; - 模板标签</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>单元测试/编写代码</code>循环有时也叫<code>遇红/变绿/重构</code>：1. 先编写一个会失败的单元测试（遇红）；2. 编写尽可能简单的代码让测试通过（变绿），就算作弊也行；3. 重构，改进代码使其更合理，可以用三角法判断什么时候应该重构代码。</p>
+</li>
+<li><p><code>三角法</code>：添加一个测试，专门为现有的某些代码编写用例，以此推断出普适的实现方式（之前的实现方法可能作弊了）。</p>
+</li>
+<li><p>事不过三，三则重构</p>
+</li>
+<li><p>回归：新添加的代码破坏了原本可正常使用的功能</p>
+</li>
+<li><p>记在便签上的待办事项清单：在便签上记录编写代码过程中遇到的问题，等手头的工作完成后再回过头来解决</p>
+</li>
+<li><p><code>YAGNI</code>：You aint gonna need it.</p>
+</li>
+<li><p>Django对撇号(apostrophe)会自动转码(HTML-escaped)</p>
+</li>
+<li><p>Django可以把每个模型对象与特定页面(URL)相关联</p>
+</li>
+<li><p>使用硬编码的URL是不科学的</p>
+</li>
+<li><p><code>mocking</code>：可以在单元测试中使用模拟技术测试外部依赖(如API)，它可以避免重复和测试其他人的代码，但在使用过程中要记得用<code>patch</code>修饰器避免副作用。但<code>mock</code>太多可能会导致代码异味（它依赖于实现方式），要避免使用太多。另外还要注意模拟的对象在<code>if语句</code>中的表现可能有违常规，<code>mock</code>对象是一个正值，而且可以掩盖错误，因为它有所有的属性和方法！</p>
+</li>
+<li><p>Python类的动态性质：它们在运行时创建，并可以在创建之后进一步修改。 </p>
+</li>
+<li><p>Python<code>修饰器</code>：装饰器本质上的作用就是为已经存在的对象添加额外的功能。装饰器的顺序：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@a</span></div><div class="line"><span class="meta">@b</span></div><div class="line"><span class="meta">@c</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span> <span class="params">()</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line"><span class="comment"># 等价于 f = a(b(c(f)))</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>Test Fixtures</code>-测试固件，是指使用测试数据预先填充数据库的过程，例如储存User对象及其相关的Session(会话)对象。值得注意的是要在Django中避免使用JSON格式的固件，因为一旦修改了模型，这种固件的维护将会变成一个噩梦…（这时推荐使用Django ORM或者factory_boy之类的工具）</li>
+</ul>
+<ul>
+<li><code>持续集成(Continuous Integration/CI)</code>服务器搭建过程：  </li>
+</ul>
+<ol>
+<li>获得<code>Jenkins</code>服务器：获取一个具有控制权的服务器 -&gt; 安装最新的Jenkins -&gt; 配置Jenkins的安全设置；</li>
+<li>安装插件和设置项目：安装插件（部署项目前需要安装的依赖）并设置虚拟显示器、失败截图和转储HTML（还要安装PhantomJS运行QUnit JavaScript测试） -&gt; 设置项目 -&gt; 构建项目；</li>
+<li>Bonus：把CI和过渡服务器连接起来：使用CI服务器部署代码到过渡服务器并在过渡服务器中运行功能测试。</li>
+</ol>
+<h2 id="拓展学习"><a href="#拓展学习" class="headerlink" title="拓展学习"></a>拓展学习</h2><ul>
+<li>Gunicorn</li>
+<li>MVC（模型-试图-控制器）</li>
+<li>REST（表现层状态转化）</li>
+</ul>
+<h2 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h2><p>读完一本书，其中技巧性的东西如果在平常不使用就会被淡忘，最重要的是理解和吸收书中的思想。</p>
+<p>当初我是带着几个问题来学习这本书的：</p>
+<ol>
+<li>什么是测试驱动开发？</li>
+<li>为什么要用测试驱动开发？</li>
+<li>怎样在开发的过程运用TDD的思想？</li>
+<li>TDD在网站开发中的具体方法？</li>
+</ol>
+<p>现在大概可以一一解答了：</p>
+<ol>
+<li>在编写可以真正实现功能的代码前，首先编写测试。只有在测试和预期一样失败后才能继续进行下一步。</li>
+<li>测试不仅仅可以保障代码的功能，给我们修改代码的勇气，它更是一种文档，可以帮助我们实现更好的设计。比如功能测试是应用的说明书，它会提供一个人类可读、容易理解的故事，帮助我们开发具有所需功能的应用（还能保证我们不会无意中破坏这些功能）；而单元测试则描述了代码希望实现的效果（应用中的每行代码都应该至少有一个单元测试），告诉我们应该怎样编写代码—— 功能测试站在高层驱动开发，单元测试从底层驱动我们做些什么。而且TDD还使得我们永远不会忘记接下来应该做什么——重新运行测试就知道要做的事了。总而言之，重视测试的终极原因是测试让开发变得更有乐趣。</li>
+<li>使用遇红-&gt;变绿-&gt;重构的流程进行开发：<img src="/2018/03/23/web-tdd/tdd.png"></li>
+<li>使用“由外而内的TDD”完成页面。其实上面双循环的TDD流程就体现了由外而内的思想：从外部设计系统，再分层编写代码。具体到网站开发中，就是：从表现层(GUI，模板与URL)逐步向内层移动，通过视图层或控制器层，最终到达模型层。这种方法的理念是由实际需要使用的功能驱动代码的编写，而不是在低层猜测需求。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2018/03/23/web-tdd/">http://huisblog.cn/2018/03/23/web-tdd/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+              <a href="/tags/web/">web</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/03/20/magenta-intro/">
+        <span class="next-text nav-default">使用Magenta生成音乐</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>
