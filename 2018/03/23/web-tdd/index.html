@@ -43,7 +43,7 @@
 <meta property="og:description" content="Test-Driven-Development for Python Web 开源学习链接中有本书的最新版内容以及相关讨论，非常值得阅读学习。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2018/03/23/web-tdd/tdd.png">
-<meta property="og:updated_time" content="2018-03-23T04:30:02.315Z">
+<meta property="og:updated_time" content="2018-03-27T10:25:57.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《TDD - Python Web》学习笔记">
 <meta name="twitter:description" content="Test-Driven-Development for Python Web 开源学习链接中有本书的最新版内容以及相关讨论，非常值得阅读学习。">
@@ -335,6 +335,14 @@
 <li>安装插件和设置项目：安装插件（部署项目前需要安装的依赖）并设置虚拟显示器、失败截图和转储HTML（还要安装PhantomJS运行QUnit JavaScript测试） -&gt; 设置项目 -&gt; 构建项目；</li>
 <li>Bonus：把CI和过渡服务器连接起来：使用CI服务器部署代码到过渡服务器并在过渡服务器中运行功能测试。</li>
 </ol>
+<blockquote>
+<p>记录一个在练习部署的时候踩到的一个大坑！  </p>
+</blockquote>
+<p>在第21章的练习中，要求将“发送邮件登录”功能部署到服务器上，这个功能在本地的开发服务器上测试成功，设置如下：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="comment"># setting.py</span></div><div class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span></div><div class="line">EMAIL_HOST_USER = <span class="string">'my_qq_num@qq.com'</span></div><div class="line">EMAIL_HOST_PASSWORD = os.environ.get(<span class="string">'EMAIL_PASSWORD'</span>)</div><div class="line">EMAIL_PORT = <span class="number">25</span></div><div class="line">EMAIL_USE_TLS = <span class="keyword">True</span></div></pre></td></tr></table></figure>
+<p>结果部署后，过渡服务器上的功能测试失败，邮件无法发送。服务器日志中未显示任何error，只是提示WORKER TIMEOUT。比较搞笑的是，最开始以为是环境变量的问题，以为gunicorn没有读到我的EMAIL_PASSWORD（因为gunicorn在systemd中设置的EnviromentFile只为ExecStart下的进程服务，在shell中echo不出来），这个导致浪费了很多时间。最后<a href="https://stackoverflow.com/questions/1950442/connection-timeout-issue-sending-email-in-django" target="_blank" rel="external">Connection timeout issue sending email in Django</a>中的回答给了我提示：可能是发件服务器端口的问题：</p>
+<p>于是尝试<code>server$ telnet smtp.qq.com 25</code>得不到连接结果，发现是我的服务器无法连接到QQ邮箱服务器25端口造成的<code>send_mail</code>超时失败。。改用465端口及SSL加密设置，测试成功通过：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># setting.py</span></div><div class="line">[...]</div><div class="line">EMAIL_PORT = <span class="number">465</span></div><div class="line">EMAIL_USE_SSL = <span class="keyword">True</span></div></pre></td></tr></table></figure>
 <h2 id="拓展学习"><a href="#拓展学习" class="headerlink" title="拓展学习"></a>拓展学习</h2><ul>
 <li>Gunicorn</li>
 <li>MVC（模型-试图-控制器）</li>
