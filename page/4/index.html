@@ -241,6 +241,59 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/04/27/ApplicationMath/mc/">Markov Chains & HMM</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 27, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>会其意，知其形。</p>
+<h2 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h2><p>服从马尔可夫性（无记忆性）：当前状态只与前一个状态有关，与更往前的状态无关。</p>
+<h2 id="HMM-Hiden-Markov-Model"><a href="#HMM-Hiden-Markov-Model" class="headerlink" title="HMM(Hiden Markov Model)"></a>HMM(Hiden Markov Model)</h2><p>一个概率模型，用于描述系统隐性状态的转移和隐性状态的表现（输出）概率。</p>
+<ul>
+<li>可见状态链</li>
+<li>隐含状态链    <img src="/2017/04/27/ApplicationMath/mc/chains.jpg"></li>
+<li>隐含状态数量  </li>
+<li>隐含状态之间的转换概率(transition probability)    <img src="/2017/04/27/ApplicationMath/mc/transition.jpg"></li>
+<li>隐含状态到可见状态的输出概率(emission probability)    <img src="/2017/04/27/ApplicationMath/mc/emission.jpg">  
+</li>
+</ul>
+<h3 id="HMM能做什么，怎么做？"><a href="#HMM能做什么，怎么做？" class="headerlink" title="HMM能做什么，怎么做？"></a>HMM能做什么，怎么做？</h3><ol>
+<li>估计(evaluation)<br> 转换概率+输出概率 -&gt; 可见状态出现的概率 （动态规划、forward algorithm）</li>
+<li>解码(decoding)<br> 转换概率+输出概率+可见状态链 -&gt; 隐含状态链 （极大似然、Viterbi algorithm）      </li>
+<li>学习(learning)<br> a. 有可见状态链和隐含状态链-&gt;HMM模型<br> b. 只有可见状态链-&gt;HMM模型</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/04/27/ApplicationMath/pca/">PCA主成分分析</a>
         
       </h1>
@@ -668,45 +721,6 @@
 </blockquote>
 <font color="#F79159"><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>。</strong> </font>
 
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/26/Python/PythonMat/">矩阵运算</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 26, 2016
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>Python的<code>numpy</code>模块提供矩阵运算的功能，其中有两种不同的数据类型<code>matrix</code>和<code>array</code>都可以用于处理行列表示的数字元素。虽然它们看起来相似，但是在这两个数据类型上执行相同的数学运算可以得到不同的结果，其中<code>matrix</code>与MATLAB中的<code>matrices</code>等价。</p>
-<p>具体来说，<code>matrix</code>是<code>array</code>的子类，要求维数必须为2。需要注意的是<code>array</code>的<code>*</code>表示元素分别相乘，<code>dot</code>才表示矩阵点乘。</p>
 
         
       
