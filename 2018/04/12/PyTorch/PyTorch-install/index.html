@@ -42,10 +42,12 @@
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-12T11:40:29.149Z">
+<meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
+<meta property="og:updated_time" content="2018-04-18T06:44:40.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PyTorch">
 <meta name="twitter:description" content="本文记录一下给服务器安装PyTorch的过程。">
+<meta name="twitter:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -259,7 +261,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器Anaconda"><span class="toc-text">安装包管理器Anaconda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新pip和numpy到最新版本"><span class="toc-text">更新pip和numpy到最新版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装GPU加速工具包"><span class="toc-text">安装GPU加速工具包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始安装PyTorch"><span class="toc-text">开始安装PyTorch</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器Anaconda"><span class="toc-text">安装包管理器Anaconda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新pip和numpy到最新版本"><span class="toc-text">更新pip和numpy到最新版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装GPU加速工具包"><span class="toc-text">安装GPU加速工具包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始安装PyTorch"><span class="toc-text">开始安装PyTorch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Pycharm进行远程开发与调试"><span class="toc-text">使用Pycharm进行远程开发与调试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </div>
 
@@ -288,6 +290,24 @@
 </blockquote>
 <p>安装成功：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; python</div><div class="line">Python 3.6.4 |Anaconda custom (64-bit)| (default, Jan 16 2018, 18:10:19) </div><div class="line">[GCC 7.2.0] on linux</div><div class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</div><div class="line">&gt;&gt;&gt; import torch</div><div class="line">&gt;&gt;&gt; import torchvision</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="使用Pycharm进行远程开发与调试"><a href="#使用Pycharm进行远程开发与调试" class="headerlink" title="使用Pycharm进行远程开发与调试"></a>使用Pycharm进行远程开发与调试</h3><p>强大的<code>Pycharm Pro</code>IDE可以直接在服务器上开发、调试，就不用再给本地搭建和服务器上一样的环境了。在Tools-&gt;Deployment里面可以设置自动部署（或者在创建项目时选用远程服务器和解释器）。</p>
+<p>需要设置的有<code>SFTP</code>和<code>Remote Interpreter</code>。SFTP用于代码同步，类似git上传，同步后可以在服务器上直接运行上传的代码。</p>
+<ol>
+<li>在Tools-&gt;Deployment中添加SFTP服务：<code>Connect</code>页填写服务器连接选项，<code>Mapping</code>页设置本地路径和远程路径（注意这个路径是相对于前面的Root Path的）的映射；</li>
+<li>选择自动上传(Automatic Uploaded)；</li>
+<li>Preference-&gt;Project Interpreter中添加远程解释器，可以使用已添加的SFTP中的服务器设置（使用Deployment Configure选项）</li>
+</ol>
+<blockquote>
+<p>遇到了问题，Python Console不可用，远程连接控制台不成功：<br>ssh://usr@10.xx.xx.xx:22/home/usr/anaconda3/bin/python -u /home/usr/.pycharm_helpers/pydev/pydevconsole.py 0 0<br>Couldn’t connect to console process.<br>Process finished with exit code -1<br>这是<a href="https://youtrack.jetbrains.com/issue/PY-18029#tab=Comments" target="_blank" rel="external">Pycharm的一个未解决BUG</a>，但评论中提到的解决方法<a href="https://stackoverflow.com/questions/31323363/pycharm-4-5-3-remote-console-cannot-connect-to-remote-process/31323892" target="_blank" rel="external">allowing the server public IP for all traffic</a>对我的情况没用。无法解决，暂搁置。</p>
+</blockquote>
+<p>Python Console 问题后续:</p>
+<ul>
+<li>查看pycharm的log无有用提示（<code>~/Library/Logs/PyCharm2018.1/idea.log</code>）；</li>
+<li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭:  <img src="/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
+</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.jianshu.com/p/988cd2137139" target="_blank" rel="external">pycharm 远程服务器开发调试</a><br>[2] <a href="http://paranoth.me/2018/03/19/Pycharm%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90/" target="_blank" rel="external">Pycharm远程调试使用服务器资源</a></p>
+
       
     </div>
 

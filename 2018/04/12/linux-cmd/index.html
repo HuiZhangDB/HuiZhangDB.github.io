@@ -42,7 +42,7 @@
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文用于记录一些常用的Linux命令以备忘。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-12T11:43:43.362Z">
+<meta property="og:updated_time" content="2018-04-18T05:47:25.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一些常用的Linux命令">
 <meta name="twitter:description" content="本文用于记录一些常用的Linux命令以备忘。">
@@ -259,7 +259,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH服务相关"><span class="toc-text">SSH服务相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH服务相关"><span class="toc-text">SSH服务相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防火墙"><span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络分析"><span class="toc-text">网络分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考材料"><span class="toc-text">参考材料</span></a></li></ol>
     </div>
   </div>
 
@@ -270,6 +270,15 @@
 <a id="more"></a>
 <h2 id="SSH服务相关"><a href="#SSH服务相关" class="headerlink" title="SSH服务相关"></a>SSH服务相关</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">who <span class="comment"># 查看当前登录的用户</span></div><div class="line">who /var/<span class="built_in">log</span>/wtmp <span class="comment"># 查看自从wtmp文件创建以来的每一次登陆情况 </span></div><div class="line"><span class="variable">$HOME</span>/.bash_history <span class="comment"># 查看每个用户的历史命令</span></div><div class="line"><span class="built_in">history</span> <span class="comment">#  当前用户的历史命令</span></div></pre></td></tr></table></figure>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 系统环境变量文件</span></div><div class="line">/etc/profile —— 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置；</div><div class="line">/etc/environment —— 在登录时操作系统使用的第二个文件,系统在读取你自己的profile前,设置环境文件的环境变量；</div><div class="line">/etc/bashrc —— 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取；</div><div class="line"><span class="comment"># 用户环境变量文件</span></div><div class="line">~/.profile —— 每个用户都可使用该文件输入专用于自己使用的shell信息，当用户登录时，该文件仅仅执行一次！默认情况下,它设置一些环境变量,执行用户的.bashrc文件；</div><div class="line">~/.bashrc —— 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取；</div></pre></td></tr></table></figure>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>Linux高层使用<code>ufw</code>的防火墙为添加或删除简单规则提供了简易的方法，默认情况下，ufw处于禁用状态。几条<code>ufw</code>的常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看防火墙状态</span></div><div class="line">sudo ufw status</div><div class="line"><span class="comment"># 开启防火墙，并在系统启动时自动开启。</span></div><div class="line">sudo ufw <span class="built_in">enable</span></div><div class="line"><span class="comment"># 关闭所有外部对本机的访问，但本机访问外部正常。</span></div><div class="line">sudo ufw default deny</div><div class="line"><span class="comment"># 关闭防火墙</span></div><div class="line">sudo ufw <span class="built_in">disable</span></div><div class="line"><span class="comment"># 开启/禁用</span></div><div class="line">sudo ufw allow|deny [service]</div></pre></td></tr></table></figure>
+<p>低层用<code>iptables</code>实现访问控制：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看iptables已有规则</span></div><div class="line">sudo iptables -L -n -v</div><div class="line"><span class="comment"># 开放端口</span></div><div class="line">sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</div><div class="line"><span class="comment"># 允许IP访问</span></div><div class="line">sudo iptables -A INPUT -s 10.xx.xx.xx -dport 80 -j ACCEPT</div></pre></td></tr></table></figure>
+<h2 id="网络分析"><a href="#网络分析" class="headerlink" title="网络分析"></a>网络分析</h2><p><code>tcpdump</code>是基于Unix系统的命令行式的数据包嗅探工具，可以抓取流动在网卡上的数据包。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 抓取主机10.37.63.255和主机10.37.63.61或10.37.63.95的通信</span></div><div class="line">tcpdump host 10.37.63.255 and \(10.37.63.61 or 10.37.63.95 \)</div></pre></td></tr></table></figure>
+<p><code>nethogs</code>是一款小巧的”net top”工具，可以显示每个进程所使用的带宽，并对列表排序，将耗用带宽最多的进程排在最上面。万一出现带宽使用突然激增的情况，用户迅速打开nethogs，就可以找到导致带宽使用激增的进程。nethogs可以报告程序的进程编号（PID）、用户和路径。</p>
+<h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><p>[1] <a href="https://help.ubuntu.com/lts/serverguide/firewall.html" target="_blank" rel="external">Ubuntu 16.04 防火墙</a><br>[2] <a href="http://einverne.github.io/post/2017/07/use-nethogs-to-check-network-traffic-per-process.html" target="_blank" rel="external">使用 nethogs 查看每个进程流量 </a></p>
+
       
     </div>
 
