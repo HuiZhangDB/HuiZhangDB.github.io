@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="Python小贴士"/>
+  <meta name="description" content="Deep Learning 简介"/>
 
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="DL," />
 
 
 
@@ -31,21 +31,25 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2016/12/06/Python/PythonTips/"/>
+<link rel="canonical" href="http://huisblog.cn/2017/04/18/dl-intro/"/>
 
 
-<meta name="description" content="with…as有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
-<meta name="keywords" content="python">
+<meta name="description" content="深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。">
+<meta name="keywords" content="DL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python小贴士">
-<meta property="og:url" content="http://huisblog.cn/2016/12/06/Python/PythonTips/index.html">
+<meta property="og:title" content="Deep Learning 简介">
+<meta property="og:url" content="http://huisblog.cn/2017/04/18/dl-intro/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="with…as有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
+<meta property="og:description" content="深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-04-27T03:07:58.000Z">
+<meta property="og:image" content="http://huisblog.cn/2017/04/18/dl-intro/basic_steps.png">
+<meta property="og:image" content="http://huisblog.cn/2017/04/18/dl-intro/stopearly.png">
+<meta property="og:image" content="http://huisblog.cn/2017/04/18/dl-intro/WeightDecay.png">
+<meta property="og:updated_time" content="2018-04-18T14:00:17.099Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python小贴士">
-<meta name="twitter:description" content="with…as有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。 感谢网上恩师廖雪峰老师的Python教程，本文大部分内容都摘自于此。">
+<meta name="twitter:title" content="Deep Learning 简介">
+<meta name="twitter:description" content="深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。">
+<meta name="twitter:image" content="http://huisblog.cn/2017/04/18/dl-intro/basic_steps.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -82,7 +86,7 @@
 
 
 
-    <title> Python小贴士 · HuisBlog </title>
+    <title> Deep Learning 简介 · HuisBlog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -243,13 +247,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Python小贴士
+          Deep Learning 简介
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 6, 2016
+          Apr 18, 2017
         </span>
       </div>
     </header>
@@ -259,16 +263,64 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#with…as"><span class="toc-text">with…as</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#深度学习的关键步骤"><span class="toc-text">深度学习的关键步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#深度学习的理论基础"><span class="toc-text">深度学习的理论基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化学习效果的秘诀"><span class="toc-text">优化学习效果的秘诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#防止过拟合"><span class="toc-text">防止过拟合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络变体"><span class="toc-text">神经网络变体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Convolutional-Neural-Network-CNN"><span class="toc-text">Convolutional Neural Network (CNN)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recurrent-Neural-Network-RNN"><span class="toc-text">Recurrent Neural Network (RNN)</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
+<p>深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。 </p>
+<a id="more"></a>
+<h2 id="深度学习的关键步骤"><a href="#深度学习的关键步骤" class="headerlink" title="深度学习的关键步骤"></a>深度学习的关键步骤</h2><p>简单来说，深度学习包含三个关键步骤：  </p>
+<ol>
+<li>定义一组函数 -&gt; 确定神经网络结构（层数、神经元数量）    </li>
+<li>判断函数优度 -&gt; 定义损失函数  </li>
+<li>选择最优函数 -&gt; 寻找最优参数（反向传播和梯度下降）</li>
+</ol>
+<img src="/2017/04/18/dl-intro/basic_steps.png">
+<h3 id="深度学习的理论基础"><a href="#深度学习的理论基础" class="headerlink" title="深度学习的理论基础"></a>深度学习的理论基础</h3><p>只要给出足够数量的隐藏神经元，带一个隐藏层的神经网络可以实现任何连续函数\(f\)</p>
+<p>$$ f: R^{N} \rightarrow R^{M} $$</p>
+<blockquote>
+<p>The Universality Theorem for Neural Networks: A hidden layer network can represent any continuous function.</p>
+</blockquote>
+<!--Modularization-->
+<h2 id="优化学习效果的秘诀"><a href="#优化学习效果的秘诀" class="headerlink" title="优化学习效果的秘诀"></a>优化学习效果的秘诀</h2><ul>
+<li>选择合适的损失函数可以提高整体效果，比如改用 Square Error 为 Cross Entropy；</li>
+<li>使用 <code>Mini-batch</code>加速优化；</li>
+<li>使用新的激活函数，比如改用 Sigmoid 为 ReLU, Maxout 等；</li>
+<li>自适应的学习速率</li>
+<li>使用参数优化算法（但不保证达到全局最优），如 Adam。</li>
+</ul>
+<blockquote>
+<p>Mini-batch does not really minimize total loss, but faster!<br>Shuffle the training examples for each epoch.</p>
+</blockquote>
+<h3 id="防止过拟合"><a href="#防止过拟合" class="headerlink" title="防止过拟合"></a>防止过拟合</h3><ul>
+<li><p>Early Stopping：画出学习曲线(Learning Curves)  </p>
+<img src="/2017/04/18/dl-intro/stopearly.png">
+</li>
+<li><p>Weight Decay (One kind of regularization)  </p>
+<img src="/2017/04/18/dl-intro/WeightDecay.png">
+</li>
+<li><p>Dropout (A kind of ensemble)</p>
+</li>
+</ul>
+<blockquote>
+<p>Each neuron has p% to dropout;<br>For each mini-batch, we resample the dropout neurons and use the new network for training.</p>
+</blockquote>
+<ul>
+<li>优化神经网络结构 (CNN is a very good example)</li>
+</ul>
+<h2 id="神经网络变体"><a href="#神经网络变体" class="headerlink" title="神经网络变体"></a>神经网络变体</h2><h3 id="Convolutional-Neural-Network-CNN"><a href="#Convolutional-Neural-Network-CNN" class="headerlink" title="Convolutional Neural Network (CNN)"></a>Convolutional Neural Network (CNN)</h3><p>CNN的三条性质：</p>
+<ul>
+<li>Some patterns are much smaller than the whole image</li>
+<li>The same patterns appear in different regions.</li>
+<li>Subsampling the pixels will not change the object</li>
+</ul>
+<h3 id="Recurrent-Neural-Network-RNN"><a href="#Recurrent-Neural-Network-RNN" class="headerlink" title="Recurrent Neural Network (RNN)"></a>Recurrent Neural Network (RNN)</h3>
       
     </div>
 
@@ -287,7 +339,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2016/12/06/Python/PythonTips/">http://huisblog.cn/2016/12/06/Python/PythonTips/</a>
+      <a href="http://huisblog.cn/2017/04/18/dl-intro/">http://huisblog.cn/2017/04/18/dl-intro/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -307,7 +359,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/python/">python</a>
+              <a href="/tags/DL/">DL</a>
             
           </div>
         
@@ -315,15 +367,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Python/PythonMulTask/">
+      <a class="prev" href="/2017/04/26/NewBlog/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Python进程和线程</span>
+        <span class="prev-text nav-default">Github Pages + Hexo</span>
         <span class="prev-text nav-mobile">Prev</span>
       </a>
     
     
-      <a class="next" href="/2016/12/06/Python/PythonRE/">
-        <span class="next-text nav-default">Python正则表达式</span>
+      <a class="next" href="/2016/12/26/Python/index/">
+        <span class="next-text nav-default">Python2.7 基础学习笔记</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
