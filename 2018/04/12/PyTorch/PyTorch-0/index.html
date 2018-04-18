@@ -31,23 +31,23 @@
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/"/>
+<link rel="canonical" href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/"/>
 
 
 <meta name="description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta name="keywords" content="DL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装PyTorch">
-<meta property="og:url" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/index.html">
+<meta property="og:url" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
+<meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">
 <meta property="og:updated_time" content="2018-04-18T06:56:33.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PyTorch">
 <meta name="twitter:description" content="本文记录一下给服务器安装PyTorch的过程。">
-<meta name="twitter:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
+<meta name="twitter:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -303,7 +303,7 @@
 <p>Python Console 问题后续:</p>
 <ul>
 <li>查看pycharm的log无有用提示（<code>~/Library/Logs/PyCharm2018.1/idea.log</code>）；</li>
-<li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭，以为是进程通信的问题：<img src="/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">  </li>
+<li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭，以为是进程通信的问题：<img src="/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">  </li>
 <li>给macos开发端口：修改<code>\etc\pf.conf</code>配置文件，但还是没有解决问题。</li>
 </ul>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/pf.conf</div><div class="line"></div><div class="line"><span class="comment"># 添加规则允许本机IP访问任何端口</span></div><div class="line">pass <span class="keyword">in</span> proto tcp from 127.0.0.1</div><div class="line">pass <span class="keyword">in</span> proto tcp from localhost</div><div class="line"></div><div class="line"><span class="comment"># 使配置生效</span></div><div class="line">sudo pfctl -evf /etc/pf.conf</div></pre></td></tr></table></figure>
@@ -327,7 +327,7 @@
     </p>
     <p class="copyright-item">
       <span>Link: </span>
-      <a href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/">http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/</a>
+      <a href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/">http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/</a>
     </p>
 
     <p class="copyright-item lincese">
