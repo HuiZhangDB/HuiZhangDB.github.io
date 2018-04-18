@@ -43,7 +43,7 @@
 <meta property="og:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
-<meta property="og:updated_time" content="2018-04-18T06:44:40.023Z">
+<meta property="og:updated_time" content="2018-04-18T06:56:33.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PyTorch">
 <meta name="twitter:description" content="本文记录一下给服务器安装PyTorch的过程。">
@@ -303,10 +303,11 @@
 <p>Python Console 问题后续:</p>
 <ul>
 <li>查看pycharm的log无有用提示（<code>~/Library/Logs/PyCharm2018.1/idea.log</code>）；</li>
-<li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭:  <img src="/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">
-</li>
+<li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭，以为是进程通信的问题：<img src="/2018/04/12/PyTorch/PyTorch-install/pycharm_tcp_closed.jpeg">  </li>
+<li>给macos开发端口：修改<code>\etc\pf.conf</code>配置文件，但还是没有解决问题。</li>
 </ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.jianshu.com/p/988cd2137139" target="_blank" rel="external">pycharm 远程服务器开发调试</a><br>[2] <a href="http://paranoth.me/2018/03/19/Pycharm%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90/" target="_blank" rel="external">Pycharm远程调试使用服务器资源</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/pf.conf</div><div class="line"></div><div class="line"><span class="comment"># 添加规则允许本机IP访问任何端口</span></div><div class="line">pass <span class="keyword">in</span> proto tcp from 127.0.0.1</div><div class="line">pass <span class="keyword">in</span> proto tcp from localhost</div><div class="line"></div><div class="line"><span class="comment"># 使配置生效</span></div><div class="line">sudo pfctl -evf /etc/pf.conf</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.jianshu.com/p/988cd2137139" target="_blank" rel="external">pycharm 远程服务器开发调试</a><br>[2] <a href="http://paranoth.me/2018/03/19/Pycharm%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90/" target="_blank" rel="external">Pycharm远程调试使用服务器资源</a><br>[3] <a href="https://blog.chionlab.moe/2016/02/01/use-pf-on-osx/" target="_blank" rel="external">OSX上pf的简单配置笔记</a></p>
 
       
     </div>
