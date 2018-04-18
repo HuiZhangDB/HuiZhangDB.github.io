@@ -241,7 +241,46 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/06/Python/PythonIO/">PythonIO编程</a>
+          <a class="post-link" href="/2016/12/06/Python/PythonTips/">Python小贴士</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Dec 6, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/12/06/Python/PythonRE/">Python正则表达式</a>
         
       </h1>
 
@@ -263,9 +302,62 @@
         
 
         
-          <p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+          <h2 id="匹配符"><a href="#匹配符" class="headerlink" title="匹配符"></a>匹配符</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\d</code></td>
+<td>数字</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>字母或数字</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>空白符</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>任意字符</td>
+</tr>
+<tr>
+<td><code>{n}</code>/<code>{n,m}</code></td>
+<td>n个字符/n~m个字符</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>至少一个字符</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>任意个字符</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>0个或者1个字符</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>表示范围</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>结尾</td>
+</tr>
+</tbody>
+</table>
           <div class="read-more">
-            <a href="/2016/12/06/Python/PythonIO/" class="read-more-link">Read more..</a>
+            <a href="/2016/12/06/Python/PythonRE/" class="read-more-link">Read more..</a>
           </div>
         
       
@@ -283,7 +375,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/06/Python/PythonAdOOP/">Python面向对象高级编程</a>
+          <a class="post-link" href="/2016/12/06/Python/PythonMulTask/">Python进程和线程</a>
         
       </h1>
 
@@ -301,57 +393,11 @@
       
         
         
-          
-        
 
         
-          <h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2016/12/06/Python/PythonAdOOP/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
+          <h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/06/Python/PythonDebug/">Python错误、调试和测试</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 6, 2016
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-          <div class="read-more">
-            <a href="/2016/12/06/Python/PythonDebug/" class="read-more-link">Read more..</a>
-          </div>
         
       
     </div>
