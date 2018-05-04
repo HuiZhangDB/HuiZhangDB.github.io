@@ -42,7 +42,7 @@
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文用于记录一些常用的Linux命令以备忘。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-18T05:47:25.852Z">
+<meta property="og:updated_time" content="2018-04-24T13:12:37.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一些常用的Linux命令">
 <meta name="twitter:description" content="本文用于记录一些常用的Linux命令以备忘。">
@@ -259,7 +259,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH服务相关"><span class="toc-text">SSH服务相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防火墙"><span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络分析"><span class="toc-text">网络分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考材料"><span class="toc-text">参考材料</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH服务相关"><span class="toc-text">SSH服务相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防火墙"><span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络分析"><span class="toc-text">网络分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本编辑"><span class="toc-text">文本编辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim"><span class="toc-text">vim</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包管理"><span class="toc-text">包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Anoconda"><span class="toc-text">Anoconda</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考材料"><span class="toc-text">参考材料</span></a></li></ol>
     </div>
   </div>
 
@@ -277,6 +277,8 @@
 <h2 id="网络分析"><a href="#网络分析" class="headerlink" title="网络分析"></a>网络分析</h2><p><code>tcpdump</code>是基于Unix系统的命令行式的数据包嗅探工具，可以抓取流动在网卡上的数据包。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 抓取主机10.37.63.255和主机10.37.63.61或10.37.63.95的通信</span></div><div class="line">tcpdump host 10.37.63.255 and \(10.37.63.61 or 10.37.63.95 \)</div></pre></td></tr></table></figure>
 <p><code>nethogs</code>是一款小巧的”net top”工具，可以显示每个进程所使用的带宽，并对列表排序，将耗用带宽最多的进程排在最上面。万一出现带宽使用突然激增的情况，用户迅速打开nethogs，就可以找到导致带宽使用激增的进程。nethogs可以报告程序的进程编号（PID）、用户和路径。</p>
+<h2 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h2><h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 跳转</span></div><div class="line">0: 跳转到行首。</div><div class="line">$: 跳转到行尾</div></pre></td></tr></table></figure>
+<h2 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h2><h3 id="Anoconda"><a href="#Anoconda" class="headerlink" title="Anoconda"></a>Anoconda</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 当前版本</span></div><div class="line">conda -V</div><div class="line"><span class="comment"># 已安装的包</span></div><div class="line">conda list</div><div class="line"><span class="comment"># 当前有的虚拟环境</span></div><div class="line">conda env list or conda info -e </div><div class="line"><span class="comment"># 检查更新当前conda</span></div><div class="line">conda update conda </div><div class="line"><span class="comment"># 创建python虚拟环境</span></div><div class="line">conda create -n your_env_name python=X.X(2.7/3.6)</div><div class="line"><span class="comment"># 激活/关闭虚拟环境</span></div><div class="line">conda activate your_env_name</div><div class="line">conda deactivate</div></pre></td></tr></table></figure>
 <h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><p>[1] <a href="https://help.ubuntu.com/lts/serverguide/firewall.html" target="_blank" rel="external">Ubuntu 16.04 防火墙</a><br>[2] <a href="http://einverne.github.io/post/2017/07/use-nethogs-to-check-network-traffic-per-process.html" target="_blank" rel="external">使用 nethogs 查看每个进程流量 </a></p>
 
       

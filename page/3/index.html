@@ -241,6 +241,57 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/06/03/logisticreg/">逻辑回归(Logistic Regression)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jun 3, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="分类表达式"><a href="#分类表达式" class="headerlink" title="分类表达式"></a>分类表达式</h2><h3 id="分类和回归"><a href="#分类和回归" class="headerlink" title="分类和回归"></a>分类和回归</h3><ul>
+<li>分类问题和回归问题的形式是相似的，但它的预测值是一组有限的离散值。  </li>
+<li>分类问题的求解可以看做是找边界线（面）的过程，即拟合边界曲线（面），特征空间内的点分布在该曲线（面）分割出来的不同子空间中；  </li>
+<li>而回归问题的求解是拟合特征-预测值曲线（面），特征空间内的点分布在该曲线（面）上或者附近。</li>
+</ul>
+<h3 id="分类问题的假设表达式"><a href="#分类问题的假设表达式" class="headerlink" title="分类问题的假设表达式"></a>分类问题的假设表达式</h3><h4 id="逻辑函数-Logistic-Function-or-Sigmoid-Function"><a href="#逻辑函数-Logistic-Function-or-Sigmoid-Function" class="headerlink" title="逻辑函数(Logistic Function or Sigmoid Function)"></a>逻辑函数(Logistic Function or Sigmoid Function)</h4><p>使用逻辑函数\(g(z)\)将预测值映射到[0, 1]区间中，使假设函数更适用于分类问题。</p>
+<p>$$\begin{align}&amp;<br>h_\theta (x) = g ( \theta^T x )<br>\newline<br>\newline&amp; z = \theta^T x<br>\newline&amp; g(z) = \dfrac{1}{1 + e^{-z}}<br>\end{align}$$</p>
+          <div class="read-more">
+            <a href="/2017/06/03/logisticreg/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/06/03/multilinear/">多变量线性回归</a>
         
       </h1>
@@ -623,48 +674,6 @@
           <p>This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains <code>6373</code> features. It consists of some <code>generic acoustic emotion descriptors</code> and their <code>statistical functionals</code>.</p>
           <div class="read-more">
             <a href="/2017/05/02/IS13feature/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/04/29/featureExt/">MER 声学特征提取</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 29, 2017
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="特征集和提取工具"><a href="#特征集和提取工具" class="headerlink" title="特征集和提取工具"></a>特征集和提取工具</h2><p>最近的任务目标是：确定<code>音乐情感特征集（声学特征）</code>和<code>提取方法</code>  </p>
-          <div class="read-more">
-            <a href="/2017/04/29/featureExt/" class="read-more-link">Read more..</a>
           </div>
         
       
