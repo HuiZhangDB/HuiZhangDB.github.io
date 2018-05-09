@@ -42,7 +42,7 @@
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-09T13:25:46.244Z">
+<meta property="og:updated_time" content="2018-05-09T16:06:19.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django 网站开发初始化与自动部署流程备忘">
 <meta name="twitter:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
@@ -275,6 +275,9 @@
 <p>在 Virtualenv 下安装Django, Gunicorn：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install django, gunicorn</div></pre></td></tr></table></figure>
 <h3 id="新建-Django-Project-并上传到-Git-库"><a href="#新建-Django-Project-并上传到-Git-库" class="headerlink" title="新建 Django Project 并上传到 Git 库"></a>新建 Django Project 并上传到 Git 库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">django-admin.py startproject NewProjectName</div><div class="line"></div><div class="line"><span class="comment"># 上传到Git</span></div><div class="line"><span class="built_in">cd</span>  NewProjectName</div><div class="line">git init</div><div class="line">touch README.md</div><div class="line">git remote add [shortname(origin)] [url]</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">'comments'</span> </div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<blockquote>
+<p>新建应用命令：python manage.py startapp appName</p>
+</blockquote>
 <h2 id="服务器初始化环境和自动部署"><a href="#服务器初始化环境和自动部署" class="headerlink" title="服务器初始化环境和自动部署"></a>服务器初始化环境和自动部署</h2><h3 id="服务器-Required-packages"><a href="#服务器-Required-packages" class="headerlink" title="服务器 Required packages:"></a>服务器 Required packages:</h3><ul>
 <li>nginx</li>
 <li>Python 3.6</li>
