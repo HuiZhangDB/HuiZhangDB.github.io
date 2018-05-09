@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django 网站开发初始化与自动部署流程备忘"/>
+
+
+
+
+  <meta name="keywords" content="python,web," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/03/24/django_memo/"/>
+
+
+<meta name="description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
+<meta name="keywords" content="python,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django 网站开发初始化与自动部署流程备忘">
+<meta property="og:url" content="http://huisblog.cn/2018/03/24/django_memo/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-09T13:25:46.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django 网站开发初始化与自动部署流程备忘">
+<meta name="twitter:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django 网站开发初始化与自动部署流程备忘 · HuisBlog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django 网站开发初始化与自动部署流程备忘
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 24, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网站初始化创建"><span class="toc-text">网站初始化创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-Virtualenv"><span class="toc-text">创建 Virtualenv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建-Django-Project-并上传到-Git-库"><span class="toc-text">新建 Django Project 并上传到 Git 库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器初始化环境和自动部署"><span class="toc-text">服务器初始化环境和自动部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器-Required-packages"><span class="toc-text">服务器 Required packages:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化部署（利用-fabric-实现自动化）"><span class="toc-text">初始化部署（利用 fabric 实现自动化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动更新部署"><span class="toc-text">自动更新部署</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。</p>
+<blockquote>
+<p>Python + Django + Nginx + Gunicorn</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="网站初始化创建"><a href="#网站初始化创建" class="headerlink" title="网站初始化创建"></a>网站初始化创建</h2><h3 id="创建-Virtualenv"><a href="#创建-Virtualenv" class="headerlink" title="创建 Virtualenv"></a>创建 Virtualenv</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建网站使用的Python环境</span></div><div class="line"><span class="built_in">cd</span> path/to/directory/&lt;../web_root&gt;</div><div class="line">python -m venv virtualenv</div><div class="line"><span class="comment"># 激活虚拟环境</span></div><div class="line"><span class="built_in">source</span> virtualenv/bin/activate</div></pre></td></tr></table></figure>
+<p>在 Virtualenv 下安装Django, Gunicorn：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install django, gunicorn</div></pre></td></tr></table></figure>
+<h3 id="新建-Django-Project-并上传到-Git-库"><a href="#新建-Django-Project-并上传到-Git-库" class="headerlink" title="新建 Django Project 并上传到 Git 库"></a>新建 Django Project 并上传到 Git 库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">django-admin.py startproject NewProjectName</div><div class="line"></div><div class="line"><span class="comment"># 上传到Git</span></div><div class="line"><span class="built_in">cd</span>  NewProjectName</div><div class="line">git init</div><div class="line">touch README.md</div><div class="line">git remote add [shortname(origin)] [url]</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">'comments'</span> </div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<h2 id="服务器初始化环境和自动部署"><a href="#服务器初始化环境和自动部署" class="headerlink" title="服务器初始化环境和自动部署"></a>服务器初始化环境和自动部署</h2><h3 id="服务器-Required-packages"><a href="#服务器-Required-packages" class="headerlink" title="服务器 Required packages:"></a>服务器 Required packages:</h3><ul>
+<li>nginx</li>
+<li>Python 3.6</li>
+<li>virtualenv + pip</li>
+<li>Git</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">server$ sudo add-apt-repository ppa:deadsnakes/ppa</div><div class="line">server$ sudo apt update</div><div class="line">server$ sudo apt install nginx git python36 python3.6-venv</div><div class="line"></div><div class="line">server$ sudo systemctl start nginx</div></pre></td></tr></table></figure>
+<h3 id="初始化部署（利用-fabric-实现自动化）"><a href="#初始化部署（利用-fabric-实现自动化）" class="headerlink" title="初始化部署（利用 fabric 实现自动化）"></a>初始化部署（利用 fabric 实现自动化）</h3><p>S1. 本地编写自动部署脚本并执行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> NewProjectName</div><div class="line">pip install fabric3</div><div class="line"></div><div class="line">mkdir deploy_tools</div><div class="line"><span class="built_in">cd</span> deploy_tools</div><div class="line"></div><div class="line">touch fabfile.py</div><div class="line"><span class="comment"># 编写fabfile.py文件里的自动部署函数deploy()</span></div><div class="line"></div><div class="line">touch nginx.template.conf</div><div class="line"><span class="comment"># Nginx config for virtual host</span></div><div class="line"></div><div class="line">touch gunicorn-systemd.template.service</div><div class="line"><span class="comment"># Systemd job for Gunicorn</span></div><div class="line"></div><div class="line"><span class="comment"># 执行自动部署脚本</span></div><div class="line">fab &lt;function_name(deploy)&gt;:host=SERVER_ADDRESS</div></pre></td></tr></table></figure>
+<blockquote>
+<p>自动部署脚本一般要实现：  </p>
+<ol>
+<li>从 Git 库 pull 最新的源代码  </li>
+<li>创建或更新虚拟环境  </li>
+<li>创建或更新环境变量  </li>
+<li>更新静态文件  </li>
+<li>更新数据库</li>
+</ol>
+</blockquote>
+<p>S2. 在服务器上修改 Nginx 和 Gunicorn 的配置文件：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 修改nginx配置文件</span></div><div class="line">server$ cat ./deploy_tools/nginx.template.conf \</div><div class="line">    | sed <span class="string">"s/DOMAIN/&lt;hostname&gt;/g"</span> \</div><div class="line">    | sudo tee /etc/nginx/sites-available/&lt;hostname&gt;</div><div class="line"></div><div class="line"><span class="comment"># 激活nginx配置    </span></div><div class="line">server$ sudo ln -s /etc/nginx/sites-available/&lt;hostname&gt; \</div><div class="line">    /etc/nginx/sites-enabled/&lt;hostname&gt;</div><div class="line"></div><div class="line"><span class="comment"># 修改gunicorn配置文件</span></div><div class="line">server$ cat ./deploy_tools/gunicorn-systemd.template.service \</div><div class="line">    | sed <span class="string">"s/DOMAIN/&lt;hostname&gt;/g"</span> \</div><div class="line">    | sudo tee /etc/systemd/system/gunicorn-&lt;hostname&gt;.service</div></pre></td></tr></table></figure>
+<p>S3. 重新加载 nginx 配置并开启 gunicorn 服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 让 Systemd 重新加载配置文件</span></div><div class="line">server$ sudo systemctl daemon-reload</div><div class="line"></div><div class="line"><span class="comment"># 重启 nginx 服务</span></div><div class="line">server$ sudo systemctl reload nginx</div><div class="line"></div><div class="line"><span class="comment"># 开启 gunicorn 服务</span></div><div class="line">server$ sudo systemctl <span class="built_in">enable</span> gunicorn-&lt;hostname&gt;</div><div class="line">server$ sudo systemctl start gunicorn-&lt;hostname&gt;</div></pre></td></tr></table></figure>
+<h3 id="自动更新部署"><a href="#自动更新部署" class="headerlink" title="自动更新部署"></a>自动更新部署</h3><p>在本地开发源代码更新，push到Git后：</p>
+<p>S1. 本地执行自动部署脚本：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> deploy_tools</div><div class="line">fab &lt;function_name(deploy)&gt;:host=SERVER_ADDRESS</div></pre></td></tr></table></figure>
+<p>S2. 服务器端重启gunicorn：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server$ sudo systemctl daemon-reload</div><div class="line">server$ sudo systemctl restart gunicorn-&lt;hostname&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2018/03/24/django_memo/">http://huisblog.cn/2018/03/24/django_memo/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+              <a href="/tags/web/">web</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/30/conference/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">2018-2019 相关会议投稿时间</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/23/web-tdd/">
+        <span class="next-text nav-default">《TDD - Python Web》学习笔记</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

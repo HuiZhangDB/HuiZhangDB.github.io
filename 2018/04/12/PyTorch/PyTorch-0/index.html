@@ -43,7 +43,7 @@
 <meta property="og:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">
-<meta property="og:updated_time" content="2018-05-07T03:03:49.038Z">
+<meta property="og:updated_time" content="2018-05-07T06:24:14.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PyTorch">
 <meta name="twitter:description" content="本文记录一下给服务器安装PyTorch的过程。">
@@ -316,6 +316,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">server$ pip install jupyter</div></pre></td></tr></table></figure>
 <p>开启服务：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server$ jupyter notebook --no-browser --port=8080  </div><div class="line"><span class="comment">#no-browser since that is not available through an SSH session</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以保存配置以简化启动命令：jupyter notebook –generate-config；<br>然后在~/.jupyter/jupyter_notebook_config.py中添加：<br>c.NotebookApp.password = ‘sha1:a86…使用notebook.auth.passwd()生成的密文’<br>c.NotebookApp.open_browser = False<br>c.NotebookApp.port =8080  </p>
+</blockquote>
 <p>通过 SSH 进行远程访问：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh -N -L 8080:localhost:8080 &lt;remote_user&gt;@&lt;remote_host&gt;</div><div class="line"><span class="comment"># Add the option -N to tell SSH that I'm not going to execute any remote commands. This ensures that the connection cannot be used in that way, see this as an added security measure.</span></div><div class="line"><span class="comment"># Add the -L option that tells SSH to open up a tunnel from port 8080 on the remote machine to port 8080 in my local machine.</span></div></pre></td></tr></table></figure>
 <p>现在本地可以通过<code>http://localhost:8080/</code>使用 Jupyter Notebook 啦~</p>
