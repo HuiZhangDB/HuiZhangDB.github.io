@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="用 GAN 生成音乐片段"/>
+
+
+
+
+  <meta name="keywords" content="music,midi,DL," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/05/24/mg-gan/"/>
+
+
+<meta name="description" content="本文介绍了两种基于对抗生成网络的音乐生成模型。鉴于近年来 GAN 的大火，其在音乐上的应用也开始逐渐兴起。">
+<meta name="keywords" content="music,midi,DL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 GAN 生成音乐片段">
+<meta property="og:url" content="http://huisblog.cn/2018/05/24/mg-gan/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="本文介绍了两种基于对抗生成网络的音乐生成模型。鉴于近年来 GAN 的大火，其在音乐上的应用也开始逐渐兴起。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://huisblog.cn/2018/05/24/mg-gan/c-rnn-gan.jpg">
+<meta property="og:image" content="http://huisblog.cn/2018/05/24/mg-gan/musegan.png">
+<meta property="og:image" content="http://huisblog.cn/2018/05/24/mg-gan/multitrack3.png">
+<meta property="og:image" content="http://huisblog.cn/2018/05/24/mg-gan/temporal_structure.png">
+<meta property="og:image" content="http://huisblog.cn/2018/05/24/mg-gan/pianoroll.png">
+<meta property="og:updated_time" content="2018-05-24T13:28:12.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 GAN 生成音乐片段">
+<meta name="twitter:description" content="本文介绍了两种基于对抗生成网络的音乐生成模型。鉴于近年来 GAN 的大火，其在音乐上的应用也开始逐渐兴起。">
+<meta name="twitter:image" content="http://huisblog.cn/2018/05/24/mg-gan/c-rnn-gan.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: true,
+    searchPath: "/search.xml",
+    fancybox: false,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 用 GAN 生成音乐片段 · HuisBlog </title>
+  <link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
+<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">HuisBlog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="/friends">
+        <li class="mobile-menu-item">
+          
+          
+            Friends
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">HuisBlog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/friends">
+            
+            
+              Friends
+            
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用 GAN 生成音乐片段
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 24, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-RNN-GAN"><span class="toc-text">C-RNN-GAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MuseGAN"><span class="toc-text">MuseGAN</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>本文介绍了两种基于对抗生成网络的音乐生成模型。鉴于近年来 GAN 的大火，其在音乐上的应用也开始逐渐兴起。</p>
+<a id="more"></a>
+<h2 id="C-RNN-GAN"><a href="#C-RNN-GAN" class="headerlink" title="C-RNN-GAN"></a>C-RNN-GAN</h2><p><code>C-RNN-GAN</code>是论文 <em>Continuous recurrent neural networks with adversarial training</em> 中提出的模型。实验室师兄 @<a href="http://fujiaqi.com/" target="_blank" rel="external">Kue</a> 在知乎上有简要的介绍：</p>
+<blockquote>
+<p>GAN在音乐生成的首次应用，也是GAN处理连续序列数据的针对性研究。针对以往音乐计算研究中使用符号特征（Symbolic Representation）的不足（计算机更容易理解数字表达），以及GAN的优势，提出了一种LSTM/RNN的GAN网络。训练预测数据为作者下载的古典MIDI音乐，使用Tone length, Frequency, Intensity 和Timing作为特征。生成网络结构为2层单向LSTM，对抗网络为2层双向LSTM，每次生成指定长度×88音阶数据。生成音乐的评价使用韵律学的方式，根据Polyphony（两个音同时弹奏的频率）、Scale consistency（标准音程的比例）、Repetitions（音符组合重复的频率）、Tone span（整段音乐的最低最高音阶差）四个方面计算。</p>
+</blockquote>
+<div align="center"><br><img src="/2018/05/24/mg-gan/c-rnn-gan.jpg"><br></div>
+
+<p>但这个模型存在一些缺点：</p>
+<ol>
+<li>单音轨的音乐生成效果比较稳定，多音轨的结果听起来很奇怪；</li>
+<li>只能生成钢琴曲。</li>
+</ol>
+<ul>
+<li>模型训练 270 次后的生成效果：</li>
+</ul>
+
+        <div id="aplayer-uLSFGosP" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-uLSFGosP"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "c-rnn-gan-out-270",
+              author: "c-rnn-gan",
+              url: "c-rnn-gan-out-270.wav",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<h2 id="MuseGAN"><a href="#MuseGAN" class="headerlink" title="MuseGAN"></a>MuseGAN</h2><p>个人觉得这是音乐生成的<em>state of art</em>。<code>musegan</code>是业界大牛 Yi Hsuan 的 MACLab 最新研究成果，发布在今年的人工智能顶会 AAAI 上：</p>
+<p>Hao-Wen Dong*, Wen-Yi Hsiao*, Li-Chia Yang and Yi-Hsuan Yang,<br>“<strong>MuseGAN: Multi-track Sequential Generative Adversarial Networks for<br>Symbolic Music Generation and Accompaniment</strong>,”<br>in <em>AAAI Conference on Artificial Intelligence</em> (AAAI), 2018.</p>
+<p>最大的优势是：<strong>可以生成多乐器的复调音乐</strong>。复杂的生成网络：</p>
+<img src="/2018/05/24/mg-gan/musegan.png">
+<p>包含了音乐的全自动生成模块和伴奏生成模块。使用多个生成器解决互相依赖的多音轨旋律生成；使用 CNN 来理解音乐织体(Music Texture)。把音乐自动生成的模型简化抽象一下：</p>
+<img src="/2018/05/24/mg-gan/multitrack3.png">
+<p>两组生成器，一组于协调音轨间的和弦关系；一组用于组织音轨内部的旋律生成。</p>
+<p>模型训练50006次后的生成效果：</p>
+
+        <div id="aplayer-eXWGkRtv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-eXWGkRtv"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "musegan-out-50006",
+              author: "musegan",
+              url: "musegan-out-50006.wav",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p>非常有启发的是，这个研究分析了音乐的时间结构 (temporal structure)：</p>
+<img src="/2018/05/24/mg-gan/temporal_structure.png">
+<p>基于这个时间结构，我们可以把 MIDI 转为钢琴卷帘矩阵，然后看做一个大小固定的黑白图片：</p>
+<div align="center"><br><img src="/2018/05/24/mg-gan/pianoroll.png"><br></div>
+
+<p>这样就可以使用图片的方式来设计和训练神经网络了（其生成器用 CNN 来实现）。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <span>Hui Zhang</span>
+    </p>
+    <p class="copyright-item">
+      <span>Origin: </span>
+      <a href="http://huisblog.cn">http://huisblog.cn</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://huisblog.cn/2018/05/24/mg-gan/">http://huisblog.cn/2018/05/24/mg-gan/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/music/">music</a>
+            
+              <a href="/tags/midi/">midi</a>
+            
+              <a href="/tags/DL/">DL</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/04/19/PyTorch/PyTorch-2/">
+        <span class="next-text nav-default">PyTorch 导入数据集</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Hui Zhang</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  
+
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+
+    
+  <script type="text/html" id="search-result">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">
+          <a href="$url$" class="post-link">
+            $title$
+          </a>
+        </h1>
+      </header>
+      <div class="post-content">
+        $content$
+        <div class="read-more">
+          <a href="$url$" class="read-more-link">
+            Read more..
+          </a>
+        </div>
+      </div>
+    </article>
+  </script>
+  <script type="text/html" id="no-search-result">
+    <div class="no-result">
+      <h2>No result found!</h2>
+    </div>
+  </script>
+  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
+
+  </body>
+</html>

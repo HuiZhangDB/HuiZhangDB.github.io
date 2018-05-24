@@ -241,6 +241,103 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/04/27/MERintro/">音乐情感识别简介</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 27, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <ul>
+<li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
+</li>
+<li><p>音乐情感识别的基础框架：  </p>
+<img src="/2017/04/27/MERintro/merc1-1.png" title="音乐情感识别概略图">
+</li>
+</ul>
+          <div class="read-more">
+            <a href="/2017/04/27/MERintro/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/04/27/openSMILE/">openSMILE</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 27, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
+<p>S2. 下载依赖工具库  </p>
+<ul>
+<li>autotools(automake, autoconf, libtool, and m4)  </li>
+<li>make</li>
+<li>GNU C and C++ compiler gcc and g++</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ brew install automake</div><div class="line">$ brew install autoconf</div><div class="line">$ brew install libtool</div><div class="line">$ brew install m4</div><div class="line">$ brew install gcc</div></pre></td></tr></table></figure>
+<p>S3. 解压并安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ tar-zxvf opensmile-X.X.X.tar.gz</div><div class="line">$ cd opensmile-X.X.X</div><div class="line">$ sh buildStandalone.sh</div></pre></td></tr></table></figure>
+<p>S4. 测试安装是否成功  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ SMILExtract -h</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/04/27/MERFeature/">Features in MER</a>
         
       </h1>
@@ -523,52 +620,6 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/26/Python/Socket/">Socket通信</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 26, 2016
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <a id="more"></a>
-<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png">
-<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png">
-<p>TCP客户端和服务器端通信例子： </p>
-<ul>
-<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
-<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
-</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
           <a class="post-link" href="/2016/12/26/Python/PythonWeb/">Python Web</a>
         
       </h1>
@@ -611,13 +662,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2016/12/06/Python/PythonIO/">PythonIO编程</a>
+          <a class="post-link" href="/2016/12/26/Python/Socket/">Socket通信</a>
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          Dec 6, 2016
+          Dec 26, 2016
         </span>
       </div>
     </header>
@@ -629,56 +680,18 @@
       
         
         
-          
-        
 
         
-          <p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
-          <div class="read-more">
-            <a href="/2016/12/06/Python/PythonIO/" class="read-more-link">Read more..</a>
-          </div>
-        
-      
-    </div>
+          <a id="more"></a>
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png">
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png">
+<p>TCP客户端和服务器端通信例子： </p>
+<ul>
+<li><a href="/2016/12/26/Python/Socket/tcp_client.py" title="客户端">客户端</a></li>
+<li><a href="/2016/12/26/Python/Socket/tcp_server.py" title="服务器端">服务器端</a>
+</li>
+</ul>
 
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/06/Python/PythonDebug/">Python错误、调试和测试</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 6, 2016
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-          <div class="read-more">
-            <a href="/2016/12/06/Python/PythonDebug/" class="read-more-link">Read more..</a>
-          </div>
         
       
     </div>

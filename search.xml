@@ -3,9 +3,99 @@
   
     
     <entry>
+      <title><![CDATA[用 GAN 生成音乐片段]]></title>
+      <url>/2018/05/24/mg-gan/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍了两种基于对抗生成网络的音乐生成模型。鉴于近年来 GAN 的大火，其在音乐上的应用也开始逐渐兴起。</p>
+<a id="more"></a>
+<h2 id="C-RNN-GAN"><a href="#C-RNN-GAN" class="headerlink" title="C-RNN-GAN"></a>C-RNN-GAN</h2><p><code>C-RNN-GAN</code>是论文 <em>Continuous recurrent neural networks with adversarial training</em> 中提出的模型。实验室师兄 @<a href="http://fujiaqi.com/" target="_blank" rel="external">Kue</a> 在知乎上有简要的介绍：</p>
+<blockquote>
+<p>GAN在音乐生成的首次应用，也是GAN处理连续序列数据的针对性研究。针对以往音乐计算研究中使用符号特征（Symbolic Representation）的不足（计算机更容易理解数字表达），以及GAN的优势，提出了一种LSTM/RNN的GAN网络。训练预测数据为作者下载的古典MIDI音乐，使用Tone length, Frequency, Intensity 和Timing作为特征。生成网络结构为2层单向LSTM，对抗网络为2层双向LSTM，每次生成指定长度×88音阶数据。生成音乐的评价使用韵律学的方式，根据Polyphony（两个音同时弹奏的频率）、Scale consistency（标准音程的比例）、Repetitions（音符组合重复的频率）、Tone span（整段音乐的最低最高音阶差）四个方面计算。</p>
+</blockquote>
+<div align="center"><br><img src="/2018/05/24/mg-gan/c-rnn-gan.jpg"><br></div>
+
+<p>但这个模型存在一些缺点：</p>
+<ol>
+<li>单音轨的音乐生成效果比较稳定，多音轨的结果听起来很奇怪；</li>
+<li>只能生成钢琴曲。</li>
+</ol>
+<ul>
+<li>模型训练 270 次后的生成效果：</li>
+</ul>
+
+        <div id="aplayer-uLSFGosP" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-uLSFGosP"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "c-rnn-gan-out-270",
+              author: "c-rnn-gan",
+              url: "c-rnn-gan-out-270.wav",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<h2 id="MuseGAN"><a href="#MuseGAN" class="headerlink" title="MuseGAN"></a>MuseGAN</h2><p>个人觉得这是音乐生成的<em>state of art</em>。<code>musegan</code>是业界大牛 Yi Hsuan 的 MACLab 最新研究成果，发布在今年的人工智能顶会 AAAI 上：</p>
+<p>Hao-Wen Dong*, Wen-Yi Hsiao*, Li-Chia Yang and Yi-Hsuan Yang,<br>“<strong>MuseGAN: Multi-track Sequential Generative Adversarial Networks for<br>Symbolic Music Generation and Accompaniment</strong>,”<br>in <em>AAAI Conference on Artificial Intelligence</em> (AAAI), 2018.</p>
+<p>最大的优势是：<strong>可以生成多乐器的复调音乐</strong>。复杂的生成网络：</p>
+<img src="/2018/05/24/mg-gan/musegan.png">
+<p>包含了音乐的全自动生成模块和伴奏生成模块。使用多个生成器解决互相依赖的多音轨旋律生成；使用 CNN 来理解音乐织体(Music Texture)。把音乐自动生成的模型简化抽象一下：</p>
+<img src="/2018/05/24/mg-gan/multitrack3.png">
+<p>两组生成器，一组于协调音轨间的和弦关系；一组用于组织音轨内部的旋律生成。</p>
+<p>模型训练50006次后的生成效果：</p>
+
+        <div id="aplayer-eXWGkRtv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-eXWGkRtv"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "musegan-out-50006",
+              author: "musegan",
+              url: "musegan-out-50006.wav",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p>非常有启发的是，这个研究分析了音乐的时间结构 (temporal structure)：</p>
+<img src="/2018/05/24/mg-gan/temporal_structure.png">
+<p>基于这个时间结构，我们可以把 MIDI 转为钢琴卷帘矩阵，然后看做一个大小固定的黑白图片：</p>
+<div align="center"><br><img src="/2018/05/24/mg-gan/pianoroll.png"><br></div>
+
+<p>这样就可以使用图片的方式来设计和训练神经网络了（其生成器用 CNN 来实现）。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> music </tag>
+            
+            <tag> midi </tag>
+            
+            <tag> DL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[PyTorch 导入数据集]]></title>
       <url>/2018/04/19/PyTorch/PyTorch-2/</url>
-      <content type="html"><![CDATA[<p>对于任何机器学习模型的训练过程，导入数据都是最基础的一步。在 PyTorch 中，可以使用一些 Python 的标准库将数据导入为 numpy array，然后再转换为 <code>torch.*Tensor</code>。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>对于任何机器学习模型的训练过程，导入数据都是最基础的一步。在 PyTorch 中，可以使用一些 Python 的标准库将数据导入为 numpy array，然后再转换为 <code>torch.*Tensor</code>。</p>
 <blockquote>
 <ul>
 <li>For images, packages such as Pillow, OpenCV are useful</li>
@@ -50,9 +140,78 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Tensorflow 基本概念和用法]]></title>
+      <url>/2018/04/18/Tensorflow/TL-1/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Tensorflow 是谷歌推出的深度学习框架。</p>
+<a id="more"></a>
+<h2 id="基础数据结构"><a href="#基础数据结构" class="headerlink" title="基础数据结构"></a>基础数据结构</h2><p>PyTorch 的关键数据结构是张量 (Tensors)，即多维数组。其功能与 NumPy 的 ndarray 对象类似，不同的是它可以在GPU上使用。</p>
+<ul>
+<li>张量的基本操作可见于<a href="http://pytorch.org/docs/stable/torch.html" target="_blank" rel="external">这里</a></li>
+<li>张量和Numpy的互相转换：  </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># from tensor to ndarray</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.ones(<span class="number">3</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = a.numpy()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.add_(<span class="number">1</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(b)</div><div class="line">[<span class="number">2.</span> <span class="number">2.</span> <span class="number">2.</span>]</div><div class="line"></div><div class="line"><span class="comment"># from ndarray to tensor</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = numpy.ones(<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.from_numpy(a)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numpy.add(a, <span class="number">1</span>, out=a)</div><div class="line">array([<span class="number">2.</span>, <span class="number">2.</span>, <span class="number">2.</span>, <span class="number">2.</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(b)</div><div class="line"> <span class="number">2</span></div><div class="line"> <span class="number">2</span></div><div class="line"> <span class="number">2</span></div><div class="line"> <span class="number">2</span></div><div class="line">[torch.DoubleTensor of size <span class="number">4</span>]</div></pre></td></tr></table></figure>
+<blockquote>
+<p>值得注意的是，Torch Tensor 和 NumPy array 其实是共享内存位置的，因此改变一个另一个也会因此改变。</p>
+</blockquote>
+<ul>
+<li>张量使用GPU加速计算</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Tensors can be moved onto GPU using the .cuda method.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = torch.rand(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = torch.rand(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> torch.cuda.is_available():</div><div class="line"><span class="meta">... </span>    x = x.cuda()</div><div class="line"><span class="meta">... </span>    y = y.cuda()</div><div class="line"><span class="meta">... </span>    print(x+y)</div><div class="line"><span class="meta">... </span></div><div class="line"> <span class="number">0.8296</span>  <span class="number">1.5523</span>  <span class="number">0.8696</span>  <span class="number">1.4905</span></div><div class="line"> <span class="number">0.7956</span>  <span class="number">0.5263</span>  <span class="number">0.6687</span>  <span class="number">1.7677</span></div><div class="line"> <span class="number">1.0483</span>  <span class="number">0.7037</span>  <span class="number">0.8505</span>  <span class="number">1.5983</span></div><div class="line">[torch.cuda.FloatTensor of size <span class="number">3</span>x4 (GPU <span class="number">0</span>)]</div></pre></td></tr></table></figure>
+<h2 id="自动微分库"><a href="#自动微分库" class="headerlink" title="自动微分库"></a>自动微分库</h2><p>自动微分库<code>autograd</code>是 PyTorch 用于所有神经网络计算的关键库，它提供了所有关于张量的微分操作。Autograd 是基于动态框架的，这意味着反向传播根据代码运行状态而改变，每次迭代过程中都可能不同。</p>
+<p><code>autograd.Variable</code> 是这个包中最重要的类。它：</p>
+<ul>
+<li>是张量的简单封装</li>
+<li>记录了所有历史操作</li>
+<li>将梯度保存在 .grad 中</li>
+<li>可以帮助建立计算图</li>
+</ul>
+<p><img src="http://pytorch.org/tutorials/_images/Variable.png"></p>
+<p>每次结束计算后，使用<code>.backward()</code>可以自动计算出所有梯度值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = torch.randn(<span class="number">3</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = Variable(x, requires_grad=<span class="keyword">True</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = x * <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> y.data.norm() &lt; <span class="number">1000</span>:</div><div class="line"><span class="meta">... </span>    y = y * <span class="number">2</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(y)</div><div class="line">Variable containing:</div><div class="line"> <span class="number">908.8007</span></div><div class="line"> <span class="number">549.7198</span></div><div class="line"> <span class="number">507.9812</span></div><div class="line">[torch.FloatTensor of size <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="comment"># through .data we can access raw tensor</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(y.data)</div><div class="line"> <span class="number">908.8007</span></div><div class="line"> <span class="number">549.7198</span></div><div class="line"> <span class="number">507.9812</span></div><div class="line">[torch.FloatTensor of size <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="comment"># .grad_fn references a Function that has created the Variable </span></div><div class="line"><span class="comment"># (except for Variables created by the user - their grad_fn is None).</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(y.grad_fn)</div><div class="line">&lt;MulBackward0 object at <span class="number">0x7ffa1ea95470</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(x.grad_fn)</div><div class="line"><span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="comment"># we can call .backward() on a Variable to compute the derivatives. </span></div><div class="line"><span class="comment"># If Variable is a scalar (i.e. it holds a one element data), you don’t need to specify any arguments to backward(), however if it has more elements, you need to specify a gradient argument that is a tensor of matching shape.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>gradients = torch.FloatTensor([<span class="number">0.1</span>, <span class="number">1.0</span>, <span class="number">0.0001</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y.backward(gradients)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(x.grad)</div><div class="line">Variable containing:</div><div class="line">  <span class="number">51.2000</span></div><div class="line"> <span class="number">512.0000</span></div><div class="line">   <span class="number">0.0512</span></div><div class="line">[torch.FloatTensor of size <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p><code>torch.nn</code>包可以用来构建神经网络。一个<code>nn.Module</code>包含了<code>layers</code>和用于返回<code>output</code>的<code>forward(input)</code> 方法。</p>
+<p>例如这个简单的前馈神经网络：</p>
+<p><img src="http://pytorch.org/tutorials/_images/mnist.png"></p>
+<p>一般典型的神经网络训练步骤如下：</p>
+<ol>
+<li>定义带学习参数 (learnable parameters or weights) 的神经网络； </li>
+<li>输入数据集进行迭代计算；</li>
+<li>使用神经网络处理输入；</li>
+<li>计算损失；</li>
+<li>将梯度返回到网络的参数中；</li>
+<li>更新参数。</li>
+</ol>
+<h3 id="定义神经网络"><a href="#定义神经网络" class="headerlink" title="定义神经网络"></a>定义神经网络</h3><p>定义一个神经网络只需要定义其：</p>
+<ul>
+<li>层结构 (Layers)  </li>
+<li>前馈函数 (Forward function)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">You just have to define the forward function, and the backward function </span></div><div class="line"><span class="string">(where gradients are computed) is automatically defined for you using autograd. </span></div><div class="line"><span class="string">You can use any of the Tensor operations in the forward function.</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> torch</div><div class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</div><div class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</div><div class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span><span class="params">(nn.Module)</span>:</span></div><div class="line">	<span class="comment"># Define the basic layer structure </span></div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super(Net, self).__init__()</div><div class="line">        <span class="comment"># 1 input image channel, 6 output channels, 5x5 square convolution</span></div><div class="line">        <span class="comment"># kernel</span></div><div class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">6</span>, <span class="number">5</span>)</div><div class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>)</div><div class="line">        <span class="comment"># an affine operation: y = Wx + b</span></div><div class="line">        self.fc1 = nn.Linear(<span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>, <span class="number">120</span>)</div><div class="line">        self.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</div><div class="line">        self.fc3 = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</div><div class="line">	</div><div class="line">	<span class="comment"># Define the forward function and automaticly generate backward function</span></div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># Max pooling over a (2, 2) window</span></div><div class="line">        x = F.max_pool2d(F.relu(self.conv1(x)), (<span class="number">2</span>, <span class="number">2</span>))</div><div class="line">        <span class="comment"># If the size is a square you can only specify a single number</span></div><div class="line">        x = F.max_pool2d(F.relu(self.conv2(x)), <span class="number">2</span>)</div><div class="line">        x = x.view(<span class="number">-1</span>, self.num_flat_features(x))</div><div class="line">        x = F.relu(self.fc1(x))</div><div class="line">        x = F.relu(self.fc2(x))</div><div class="line">        x = self.fc3(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">num_flat_features</span><span class="params">(self, x)</span>:</span></div><div class="line">        size = x.size()[<span class="number">1</span>:]  <span class="comment"># all dimensions except the batch dimension</span></div><div class="line">        num_features = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> size:</div><div class="line">            num_features *= s</div><div class="line">        <span class="keyword">return</span> num_features</div><div class="line"></div><div class="line"></div><div class="line">net = Net()</div><div class="line">print(net)</div><div class="line"></div><div class="line"><span class="comment"># The learnable parameters of a model are returned by net.parameters()</span></div><div class="line">params = list(net.parameters())</div><div class="line">print(len(params))</div><div class="line">print(params[<span class="number">0</span>].size())  <span class="comment"># conv1's .weight</span></div><div class="line"></div><div class="line"><span class="comment"># ---------------- Output Result: ----------------------</span></div><div class="line">Net(</div><div class="line">  (conv1): Conv2d(<span class="number">1</span>, <span class="number">6</span>, kernel_size=(<span class="number">5</span>, <span class="number">5</span>), stride=(<span class="number">1</span>, <span class="number">1</span>))</div><div class="line">  (conv2): Conv2d(<span class="number">6</span>, <span class="number">16</span>, kernel_size=(<span class="number">5</span>, <span class="number">5</span>), stride=(<span class="number">1</span>, <span class="number">1</span>))</div><div class="line">  (fc1): Linear(in_features=<span class="number">400</span>, out_features=<span class="number">120</span>, bias=<span class="keyword">True</span>)</div><div class="line">  (fc2): Linear(in_features=<span class="number">120</span>, out_features=<span class="number">84</span>, bias=<span class="keyword">True</span>)</div><div class="line">  (fc3): Linear(in_features=<span class="number">84</span>, out_features=<span class="number">10</span>, bias=<span class="keyword">True</span>)</div><div class="line">)</div><div class="line"><span class="number">10</span></div><div class="line">torch.Size([<span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">5</span>])</div></pre></td></tr></table></figure>
+<h3 id="损失函数、反向传播与参数（权重）更新"><a href="#损失函数、反向传播与参数（权重）更新" class="headerlink" title="损失函数、反向传播与参数（权重）更新"></a>损失函数、反向传播与参数（权重）更新</h3><p><code>nn</code>中已经定义了许多<a href="http://pytorch.org/docs/stable/nn.html" target="_blank" rel="external">损失函数</a>，其中一个简单的是<code>nn.MSELoss</code>，用于计算均方误差。</p>
+<p>最简单的权重更新规则是随机梯度下降（Stochastic Gradient Descent, SGD）：<br><code>weight = weight - learning_rate * gradient</code></p>
+<p>同时，<code>torch.optim</code>为更新权重提供了优化算法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</div><div class="line"></div><div class="line">input = Variable(torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">32</span>, <span class="number">32</span>)) <span class="comment"># a dummy input, for example</span></div><div class="line">target = Variable(torch.arange(<span class="number">1</span>, <span class="number">11</span>))  <span class="comment"># a dummy target, for example</span></div><div class="line">target = target.view(<span class="number">1</span>, <span class="number">-1</span>)  <span class="comment"># make it the same shape as output</span></div><div class="line"></div><div class="line"><span class="comment"># define the loss function</span></div><div class="line">criterion = nn.MSELoss()</div><div class="line"></div><div class="line"><span class="comment"># create your optimizer</span></div><div class="line">optimizer = optim.SGD(net.parameters(), lr=<span class="number">0.01</span>)</div><div class="line"></div><div class="line"><span class="comment"># do the training loop:</span></div><div class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">10</span>):</div><div class="line">	optimizer.zero_grad() <span class="comment"># Zero-out previous gradients</span></div><div class="line">	output = net(input)</div><div class="line">	loss = criterion(output, target)</div><div class="line">	loss.backward() <span class="comment"># Compute new gradients</span></div><div class="line">	optimizer.step() <span class="comment"># Apply these gradients and do the update</span></div><div class="line">	</div><div class="line"><span class="comment"># Updated parameters are available at net.parameters()</span></div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://mp.weixin.qq.com/s/FQxSYjyR1U3TIinSShnOfg" target="_blank" rel="external">从头开始了解PyTorch的简单实现</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tensorflow </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> DL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[PyTorch 基本概念和用法]]></title>
       <url>/2018/04/18/PyTorch/PyTorch-1/</url>
-      <content type="html"><![CDATA[<p>PyTorch 是基于 Python 的科学计算包，<a href="http://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#sphx-glr-beginner-blitz-tensor-tutorial-py" target="_blank" rel="external">官网</a>给它自己的定义是：</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>PyTorch 是基于 Python 的科学计算包，<a href="http://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#sphx-glr-beginner-blitz-tensor-tutorial-py" target="_blank" rel="external">官网</a>给它自己的定义是：</p>
 <blockquote>
 <ol>
 <li>A replacement for NumPy to use the power of GPUs</li>
@@ -128,9 +287,9 @@
     <entry>
       <title><![CDATA[记录一些常用的Linux命令]]></title>
       <url>/2018/04/12/linux-cmd/</url>
-      <content type="html"><![CDATA[<p>本文用于记录一些常用的Linux命令以备忘。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文用于记录一些常用的Linux命令以备忘。</p>
 <a id="more"></a>
-<h2 id="SSH服务相关"><a href="#SSH服务相关" class="headerlink" title="SSH服务相关"></a>SSH服务相关</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">who <span class="comment"># 查看当前登录的用户</span></div><div class="line">who /var/<span class="built_in">log</span>/wtmp <span class="comment"># 查看自从wtmp文件创建以来的每一次登陆情况 </span></div><div class="line"><span class="variable">$HOME</span>/.bash_history <span class="comment"># 查看每个用户的历史命令</span></div><div class="line"><span class="built_in">history</span> <span class="comment">#  当前用户的历史命令</span></div></pre></td></tr></table></figure>
+<h2 id="SSH服务相关"><a href="#SSH服务相关" class="headerlink" title="SSH服务相关"></a>SSH服务相关</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">who <span class="comment"># 查看当前登录的用户</span></div><div class="line">who /var/<span class="built_in">log</span>/wtmp <span class="comment"># 查看自从wtmp文件创建以来的每一次登陆情况 </span></div><div class="line"><span class="variable">$HOME</span>/.bash_history <span class="comment"># 查看每个用户的历史命令</span></div><div class="line"><span class="built_in">history</span> <span class="comment">#  当前用户的历史命令</span></div><div class="line">top <span class="comment"># 查看资源管理器</span></div><div class="line"></div><div class="line"><span class="comment"># 本地终端关闭后的程序运行</span></div><div class="line"><span class="comment"># 创建新的窗口</span></div><div class="line">screen -S &lt;sessionName&gt;</div><div class="line"><span class="comment"># 分离当前会话</span></div><div class="line">Ctrl<span class="_">-a</span> d</div><div class="line"><span class="comment"># 查看会话</span></div><div class="line">screen -ls</div><div class="line"><span class="comment"># 恢复会话</span></div><div class="line">screen -r &lt;sessionName&gt;</div></pre></td></tr></table></figure>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 系统环境变量文件</span></div><div class="line">/etc/profile —— 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置；</div><div class="line">/etc/environment —— 在登录时操作系统使用的第二个文件,系统在读取你自己的profile前,设置环境文件的环境变量；</div><div class="line">/etc/bashrc —— 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取；</div><div class="line"><span class="comment"># 用户环境变量文件</span></div><div class="line">~/.profile —— 每个用户都可使用该文件输入专用于自己使用的shell信息，当用户登录时，该文件仅仅执行一次！默认情况下,它设置一些环境变量,执行用户的.bashrc文件；</div><div class="line">~/.bashrc —— 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取；</div></pre></td></tr></table></figure>
 <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>Linux高层使用<code>ufw</code>的防火墙为添加或删除简单规则提供了简易的方法，默认情况下，ufw处于禁用状态。几条<code>ufw</code>的常用命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看防火墙状态</span></div><div class="line">sudo ufw status</div><div class="line"><span class="comment"># 开启防火墙，并在系统启动时自动开启。</span></div><div class="line">sudo ufw <span class="built_in">enable</span></div><div class="line"><span class="comment"># 关闭所有外部对本机的访问，但本机访问外部正常。</span></div><div class="line">sudo ufw default deny</div><div class="line"><span class="comment"># 关闭防火墙</span></div><div class="line">sudo ufw <span class="built_in">disable</span></div><div class="line"><span class="comment"># 开启/禁用</span></div><div class="line">sudo ufw allow|deny [service]</div></pre></td></tr></table></figure>
@@ -158,7 +317,7 @@
     <entry>
       <title><![CDATA[安装PyTorch]]></title>
       <url>/2018/04/12/PyTorch/PyTorch-0/</url>
-      <content type="html"><![CDATA[<p>本文记录一下给服务器安装PyTorch的过程。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文记录一下给服务器安装PyTorch的过程。</p>
 <a id="more"></a>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装包管理器Anaconda"><a href="#安装包管理器Anaconda" class="headerlink" title="安装包管理器Anaconda"></a>安装包管理器Anaconda</h3><ol>
 <li>下载<a href="https://docs.anaconda.com/anaconda/install/linux" target="_blank" rel="external">Anaconda for python3.6</a></li>
@@ -233,7 +392,7 @@
     <entry>
       <title><![CDATA[给实验室配置共有资源]]></title>
       <url>/2018/04/10/happilab-server/</url>
-      <content type="html"><![CDATA[<p>最近导师新购置了一台工作站，为了让大家可以共享一些文件和计算资源，我在这台工作站上配置了SSH和FTP服务。本文用以记录我的配置过程。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近导师新购置了一台工作站，为了让大家可以共享一些文件和计算资源，我在这台工作站上配置了SSH和FTP服务。本文用以记录我的配置过程。</p>
 <a id="more"></a> 
 <h2 id="设置SSH服务器远程登录管理"><a href="#设置SSH服务器远程登录管理" class="headerlink" title="设置SSH服务器远程登录管理"></a>设置SSH服务器远程登录管理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 开启服务器上的SSH服务</span></div><div class="line"><span class="comment"># 1-1. 更新软件列表</span></div><div class="line">sudo apt-get update</div><div class="line"><span class="comment"># 1-2. 更新本地软件</span></div><div class="line">sudo apt-get upgrade</div><div class="line"><span class="comment"># 1-3. 安装ssh服务</span></div><div class="line">sudo apt-get install openssh-server</div><div class="line"><span class="comment"># 1-4. 开启ssh服务</span></div><div class="line">sudo /etc/init.d/ssh start</div><div class="line"></div><div class="line"><span class="comment"># 2. 添加公钥认证</span></div><div class="line"><span class="comment"># 在本地机器上生成公私钥对</span></div><div class="line">ssh-keygen</div><div class="line"><span class="comment"># 复制公钥到远程服务器上</span></div><div class="line">ssh-copy-id [-i your_id_rsa.pub] &lt;username&gt;@&lt;server IP&gt;</div><div class="line"><span class="comment"># 之后可以直接使用ssh [-i your_id_rsa] &lt;username&gt;@&lt;server IP&gt;登录</span></div></pre></td></tr></table></figure>
 <h2 id="配置FTP文件共享服务"><a href="#配置FTP文件共享服务" class="headerlink" title="配置FTP文件共享服务"></a>配置FTP文件共享服务</h2><p>使用<code>vsftpd</code>来开启FTP服务器：</p>
@@ -266,7 +425,7 @@
     <entry>
       <title><![CDATA[2018-2019 相关会议投稿时间]]></title>
       <url>/2018/03/30/conference/</url>
-      <content type="html"><![CDATA[<p>“计算机科学的publication最大特点在于：极度重视会议，而期刊则通常只用来做re-publication”。本文整理了2018年下半年到2019年上半年我们实验室感兴趣领域的一些可投会议及时间节点。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>“计算机科学的publication最大特点在于：极度重视会议，而期刊则通常只用来做re-publication”。本文整理了2018年下半年到2019年上半年我们实验室感兴趣领域的一些可投会议及时间节点。</p>
 <a id="more"></a>
 <blockquote>
 <p>大部分期刊文章都是会议论文的扩展版，首发就在期刊上的相对较少。也正因为如此，计算机期刊的影响因子都低到惊人的程度，顶级刊物往往也只有1到2左右（被引的通常都是会议版论文，而不是很久以后才出版的期刊版）。因此，要讨论计算机科学的publication，首先必须强调的一点是totally forget about IF (IF指影响因子)。</p>
@@ -422,7 +581,7 @@
     <entry>
       <title><![CDATA[Django 网站开发初始化与自动部署流程备忘]]></title>
       <url>/2018/03/24/django_memo/</url>
-      <content type="html"><![CDATA[<p>本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。</p>
 <blockquote>
 <p>Python + Django + Nginx + Gunicorn</p>
 </blockquote>
@@ -478,7 +637,7 @@
     <entry>
       <title><![CDATA[《TDD - Python Web》学习笔记]]></title>
       <url>/2018/03/23/web-tdd/</url>
-      <content type="html"><![CDATA[<p><a href="http://www.obeythetestinggoat.com/" target="_blank" rel="external">Test-Driven-Development for Python Web 开源学习链接</a>中有本书的最新版内容以及相关讨论，非常值得阅读学习。<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="http://www.obeythetestinggoat.com/" target="_blank" rel="external">Test-Driven-Development for Python Web 开源学习链接</a>中有本书的最新版内容以及相关讨论，非常值得阅读学习。<br><a id="more"></a></p>
 <h2 id="TDD中的重要概念"><a href="#TDD中的重要概念" class="headerlink" title="TDD中的重要概念"></a>TDD中的重要概念</h2><h3 id="自动化测试金字塔"><a href="#自动化测试金字塔" class="headerlink" title="自动化测试金字塔"></a>自动化测试金字塔</h3><p>单元测试-&gt;组件测试(-&gt;集成测试-&gt;系统测试-&gt;人工探索式测试)。单元测试和验收测试首先是文档，然后才是测试。它们当然可以验证系统是否达到了具体指标，但它们更为重要的目的是如实描述系统的设计、结构和行为。</p>
 <ul>
 <li>单元测试：测试大多数异常路径。可以说是程序员写给程序员的<code>正式设计文档</code>，描述低层结构以及代码行为；</li>
@@ -589,7 +748,7 @@
     <entry>
       <title><![CDATA[使用Magenta生成音乐]]></title>
       <url>/2018/03/20/magenta-intro/</url>
-      <content type="html"><![CDATA[<p>最近开始入门计算机自动作曲领域（<code>算法作曲(algorithmic composition)</code>或称<code>自动作曲(automated composition)</code>）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间序列）服从某种概率分布，求解这个分布的近似解（或者加上和声，求解它们的联合概率分布模型）。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近开始入门计算机自动作曲领域（<code>算法作曲(algorithmic composition)</code>或称<code>自动作曲(automated composition)</code>）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间序列）服从某种概率分布，求解这个分布的近似解（或者加上和声，求解它们的联合概率分布模型）。</p>
 <p><a href="https://github.com/tensorflow/magenta/blob/master/README.md#using-magenta" target="_blank" rel="external">Magenta</a> 是Google Brain团队使用深度学习研究自动作曲的开源项目，本文将简单描述使用Magenta生成MIDI音乐的过程。</p>
 <a id="more"></a>
 <h2 id="安装和配置支持Python3的Magenta环境"><a href="#安装和配置支持Python3的Magenta环境" class="headerlink" title="安装和配置支持Python3的Magenta环境"></a>安装和配置支持Python3的Magenta环境</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装[Miniconda for python3](https://conda.io/miniconda.html)</span></div><div class="line">$ sh Miniconda3-latest-MacOSX-x86_64.sh</div><div class="line"></div><div class="line"><span class="comment"># 创建Magenta的conda环境</span></div><div class="line">$ conda create -n magenta python=3.6 jupyter</div><div class="line"></div><div class="line"><span class="comment"># 激活环境</span></div><div class="line">$ <span class="built_in">source</span> activate magenta</div><div class="line"></div><div class="line"><span class="comment"># 安装pip包</span></div><div class="line">pip3 install magenta</div></pre></td></tr></table></figure>
@@ -625,7 +784,7 @@
     <entry>
       <title><![CDATA[基本乐理知识]]></title>
       <url>/2018/03/12/basic-music/</url>
-      <content type="html"><![CDATA[<h2 id="音的四种性质"><a href="#音的四种性质" class="headerlink" title="音的四种性质"></a>音的四种性质</h2><p>音乐是由音构成的，而音作为一种物理现象，是由于物体的振动而产生的。物体振动产生音波，音波通过空气作用于我们的听觉器官并传送至大脑，我们就产生音的感觉。在自然界中存在着各种各样许许多多种声音，这些声音我们有的能听到，有的则听不到。我们人耳所能听到的声音，大致在每秒钟振动11—20000次的范围之内，而在音乐中所使用的音，一般只限于每秒振动27—4100次这个范围之内，而且大都是易于分辨的有限的一些音。根据音的物理属性，音有四种性质，即：</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="音的四种性质"><a href="#音的四种性质" class="headerlink" title="音的四种性质"></a>音的四种性质</h2><p>音乐是由音构成的，而音作为一种物理现象，是由于物体的振动而产生的。物体振动产生音波，音波通过空气作用于我们的听觉器官并传送至大脑，我们就产生音的感觉。在自然界中存在着各种各样许许多多种声音，这些声音我们有的能听到，有的则听不到。我们人耳所能听到的声音，大致在每秒钟振动11—20000次的范围之内，而在音乐中所使用的音，一般只限于每秒振动27—4100次这个范围之内，而且大都是易于分辨的有限的一些音。根据音的物理属性，音有四种性质，即：</p>
 <ul>
 <li><code>音高(Pitch)</code></li>
 <li><code>时值(Note value)</code></li>
@@ -717,11 +876,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/vishnubob/python-midi" target="_blank" rel="external">python-midi</a></td>
-<td>读、写</td>
+<td><a href="http://craffel.github.io/pretty-midi/" target="_blank" rel="external">pretty_midi</a></td>
+<td>超好用的各种实用功能</td>
 </tr>
 <tr>
 <td><a href="https://github.com/olemb/mido/" target="_blank" rel="external">mido</a></td>
+<td>读、写</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vishnubob/python-midi" target="_blank" rel="external">python-midi</a></td>
 <td>读、写</td>
 </tr>
 <tr>
@@ -776,7 +939,7 @@
     <entry>
       <title><![CDATA[Weka Simple Introduction]]></title>
       <url>/2017/12/23/Weka/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p><a href="https://www.cs.waikato.ac.nz/~ml/weka/" target="_blank" rel="external">Weka</a>是一个轻量级的开源数据挖掘工具（used in GUI or called from code），在简单使用一些机器学习算法或者进行一些实验性的探索时很好用。<br><a id="more"></a></p>
@@ -819,7 +982,7 @@
     <entry>
       <title><![CDATA[Node更新到8.0+导致的一些问题]]></title>
       <url>/2017/10/31/updatenode/</url>
-      <content type="html"><![CDATA[<p>最近更新了<code>Node.js</code>，结果在使用<code>hexo new post</code>的时候开始报错：<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近更新了<code>Node.js</code>，结果在使用<code>hexo new post</code>的时候开始报错：<br><a id="more"></a></p>
 <h3 id="报错一-dyld"><a href="#报错一-dyld" class="headerlink" title="报错一 dyld"></a>报错一 dyld</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.58.dylib</div><div class="line">  Referenced from: /usr/local/bin/node</div><div class="line">  Reason: image not found</div><div class="line">Abort trap: 6</div></pre></td></tr></table></figure>
 <p>重新安装<code>node</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew reinstall node --without-icu4c</div></pre></td></tr></table></figure>
@@ -852,7 +1015,7 @@
     <entry>
       <title><![CDATA[音乐情感数据集]]></title>
       <url>/2017/10/30/emodatasets/</url>
-      <content type="html"><![CDATA[<p>本文收集了一些带情感标签的音乐数据库：<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文收集了一些带情感标签的音乐数据库：<br><a id="more"></a></p>
 <table>
 <thead>
 <tr>
@@ -936,9 +1099,9 @@
         
         <tags>
             
-            <tag> MIR </tag>
-            
             <tag> dataset </tag>
+            
+            <tag> MIR </tag>
             
         </tags>
         
@@ -947,7 +1110,7 @@
     <entry>
       <title><![CDATA[FFmpeg实用操作]]></title>
       <url>/2017/10/24/ffmpeg/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>最近的实验中有许多音频处理的工作，使用<code>FFmpeg</code>较为频繁，本文用于记录实验中使用过的操作（<a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax" target="_blank" rel="external">官方文档</a>）以及其中遇到的一些问题（感谢<a href="http://davidaq.com/tutorial/2014/11/20/ffmpeg-commands.html" target="_blank" rel="external">DavidAQ</a>的答疑解惑）。<br><a id="more"></a></p>
@@ -977,7 +1140,7 @@
     <entry>
       <title><![CDATA[Python GUI]]></title>
       <url>/2017/09/27/pygui/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的<code>Python</code>来写。<br>在<code>Python图形界面编程</code>中常用的工具包有：</p>
@@ -1037,7 +1200,7 @@
     <entry>
       <title><![CDATA[推荐系统(Recommender Systems)]]></title>
       <url>/2017/09/11/recsys/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>本文使用电影评分推荐的例子来解释两种推荐系统的工作原理，电影推荐的问题可以描述为：<br>已知一些用户对一些电影的评分，预测用户对未评价电影的评分。</p>
@@ -1147,7 +1310,7 @@
     <entry>
       <title><![CDATA[异常检测(Anomaly Detection)]]></title>
       <url>/2017/09/11/anodet/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="使用高斯分布探测异常值"><a href="#使用高斯分布探测异常值" class="headerlink" title="使用高斯分布探测异常值"></a>使用高斯分布探测异常值</h2><p>假设异常特征之间相互独立且\(x_i \sim N(\mu_i,\sigma_i^2)\)，则\(p(x)=\prod{p(x_j;\mu_j,\sigma_j^2)}\)</p>
@@ -1229,7 +1392,7 @@
     <entry>
       <title><![CDATA[K-means和PCA]]></title>
       <url>/2017/07/04/ng_cluster/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h2><p><code>K-means</code>是一个常用且有效的聚类算法。它的算法可以描述为：</p>
@@ -1284,7 +1447,7 @@
     <entry>
       <title><![CDATA[支持向量机(SVM)]]></title>
       <url>/2017/06/26/svm/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="支持向量机的假设函数和损失函数"><a href="#支持向量机的假设函数和损失函数" class="headerlink" title="支持向量机的假设函数和损失函数"></a>支持向量机的假设函数和损失函数</h2><p>回忆一下逻辑回归的损失函数：</p>
@@ -1352,7 +1515,7 @@
     <entry>
       <title><![CDATA[提升学习算法性能]]></title>
       <url>/2017/06/20/betterMLA/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>在解决一个机器学习问题时，如果算法效果不理想，要怎么办呢？直觉上，我们可以有一些解决方法：</p>
@@ -1472,7 +1635,7 @@
     <entry>
       <title><![CDATA[神经网络(Neural Networks)]]></title>
       <url>/2017/06/15/neuralnetwork/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="Why-Neural-Networks"><a href="#Why-Neural-Networks" class="headerlink" title="Why Neural Networks?"></a>Why Neural Networks?</h2><p>当遇到<code>特征数量很大(n is large)</code>的<code>复杂非线性问题</code>时，简单的逻辑回归（加入二次项或三次项）不再适用，因为会导致太多的特征量参与计算（不仅仅是\(x_n, x_n^2,x_n^3\)，还有\(x_i{x_j},x_i^2{x_j}\)等二次项和三次项）—— 带来巨大的计算代价和过拟合问题。</p>
@@ -1542,7 +1705,7 @@
     <entry>
       <title><![CDATA[逻辑回归(Logistic Regression)]]></title>
       <url>/2017/06/03/logisticreg/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <h2 id="分类表达式"><a href="#分类表达式" class="headerlink" title="分类表达式"></a>分类表达式</h2><h3 id="分类和回归"><a href="#分类和回归" class="headerlink" title="分类和回归"></a>分类和回归</h3><ul>
@@ -1626,7 +1789,7 @@
     <entry>
       <title><![CDATA[多变量线性回归]]></title>
       <url>/2017/06/03/multilinear/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -1700,7 +1863,7 @@
     <entry>
       <title><![CDATA[交叉数据集和交叉文化下的音乐情感识别]]></title>
       <url>/2017/05/31/crossregression/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>本文是作者在阅读<em>Cross-dataset and Cross-cultural Music Mood Prediction: A Case on Western and Chinese Pop Songs</em>这篇论文后的阅读笔记和总结感想。</p>
@@ -1876,7 +2039,7 @@
     <entry>
       <title><![CDATA[离散傅里叶变换(DFT)]]></title>
       <url>/2017/05/25/dft/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>对于音频信号处理而言，<code>离散傅里叶变化(DFT)</code>是最最常用的函数工具。它将信号的时域采样变换为其<code>离散时间傅里叶变化(DTFT)</code>的频域采样（在\([0,2\pi]\)之间进行均匀采样）,最后得到数字信号在区间\([0,(k-1)f_s/N]\)内的离散频谱值。</p>
@@ -1920,7 +2083,7 @@
     <entry>
       <title><![CDATA[音频信号处理基础数学和工具]]></title>
       <url>/2017/05/18/ASPbasic/</url>
-      <content type="html"><![CDATA[<p>本文记录一下学习<code>音频信号处理(Audio Signal Processing)</code>过程中遇到的基础数学和实用工具。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文记录一下学习<code>音频信号处理(Audio Signal Processing)</code>过程中遇到的基础数学和实用工具。</p>
 <a id="more"></a>
 <h2 id="简单的数学基础"><a href="#简单的数学基础" class="headerlink" title="简单的数学基础"></a>简单的数学基础</h2><ul>
 <li>正弦函数(Sinusoidal function)</li>
@@ -1961,7 +2124,7 @@
     <entry>
       <title><![CDATA[《the Craft of Research》第一部分]]></title>
       <url>/2017/05/17/ResearchCraft/P1/</url>
-      <content type="html"><![CDATA[<p><a href="http://mypage.zju.edu.cn/en/zhangkejun" target="_blank" rel="external">导师</a>推荐的一本书<em>the Craft of Research</em>，今天终于开始拜读，希望能有一些对于研究工作的启发。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="http://mypage.zju.edu.cn/en/zhangkejun" target="_blank" rel="external">导师</a>推荐的一本书<em>the Craft of Research</em>，今天终于开始拜读，希望能有一些对于研究工作的启发。</p>
 <a id="more"></a>
 <h2 id="Thinking-in-print"><a href="#Thinking-in-print" class="headerlink" title="Thinking in print"></a>Thinking in print</h2><h3 id="什么是研究？"><a href="#什么是研究？" class="headerlink" title="什么是研究？"></a>什么是研究？</h3><p>研究是一个搜集资料，回答问题以解决难题的过程。</p>
 <h3 id="为什么要写下来？"><a href="#为什么要写下来？" class="headerlink" title="为什么要写下来？"></a>为什么要写下来？</h3><p>以书面形式来思考有助于记忆、了解和获得新的观点。<br><code>“只有从快速混乱的思维中将特定的想法分离出来，并以一种有组织、有条理的形式确定下来，才能知道自己真正能思考什么。”</code></p>
@@ -2003,7 +2166,7 @@
     <entry>
       <title><![CDATA[50首流行音乐的收集处理]]></title>
       <url>/2017/05/16/50M/</url>
-      <content type="html"><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>为后续的大规模音乐数据集建立工作试水，希望能在这个过程中发现之前没有注意到的问题，并提出相应解决方案。</p>
 <a id="more"></a>
 <h2 id="音乐收集和预处理"><a href="#音乐收集和预处理" class="headerlink" title="音乐收集和预处理"></a>音乐收集和预处理</h2><p>从<a href="https://y.qq.com/n/yqq/toplist/107.html" target="_blank" rel="external">英国UK榜第19周榜单</a>下载流行乐37首，分发给13位同学裁剪并打分。（每人3首左右，这里音乐不重复打分，但在正式实验中每首歌需要10个左右受试者打分）最后回收到：</p>
 <ul>
@@ -2049,7 +2212,7 @@
     <entry>
       <title><![CDATA[Music Information Retrieval]]></title>
       <url>/2017/05/09/mirlec/</url>
-      <content type="html"><![CDATA[<p>台湾国立清华大学开设了一门<code>Music Information Retrieval</code>课程来介绍一些音乐信息检索的基础技术，主讲教师是在MIR领域有名的大牛<code>Yi-Hsuan Yang</code>和<code>Li Su</code>。虽然没有视频公开课，但是在其<a href="https://twtmir.wordpress.com/" target="_blank" rel="external">课程网站</a>上公开了授课PPT，值得对这方面感兴趣的同学翻看一下。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>台湾国立清华大学开设了一门<code>Music Information Retrieval</code>课程来介绍一些音乐信息检索的基础技术，主讲教师是在MIR领域有名的大牛<code>Yi-Hsuan Yang</code>和<code>Li Su</code>。虽然没有视频公开课，但是在其<a href="https://twtmir.wordpress.com/" target="_blank" rel="external">课程网站</a>上公开了授课PPT，值得对这方面感兴趣的同学翻看一下。</p>
 <a id="more"></a>
 <h2 id="Music-Essences"><a href="#Music-Essences" class="headerlink" title="Music Essences"></a>Music Essences</h2><ul>
 <li>Pitch<br>Frequency</li>
@@ -2081,7 +2244,7 @@
     <entry>
       <title><![CDATA[在博客中插入数学公式]]></title>
       <url>/2017/05/02/tex/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>Markdown本身并不支持数学公式的书写，使用<a href="https://www.mathjax.org/" target="_blank" rel="external">MathJax</a>来给我的博客插入公式只需要两步：  </p>
@@ -2135,7 +2298,7 @@
     <entry>
       <title><![CDATA[2013 ComParE Feature Set]]></title>
       <url>/2017/05/02/IS13feature/</url>
-      <content type="html"><![CDATA[<p>This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains <code>6373</code> features. It consists of some <code>generic acoustic emotion descriptors</code> and their <code>statistical functionals</code>.</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>This blog will introduce a well-evolved feature set for automatic recognition of audio emotion, ie. 2013 ComParE Feature Set[1]. The ComParE feature set contains <code>6373</code> features. It consists of some <code>generic acoustic emotion descriptors</code> and their <code>statistical functionals</code>.</p>
 <a id="more"></a>
 <h2 id="65-Acoustic-low-level-descriptors-LLDs"><a href="#65-Acoustic-low-level-descriptors-LLDs" class="headerlink" title="65 Acoustic low-level descriptors(LLDs)"></a>65 Acoustic low-level descriptors(LLDs)</h2><p>The low-level descriptors cover a broad set of descriptors from the fields of <code>speech processing</code>, <code>Music Information Retrieval</code>, and <code>general sound analysis</code>. The set includes <code>energy</code>, <code>spectral</code>, and <code>voicing related low-level descriptors (LLDs)</code> including logarithmic harmonic-to-noise ratio (HNR), spectral harmonicity, and psychoacoustic spectral sharpness. Details are shown below.[2]</p>
 <h3 id="4-ENERGY-RELATED-LLD"><a href="#4-ENERGY-RELATED-LLD" class="headerlink" title="4 ENERGY RELATED LLD"></a>4 ENERGY RELATED LLD</h3><ul>
@@ -2201,7 +2364,7 @@
     <entry>
       <title><![CDATA[MER 声学特征提取]]></title>
       <url>/2017/04/29/featureExt/</url>
-      <content type="html"><![CDATA[<h2 id="特征集和提取工具"><a href="#特征集和提取工具" class="headerlink" title="特征集和提取工具"></a>特征集和提取工具</h2><p>最近的任务目标是：确定<code>音乐情感特征集（声学特征）</code>和<code>提取方法</code>  </p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="特征集和提取工具"><a href="#特征集和提取工具" class="headerlink" title="特征集和提取工具"></a>特征集和提取工具</h2><p>最近的任务目标是：确定<code>音乐情感特征集（声学特征）</code>和<code>提取方法</code>  </p>
 <a id="more"></a>
 <p>为了确定要提取的音乐情感声学特征集<code>Acoustics Features Set for Music Emotion</code>，最近看了很多相关文章（<a href="/2017/04/27/MERFeature/" title="Features in MER">Features in MER</a>）。发现对于以前的音乐情感研究工作，研究人员多数使用<a href="http://marsyas.info/" target="_blank" rel="external">Marsyas</a>（最新版本为2015年发布）和<a href="https://cn.mathworks.com/matlabcentral/fileexchange/24583-mirtoolbox" target="_blank" rel="external">MIRtoolbox</a>（MATLAB工具包）。</p>
 <p>然而近年来有一个专用于<code>情感计算</code>和<code>音乐信息检索</code>的特征提取工具<code>openSMILE</code>异军突起，这是由TUM（德国慕尼黑工业大学）开发的开源工具，近年来多个Challenge（ISComparE, MediaEval, Emobase等）频繁使用其作为<code>Baseline feature dataset</code>的提取工具，<code>openSMILE</code>针对这几个挑战也在其发布的版本中包含了相应的<code>config</code>文件。（<a href="/2017/04/27/openSMILE/" title="openSMILE安装指南">openSMILE安装指南</a>）</p>
@@ -2233,7 +2396,7 @@
     <entry>
       <title><![CDATA[多组SSH-Key公钥/私钥的配置]]></title>
       <url>/2017/04/29/Multissh/</url>
-      <content type="html"><![CDATA[<p>由于在同时使用<code>Github</code>和<code>Git@OSchina</code>（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于在同时使用<code>Github</code>和<code>Git@OSchina</code>（Github私有库需要收费且Git@OSchina在国内的访问速度较快），所以需要设置两组SSH-Key。</p>
 <a id="more"></a>
 <h2 id="本地生成公私钥"><a href="#本地生成公私钥" class="headerlink" title="本地生成公私钥"></a>本地生成公私钥</h2><p>Step1. 本地生成ssh keys命令：<code>ssh-keygen -t rsa -C &quot;注册邮箱&quot;</code>，生成的公私秘钥会提示是否需要重命名，键入自定义名称（防止再次生成的秘钥覆盖之前的），可跳过密码设置。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 生成github ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"githubEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/github_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment"># 生成git@oschina ssh keys</span></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"git@oschinaEmail"</span></div><div class="line">Generating public/private rsa key <span class="keyword">in</span> pair...</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (<span class="string">"默认位置"</span>): ~/.ssh/oschina_rsa </div><div class="line">Enter passphrase ...</div><div class="line">...</div></pre></td></tr></table></figure>
@@ -2247,9 +2410,9 @@
         
         <tags>
             
-            <tag> github </tag>
-            
             <tag> ssh </tag>
+            
+            <tag> github </tag>
             
         </tags>
         
@@ -2258,7 +2421,7 @@
     <entry>
       <title><![CDATA[Probably Graphic Model]]></title>
       <url>/2017/04/27/ApplicationMath/pgm/</url>
-      <content type="html"><![CDATA[<p>简而言之，数形结合的思想。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简而言之，数形结合的思想。</p>
 <h2 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h2><p>即有向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/bayes.png"></p>
 <h2 id="马尔可夫随机场"><a href="#马尔可夫随机场" class="headerlink" title="马尔可夫随机场"></a>马尔可夫随机场</h2><p>即无向图模型<br><img src="/2017/04/27/ApplicationMath/pgm/makov.png"></p>
 ]]></content>
@@ -2281,7 +2444,7 @@
     <entry>
       <title><![CDATA[Markov Chains & HMM]]></title>
       <url>/2017/04/27/ApplicationMath/mc/</url>
-      <content type="html"><![CDATA[<p>会其意，知其形。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>会其意，知其形。</p>
 <h2 id="Markov-Chain"><a href="#Markov-Chain" class="headerlink" title="Markov Chain"></a>Markov Chain</h2><p>服从马尔可夫性（无记忆性）：当前状态只与前一个状态有关，与更往前的状态无关。</p>
 <h2 id="HMM-Hiden-Markov-Model"><a href="#HMM-Hiden-Markov-Model" class="headerlink" title="HMM(Hiden Markov Model)"></a>HMM(Hiden Markov Model)</h2><p>一个概率模型，用于描述系统隐性状态的转移和隐性状态的表现（输出）概率。</p>
 <ul>
@@ -2317,7 +2480,7 @@
     <entry>
       <title><![CDATA[PCA主成分分析]]></title>
       <url>/2017/04/27/ApplicationMath/pca/</url>
-      <content type="html"><![CDATA[<ol>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ol>
 <li>零均值化：每个属性值减去其均值</li>
 <li>求协方差矩阵</li>
 <li>求协方差矩阵的特征值和特征向量</li>
@@ -2343,7 +2506,7 @@
     <entry>
       <title><![CDATA[Point Esimation 点估计]]></title>
       <url>/2017/04/27/ApplicationMath/pe/</url>
-      <content type="html"><![CDATA[<h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(ai&lt;=Xi&lt;=bi) = 1</div></pre></td></tr></table></figure>
 <p>则其期望满足：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</div></pre></td></tr></table></figure>
@@ -2373,7 +2536,7 @@
     <entry>
       <title><![CDATA[聚类]]></title>
       <url>/2017/04/27/ApplicationMath/cluster/</url>
-      <content type="html"><![CDATA[<h2 id="相似性衡量"><a href="#相似性衡量" class="headerlink" title="相似性衡量"></a>相似性衡量</h2><ul>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="相似性衡量"><a href="#相似性衡量" class="headerlink" title="相似性衡量"></a>相似性衡量</h2><ul>
 <li>距离</li>
 <li>相似性</li>
 <li>核函数</li>
@@ -2428,7 +2591,7 @@
     <entry>
       <title><![CDATA[音乐情感识别简介]]></title>
       <url>/2017/04/27/MERintro/</url>
-      <content type="html"><![CDATA[<ul>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
 <li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
 </li>
 <li><p>音乐情感识别的基础框架：  </p>
@@ -2464,7 +2627,7 @@
     <entry>
       <title><![CDATA[openSMILE]]></title>
       <url>/2017/04/27/openSMILE/</url>
-      <content type="html"><![CDATA[<p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>S1. 下载最新的稳定版本<a href="http://audeering.com/technology/opensmile/#download" target="_blank" rel="external">openSMILE</a></p>
 <p>S2. 下载依赖工具库  </p>
 <ul>
 <li>autotools(automake, autoconf, libtool, and m4)  </li>
@@ -2494,7 +2657,7 @@
     <entry>
       <title><![CDATA[Features in MER]]></title>
       <url>/2017/04/27/MERFeature/</url>
-      <content type="html"><![CDATA[<h2 id="Analysis-Content"><a href="#Analysis-Content" class="headerlink" title="Analysis Content"></a>Analysis Content</h2><ul>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Analysis-Content"><a href="#Analysis-Content" class="headerlink" title="Analysis Content"></a>Analysis Content</h2><ul>
 <li>Text-Content   (Web-Documents, Social-Tags, Lyrics)  </li>
 <li>Audio-Content  （Acoustic Features）</li>
 </ul>
@@ -2777,7 +2940,7 @@
     <entry>
       <title><![CDATA[音乐情感计算相关期刊收集整理]]></title>
       <url>/2017/04/27/journals/</url>
-      <content type="html"><![CDATA[<h2 id="SCI"><a href="#SCI" class="headerlink" title="SCI"></a>SCI</h2><ul>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SCI"><a href="#SCI" class="headerlink" title="SCI"></a>SCI</h2><ul>
 <li>TIST<br><a href="http://tist.acm.org/index.cfm" target="_blank" rel="external">ACM Transactions on Intelligent Systems and Technology</a></li>
 <li>TAC<br><a href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165369" target="_blank" rel="external">IEEE Transactions on Affective Computing</a></li>
 <li>TMM<br><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia" target="_blank" rel="external">IEEE Transactions on Multimedia</a></li>
@@ -2815,7 +2978,7 @@
     <entry>
       <title><![CDATA[Github Pages + Hexo]]></title>
       <url>/2017/04/26/NewBlog/</url>
-      <content type="html"><![CDATA[<h1 id="博客站点迁移"><a href="#博客站点迁移" class="headerlink" title="博客站点迁移"></a>博客站点迁移</h1><p>阿里云服务器快要到期不想再续，遂决定将博客迁移到免费的<code>GitHub Pages</code>上。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="博客站点迁移"><a href="#博客站点迁移" class="headerlink" title="博客站点迁移"></a>博客站点迁移</h1><p>阿里云服务器快要到期不想再续，遂决定将博客迁移到免费的<code>GitHub Pages</code>上。</p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>Github Pages</code>+<code>Hexo</code>(不使用<code>Jekyll</code>是因为没有找到好看的主题)  </p>
 <ol>
 <li>在GitHub上创建<code>GitHub Pages</code></li>
@@ -2891,7 +3054,7 @@
     <entry>
       <title><![CDATA[Deep Learning 简介]]></title>
       <url>/2017/04/18/dl-intro/</url>
-      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。 </p>
@@ -2955,7 +3118,7 @@
     <entry>
       <title><![CDATA[Python2.7 基础学习笔记]]></title>
       <url>/2016/12/26/Python/index/</url>
-      <content type="html"><![CDATA[<blockquote>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>Python基础学习</p>
 <blockquote>
 <ul>
@@ -2996,8 +3159,36 @@
     <entry>
       <title><![CDATA[矩阵运算]]></title>
       <url>/2016/12/26/Python/PythonMat/</url>
-      <content type="html"><![CDATA[<p>Python的<code>numpy</code>模块提供矩阵运算的功能，其中有两种不同的数据类型<code>matrix</code>和<code>array</code>都可以用于处理行列表示的数字元素。虽然它们看起来相似，但是在这两个数据类型上执行相同的数学运算可以得到不同的结果，其中<code>matrix</code>与MATLAB中的<code>matrices</code>等价。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Python的<code>numpy</code>模块提供矩阵运算的功能，其中有两种不同的数据类型<code>matrix</code>和<code>array</code>都可以用于处理行列表示的数字元素。虽然它们看起来相似，但是在这两个数据类型上执行相同的数学运算可以得到不同的结果，其中<code>matrix</code>与MATLAB中的<code>matrices</code>等价。</p>
 <p>具体来说，<code>matrix</code>是<code>array</code>的子类，要求维数必须为2。需要注意的是<code>array</code>的<code>*</code>表示元素分别相乘，<code>dot</code>才表示矩阵点乘。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python Web]]></title>
+      <url>/2016/12/26/Python/PythonWeb/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+<a id="more"></a>
+<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
+<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
+<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
+<p>最大限度分离Python代码和HTML代码</p>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
         <categories>
@@ -3018,7 +3209,7 @@
     <entry>
       <title><![CDATA[Socket通信]]></title>
       <url>/2016/12/26/Python/Socket/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a>
 <h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2><img src="/2016/12/26/Python/Socket/tcpsend.png">
 <h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2><img src="/2016/12/26/Python/Socket/tcpend.png">
 <p>TCP客户端和服务器端通信例子： </p>
@@ -3045,15 +3236,9 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python Web]]></title>
-      <url>/2016/12/26/Python/PythonWeb/</url>
-      <content type="html"><![CDATA[<h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
-<a id="more"></a>
-<h2 id="WSGI-Web-Server-Gateway-Interface"><a href="#WSGI-Web-Server-Gateway-Interface" class="headerlink" title="WSGI(Web Server Gateway Interface)"></a>WSGI(Web Server Gateway Interface)</h2><p>处理TCP连接，HTTP原始请求和相应格式。</p>
-<p>无论多么复杂的Web应用程序，入口都是一个WISG处理函数。HTTP请求的所有输入信息都可以通过<code>environ</code>获得，HTTP响应的输出都可以通过<code>start_response()</code>加上函数返回值作为Body。</p>
-<h2 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h2><p>实现url到函数的映射</p>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>Model-View-Controller，”模型-视图-控制器“。</p>
-<p>最大限度分离Python代码和HTML代码</p>
+      <title><![CDATA[Python进程和线程]]></title>
+      <url>/2016/12/06/Python/PythonMulTask/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -3073,51 +3258,30 @@
     </entry>
     
     <entry>
-      <title><![CDATA[PythonIO编程]]></title>
-      <url>/2016/12/06/Python/PythonIO/</url>
-      <content type="html"><![CDATA[<p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+      <title><![CDATA[Python面向对象高级编程]]></title>
+      <url>/2016/12/06/Python/PythonAdOOP/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
-<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
-<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
-<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
-<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
-<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python错误、调试和测试]]></title>
-      <url>/2016/12/06/Python/PythonDebug/</url>
-      <content type="html"><![CDATA[<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
-<a id="more"></a>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
-<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
-<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
-<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
-<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
-<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line"><span class="string">	a simple dict</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1 = Dict()</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['x'] = 100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.x</span></div><div class="line"><span class="string">	100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.y = 200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['y']</span></div><div class="line"><span class="string">	200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2.c</span></div><div class="line"><span class="string">	'3'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2['empty']</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    KeyError: 'empty'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2.empty</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    AttributeError: 'Dict' object has no attribute 'empty'</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
+<p>如果想要限制class的属性，可以使用特殊变量<code>__slots__</code>来限制该class能添加的属性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    __slots__ = (<span class="string">'name'</span>,<span class="string">'age'</span>)<span class="comment">#用tuple定义允许绑定的属性名称</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Micheal'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">90</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'score'</span></div></pre></td></tr></table></figure>
+<p>需要注意的是，<code>__score__</code>中定义的属性仅对当前类起作用，对继承的子类是不起作用的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">GraduateStudent</span><span class="params">(Student)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">pass</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g = GraduateStudent()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score</div><div class="line"><span class="number">99</span></div></pre></td></tr></table></figure>
+<h2 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h2><p><code>@property</code>是Python内置的一个装饰器，可以把一个getter方法变成属性，同时还会创建另一个装饰器<code>@xxx.setter</code>，负责把一个setter方法变成属性赋值，这样我们就拥有了一个可控的属性操作。如果只定义getter方法而不定义setter方法就会得到一个只读属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self._score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self._score = value</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score</div><div class="line"><span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">101</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">10</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must between <span class="number">0</span>~<span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="string">'a'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">8</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must be an integer</div></pre></td></tr></table></figure>
+<p>注意这里的<code>score</code>是一个property对象，getter方法和setter方法重用了这个名字，而<code>_score</code>是私有属性。实际属性值储存在<code>_score</code>中，<code>score</code>则为这个私有变量提供接口。如果混淆了两者就会出现可怕的bug：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self.score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self.score = value<span class="comment">#这里会无法停止循环调用score的setter方法</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  ...</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">11</span>, <span class="keyword">in</span> score</div><div class="line">RuntimeError: maximum recursion depth exceeded</div></pre></td></tr></table></figure>
+<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>一个子类可以通过多重继承同时获得多个父类的所有功能。</p>
+<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>在设计类的继承关系时，通常主线都是单一继承下来的，例如，<code>Dog</code>继承自<code>Animal</code>。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让<code>Dog</code>除了继承自<code>Animal</code>之外再同时继承<code>Runnable</code>。这种设计通常称之为<code>Mixin</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,Runnable)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>为了更好地看出继承关系，我们把<code>Runnable</code>和<code>Flyable</code>改为<code>RunnableMixin</code>和<code>FlyableMixin</code>。类似的，还可以定义出肉食动物<code>CarnivorousMixin</code>和植食动物<code>HerbivoresMixin</code>，让某个动物同时拥有好几个Mixin：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,RunnableMixin,CarnivorousMixin)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>Mixin的目的就是给一个类增加多个功能，这样在设计类的时候，我们优先考虑通过多重继承来组合多个Mixin的功能，而不是设计多层次的复杂的继承关系。</p>
+<p>Python允许使用多重继承，因此Mixin是一种常见设计。而只允许单一继承的语言（如Java）不能使用Mixin的设计。</p>
+<h2 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h2><p>Python中有许多特殊用途的函数可以帮助我们定制类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__slots__</div><div class="line">__len__</div><div class="line">__str__</div><div class="line">__repr__</div><div class="line">__iter__</div><div class="line">__getitem__</div><div class="line">__getattr__</div><div class="line">__call__  <span class="comment">#可使用callable()来判断对象是否是“可调用”对象</span></div></pre></td></tr></table></figure>
+<h2 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h2><p><code>type()</code>既可以返回一个对象的类型，还可以创建出新的类型。<br><code>metaclass</code>允许创建类或者修改类，可以把类看成是metaclass创建出的来的“实例”。</p>
+<p><em>正常情况下不会碰到需要使用<code>metaclass</code>的情况，所以现在先略过。</em></p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -3139,7 +3303,7 @@
     <entry>
       <title><![CDATA[Python正则表达式]]></title>
       <url>/2016/12/06/Python/PythonRE/</url>
-      <content type="html"><![CDATA[<h2 id="匹配符"><a href="#匹配符" class="headerlink" title="匹配符"></a>匹配符</h2><table>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="匹配符"><a href="#匹配符" class="headerlink" title="匹配符"></a>匹配符</h2><table>
 <thead>
 <tr>
 <th>符号</th>
@@ -3224,74 +3388,9 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Python面向对象高级编程]]></title>
-      <url>/2016/12/06/Python/PythonAdOOP/</url>
-      <content type="html"><![CDATA[<h2 id="实例动态绑定"><a href="#实例动态绑定" class="headerlink" title="实例动态绑定"></a>实例动态绑定</h2><p>通常情况下，我们可以给实例绑定任何属性和方法，这就是动态语言的灵活性。但是给一个实例绑定的方法对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给class绑定方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">addmethod</span><span class="params">(self)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div><div class="line">	</div><div class="line">Student.addmethod = MethodType(addmethod,<span class="keyword">None</span>,Student)</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>如果想要限制class的属性，可以使用特殊变量<code>__slots__</code>来限制该class能添加的属性：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    __slots__ = (<span class="string">'name'</span>,<span class="string">'age'</span>)<span class="comment">#用tuple定义允许绑定的属性名称</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.name = <span class="string">'Micheal'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.age = <span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">90</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'score'</span></div></pre></td></tr></table></figure>
-<p>需要注意的是，<code>__score__</code>中定义的属性仅对当前类起作用，对继承的子类是不起作用的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">GraduateStudent</span><span class="params">(Student)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">pass</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g = GraduateStudent()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>g.score</div><div class="line"><span class="number">99</span></div></pre></td></tr></table></figure>
-<h2 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h2><p><code>@property</code>是Python内置的一个装饰器，可以把一个getter方法变成属性，同时还会创建另一个装饰器<code>@xxx.setter</code>，负责把一个setter方法变成属性赋值，这样我们就拥有了一个可控的属性操作。如果只定义getter方法而不定义setter方法就会得到一个只读属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self._score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self._score = value</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score</div><div class="line"><span class="number">99</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">101</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">10</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must between <span class="number">0</span>~<span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="string">'a'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">8</span>, <span class="keyword">in</span> score</div><div class="line">ValueError: score must be an integer</div></pre></td></tr></table></figure>
-<p>注意这里的<code>score</code>是一个property对象，getter方法和setter方法重用了这个名字，而<code>_score</code>是私有属性。实际属性值储存在<code>_score</code>中，<code>score</code>则为这个私有变量提供接口。如果混淆了两者就会出现可怕的bug：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">... </span>    @property</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">return</span> self.score</div><div class="line"><span class="meta">... </span>    @score.setter</div><div class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self,value)</span>:</span></div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value,int):</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer'</span>)</div><div class="line"><span class="meta">... </span>            <span class="keyword">if</span> value&lt;<span class="number">0</span> <span class="keyword">or</span> value&gt;<span class="number">100</span>:</div><div class="line"><span class="meta">... </span>                    <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0~100'</span>)</div><div class="line"><span class="meta">... </span>            self.score = value<span class="comment">#这里会无法停止循环调用score的setter方法</span></div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">99</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">  ...</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">11</span>, <span class="keyword">in</span> score</div><div class="line">RuntimeError: maximum recursion depth exceeded</div></pre></td></tr></table></figure>
-<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><p>一个子类可以通过多重继承同时获得多个父类的所有功能。</p>
-<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>在设计类的继承关系时，通常主线都是单一继承下来的，例如，<code>Dog</code>继承自<code>Animal</code>。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让<code>Dog</code>除了继承自<code>Animal</code>之外再同时继承<code>Runnable</code>。这种设计通常称之为<code>Mixin</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,Runnable)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>为了更好地看出继承关系，我们把<code>Runnable</code>和<code>Flyable</code>改为<code>RunnableMixin</code>和<code>FlyableMixin</code>。类似的，还可以定义出肉食动物<code>CarnivorousMixin</code>和植食动物<code>HerbivoresMixin</code>，让某个动物同时拥有好几个Mixin：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal,RunnableMixin,CarnivorousMixin)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
-<p>Mixin的目的就是给一个类增加多个功能，这样在设计类的时候，我们优先考虑通过多重继承来组合多个Mixin的功能，而不是设计多层次的复杂的继承关系。</p>
-<p>Python允许使用多重继承，因此Mixin是一种常见设计。而只允许单一继承的语言（如Java）不能使用Mixin的设计。</p>
-<h2 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h2><p>Python中有许多特殊用途的函数可以帮助我们定制类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__slots__</div><div class="line">__len__</div><div class="line">__str__</div><div class="line">__repr__</div><div class="line">__iter__</div><div class="line">__getitem__</div><div class="line">__getattr__</div><div class="line">__call__  <span class="comment">#可使用callable()来判断对象是否是“可调用”对象</span></div></pre></td></tr></table></figure>
-<h2 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h2><p><code>type()</code>既可以返回一个对象的类型，还可以创建出新的类型。<br><code>metaclass</code>允许创建类或者修改类，可以把类看成是metaclass创建出的来的“实例”。</p>
-<p><em>正常情况下不会碰到需要使用<code>metaclass</code>的情况，所以现在先略过。</em></p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Python进程和线程]]></title>
-      <url>/2016/12/06/Python/PythonMulTask/</url>
-      <content type="html"><![CDATA[<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
-<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Python基础 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> python </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Python小贴士]]></title>
       <url>/2016/12/06/Python/PythonTips/</url>
-      <content type="html"><![CDATA[<h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
 <p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
 ]]></content>
       
@@ -3313,7 +3412,7 @@
     <entry>
       <title><![CDATA[Python面向对象编程]]></title>
       <url>/2016/12/06/Python/PythonOOP/</url>
-      <content type="html"><![CDATA[<p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
 <a id="more"></a>
 <h2 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h2><p>通过在实例上调用方法可以直接操作对象内部的数据，但无需知道方法内部的实现细节。即，可以用类的方法来<code>封装</code>其数据和逻辑。</p>
 <p>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</p>
@@ -3351,9 +3450,73 @@
     </entry>
     
     <entry>
+      <title><![CDATA[PythonIO编程]]></title>
+      <url>/2016/12/06/Python/PythonIO/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+<a id="more"></a>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>操作文件的好习惯是使用<code>with</code>语句</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>有<code>read()</code>方法的对象在Python中统称为file-like Object。除了文件外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>为了避免手动转码，可以使用<code>codecs</code>模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt = <span class="string">u'测试'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>txt</div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'w'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.write(txt)</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f</div><div class="line">&lt;closed file <span class="string">'testw.txt'</span>, mode <span class="string">'wb'</span> at <span class="number">0x10b35aae0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> codecs.open(<span class="string">'testw.txt'</span>,<span class="string">'r'</span>,<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="meta">... </span>    f.read()</div><div class="line"><span class="meta">... </span></div><div class="line"><span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>u = <span class="string">u'\u6d4b\u8bd5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> u</div><div class="line">测试</div></pre></td></tr></table></figure>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>,<code>os.path</code>以及<code>shutil</code>模块来操作文件和目录。<br>示例代码<a href="/2016/12/06/Python/PythonIO/search.py" title="search.py">search.py</a></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>将变量从内存中变成可存储或传输的过程称之为序列化(picking)，序列化之后的内容就可以写入磁盘或者通过网络传输到其它机器上。反之将变量内容从序列化的对象重新读到内存里称之为反序列化(unpicking)。</p>
+<h3 id="pickle和Cpickle"><a href="#pickle和Cpickle" class="headerlink" title="pickle和Cpickle"></a>pickle和Cpickle</h3><p>只能用于Python，且不同版本彼此不兼容，只能用于保存不重要的数据。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dumps(obj,default)   <span class="comment">#object-&gt;json</span></div><div class="line">loads(json_str,object_hook)   <span class="comment">#json-&gt;object</span></div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python错误、调试和测试]]></title>
+      <url>/2016/12/06/Python/PythonDebug/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>try</code>…<code>except</code>…<code>finnaly</code>…</p>
+<a id="more"></a>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="print"><a href="#print" class="headerlink" title="print"></a>print</h3><p>简单粗暴不加以赘述</p>
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p>凡是用<code>print</code>来辅助查看的地方，都可以用断言<code>assert</code>来代替。如果断言失败，<code>assert</code>语句本身就会抛出<code>AssertionError</code>。</p>
+<p>在启动Python解释器时，可以使用<code>-O</code>参数来关闭<code>assert</code>,此时所有的<code>assert</code>语句可以被看做<code>pass</code>。</p>
+<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p><code>logging</code>不会抛出错误，而且会=可以输出到文件。</p>
+<h3 id="pdb和IDE"><a href="#pdb和IDE" class="headerlink" title="pdb和IDE"></a>pdb和IDE</h3><p>虽然IDE用起来比较方便，但是最后你会发现logging才是终极武器。</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作，是未来重构代码的信心保证。</p>
+<p>单元测试的测试用例要覆盖常用的输入组合、边界条件和各种异常。单元测试代码要非常简单，如果测试代码太复杂，那么它可能本身就有bug。</p>
+<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p><code>doctest</code>可以直接提取注释中的代码并执行测试。<code>doctest</code>严格按照Python交互式命令行的输入和输出来判断测试结果是否正确。只有测试异常的时候可以用<code>...</code>表示中间一大段烦人的输出。测试文档<a href="/2016/12/06/Python/PythonDebug/mydict.py" title="mydict.py">mydict.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding = utf-8</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict</span><span class="params">(dict)</span>:</span></div><div class="line">	<span class="string">'''</span></div><div class="line"><span class="string">	a simple dict</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1 = Dict()</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['x'] = 100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.x</span></div><div class="line"><span class="string">	100</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1.y = 200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d1['y']</span></div><div class="line"><span class="string">	200</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2 = Dict(a=1,b=2,c='3')</span></div><div class="line"><span class="string">	&gt;&gt;&gt; d2.c</span></div><div class="line"><span class="string">	'3'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2['empty']</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    KeyError: 'empty'</span></div><div class="line"><span class="string">    &gt;&gt;&gt; d2.empty</span></div><div class="line"><span class="string">    Traceback (most recent call last):</span></div><div class="line"><span class="string">        ...</span></div><div class="line"><span class="string">    AttributeError: 'Dict' object has no attribute 'empty'</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    </div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,**kw)</span>:</span></div><div class="line">		super(Dict,self).__init__(**kw)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self,key)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			<span class="keyword">return</span> self[key]</div><div class="line">		<span class="keyword">except</span> KeyError:</div><div class="line">			<span class="keyword">raise</span> AttributeError(<span class="string">"'Dict' object has no attribute '%s'"</span> %key)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,key,value)</span>:</span></div><div class="line">		self[key] = value</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">import</span> doctest</div><div class="line">	doctest.testmod()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ python mydict.py</div><div class="line">$</div><div class="line"><span class="comment">#什么输出也没有说明doctest的运行都是正确的.</span></div><div class="line"><span class="comment">#如果程序有问题比如注释掉'__getattr__()'，再运行就会出错：</span></div><div class="line">$ python mydict.py</div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">10</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d1.x</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'x'</span></div><div class="line">**********************************************************************</div><div class="line">File <span class="string">"mydict.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> __main__.Dict</div><div class="line">Failed example:</div><div class="line">    d2.c</div><div class="line">Exception raised:</div><div class="line">    Traceback (most recent call last):</div><div class="line">      ...</div><div class="line">    AttributeError: <span class="string">'Dict'</span> object has no attribute <span class="string">'c'</span></div><div class="line">**********************************************************************</div><div class="line"><span class="number">1</span> items had failures:</div><div class="line">   <span class="number">2</span> of   <span class="number">9</span> <span class="keyword">in</span> __main__.Dict</div><div class="line">***Test Failed*** <span class="number">2</span> failures.</div></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="external">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python模块]]></title>
       <url>/2016/12/05/Python/PythonModule/</url>
-      <content type="html"><![CDATA[<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>可以使用包<code>package</code>来组织模块，每一个包目录下都有一个<code>__init__.py</code>的文件，这个文件是必须存在的，否则Python会将其视为普通目录而不是一个包。<code>__init__.py</code>可以是空文件，也可以有Python代码，因为<code>__init__.py</code>本身就是一个模块，而它的模块名就是<code>package</code>。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>可以使用包<code>package</code>来组织模块，每一个包目录下都有一个<code>__init__.py</code>的文件，这个文件是必须存在的，否则Python会将其视为普通目录而不是一个包。<code>__init__.py</code>可以是空文件，也可以有Python代码，因为<code>__init__.py</code>本身就是一个模块，而它的模块名就是<code>package</code>。</p>
 <a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">__author__ = <span class="string">'huizhang</span></div><div class="line"><span class="string">#!/usr/bin/env python</span></div><div class="line"><span class="string"># coding = utf-8</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">'</span>This <span class="keyword">is</span> the comment of the document. The first string of any python file <span class="keyword">is</span> its comment.<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">import sys</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">def BasicEx():</span></div><div class="line"><span class="string">    args = sys.argv   #sys模块的agrv变量将命令行的所有参数储存在了一个list中，argv至少有一个元素，因为第一个参数永远是该.py文件的名称</span></div><div class="line"><span class="string">    if len(args) == 1:</span></div><div class="line"><span class="string">        print '</span>Hello, word!<span class="string">'</span></div><div class="line"><span class="string">    elif len(args) == 2:</span></div><div class="line"><span class="string">        print '</span>Hello, %s!<span class="string">' %args[1]</span></div><div class="line"><span class="string">    else:</span></div><div class="line"><span class="string">        print '</span>Too many arguments!<span class="string">'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">if __name__ == '</span>__main__<span class="string">': </span></div><div class="line"><span class="string">    BasicEx()</span></div><div class="line"><span class="string">    #在使用命令行运行.py文件时，Python解释器将一个特殊变量__name__置为'</span>__main___<span class="string">'，而如果在其他地方导入该模块，if判断将失效。因此这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。</span></div></pre></td></tr></table></figure>
 <p>在上述代码中，第2、3行是标准注释，第2行使得<code>BasicEx.py</code>可以直接在Unix/Linux/Mac上运行，第3行注释表示文件本身使用的是标准UTF-8编码。在命令行运行该文件的效果：</p>
@@ -3412,7 +3575,7 @@
     <entry>
       <title><![CDATA[Python函数式编程]]></title>
       <url>/2016/12/04/Python/PythonFunction/</url>
-      <content type="html"><![CDATA[<p>函数式编程是高度抽象的编程范式,纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的函数语言，由于函数内部的变量状态不确定，同样的输入可能得到不同的输出，这种函数是有副作用的。函数式编程允许将函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>函数式编程是高度抽象的编程范式,纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的函数语言，由于函数内部的变量状态不确定，同样的输入可能得到不同的输出，这种函数是有副作用的。函数式编程允许将函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
 <p>Python对函数式编程提供部分支持。由于Python允许使用变量，因此Python不是纯函数式编程语言。</p>
 <a id="more"></a>
 <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>接受其它函数作为参数的函数称为高阶函数</p>
@@ -3466,7 +3629,7 @@
     <entry>
       <title><![CDATA[Python基础语法]]></title>
       <url>/2016/12/02/Python/PythonBasis/</url>
-      <content type="html"><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
 <li>整数</li>
 <li>浮点数</li>
 <li>布尔值</li>
