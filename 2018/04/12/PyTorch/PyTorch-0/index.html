@@ -1,40 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="description" content="安装PyTorch"/>
 
 
 
 
-  <meta name="keywords" content="DL," />
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="HuisBlog">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 
 
 
-<link rel="canonical" href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/"/>
 
 
-<meta name="description" content="本文记录一下给服务器安装PyTorch的过程。">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg?v=6.6.0" color="#222">
+
+
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta name="keywords" content="DL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装PyTorch">
@@ -43,35 +117,38 @@
 <meta property="og:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">
-<meta property="og:updated_time" content="2018-05-07T06:24:14.761Z">
+<meta property="og:updated_time" content="2018-05-07T06:24:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PyTorch">
 <meta name="twitter:description" content="本文记录一下给服务器安装PyTorch的过程。">
 <meta name="twitter:image" content="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
+
+  <link rel="alternate" href="/atom.xml" title="HuisBlog" type="application/atom+xml">
 
 
 
 
+  <link rel="canonical" href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/">
 
 
 
-<script>
-  var CONFIG = {
-    search: true,
-    searchPath: "/search.xml",
-    fancybox: false,
-    toc: true,
-  }
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
-
-
-
+  <title>安装PyTorch | HuisBlog</title>
   
-  <script type="text/javascript">
+
+
+
+
+
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -84,194 +161,325 @@
 
 
 
-    <title> 安装PyTorch · HuisBlog </title>
-  </head>
 
-  <body><div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/." class="logo">HuisBlog</a>
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HuisBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
   </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    
-      <a href="/">
-        <li class="mobile-menu-item">
-          
-          
-            Home
-          
-        </li>
-      </a>
-    
-      <a href="/archives/">
-        <li class="mobile-menu-item">
-          
-          
-            Archives
-          
-        </li>
-      </a>
-    
-      <a href="/tags">
-        <li class="mobile-menu-item">
-          
-          
-            Tags
-          
-        </li>
-      </a>
-    
-      <a href="/categories">
-        <li class="mobile-menu-item">
-          
-          
-            Categories
-          
-        </li>
-      </a>
-    
-      <a href="/about">
-        <li class="mobile-menu-item">
-          
-          
-            About
-          
-        </li>
-      </a>
-    
-      <a href="/friends">
-        <li class="mobile-menu-item">
-          
-          
-            Friends
-          
-        </li>
-      </a>
-    
-  </ul>
-</nav>
 
-    <div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">HuisBlog</a>
-</div>
 
-<nav class="site-navbar">
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            
-            
-              Home
-            
-          </a>
-        </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            
-            
-              Archives
-            
-          </a>
-        </li>
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/tags">
-            
-            
-              Tags
-            
-          </a>
-        </li>
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/categories">
-            
-            
-              Categories
-            
-          </a>
-        </li>
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/about">
-            
-            
-              About
-            
-          </a>
-        </li>
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
       
-        <li class="menu-item">
-          <a class="menu-item-link" href="/friends">
-            
-            
-              Friends
-            
-          </a>
-        </li>
+    
+
+    
+
+    <a href="/about/HuisCV.pdf" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
       
-      
-        <li class="menu-search">
-          <form>
-            <i class="iconfont icon-search" id="open-search"></i>
-            <input type="text" class="search-input" id="search-input" />
-            <i class="iconfont icon-close" id="close-search"></i>
-          </form>
-        </li>
       
     </ul>
   
+
+  
+    
+
+  
+
+  
 </nav>
 
-      </header>
 
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
+
   
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          安装PyTorch
-        
-      </h1>
 
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 12, 2018
-        </span>
-      </div>
+
+
+</div>
     </header>
 
     
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器Anaconda"><span class="toc-text">安装包管理器Anaconda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新pip和numpy到最新版本"><span class="toc-text">更新pip和numpy到最新版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装GPU加速工具包"><span class="toc-text">安装GPU加速工具包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始安装PyTorch"><span class="toc-text">开始安装PyTorch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Pycharm进行远程开发与调试"><span class="toc-text">使用Pycharm进行远程开发与调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Jupyter-Notebook"><span class="toc-text">使用Jupyter Notebook</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
-    </div>
-  </div>
 
+  
 
-    <div class="post-content">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+      <meta itemprop="image" content="/assets/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安装PyTorch
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-12 19:37:00" itemprop="dateCreated datePublished" datetime="2018-04-12T19:37:00+08:00">2018-04-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-07 14:24:14" itemprop="dateModified" datetime="2018-05-07T14:24:14+08:00">2018-05-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>本文记录一下给服务器安装PyTorch的过程。</p>
 <a id="more"></a>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装包管理器Anaconda"><a href="#安装包管理器Anaconda" class="headerlink" title="安装包管理器Anaconda"></a>安装包管理器Anaconda</h3><ol>
-<li>下载<a href="https://docs.anaconda.com/anaconda/install/linux" target="_blank" rel="external">Anaconda for python3.6</a></li>
+<li>下载<a href="https://docs.anaconda.com/anaconda/install/linux" target="_blank" rel="noopener">Anaconda for python3.6</a></li>
 <li>上传到服务器<code>scp Anaconda3-5.1.0-Linux-x86_64.sh user@server:~/share</code></li>
 <li>安装<code>bash ~/share/Anaconda3-5.1.0-Linux-x86_64.sh</code></li>
 <li>激活<code>source ~/.bashrc</code></li>
@@ -280,20 +488,20 @@
 <blockquote>
 <p>Anaconda 会自动修改环境变量，用户下的python(及pip)将会被切换为python3.6，但不会影响系统使用的python版本：<br>可以使用 sudo su 切换到root再使用 python(python3) –version 查看</p>
 </blockquote>
-<h3 id="更新pip和numpy到最新版本"><a href="#更新pip和numpy到最新版本" class="headerlink" title="更新pip和numpy到最新版本"></a>更新pip和numpy到最新版本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 更新pip3和numpy</span></div><div class="line">conda update pip</div><div class="line">conda update numpy</div></pre></td></tr></table></figure>
-<h3 id="安装GPU加速工具包"><a href="#安装GPU加速工具包" class="headerlink" title="安装GPU加速工具包"></a>安装GPU加速工具包</h3><p>选择正确版本的<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="external">CUDA TOOLKIT</a>和<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">目标主机设置</a>，下载cuda-repo-xx.deb</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装前设置主机环境</span></div><div class="line">sudo apt-get install linux-headers-$(uname -r)</div><div class="line"></div><div class="line"><span class="comment"># 安装合适版本</span></div><div class="line">sudo dpkg -i cuda-repo-ubuntu1604_9.1.85-1_amd64.deb</div><div class="line">sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub`</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install cuda</div><div class="line"></div><div class="line"><span class="comment"># 安装后设置</span></div><div class="line"><span class="comment"># 1. 添加环境变量（写入~/.bashrc）</span></div><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-9.1/bin<span class="variable">$&#123;PATH:+:$&#123;PATH&#125;</span>&#125;</div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-9.1/lib64<span class="variable">$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</div><div class="line"><span class="comment"># 此时可以查看安装的cuda版本了</span></div><div class="line">nvcc --version</div><div class="line">nvcc: NVIDIA (R) Cuda compiler driver</div><div class="line">Copyright (c) 2005-2017 NVIDIA Corporation</div><div class="line">Built on Fri_Nov__3_21:07:56_CDT_2017</div><div class="line">Cuda compilation tools, release 9.1, V9.1.85</div><div class="line"></div><div class="line"><span class="comment"># 2.* 如果是POWER9系统，需要设置以支持cuda9的新特性</span></div><div class="line"><span class="comment"># 创建 /usr/lib/systemd/system/nvidia-persistenced.service 并使生效</span></div><div class="line">sudo systemctl <span class="built_in">enable</span> nvidia-persistenced</div><div class="line"><span class="comment"># 删除一条LINUX的默认udev rule</span></div><div class="line">注释掉/lib/udev/rules.d/40-vm-hotadd.rules的其中一行：</div><div class="line"><span class="comment"># SUBSYSTEM=="memory", ACTION=="add", DEVPATH=="/devices/system/memory/memory[0-9]*", TEST=="state", ATTR&#123;state&#125;="online"</span></div><div class="line"></div><div class="line"><span class="comment"># 重启主机以生效</span></div></pre></td></tr></table></figure>
+<h3 id="更新pip和numpy到最新版本"><a href="#更新pip和numpy到最新版本" class="headerlink" title="更新pip和numpy到最新版本"></a>更新pip和numpy到最新版本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新pip3和numpy</span></span><br><span class="line">conda update pip</span><br><span class="line">conda update numpy</span><br></pre></td></tr></table></figure>
+<h3 id="安装GPU加速工具包"><a href="#安装GPU加速工具包" class="headerlink" title="安装GPU加速工具包"></a>安装GPU加速工具包</h3><p>选择正确版本的<a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="noopener">CUDA TOOLKIT</a>和<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">目标主机设置</a>，下载cuda-repo-xx.deb</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装前设置主机环境</span></span><br><span class="line">sudo apt-get install linux-headers-$(uname -r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装合适版本</span></span><br><span class="line">sudo dpkg -i cuda-repo-ubuntu1604_9.1.85-1_amd64.deb</span><br><span class="line">sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub`</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install cuda</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装后设置</span></span><br><span class="line"><span class="comment"># 1. 添加环境变量（写入~/.bashrc）</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-9.1/bin<span class="variable">$&#123;PATH:+:$&#123;PATH&#125;</span>&#125;</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-9.1/lib64<span class="variable">$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</span><br><span class="line"><span class="comment"># 此时可以查看安装的cuda版本了</span></span><br><span class="line">nvcc --version</span><br><span class="line">nvcc: NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) 2005-2017 NVIDIA Corporation</span><br><span class="line">Built on Fri_Nov__3_21:07:56_CDT_2017</span><br><span class="line">Cuda compilation tools, release 9.1, V9.1.85</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.* 如果是POWER9系统，需要设置以支持cuda9的新特性</span></span><br><span class="line"><span class="comment"># 创建 /usr/lib/systemd/system/nvidia-persistenced.service 并使生效</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> nvidia-persistenced</span><br><span class="line"><span class="comment"># 删除一条LINUX的默认udev rule</span></span><br><span class="line">注释掉/lib/udev/rules.d/40-vm-hotadd.rules的其中一行：</span><br><span class="line"><span class="comment"># SUBSYSTEM=="memory", ACTION=="add", DEVPATH=="/devices/system/memory/memory[0-9]*", TEST=="state", ATTR&#123;state&#125;="online"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启主机以生效</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>nvidia-persistenced.service 文件内容：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=NVIDIA Persistence Daemon</div><div class="line">Wants=syslog.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=forking</div><div class="line">PIDFile=/var/run/nvidia-persistenced/nvidia-persistenced.pid</div><div class="line">Restart=always</div><div class="line">ExecStart=/usr/bin/nvidia-persistenced --verbose</div><div class="line">ExecStopPost=/bin/rm -rf /var/run/nvidia-persistenced</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=NVIDIA Persistence Daemon</span><br><span class="line">Wants=syslog.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/var/run/nvidia-persistenced/nvidia-persistenced.pid</span><br><span class="line">Restart=always</span><br><span class="line">ExecStart=/usr/bin/nvidia-persistenced --verbose</span><br><span class="line">ExecStopPost=/bin/rm -rf /var/run/nvidia-persistenced</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <h2 id="开始安装PyTorch"><a href="#开始安装PyTorch" class="headerlink" title="开始安装PyTorch"></a>开始安装PyTorch</h2><p>本来想使用Anaconda安装的，但它的镜像连接不上，改用PIP安装。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip install http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl </div><div class="line">pip install torchvision</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl </span><br><span class="line">pip install torchvision</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如果由于网络原因安装失败可以先下载下来再 pip install ~/TorchFileLocalPath</p>
 </blockquote>
 <p>安装成功：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; python</div><div class="line">Python 3.6.4 |Anaconda custom (64-bit)| (default, Jan 16 2018, 18:10:19) </div><div class="line">[GCC 7.2.0] on linux</div><div class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</div><div class="line">&gt;&gt;&gt; import torch</div><div class="line">&gt;&gt;&gt; import torchvision</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; python</span><br><span class="line">Python 3.6.4 |Anaconda custom (64-bit)| (default, Jan 16 2018, 18:10:19) </span><br><span class="line">[GCC 7.2.0] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; import torch</span><br><span class="line">&gt;&gt;&gt; import torchvision</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="使用Pycharm进行远程开发与调试"><a href="#使用Pycharm进行远程开发与调试" class="headerlink" title="使用Pycharm进行远程开发与调试"></a>使用Pycharm进行远程开发与调试</h3><p>强大的<code>Pycharm Pro</code>IDE可以直接在服务器上开发、调试，就不用再给本地搭建和服务器上一样的环境了。在Tools-&gt;Deployment里面可以设置自动部署（或者在创建项目时选用远程服务器和解释器）。</p>
 <p>需要设置的有<code>SFTP</code>和<code>Remote Interpreter</code>。SFTP用于代码同步，类似git上传，同步后可以在服务器上直接运行上传的代码。</p>
 <ol>
@@ -302,7 +510,7 @@
 <li>Preference-&gt;Project Interpreter中添加远程解释器，可以使用已添加的SFTP中的服务器设置（使用Deployment Configure选项）</li>
 </ol>
 <blockquote>
-<p>遇到了问题，Python Console不可用，远程连接控制台不成功：<br>ssh://usr@10.xx.xx.xx:22/home/usr/anaconda3/bin/python -u /home/usr/.pycharm_helpers/pydev/pydevconsole.py 0 0<br>Couldn’t connect to console process.<br>Process finished with exit code -1<br>这是<a href="https://youtrack.jetbrains.com/issue/PY-18029#tab=Comments" target="_blank" rel="external">Pycharm的一个未解决BUG</a>，但评论中提到的解决方法<a href="https://stackoverflow.com/questions/31323363/pycharm-4-5-3-remote-console-cannot-connect-to-remote-process/31323892" target="_blank" rel="external">allowing the server public IP for all traffic</a>对我的情况没用。无法解决，暂搁置。</p>
+<p>遇到了问题，Python Console不可用，远程连接控制台不成功：<br>ssh://usr@10.xx.xx.xx:22/home/usr/anaconda3/bin/python -u /home/usr/.pycharm_helpers/pydev/pydevconsole.py 0 0<br>Couldn’t connect to console process.<br>Process finished with exit code -1<br>这是<a href="https://youtrack.jetbrains.com/issue/PY-18029#tab=Comments" target="_blank" rel="noopener">Pycharm的一个未解决BUG</a>，但评论中提到的解决方法<a href="https://stackoverflow.com/questions/31323363/pycharm-4-5-3-remote-console-cannot-connect-to-remote-process/31323892" target="_blank" rel="noopener">allowing the server public IP for all traffic</a>对我的情况没用。无法解决，暂搁置。</p>
 </blockquote>
 <p>Python Console 问题后续:</p>
 <ul>
@@ -310,217 +518,551 @@
 <li>使用<code>nettop</code>监控pycharm进程通信发现有一个通信一直被关闭，以为是进程通信的问题：<img src="/2018/04/12/PyTorch/PyTorch-0/pycharm_tcp_closed.jpeg">  </li>
 <li>给macos开发端口：修改<code>\etc\pf.conf</code>配置文件，但还是没有解决问题。</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/pf.conf</div><div class="line"></div><div class="line"><span class="comment"># 添加规则允许本机IP访问任何端口</span></div><div class="line">pass <span class="keyword">in</span> proto tcp from 127.0.0.1</div><div class="line">pass <span class="keyword">in</span> proto tcp from localhost</div><div class="line"></div><div class="line"><span class="comment"># 使配置生效</span></div><div class="line">sudo pfctl -evf /etc/pf.conf</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/pf.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加规则允许本机IP访问任何端口</span></span><br><span class="line">pass <span class="keyword">in</span> proto tcp from 127.0.0.1</span><br><span class="line">pass <span class="keyword">in</span> proto tcp from localhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使配置生效</span></span><br><span class="line">sudo pfctl -evf /etc/pf.conf</span><br></pre></td></tr></table></figure>
 <h3 id="使用Jupyter-Notebook"><a href="#使用Jupyter-Notebook" class="headerlink" title="使用Jupyter Notebook"></a>使用Jupyter Notebook</h3><p><code>Jupyter</code>是一个基于 websocket 的 Python 交互式编程环境。由于之前在 Pycharm 配置的远程解释器无法运行Python Console，所以使用 Jupyter Notebook 以方便进行实验。（Jupyter虽然不适合作为生产环境，但作为实验环境来说非常好用。）</p>
 <p>在服务器上安装Jupyter Notebook：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">server$ pip install jupyter</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server$ pip install jupyter</span><br></pre></td></tr></table></figure>
 <p>开启服务：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server$ jupyter notebook --no-browser --port=8080  </div><div class="line"><span class="comment">#no-browser since that is not available through an SSH session</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server$ jupyter notebook --no-browser --port=8080  </span><br><span class="line"><span class="comment">#no-browser since that is not available through an SSH session</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>可以保存配置以简化启动命令：jupyter notebook –generate-config；<br>然后在~/.jupyter/jupyter_notebook_config.py中添加：<br>c.NotebookApp.password = ‘sha1:a86…使用notebook.auth.passwd()生成的密文’<br>c.NotebookApp.open_browser = False<br>c.NotebookApp.port =8080  </p>
 </blockquote>
 <p>通过 SSH 进行远程访问：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh -N -L 8080:localhost:8080 &lt;remote_user&gt;@&lt;remote_host&gt;</div><div class="line"><span class="comment"># Add the option -N to tell SSH that I'm not going to execute any remote commands. This ensures that the connection cannot be used in that way, see this as an added security measure.</span></div><div class="line"><span class="comment"># Add the -L option that tells SSH to open up a tunnel from port 8080 on the remote machine to port 8080 in my local machine.</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -N -L 8080:localhost:8080 &lt;remote_user&gt;@&lt;remote_host&gt;</span><br><span class="line"><span class="comment"># Add the option -N to tell SSH that I'm not going to execute any remote commands. This ensures that the connection cannot be used in that way, see this as an added security measure.</span></span><br><span class="line"><span class="comment"># Add the -L option that tells SSH to open up a tunnel from port 8080 on the remote machine to port 8080 in my local machine.</span></span><br></pre></td></tr></table></figure>
 <p>现在本地可以通过<code>http://localhost:8080/</code>使用 Jupyter Notebook 啦~</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.jianshu.com/p/988cd2137139" target="_blank" rel="external">pycharm 远程服务器开发调试</a><br>[2] <a href="http://paranoth.me/2018/03/19/Pycharm%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90/" target="_blank" rel="external">Pycharm远程调试使用服务器资源</a><br>[3] <a href="https://blog.chionlab.moe/2016/02/01/use-pf-on-osx/" target="_blank" rel="external">OSX上pf的简单配置笔记</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.jianshu.com/p/988cd2137139" target="_blank" rel="noopener">pycharm 远程服务器开发调试</a><br>[2] <a href="http://paranoth.me/2018/03/19/Pycharm%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90/" target="_blank" rel="noopener">Pycharm远程调试使用服务器资源</a><br>[3] <a href="https://blog.chionlab.moe/2016/02/01/use-pf-on-osx/" target="_blank" rel="noopener">OSX上pf的简单配置笔记</a></p>
 
       
     </div>
 
     
-      
-      
 
-  <div class="post-copyright">
-    <p class="copyright-item">
-      <span>Author: </span>
-      <span>Hui Zhang</span>
-    </p>
-    <p class="copyright-item">
-      <span>Origin: </span>
-      <a href="http://huisblog.cn">http://huisblog.cn</a>
-    </p>
-    <p class="copyright-item">
-      <span>Link: </span>
-      <a href="http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/">http://huisblog.cn/2018/04/12/PyTorch/PyTorch-0/</a>
-    </p>
-
-    <p class="copyright-item lincese">
-      
-      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
-    </p>
-  </div>
-
-
-
-      
-      
+    
+    
     
 
     
-      <footer class="post-footer">
-        
-          <div class="post-tags">
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DL/" rel="tag"># DL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/tags/DL/">DL</a>
+              <a href="/2018/04/10/happilab-server/" rel="next" title="给实验室配置共有资源">
+                <i class="fa fa-chevron-left"></i> 给实验室配置共有资源
+              </a>
             
           </div>
-        
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2018/04/12/linux-cmd/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">记录一些常用的Linux命令</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
-    
-    
-      <a class="next" href="/2018/04/10/happilab-server/">
-        <span class="next-text nav-default">给实验室配置共有资源</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
 
-      </footer>
-    
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/12/linux-cmd/" rel="prev" title="记录一些常用的Linux命令">
+                记录一些常用的Linux命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
   </article>
+
+
+  </div>
 
 
           </div>
           
-  <div class="comments" id="comments">
-    
-  </div>
 
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:helenzhang2015@foxmail.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
-  </span>
   
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
 
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2018
 
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Hui Zhang</span>
-  </span>
-</div>
-      </footer>
 
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
+  </div>
 
+  <aside id="sidebar" class="sidebar">
     
-  
-
-  
-  
-
-
-
-
+      <div id="sidebar-dimmer"></div>
     
+    <div class="sidebar-inner">
 
+      
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/avatar.jpeg" alt="Hui Zhang">
+            
+              <p class="site-author-name" itemprop="name">Hui Zhang</p>
+              <p class="site-description motion-element" itemprop="description">Dream It Possible</p>
+          </div>
 
-  
-    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-  
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
-  
-    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
 
-  
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
-    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/HuiZhangDB" title="GitHub &rarr; https://github.com/HuiZhangDB" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail &rarr; mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
 
-    
-  <script type="text/html" id="search-result">
-    <article class="post">
-      <header class="post-header">
-        <h1 class="post-title">
-          <a href="$url$" class="post-link">
-            $title$
-          </a>
-        </h1>
-      </header>
-      <div class="post-content">
-        $content$
-        <div class="read-more">
-          <a href="$url$" class="read-more-link">
-            Read more..
-          </a>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.imxcy.com/" title="http://blog.imxcy.com/" rel="noopener" target="_blank">C.Y.Xu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aprilwang.me/" title="https://aprilwang.me/" rel="noopener" target="_blank">April</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.hlyue.com/" title="https://blog.hlyue.com/" rel="noopener" target="_blank">Richard</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.senorsen.com/links/" title="https://blog.senorsen.com/links/" rel="noopener" target="_blank">Senorsen</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://fujiaqi.com/" title="http://fujiaqi.com/" rel="noopener" target="_blank">Jiaqi Fu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qusic.me/" title="https://qusic.me/" rel="noopener" target="_blank">Qusic</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://imsun.net/" title="https://imsun.net/" rel="noopener" target="_blank">Sun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.sfu.ca/~leeaol/" title="https://www.sfu.ca/~leeaol/" rel="noopener" target="_blank">Leeleo3x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http://mypage.zju.edu.cn/en/zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
         </div>
       </div>
-    </article>
-  </script>
-  <script type="text/html" id="no-search-result">
-    <div class="no-result">
-      <h2>No result found!</h2>
-    </div>
-  </script>
-  <script type="text/javascript" src="/js/src/search.js?v=2.4.x"></script>
 
-  </body>
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装包管理器Anaconda"><span class="nav-number">1.1.</span> <span class="nav-text">安装包管理器Anaconda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新pip和numpy到最新版本"><span class="nav-number">1.2.</span> <span class="nav-text">更新pip和numpy到最新版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装GPU加速工具包"><span class="nav-number">1.3.</span> <span class="nav-text">安装GPU加速工具包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始安装PyTorch"><span class="nav-number">2.</span> <span class="nav-text">开始安装PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Pycharm进行远程开发与调试"><span class="nav-number">2.1.</span> <span class="nav-text">使用Pycharm进行远程开发与调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Jupyter-Notebook"><span class="nav-number">2.2.</span> <span class="nav-text">使用Jupyter Notebook</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+</body>
 </html>
