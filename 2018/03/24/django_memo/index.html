@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-09T04:15:14.000Z">
+<meta property="og:updated_time" content="2020-05-25T18:27:18.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django 网站开发初始化与自动部署流程备忘">
 <meta name="twitter:description" content="本文用以记录基于 Python + Django 开发网站时，初始化项目流程以及自动部署流程。  Python + Django + Nginx + Gunicorn">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-09 05:15:14" itemprop="dateModified" datetime="2018-08-09T05:15:14+01:00">2018-08-09</time>
+                <time title="Modified: 2020-05-25 19:27:18" itemprop="dateModified" datetime="2020-05-25T19:27:18+01:00">2020-05-25</time>
               
             
           </span>
@@ -494,12 +494,15 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># nginx.template.conf</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name DOMAIN/IP;</span><br><span class="line"></span><br><span class="line">    location /static &#123;</span><br><span class="line">        alias /path/to/project/root/static;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://unix:/tmp/DOMAIN/IP.socket;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># gunicorn-systemd.template.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Gunicorn server for DOMAIN/IP</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Restart=on-failure</span><br><span class="line">User=yourusername</span><br><span class="line">WorkingDirectory=/path/to/project/root/</span><br><span class="line">EnvironmentFile=/path/to/project/root/.env</span><br><span class="line"></span><br><span class="line">ExecStart=/path/to/gunicorn/bin/gunicorn \</span><br><span class="line">    --bind unix:/tmp/DOMAIN/IP.socket \</span><br><span class="line">    PROJECT_NAME.wsgi:application</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <p>S3. 重新加载 nginx 配置并开启 gunicorn 服务：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 让 Systemd 重新加载配置文件</span></span><br><span class="line">server$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 nginx 服务</span></span><br><span class="line">server$ sudo systemctl reload nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启 gunicorn 服务</span></span><br><span class="line">server$ sudo systemctl <span class="built_in">enable</span> gunicorn-&lt;hostname&gt;</span><br><span class="line">server$ sudo systemctl start gunicorn-&lt;hostname&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 让 Systemd 重新加载 gunicorn 配置文件</span></span><br><span class="line">server$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 nginx 服务</span></span><br><span class="line">server$ sudo systemctl reload nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启当前网站的 gunicorn 服务</span></span><br><span class="line">server$ sudo systemctl <span class="built_in">enable</span> gunicorn-&lt;hostname&gt;</span><br><span class="line">server$ sudo systemctl start gunicorn-&lt;hostname&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="自动更新部署"><a href="#自动更新部署" class="headerlink" title="自动更新部署"></a>自动更新部署</h3><p>在本地开发源代码更新，push到Git后：</p>
 <p>S1. 本地执行自动部署脚本：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> deploy_tools</span><br><span class="line">fab &lt;function_name(deploy)&gt;:host=SERVER_ADDRESS</span><br></pre></td></tr></table></figure>
 <p>S2. 服务器端重启gunicorn：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server$ sudo systemctl daemon-reload</span><br><span class="line">server$ sudo systemctl restart gunicorn-&lt;hostname&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>备忘 nginx 和 gunicorn 的日志信息：<br>nginx（网站访问日志）: /var/log/nginx/access.log error.log<br>gunicorn 状态：sudo systemctl status gunicorn-\<hostname\><br>gunicorn（网站运行日志）: sudo journalctl -u gunicorn-\<hostname\></hostname\></hostname\></p>
+</blockquote>
 <h3 id="遇到的坑们"><a href="#遇到的坑们" class="headerlink" title="遇到的坑们"></a>遇到的坑们</h3><h4 id="重装-Nginx"><a href="#重装-Nginx" class="headerlink" title="重装 Nginx"></a>重装 Nginx</h4><p>有些时候服务器上已有的 Nginx 有问题但不清楚之前的配置啊啥的，可以考虑重装 Nginx：</p>
 <blockquote>
 <p>这时候一定要彻底删除所有配置文件！有一次没删干净，重装的 Niginx 还保留着之前的配置就很凉，不管怎么改 sites-enabled 下的配置文件都始终显示欢迎界面，后来发现是 /etc/nginx 下的 nginx.conf 直接被人改了。。</p>
@@ -855,7 +858,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
