@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huisblog.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="匹配符   符号 含义    \d 数字   \w 字母或数字   \s 空白符   . 任意字符   &amp;#123;n&amp;#125;&#x2F;&amp;#123;n,m&amp;#125; n个字符&#x2F;n~m个字符   + 至少一个字符   * 任意个字符   ? 0个或者1个字符   [] 表示范围   ^ 开头   $ 结尾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python正则表达式">
+<meta property="og:url" content="http://huisblog.cn/2016/12/26/Python/PythonRE/index.html">
+<meta property="og:site_name" content="HuisBlog">
+<meta property="og:description" content="匹配符   符号 含义    \d 数字   \w 字母或数字   \s 空白符   . 任意字符   &amp;#123;n&amp;#125;&#x2F;&amp;#123;n,m&amp;#125; n个字符&#x2F;n~m个字符   + 至少一个字符   * 任意个字符   ? 0个或者1个字符   [] 表示范围   ^ 开头   $ 结尾">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-12-26T23:50:33.000Z">
+<meta property="article:modified_time" content="2021-10-21T06:13:05.462Z">
+<meta property="article:author" content="Hui Zhang">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huisblog.cn/2016/12/26/Python/PythonRE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://huisblog.cn/2016/12/26/Python/PythonRE/","path":"2016/12/26/Python/PythonRE/","title":"Python正则表达式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python正则表达式 | HuisBlog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HuisBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-blogs"><a href="/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>Blogs</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-huishome"><a href="http://zhanghui.ac.cn/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>HuisHome</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">匹配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">re模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D"><span class="nav-number">4.</span> <span class="nav-text">贪婪匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E7%BC%96%E8%AF%91"><span class="nav-number">5.</span> <span class="nav-text">预编译</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hui Zhang"
+      src="/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Hui Zhang</p>
+  <div class="site-description" itemprop="description">Dream It Possible</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuiZhangDB" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuiZhangDB" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail → mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.imxcy.com/" title="http:&#x2F;&#x2F;blog.imxcy.com&#x2F;" rel="noopener" target="_blank">C.Y.Xu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://aprilwang.me/" title="https:&#x2F;&#x2F;aprilwang.me&#x2F;" rel="noopener" target="_blank">April</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.hlyue.com/" title="https:&#x2F;&#x2F;blog.hlyue.com&#x2F;" rel="noopener" target="_blank">Richard</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.senorsen.com/links/" title="https:&#x2F;&#x2F;blog.senorsen.com&#x2F;links&#x2F;" rel="noopener" target="_blank">Senorsen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fujiaqi.com/" title="http:&#x2F;&#x2F;fujiaqi.com&#x2F;" rel="noopener" target="_blank">Jiaqi Fu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qusic.me/" title="https:&#x2F;&#x2F;qusic.me&#x2F;" rel="noopener" target="_blank">Qusic</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imsun.net/" title="https:&#x2F;&#x2F;imsun.net&#x2F;" rel="noopener" target="_blank">Sun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.sfu.ca/~leeaol/" title="https:&#x2F;&#x2F;www.sfu.ca&#x2F;~leeaol&#x2F;" rel="noopener" target="_blank">Leeleo3x</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http:&#x2F;&#x2F;mypage.zju.edu.cn&#x2F;en&#x2F;zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonRE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python正则表达式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="匹配符"><a href="#匹配符" class="headerlink" title="匹配符"></a>匹配符</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>数字</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>字母或数字</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>空白符</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>任意字符</td>
+</tr>
+<tr>
+<td><code>&#123;n&#125;</code>/<code>&#123;n,m&#125;</code></td>
+<td>n个字符/n~m个字符</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>至少一个字符</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>任意个字符</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>0个或者1个字符</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>表示范围</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>结尾</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+<h2 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">re.match(<span class="string">r&#x27;正则表达式&#x27;</span>,<span class="string">&#x27;输入字符串&#x27;</span>)</span><br><span class="line">re.splite(<span class="string">r&#x27;正则表达式&#x27;</span>,<span class="string">&#x27;输入字符串&#x27;</span>) <span class="comment">#切分字符串</span></span><br></pre></td></tr></table></figure>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = re.match(<span class="string">r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;</span>,<span class="string">&#x27;010-12345&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m</span><br><span class="line">&lt;_sre.SRE_Match <span class="built_in">object</span> at <span class="number">0x10054fc68</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>)</span><br><span class="line"><span class="string">&#x27;010-12345&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">1</span>)</span><br><span class="line"><span class="string">&#x27;010&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">2</span>)</span><br><span class="line"><span class="string">&#x27;12345&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h2><p>正则匹配默认是贪婪匹配，也就是说会匹配尽可能多的字符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.match(<span class="string">r&#x27;^(\d+)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;102300&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment">#\d+的贪婪匹配把后面的0全部匹配了，结果0*就只能匹配空字符串了</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.match(<span class="string">r&#x27;^(\d+?)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;1023&#x27;</span>, <span class="string">&#x27;00&#x27;</span>)</span><br><span class="line"><span class="comment">#加个？就可以让\d+采用非贪婪匹配（也就是尽可能少地匹配）</span></span><br></pre></td></tr></table></figure>
+<h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><p>在Python中使用正则表达式时，re模块内部会干两件事：  </p>
+<ol>
+<li>编译正则表达式，如果正则表达式的字符串本省不合法就会报错；  </li>
+<li>用编译后的正则表达式去匹配字符串。</li>
+</ol>
+<p>如果一个正则表达式需要重复使用几千次，考虑效率，可以预编译正则表达式，接下来不需要再重复编译了，直接匹配：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re_telephone = re.<span class="built_in">compile</span>(<span class="string">r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re_telephone.match(<span class="string">&#x27;010-12345&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;010&#x27;</span>, <span class="string">&#x27;12345&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re_telephone.match(<span class="string">&#x27;010-80992&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;010&#x27;</span>, <span class="string">&#x27;80992&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>感谢网上恩师<a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/12/26/Python/PythonTips/" rel="prev" title="Python小贴士">
+                  <i class="fa fa-chevron-left"></i> Python小贴士
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/12/26/Python/PythonOOP/" rel="next" title="Python面向对象编程">
+                  Python面向对象编程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.6/pdfobject.min.js","integrity":"sha256-77geM50MfxCD17eqyJR+Dag1svjJOLN+BJ2F/DMqMEY="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

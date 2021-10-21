@@ -222,7 +222,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/ApplicationMath/pe/">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonIO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/assets/avatar.jpg">
@@ -235,7 +235,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/ApplicationMath/pe/" class="post-title-link" itemprop="url">Point Esimation 点估计</a>
+          <a href="/2016/12/26/Python/PythonIO/" class="post-title-link" itemprop="url">PythonIO编程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -246,14 +246,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2017-04-27 14:40:02" itemprop="dateCreated datePublished" datetime="2017-04-27T14:40:02+00:00">2017-04-27</time>
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +261,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">应用工程数学</span></a>
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
         </span>
     </span>
 
@@ -275,628 +275,668 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Hoeffding不等式"><a href="#Hoeffding不等式" class="headerlink" title="Hoeffding不等式"></a>Hoeffding不等式</h2><p>用于确认精确度，适用于所有有界的随机变量。假设有两两独立的变量X1…Xn，其中Xi都是<code>几乎</code>有界的变量，即满足  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(ai&lt;=Xi&lt;=bi) = 1</span><br></pre></td></tr></table></figure>
-<p>则其期望满足：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P(|mean(X)-E(mean(X))|&gt;=t) &lt;= 2exp(-2(nt)^2/sum((bi - ai)^2))</span><br></pre></td></tr></table></figure>
+          <p>IO编程有两种模式，一种是<code>同步IO</code>，一种是<code>异步IO</code>。使用异步IO编写程序的性能会远远高于同步IO，但异步IO的缺点是编程模型复杂度远远高于同步IO。这里先讨论同步模式，异步IO复杂度太高，后续涉及到服务器端程序开发时再讨论。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/12/26/Python/PythonIO/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<h2 id="Regression回归分析"><a href="#Regression回归分析" class="headerlink" title="Regression回归分析"></a>Regression回归分析</h2><p>Bias-Variance Tradeoff</p>
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonModule/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonModule/" class="post-title-link" itemprop="url">Python模块</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>可以使用包<code>package</code>来组织模块，每一个包目录下都有一个<code>__init__.py</code>的文件，这个文件是必须存在的，否则Python会将其视为普通目录而不是一个包。<code>__init__.py</code>可以是空文件，也可以有Python代码，因为<code>__init__.py</code>本身就是一个模块，而它的模块名就是<code>package</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/12/26/Python/PythonModule/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonMulTask/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonMulTask/" class="post-title-link" itemprop="url">Python进程和线程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>先略过多任务部分。。蓝瘦香菇。。</p>
+<p><strong>感谢网上恩师<a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonOOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonOOP/" class="post-title-link" itemprop="url">Python面向对象编程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><code>数据封装</code>、<code>继承</code>和<code>多态</code>是面向对象的三大特点，<code>类</code>和<code>实例</code>是面向对象最重要的概念。在类中定义的函数与普通函数相比只有一点不同，就是第一个参数永远是是咧变量<code>self</code>，并且在调用时不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以仍然可以使用默认参数、可变参数和关键字参数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/12/26/Python/PythonOOP/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonRE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonRE/" class="post-title-link" itemprop="url">Python正则表达式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="匹配符"><a href="#匹配符" class="headerlink" title="匹配符"></a>匹配符</h2><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>数字</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>字母或数字</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>空白符</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>任意字符</td>
+</tr>
+<tr>
+<td><code>&#123;n&#125;</code>/<code>&#123;n,m&#125;</code></td>
+<td>n个字符/n~m个字符</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>至少一个字符</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>任意个字符</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>0个或者1个字符</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>表示范围</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>结尾</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/12/26/Python/PythonRE/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonTips/" class="post-title-link" itemprop="url">Python小贴士</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="with…as"><a href="#with…as" class="headerlink" title="with…as"></a><code>with</code>…<code>as</code></h2><p>有一些任务，可能事先需要设置（setup），事后做清理工作（teardown）。对于这种场景，Python的with语句提供了一种非常方便的处理方式。一个很好的例子是文件处理，你需要获取一个文件句柄，从文件中读取数据，然后关闭文件句柄。</p>
+<p><strong>感谢网上恩师<a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000">廖雪峰老师的Python教程</a>，本文大部分内容都摘自于此。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/PythonWeb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/PythonWeb/" class="post-title-link" itemprop="url">Python Web</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><p>HTML定义了页面的内容，CSS控制了页面元素的样式，而JavaScript负责页面的交互逻辑。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/12/26/Python/PythonWeb/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2016/12/26/Python/Socket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
+      <meta itemprop="name" content="Hui Zhang">
+      <meta itemprop="description" content="Dream It Possible">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HuisBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/26/Python/Socket/" class="post-title-link" itemprop="url">Socket通信</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 23:50:33" itemprop="dateCreated datePublished" datetime="2016-12-26T23:50:33+00:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+
+<h2 id="socket中TCP的三次握手建立连接"><a href="#socket中TCP的三次握手建立连接" class="headerlink" title="socket中TCP的三次握手建立连接"></a>socket中TCP的三次握手建立连接</h2>
+
+
+<h2 id="socket中TCP的四次握手释放连接"><a href="#socket中TCP的四次握手释放连接" class="headerlink" title="socket中TCP的四次握手释放连接"></a>socket中TCP的四次握手释放连接</h2>
+
+
+<p>TCP客户端和服务器端通信例子： </p>
 <ul>
-<li>欠拟合 underfitting 高偏差 bias</li>
-<li>过拟合 overfitting 高方差 variance</li>
+<li></li>
+<li></li>
 </ul>
-<p>解决方法：1、减少选取的特征数量；2、正则化 regularization</p>
-<h2 id="Polynomial-Curve-Fitting"><a href="#Polynomial-Curve-Fitting" class="headerlink" title="Polynomial Curve Fitting"></a>Polynomial Curve Fitting</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Y = XA </span><br><span class="line">#使用法向量计算最小二乘法结果</span><br><span class="line">A = (X.T * X) * X.T * Y</span><br></pre></td></tr></table></figure>
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/ApplicationMath/cluster/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/ApplicationMath/cluster/" class="post-title-link" itemprop="url">聚类</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-27 14:40:01" itemprop="dateCreated datePublished" datetime="2017-04-27T14:40:01+00:00">2017-04-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">应用工程数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="相似性衡量"><a href="#相似性衡量" class="headerlink" title="相似性衡量"></a>相似性衡量</h2><ul>
-<li>距离</li>
-<li>相似性</li>
-<li>核函数</li>
-<li>DTW（dynamic time warping 一种特殊的距离算法）</li>
-</ul>
-<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
-<li><p>划分聚类(Partition-based methods)<br>确认聚类数量，挑选初始点 -&gt; 类内的点足够近，类间的点足够远。</p>
-</li>
-<li><p>密度聚类(Density-based methods)<br>指定圈的最大半径，包含的最少点数量 -&gt; 画圈。</p>
-</li>
-<li><p>模型聚类(Model-based methods)<br>基于概率模型和神经网络模型 -&gt; 同一类属于同一概率分布</p>
-</li>
-<li><p>层次聚类(Hierarchical methods)<br>自下而上法 (bottom-up) 和自上而下法 (top-down)，根据linkage迭代联合或者排异。</p>
-</li>
-<li><p>网格聚类(Grid-based methods)<br>将数据空间划分为网格单元，将数据对象集映射到网格单元中。计算每个单元的密度，根据阈值确定高密度单元 -&gt; 相近的高密度单元组成类</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/27/ApplicationMath/cluster/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/MERintro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/MERintro/" class="post-title-link" itemprop="url">音乐情感识别简介</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-27 14:30:54" itemprop="dateCreated datePublished" datetime="2017-04-27T14:30:54+00:00">2017-04-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>音乐情感识别的重要性：<br>1、用于音乐检索；2、方便用户组织结构；3、增强人机交互。</p>
-</li>
-<li><p>音乐情感识别的基础框架：  </p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/27/MERintro/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/openSMILE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/openSMILE/" class="post-title-link" itemprop="url">openSMILE</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-27 14:28:08" itemprop="dateCreated datePublished" datetime="2017-04-27T14:28:08+00:00">2017-04-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>S1. 下载最新的稳定版本<a target="_blank" rel="noopener" href="http://audeering.com/technology/opensmile/#download">openSMILE</a></p>
-<p>S2. 下载依赖工具库  </p>
-<ul>
-<li>autotools(automake, autoconf, libtool, and m4)  </li>
-<li>make</li>
-<li>GNU C and C++ compiler gcc and g++</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ brew install automake</span><br><span class="line">$ brew install autoconf</span><br><span class="line">$ brew install libtool</span><br><span class="line">$ brew install m4</span><br><span class="line">$ brew install gcc</span><br></pre></td></tr></table></figure>
-
-<p>S3. 解压并安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tar-zxvf opensmile-X.X.X.tar.gz</span><br><span class="line">$ cd opensmile-X.X.X</span><br><span class="line">$ sh buildStandalone.sh</span><br></pre></td></tr></table></figure>
-
-<p>S4. 测试安装是否成功  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ SMILExtract -h</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/MERFeature/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/MERFeature/" class="post-title-link" itemprop="url">Features in MER</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-27 14:18:24" itemprop="dateCreated datePublished" datetime="2017-04-27T14:18:24+00:00">2017-04-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Analysis-Content"><a href="#Analysis-Content" class="headerlink" title="Analysis Content"></a>Analysis Content</h2><ul>
-<li>Text-Content   (Web-Documents, Social-Tags, Lyrics)  </li>
-<li>Audio-Content  （Acoustic Features）</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/27/MERFeature/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/27/journals/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/27/journals/" class="post-title-link" itemprop="url">音乐情感计算相关期刊收集整理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-27 14:13:41" itemprop="dateCreated datePublished" datetime="2017-04-27T14:13:41+00:00">2017-04-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="SCI"><a href="#SCI" class="headerlink" title="SCI"></a>SCI</h2><ul>
-<li>TIST<br><a target="_blank" rel="noopener" href="http://tist.acm.org/index.cfm">ACM Transactions on Intelligent Systems and Technology</a></li>
-<li>TAC<br><a target="_blank" rel="noopener" href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165369">IEEE Transactions on Affective Computing</a></li>
-<li>TMM<br><a target="_blank" rel="noopener" href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia">IEEE Transactions on Multimedia</a></li>
-<li>TAP<br><a target="_blank" rel="noopener" href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-signal-processing">IEEE Transactions on Signal Processing</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/27/journals/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/26/NewBlog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/26/NewBlog/" class="post-title-link" itemprop="url">Github Pages + Hexo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-26 23:50:31" itemprop="dateCreated datePublished" datetime="2017-04-26T23:50:31+00:00">2017-04-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="博客站点迁移"><a href="#博客站点迁移" class="headerlink" title="博客站点迁移"></a>博客站点迁移</h1><p>阿里云服务器快要到期不想再续，遂决定将博客迁移到免费的<code>GitHub Pages</code>上。</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>Github Pages</code>+<code>Hexo</code>(不使用<code>Jekyll</code>是因为没有找到好看的主题)  </p>
-<ol>
-<li>在GitHub上创建<code>GitHub Pages</code></li>
-<li>配置本地<code>Hexo</code>环境，并与<code>GitHub Pages</code>绑定</li>
-<li>绑定域名</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/26/NewBlog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/04/18/dl-intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/avatar.jpg">
-      <meta itemprop="name" content="Hui Zhang">
-      <meta itemprop="description" content="Dream It Possible">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HuisBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/18/dl-intro/" class="post-title-link" itemprop="url">Deep Learning 简介</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-04-18 21:18:07" itemprop="dateCreated datePublished" datetime="2017-04-18T21:18:07+00:00">2017-04-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<p>深度学习是机器学习的一种类型，机器学习的核心任务是寻找合适的模型，深度学习的核心任务是寻找合适的参数（权重和偏移）。 </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/18/dl-intro/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -953,7 +993,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -979,17 +1019,17 @@
 <p>Python基础学习</p>
 <blockquote>
 <ul>
-<li><a href="/2021/10/21/Python/PythonBasis/" title="语法基础与高级特性">语法基础与高级特性</a>  </li>
-<li><a href="/2021/10/21/Python/PythonFunction/" title="函数式编程">函数式编程</a>  </li>
-<li><a href="/2021/10/21/Python/PythonModule/" title="模块">模块</a></li>
-<li><a href="/2021/10/21/Python/PythonOOP/" title="面向对象编程">面向对象编程</a></li>
-<li><a href="/2021/10/21/Python/PythonAdOOP/" title="面向对象高级编程">面向对象高级编程</a>    </li>
-<li><a href="/2021/10/21/Python/PythonDebug/" title="错误、调试与测试">错误、调试与测试</a></li>
-<li><a href="/2021/10/21/Python/PythonIO/" title="IO编程">IO编程</a></li>
-<li><a href="/2021/10/21/Python/PythonRE/" title="正则表达式">正则表达式</a>  </li>
-<li><a href="/2021/10/21/Python/Socket/" title="Socket通信">Socket通信</a> </li>
-<li><a href="/2021/10/21/Python/PythonWeb/" title="Web简介">Web简介</a> </li>
-<li><a href="/2021/10/21/Python/PythonTips/" title="Python小贴士">Python小贴士</a> </li>
+<li><a href="/2016/12/26/Python/PythonBasis/" title="语法基础与高级特性">语法基础与高级特性</a>  </li>
+<li><a href="/2016/12/26/Python/PythonFunction/" title="函数式编程">函数式编程</a>  </li>
+<li><a href="/2016/12/26/Python/PythonModule/" title="模块">模块</a></li>
+<li><a href="/2016/12/26/Python/PythonOOP/" title="面向对象编程">面向对象编程</a></li>
+<li><a href="/2016/12/26/Python/PythonAdOOP/" title="面向对象高级编程">面向对象高级编程</a>    </li>
+<li><a href="/2016/12/26/Python/PythonDebug/" title="错误、调试与测试">错误、调试与测试</a></li>
+<li><a href="/2016/12/26/Python/PythonIO/" title="IO编程">IO编程</a></li>
+<li><a href="/2016/12/26/Python/PythonRE/" title="正则表达式">正则表达式</a>  </li>
+<li><a href="/2016/12/26/Python/Socket/" title="Socket通信">Socket通信</a> </li>
+<li><a href="/2016/12/26/Python/PythonWeb/" title="Web简介">Web简介</a> </li>
+<li><a href="/2016/12/26/Python/PythonTips/" title="Python小贴士">Python小贴士</a> </li>
 </ul>
 </blockquote>
 </blockquote>
@@ -1051,7 +1091,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+        <time title="Modified: 2021-10-21 06:13:05" itemprop="dateModified" datetime="2021-10-21T06:13:05+00:00">2021-10-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
