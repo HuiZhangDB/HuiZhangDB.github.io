@@ -1,461 +1,301 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg?v=6.6.0" color="#222">
-
-
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
-
-
-  <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="本文用于记录一些常用的Linux命令以备忘。">
-<meta name="keywords" content="linux,cmd">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huisblog.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本文用于记录一些常用的Linux命令以备忘。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一些常用的Linux命令">
 <meta property="og:url" content="http://huisblog.cn/2018/04/12/linux-cmd/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="本文用于记录一些常用的Linux命令以备忘。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://huisblog.cn/2018/04/12/linux-cmd/new_partition.png">
-<meta property="og:updated_time" content="2018-11-06T07:18:50.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-04-12T19:42:17.000Z">
+<meta property="article:modified_time" content="2021-10-21T05:53:58.199Z">
+<meta property="article:author" content="Hui Zhang">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="cmd">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录一些常用的Linux命令">
-<meta name="twitter:description" content="本文用于记录一些常用的Linux命令以备忘。">
-<meta name="twitter:image" content="http://huisblog.cn/2018/04/12/linux-cmd/new_partition.png">
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/04/12/linux-cmd/">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="HuisBlog" type="application/atom+xml">
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://huisblog.cn/2018/04/12/linux-cmd/","path":"2018/04/12/linux-cmd/","title":"记录一些常用的Linux命令"}</script>
 
-
-
-
-  <link rel="canonical" href="http://huisblog.cn/2018/04/12/linux-cmd/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>记录一些常用的Linux命令 | HuisBlog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记录一些常用的Linux命令 | HuisBlog</title>
   
-
-
-
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
 
 
 
 
   <noscript>
-  <style>
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion .logo-line-before i { left: initial; }
-    .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">HuisBlog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HuisBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
-
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-blogs"><a href="/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>Blogs</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-huishome"><a href="http://zhanghui.ac.cn/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>HuisHome</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">SSH服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-SOCKS-Proxy"><span class="nav-number">1.1.</span> <span class="nav-text">SSH SOCKS Proxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">3.</span> <span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">网络分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">文件管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91"><span class="nav-number">6.</span> <span class="nav-text">文本编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim"><span class="nav-number">6.1.</span> <span class="nav-text">vim</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Anoconda"><span class="nav-number">7.1.</span> <span class="nav-text">Anoconda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#boot-%E7%A9%BA%E9%97%B4%E4%B8%8D%E8%B6%B3"><span class="nav-number">8.1.</span> <span class="nav-text">&#x2F;boot 空间不足</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%9D%90%E6%96%99"><span class="nav-number">9.</span> <span class="nav-text">参考材料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hui Zhang"
+      src="/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Hui Zhang</p>
+  <div class="site-description" itemprop="description">Dream It Possible</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuiZhangDB" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuiZhangDB" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail → mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.imxcy.com/" title="http:&#x2F;&#x2F;blog.imxcy.com&#x2F;" rel="noopener" target="_blank">C.Y.Xu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://aprilwang.me/" title="https:&#x2F;&#x2F;aprilwang.me&#x2F;" rel="noopener" target="_blank">April</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.hlyue.com/" title="https:&#x2F;&#x2F;blog.hlyue.com&#x2F;" rel="noopener" target="_blank">Richard</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.senorsen.com/links/" title="https:&#x2F;&#x2F;blog.senorsen.com&#x2F;links&#x2F;" rel="noopener" target="_blank">Senorsen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fujiaqi.com/" title="http:&#x2F;&#x2F;fujiaqi.com&#x2F;" rel="noopener" target="_blank">Jiaqi Fu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qusic.me/" title="https:&#x2F;&#x2F;qusic.me&#x2F;" rel="noopener" target="_blank">Qusic</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imsun.net/" title="https:&#x2F;&#x2F;imsun.net&#x2F;" rel="noopener" target="_blank">Sun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.sfu.ca/~leeaol/" title="https:&#x2F;&#x2F;www.sfu.ca&#x2F;~leeaol&#x2F;" rel="noopener" target="_blank">Leeleo3x</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http:&#x2F;&#x2F;mypage.zju.edu.cn&#x2F;en&#x2F;zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2018/04/12/linux-cmd/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
       <meta itemprop="name" content="Hui Zhang">
       <meta itemprop="description" content="Dream It Possible">
-      <meta itemprop="image" content="/assets/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="HuisBlog">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记录一些常用的Linux命令
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">记录一些常用的Linux命令
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h1>
-        
+      <time title="Created: 2018-04-12 19:42:17" itemprop="dateCreated datePublished" datetime="2018-04-12T19:42:17+00:00">2018-04-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+      </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-12 19:42:17" itemprop="dateCreated datePublished" datetime="2018-04-12T19:42:17+08:00">2018-04-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-06 15:18:50" itemprop="dateModified" datetime="2018-11-06T15:18:50+08:00">2018-11-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <p>本文用于记录一些常用的Linux命令以备忘。</p>
-<a id="more"></a>
-<h2 id="SSH服务相关"><a href="#SSH服务相关" class="headerlink" title="SSH服务相关"></a>SSH服务相关</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment"># 查看当前登录的用户</span></span><br><span class="line">who /var/<span class="built_in">log</span>/wtmp <span class="comment"># 查看自从wtmp文件创建以来的每一次登陆情况 </span></span><br><span class="line"><span class="variable">$HOME</span>/.bash_history <span class="comment"># 查看每个用户的历史命令</span></span><br><span class="line"><span class="built_in">history</span> <span class="comment">#  当前用户的历史命令</span></span><br><span class="line">top <span class="comment"># 查看资源管理器</span></span><br><span class="line">pkill -<span class="built_in">kill</span> -t pts/1 <span class="comment"># 强制断开某个连接(pts/1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地终端关闭后的程序运行</span></span><br><span class="line"><span class="comment"># 创建新的窗口</span></span><br><span class="line">screen -S &lt;sessionName&gt;</span><br><span class="line"><span class="comment"># 分离当前会话</span></span><br><span class="line">Ctrl<span class="_">-a</span> d</span><br><span class="line"><span class="comment"># 查看会话</span></span><br><span class="line">screen -ls</span><br><span class="line"><span class="comment"># 恢复会话</span></span><br><span class="line">screen -r &lt;sessionName&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="SSH-SOCKS-Proxy"><a href="#SSH-SOCKS-Proxy" class="headerlink" title="SSH SOCKS Proxy"></a>SSH SOCKS Proxy</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Firstly, run OpenSSH's SOCKS proxy</span></span><br><span class="line"><span class="comment"># If you can make an SSH connection from noinet to hasinet</span></span><br><span class="line">noinet$ ssh -D 1080 hasinet</span><br><span class="line"><span class="comment"># If you can only make SSH connections to noinet from hasinet</span></span><br><span class="line">hasinet$ ssh -D 1080 localhost -t ssh -R 1080:localhost:1080 noinet</span><br><span class="line"></span><br><span class="line"><span class="comment"># Then use the SOCKS proxy by proxychains</span></span><br><span class="line"><span class="comment"># download, upload and install proxychains to noinet</span></span><br><span class="line">sudo dpkg -i ./libproxychains3_3.1-7_amd64.deb</span><br><span class="line">sudo dpkg -i ./proxychains_3.1-7_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Test connection</span></span><br><span class="line">proxychains wget www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># apt through socks</span></span><br><span class="line">sudo proxychains apt-get update</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="SSH服务相关"><a href="#SSH服务相关" class="headerlink" title="SSH服务相关"></a>SSH服务相关</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">who <span class="comment"># 查看当前登录的用户</span></span><br><span class="line">who /var/<span class="built_in">log</span>/wtmp <span class="comment"># 查看自从wtmp文件创建以来的每一次登陆情况 </span></span><br><span class="line"><span class="variable">$HOME</span>/.bash_history <span class="comment"># 查看每个用户的历史命令</span></span><br><span class="line"><span class="built_in">history</span> <span class="comment">#  当前用户的历史命令</span></span><br><span class="line">top <span class="comment"># 查看资源管理器</span></span><br><span class="line">pkill -<span class="built_in">kill</span> -t pts/1 <span class="comment"># 强制断开某个连接(pts/1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地终端关闭后的程序运行</span></span><br><span class="line"><span class="comment"># 创建新的窗口</span></span><br><span class="line">screen -S &lt;sessionName&gt;</span><br><span class="line"><span class="comment"># 分离当前会话</span></span><br><span class="line">Ctrl-a d</span><br><span class="line"><span class="comment"># 查看会话</span></span><br><span class="line">screen -ls</span><br><span class="line"><span class="comment"># 恢复会话</span></span><br><span class="line">screen -r &lt;sessionName&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="SSH-SOCKS-Proxy"><a href="#SSH-SOCKS-Proxy" class="headerlink" title="SSH SOCKS Proxy"></a>SSH SOCKS Proxy</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Firstly, run OpenSSH&#x27;s SOCKS proxy</span></span><br><span class="line"><span class="comment"># If you can make an SSH connection from noinet to hasinet</span></span><br><span class="line">noinet$ ssh -D 1080 hasinet</span><br><span class="line"><span class="comment"># If you can only make SSH connections to noinet from hasinet</span></span><br><span class="line">hasinet$ ssh -D 1080 localhost -t ssh -R 1080:localhost:1080 noinet</span><br><span class="line"></span><br><span class="line"><span class="comment"># Then use the SOCKS proxy by proxychains</span></span><br><span class="line"><span class="comment"># download, upload and install proxychains to noinet</span></span><br><span class="line">sudo dpkg -i ./libproxychains3_3.1-7_amd64.deb</span><br><span class="line">sudo dpkg -i ./proxychains_3.1-7_all.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Test connection</span></span><br><span class="line">proxychains wget www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># apt through socks</span></span><br><span class="line">sudo proxychains apt-get update</span><br></pre></td></tr></table></figure>
+
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 系统环境变量文件</span></span><br><span class="line">/etc/profile —— 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置；</span><br><span class="line">/etc/environment —— 在登录时操作系统使用的第二个文件,系统在读取你自己的profile前,设置环境文件的环境变量；</span><br><span class="line">/etc/bashrc —— 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取；</span><br><span class="line"><span class="comment"># 用户环境变量文件</span></span><br><span class="line">~/.profile —— 每个用户都可使用该文件输入专用于自己使用的shell信息，当用户登录时，该文件仅仅执行一次！默认情况下,它设置一些环境变量,执行用户的.bashrc文件；</span><br><span class="line">~/.bashrc —— 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取；</span><br></pre></td></tr></table></figure>
+
 <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>Linux高层使用<code>ufw</code>的防火墙为添加或删除简单规则提供了简易的方法，默认情况下，ufw处于禁用状态。几条<code>ufw</code>的常用命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看防火墙状态</span></span><br><span class="line">sudo ufw status</span><br><span class="line"><span class="comment"># 开启防火墙，并在系统启动时自动开启。</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line"><span class="comment"># 关闭所有外部对本机的访问，但本机访问外部正常。</span></span><br><span class="line">sudo ufw default deny</span><br><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line">sudo ufw <span class="built_in">disable</span></span><br><span class="line"><span class="comment"># 开启/禁用</span></span><br><span class="line">sudo ufw allow|deny [service]</span><br></pre></td></tr></table></figure>
+
 <p>低层用<code>iptables</code>实现访问控制：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看iptables已有规则</span></span><br><span class="line">sudo iptables -L -n -v</span><br><span class="line"><span class="comment"># 开放端口</span></span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line"><span class="comment"># 允许IP访问</span></span><br><span class="line">sudo iptables -A INPUT -s 10.xx.xx.xx -dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看iptables已有规则</span></span><br><span class="line">sudo iptables -L -n -v</span><br><span class="line"><span class="comment"># 开放端口</span></span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line"><span class="comment"># 允许IP访问</span></span><br><span class="line">sudo iptables -A INPUT -s 10.xx.xx.xx -dport 80 -j ACCEPT </span><br></pre></td></tr></table></figure>
+
 <h2 id="网络分析"><a href="#网络分析" class="headerlink" title="网络分析"></a>网络分析</h2><p><code>tcpdump</code>是基于Unix系统的命令行式的数据包嗅探工具，可以抓取流动在网卡上的数据包。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 抓取主机10.37.63.255和主机10.37.63.61或10.37.63.95的通信</span></span><br><span class="line">tcpdump host 10.37.63.255 and \(10.37.63.61 or 10.37.63.95 \)</span><br></pre></td></tr></table></figure>
+
 <p><code>nethogs</code>是一款小巧的”net top”工具，可以显示每个进程所使用的带宽，并对列表排序，将耗用带宽最多的进程排在最上面。万一出现带宽使用突然激增的情况，用户迅速打开nethogs，就可以找到导致带宽使用激增的进程。nethogs可以报告程序的进程编号（PID）、用户和路径。</p>
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前文件夹下的文件数量</span></span><br><span class="line">ls -l| grep <span class="string">"^-"</span>| wc -l</span><br><span class="line"><span class="comment"># 查看当前路径下子文件夹中的问价数量</span></span><br><span class="line">find . -maxdepth 1 -<span class="built_in">type</span> d | <span class="keyword">while</span> <span class="built_in">read</span> dir; <span class="keyword">do</span> count=$(find <span class="string">"<span class="variable">$dir</span>"</span> -<span class="built_in">type</span> f | wc -l); <span class="built_in">echo</span> <span class="string">"<span class="variable">$dir</span> : <span class="variable">$count</span>"</span>; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前文件夹下的文件数量</span></span><br><span class="line">ls -l| grep <span class="string">&quot;^-&quot;</span>| wc -l</span><br><span class="line"><span class="comment"># 查看当前路径下子文件夹中的问价数量</span></span><br><span class="line">find . -maxdepth 1 -<span class="built_in">type</span> d | <span class="keyword">while</span> <span class="built_in">read</span> dir; <span class="keyword">do</span> count=$(find <span class="string">&quot;<span class="variable">$dir</span>&quot;</span> -<span class="built_in">type</span> f | wc -l); <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$dir</span> : <span class="variable">$count</span>&quot;</span>; <span class="keyword">done</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <h2 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h2><h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跳转</span></span><br><span class="line">0: 跳转到行首。</span><br><span class="line">$: 跳转到行尾</span><br></pre></td></tr></table></figure>
+
 <h2 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h2><h3 id="Anoconda"><a href="#Anoconda" class="headerlink" title="Anoconda"></a>Anoconda</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当前版本</span></span><br><span class="line">conda -V</span><br><span class="line"><span class="comment"># 已安装的包</span></span><br><span class="line">conda list</span><br><span class="line"><span class="comment"># 当前有的虚拟环境</span></span><br><span class="line">conda env list or conda info -e </span><br><span class="line"><span class="comment"># 检查更新当前conda</span></span><br><span class="line">conda update conda </span><br><span class="line"><span class="comment"># 创建python虚拟环境</span></span><br><span class="line">conda create -n your_env_name python=X.X(2.7/3.6)</span><br><span class="line"><span class="comment"># 激活/关闭虚拟环境</span></span><br><span class="line">conda activate your_env_name</span><br><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+
 <h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>Linux磁盘管理常用三个命令为<code>df</code>、<code>du</code>和<code>fdisk</code>：</p>
 <ul>
 <li>df：列出文件系统的整体磁盘使用量</li>
@@ -464,16 +304,20 @@
 </ul>
 <p>例如查看指定文件夹内的文件占有空间：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 your_dir</span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p><a href="http://ohmystack.com/articles/LVM-basic" target="_blank" rel="noopener">Linux 磁盘操作的基本概念和命令</a><br><a href="https://www.jianshu.com/p/e6a53b53d585" target="_blank" rel="noopener">linux下挂载硬盘并合并到系统盘</a><br><a href="http://wiki.ubuntu.org.cn/%E5%AE%89%E8%A3%85%E6%96%B0%E7%A1%AC%E7%9B%98" target="_blank" rel="noopener">linux 安装新硬盘</a></p>
+<p><a target="_blank" rel="noopener" href="http://ohmystack.com/articles/LVM-basic">Linux 磁盘操作的基本概念和命令</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e6a53b53d585">linux下挂载硬盘并合并到系统盘</a><br><a target="_blank" rel="noopener" href="http://wiki.ubuntu.org.cn/%E5%AE%89%E8%A3%85%E6%96%B0%E7%A1%AC%E7%9B%98">linux 安装新硬盘</a></p>
 </blockquote>
 <p>由于实验室工作站系统磁盘容量满了，因此要将空闲磁盘挂载上来：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看磁盘及分区状况，选定空闲磁盘</span></span><br><span class="line">fdisk -l</span><br><span class="line"><span class="comment"># 首先给空闲磁盘分区：</span></span><br><span class="line">fdisk /dev/sdc</span><br><span class="line"><span class="comment"># 接下来格式化分区，sdc1 是我们刚刚新建的分区</span></span><br><span class="line">mkfs.ext4 /dev/sdc1</span><br></pre></td></tr></table></figure>
-<p>使用交互命令进行操作（如有旧分区想删除可以键入命令 ‘d’）：<br><img src="/2018/04/12/linux-cmd/new_partition.png"></p>
+<p>使用交互命令进行操作（如有旧分区想删除可以键入命令 ‘d’）：  </p>
+
+
 <p>本来想使用LVM直接给系统盘扩容，但好像不行。。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装LVM工具</span></span><br><span class="line">sudo apt-get install lvm2</span><br><span class="line"><span class="comment"># 但是 vgdisplay 无显示，说明不可用LVM扩容...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装LVM工具</span></span><br><span class="line">sudo apt-get install lvm2</span><br><span class="line"><span class="comment"># 但是 vgdisplay 无显示，说明不可用LVM扩容... </span></span><br></pre></td></tr></table></figure>
 <p>那直接挂载到文件夹用算了：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设定挂载点</span></span><br><span class="line">sudo mkdir ~/disk1</span><br><span class="line"><span class="comment"># 挂载上来</span></span><br><span class="line">sudo mount /dev/sdc1 ~/disk1</span><br><span class="line"><span class="comment"># 设置开机自动挂载</span></span><br><span class="line"><span class="comment"># 查看sdc1的UUID</span></span><br><span class="line">sudo blkid</span><br><span class="line"><span class="comment"># 将信息添加到启动文件中</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"UUID=xxx /home/data ext4 defaults,errors=remount-ro 0 1"</span> &gt;&gt; /etc/fstab</span><br><span class="line"><span class="comment"># 此时挂载了新磁盘的文件夹权限属于root，把其访问权限改为777，便于文件的读写和执行</span></span><br><span class="line">sudo chmod -R 777 /home/data</span><br><span class="line"><span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设定挂载点</span></span><br><span class="line">sudo mkdir ~/disk1</span><br><span class="line"><span class="comment"># 挂载上来</span></span><br><span class="line">sudo mount /dev/sdc1 ~/disk1</span><br><span class="line"><span class="comment"># 设置开机自动挂载</span></span><br><span class="line"><span class="comment"># 查看sdc1的UUID</span></span><br><span class="line">sudo blkid</span><br><span class="line"><span class="comment"># 将信息添加到启动文件中</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;UUID=xxx /home/data ext4 defaults,errors=remount-ro 0 1&quot;</span> &gt;&gt; /etc/fstab</span><br><span class="line"><span class="comment"># 此时挂载了新磁盘的文件夹权限属于root，把其访问权限改为777，便于文件的读写和执行</span></span><br><span class="line">sudo chmod -R 777 /home/data</span><br><span class="line"><span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="boot-空间不足"><a href="#boot-空间不足" class="headerlink" title="/boot 空间不足"></a>/boot 空间不足</h3><p>由于linux内核一直在更新，更新后，旧的内核就不在使用，但旧的内核文件还在boot里面，占据着空间，更新几次过后boot分区就会被占满，显示boot磁盘空间不足。可以将不用的内核文件删除，释放空间。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先查看已安装的内核</span></span><br><span class="line">dpkg --get-selections |grep linux-image</span><br><span class="line"><span class="comment"># 查看自己当前启动的是哪个内核</span></span><br><span class="line">uname -a</span><br><span class="line"><span class="comment"># 对于显示 install 的旧内核，删除多余的内核版本</span></span><br><span class="line">sudo apt purge linux-image-xxx-generic</span><br><span class="line"><span class="comment"># 显示 deinstall 说明：系统没有安装此内核，但是在配置文件中还残留它的信息（有可能是以前卸载的时候不彻底）</span></span><br><span class="line">sudo dpkg -P linux-image-xxx-generic</span><br></pre></td></tr></table></figure>
 <p>有可能在执行卸载命令（sudo apt purge linux-image-xxx-generic）时报错:</p>
@@ -487,493 +331,72 @@
 <p>原因是这样：在修复的时候需要下载依赖包，然而在/boot下本来就没有多余的空间了，所以无法修复依赖的问题。解决办法就是先把boot空间下几个比较大的文件暂存到别的文件夹，腾出来足够的空间来修复依赖，等依赖修复好了并且删除了旧的内核后再迁移回来（如果文件没什么用处就不用迁移回来了）。我删除了几个不用的内核文件<code>initrd.img-4.4.0-128-generic</code>以腾出空间。</p>
 <p>然后使用<code>sudo apt -f install</code>修复成功。</p>
 <p>再接着<code>sudo apt purge linux-image-xxx</code>删除没用的旧内核即可。</p>
-<h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><p>[1] <a href="https://help.ubuntu.com/lts/serverguide/firewall.html" target="_blank" rel="noopener">Ubuntu 16.04 防火墙</a><br>[2] <a href="http://einverne.github.io/post/2017/07/use-nethogs-to-check-network-traffic-per-process.html" target="_blank" rel="noopener">使用 nethogs 查看每个进程流量 </a><br>[3] <a href="https://blog.csdn.net/qq_27818541/article/details/72675954" target="_blank" rel="noopener">/boot空间不足的解决办法</a></p>
+<h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><p>[1] <a target="_blank" rel="noopener" href="https://help.ubuntu.com/lts/serverguide/firewall.html">Ubuntu 16.04 防火墙</a><br>[2] <a target="_blank" rel="noopener" href="http://einverne.github.io/post/2017/07/use-nethogs-to-check-network-traffic-per-process.html">使用 nethogs 查看每个进程流量 </a><br>[3] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27818541/article/details/72675954">/boot空间不足的解决办法</a></p>
 
-      
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/cmd/" rel="tag"># cmd</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/12/PyTorch/PyTorch-0/" rel="next" title="安装PyTorch">
-                <i class="fa fa-chevron-left"></i> 安装PyTorch
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/cmd/" rel="tag"># cmd</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/18/PyTorch/PyTorch-1/" rel="prev" title="PyTorch 基本概念和用法">
-                PyTorch 基本概念和用法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/04/12/PyTorch/PyTorch-0/" rel="prev" title="安装PyTorch">
+                  <i class="fa fa-chevron-left"></i> 安装PyTorch
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/04/18/PyTorch/PyTorch-1/" rel="next" title="PyTorch 基本概念和用法">
+                  PyTorch 基本概念和用法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/assets/avatar.jpg" alt="Hui Zhang">
-            
-              <p class="site-author-name" itemprop="name">Hui Zhang</p>
-              <p class="site-description motion-element" itemprop="description">Dream It Possible</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">61</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">categories</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/HuiZhangDB" title="GitHub &rarr; https://github.com/HuiZhangDB" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail &rarr; mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Friends
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.imxcy.com/" title="http://blog.imxcy.com/" rel="noopener" target="_blank">C.Y.Xu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://aprilwang.me/" title="https://aprilwang.me/" rel="noopener" target="_blank">April</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.hlyue.com/" title="https://blog.hlyue.com/" rel="noopener" target="_blank">Richard</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.senorsen.com/links/" title="https://blog.senorsen.com/links/" rel="noopener" target="_blank">Senorsen</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://fujiaqi.com/" title="http://fujiaqi.com/" rel="noopener" target="_blank">Jiaqi Fu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://qusic.me/" title="https://qusic.me/" rel="noopener" target="_blank">Qusic</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://imsun.net/" title="https://imsun.net/" rel="noopener" target="_blank">Sun</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.sfu.ca/~leeaol/" title="https://www.sfu.ca/~leeaol/" rel="noopener" target="_blank">Leeleo3x</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http://mypage.zju.edu.cn/en/zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH服务相关"><span class="nav-number">1.</span> <span class="nav-text">SSH服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-SOCKS-Proxy"><span class="nav-number">1.1.</span> <span class="nav-text">SSH SOCKS Proxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">2.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙"><span class="nav-number">3.</span> <span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络分析"><span class="nav-number">4.</span> <span class="nav-text">网络分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件管理"><span class="nav-number">5.</span> <span class="nav-text">文件管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本编辑"><span class="nav-number">6.</span> <span class="nav-text">文本编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim"><span class="nav-number">6.1.</span> <span class="nav-text">vim</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包管理"><span class="nav-number">7.</span> <span class="nav-text">包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Anoconda"><span class="nav-number">7.1.</span> <span class="nav-text">Anoconda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘管理"><span class="nav-number">8.</span> <span class="nav-text">磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#boot-空间不足"><span class="nav-number">8.1.</span> <span class="nav-text">/boot 空间不足</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考材料"><span class="nav-number">9.</span> <span class="nav-text">参考材料</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
-
-  
-
-  
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
-        
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  
-    <script src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-  <script src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.6/pdfobject.min.js","integrity":"sha256-77geM50MfxCD17eqyJR+Dag1svjJOLN+BJ2F/DMqMEY="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
@@ -982,45 +405,6 @@
 
 
 
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
 
 
 </body>

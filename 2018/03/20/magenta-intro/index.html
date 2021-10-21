@@ -1,962 +1,369 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg?v=6.6.0" color="#222">
-
-
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
-
-
-  <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
-<meta name="keywords" content="magenta,music,midi">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huisblog.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声&#x2F;和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Magenta生成音乐">
 <meta property="og:url" content="http://huisblog.cn/2018/03/20/magenta-intro/index.html">
 <meta property="og:site_name" content="HuisBlog">
-<meta property="og:description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-24T13:50:18.000Z">
+<meta property="og:description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声&#x2F;和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-03-20T21:44:39.000Z">
+<meta property="article:modified_time" content="2021-10-21T05:53:58.199Z">
+<meta property="article:author" content="Hui Zhang">
+<meta property="article:tag" content="music">
+<meta property="article:tag" content="midi">
+<meta property="article:tag" content="magenta">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Magenta生成音乐">
-<meta name="twitter:description" content="最近开始入门计算机自动作曲领域（算法作曲(algorithmic composition)或称自动作曲(automated composition)）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间">
+
+
+<link rel="canonical" href="http://huisblog.cn/2018/03/20/magenta-intro/">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="HuisBlog" type="application/atom+xml">
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://huisblog.cn/2018/03/20/magenta-intro/","path":"2018/03/20/magenta-intro/","title":"使用Magenta生成音乐"}</script>
 
-
-
-
-  <link rel="canonical" href="http://huisblog.cn/2018/03/20/magenta-intro/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>使用Magenta生成音乐 | HuisBlog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Magenta生成音乐 | HuisBlog</title>
   
-
-
-
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
 
 
 
 
   <noscript>
-  <style>
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion .logo-line-before i { left: initial; }
-    .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">HuisBlog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HuisBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
-
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-blogs"><a href="/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>Blogs</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-huishome"><a href="http://zhanghui.ac.cn/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>HuisHome</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%94%AF%E6%8C%81Python3%E7%9A%84Magenta%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">安装和配置支持Python3的Magenta环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Melody-RNN%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90%E6%97%8B%E5%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">使用Melody RNN模型生成旋律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E5%92%8C%E8%AF%84%E4%BC%B0MIDI%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">播放和评估MIDI效果</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hui Zhang"
+      src="/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Hui Zhang</p>
+  <div class="site-description" itemprop="description">Dream It Possible</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuiZhangDB" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuiZhangDB" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail → mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.imxcy.com/" title="http:&#x2F;&#x2F;blog.imxcy.com&#x2F;" rel="noopener" target="_blank">C.Y.Xu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://aprilwang.me/" title="https:&#x2F;&#x2F;aprilwang.me&#x2F;" rel="noopener" target="_blank">April</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.hlyue.com/" title="https:&#x2F;&#x2F;blog.hlyue.com&#x2F;" rel="noopener" target="_blank">Richard</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.senorsen.com/links/" title="https:&#x2F;&#x2F;blog.senorsen.com&#x2F;links&#x2F;" rel="noopener" target="_blank">Senorsen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fujiaqi.com/" title="http:&#x2F;&#x2F;fujiaqi.com&#x2F;" rel="noopener" target="_blank">Jiaqi Fu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qusic.me/" title="https:&#x2F;&#x2F;qusic.me&#x2F;" rel="noopener" target="_blank">Qusic</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imsun.net/" title="https:&#x2F;&#x2F;imsun.net&#x2F;" rel="noopener" target="_blank">Sun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.sfu.ca/~leeaol/" title="https:&#x2F;&#x2F;www.sfu.ca&#x2F;~leeaol&#x2F;" rel="noopener" target="_blank">Leeleo3x</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http:&#x2F;&#x2F;mypage.zju.edu.cn&#x2F;en&#x2F;zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2018/03/20/magenta-intro/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
       <meta itemprop="name" content="Hui Zhang">
       <meta itemprop="description" content="Dream It Possible">
-      <meta itemprop="image" content="/assets/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="HuisBlog">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Magenta生成音乐
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">使用Magenta生成音乐
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h1>
-        
+      <time title="Created: 2018-03-20 21:44:39" itemprop="dateCreated datePublished" datetime="2018-03-20T21:44:39+00:00">2018-03-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Music-Generation/" itemprop="url" rel="index"><span itemprop="name">Music Generation</span></a>
+        </span>
+    </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-03-20 21:44:39" itemprop="dateCreated datePublished" datetime="2018-03-20T21:44:39+08:00">2018-03-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-04-24 21:50:18" itemprop="dateModified" datetime="2018-04-24T21:50:18+08:00">2018-04-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Music-Generation/" itemprop="url" rel="index"><span itemprop="name">Music Generation</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <p>最近开始入门计算机自动作曲领域（<code>算法作曲(algorithmic composition)</code>或称<code>自动作曲(automated composition)</code>）。计算机自动生成音乐的目标有节奏和旋律、和声/和弦、伴奏(acompaniment)、复调(counterpoint)、改编(arrangement)等。它的实现一般都是基于概率理论的（或者说其数学本质就是一个概率问题）：假设旋律（一段包含音高的时间序列）服从某种概率分布，求解这个分布的近似解（或者加上和声，求解它们的联合概率分布模型）。</p>
-<p><a href="https://github.com/tensorflow/magenta/blob/master/README.md#using-magenta" target="_blank" rel="noopener">Magenta</a> 是Google Brain团队使用深度学习研究自动作曲的开源项目，本文将简单描述使用Magenta生成MIDI音乐的过程。</p>
-<a id="more"></a>
+<p><a target="_blank" rel="noopener" href="https://github.com/tensorflow/magenta/blob/master/README.md#using-magenta">Magenta</a> 是Google Brain团队使用深度学习研究自动作曲的开源项目，本文将简单描述使用Magenta生成MIDI音乐的过程。</p>
+<span id="more"></span>
+
 <h2 id="安装和配置支持Python3的Magenta环境"><a href="#安装和配置支持Python3的Magenta环境" class="headerlink" title="安装和配置支持Python3的Magenta环境"></a>安装和配置支持Python3的Magenta环境</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装[Miniconda for python3](https://conda.io/miniconda.html)</span></span><br><span class="line">$ sh Miniconda3-latest-MacOSX-x86_64.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Magenta的conda环境</span></span><br><span class="line">$ conda create -n magenta python=3.6 jupyter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活环境</span></span><br><span class="line">$ <span class="built_in">source</span> activate magenta</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装pip包</span></span><br><span class="line">pip3 install magenta</span><br></pre></td></tr></table></figure>
-<h2 id="使用Melody-RNN模型生成旋律"><a href="#使用Melody-RNN模型生成旋律" class="headerlink" title="使用Melody RNN模型生成旋律"></a>使用Melody RNN模型生成旋律</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果没有设置永久环境变量(.bashrc/.bash_profile)，需要激活conda环境</span></span><br><span class="line"><span class="comment"># $ source $HOME/miniconda3/bin/activate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载配置文件[basic_rnn/lookback_rnn/attention_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">source</span> activate magenta</span><br><span class="line">$ BUNDLE_PATH=&lt;absolute path of .mag file&gt;</span><br><span class="line">$ CONFIG=&lt;one of <span class="string">'basic_rnn'</span>, <span class="string">'lookback_rnn'</span>, or <span class="string">'attention_rnn'</span>, matching the bundle&gt;</span><br><span class="line"></span><br><span class="line">$ melody_rnn_generate \</span><br><span class="line">--config=<span class="variable">$&#123;CONFIG&#125;</span> \</span><br><span class="line">--bundle_file=<span class="variable">$&#123;BUNDLE_PATH&#125;</span> \</span><br><span class="line">--output_dir=/tmp/melody_rnn/generated \</span><br><span class="line">--num_outputs=10 \</span><br><span class="line">--num_steps=128 \</span><br><span class="line">--primer_melody=<span class="string">"[60]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># num_outputs表示生成旋律的数量</span></span><br><span class="line"><span class="comment"># num_steps表示以16分音符为单位的旋律长度</span></span><br><span class="line"><span class="comment"># primer_melody是输入的初始音高（如：小星星[60, -2, 60, -2, 67, -2, 67, -2]）</span></span><br><span class="line"><span class="comment"># primer_melody可以被primer_midi替换：--primer_midi=&lt;absolute path to magenta/models/melody_rnn/primer.mid&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="播放和评估MIDI效果"><a href="#播放和评估MIDI效果" class="headerlink" title="播放和评估MIDI效果"></a>播放和评估MIDI效果</h2><p>安装<a href="https://github.com/FluidSynth/fluidsynth" target="_blank" rel="noopener">FluidSynth</a>MIDI合成器:</p>
+
+<h2 id="使用Melody-RNN模型生成旋律"><a href="#使用Melody-RNN模型生成旋律" class="headerlink" title="使用Melody RNN模型生成旋律"></a>使用Melody RNN模型生成旋律</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果没有设置永久环境变量(.bashrc/.bash_profile)，需要激活conda环境</span></span><br><span class="line"><span class="comment"># $ source $HOME/miniconda3/bin/activate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载配置文件[basic_rnn/lookback_rnn/attention_rnn](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn)</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">source</span> activate magenta</span><br><span class="line">$ BUNDLE_PATH=&lt;absolute path of .mag file&gt;</span><br><span class="line">$ CONFIG=&lt;one of <span class="string">&#x27;basic_rnn&#x27;</span>, <span class="string">&#x27;lookback_rnn&#x27;</span>, or <span class="string">&#x27;attention_rnn&#x27;</span>, matching the bundle&gt;</span><br><span class="line"></span><br><span class="line">$ melody_rnn_generate \</span><br><span class="line">--config=<span class="variable">$&#123;CONFIG&#125;</span> \</span><br><span class="line">--bundle_file=<span class="variable">$&#123;BUNDLE_PATH&#125;</span> \</span><br><span class="line">--output_dir=/tmp/melody_rnn/generated \</span><br><span class="line">--num_outputs=10 \</span><br><span class="line">--num_steps=128 \</span><br><span class="line">--primer_melody=<span class="string">&quot;[60]&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># num_outputs表示生成旋律的数量</span></span><br><span class="line"><span class="comment"># num_steps表示以16分音符为单位的旋律长度</span></span><br><span class="line"><span class="comment"># primer_melody是输入的初始音高（如：小星星[60, -2, 60, -2, 67, -2, 67, -2]）</span></span><br><span class="line"><span class="comment"># primer_melody可以被primer_midi替换：--primer_midi=&lt;absolute path to magenta/models/melody_rnn/primer.mid&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="播放和评估MIDI效果"><a href="#播放和评估MIDI效果" class="headerlink" title="播放和评估MIDI效果"></a>播放和评估MIDI效果</h2><p>安装<a target="_blank" rel="noopener" href="https://github.com/FluidSynth/fluidsynth">FluidSynth</a>MIDI合成器:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install fluidsynth</span><br></pre></td></tr></table></figure>
-<p>并下载<a href="https://musescore.org/zh-hans/node/36171#sf2-soundfonts" target="_blank" rel="noopener">SoundFont</a>，为MIDI合成器提供乐器录音和音效。</p>
+
+<p>并下载<a target="_blank" rel="noopener" href="https://musescore.org/zh-hans/node/36171#sf2-soundfonts">SoundFont</a>，为MIDI合成器提供乐器录音和音效。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fluidsynth /path/to/soundfont.sf2 /path/to/MIDI.mid</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>或者其实可以直接使用<a href="https://musescore.org/zh-hans/download" target="_blank" rel="noopener">musescore</a>来播放，好处是有GUI可以直接可视化乐谱！</p>
+<p>或者其实可以直接使用<a target="_blank" rel="noopener" href="https://musescore.org/zh-hans/download">musescore</a>来播放，好处是有GUI可以直接可视化乐谱！</p>
 </blockquote>
 
-      
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/magenta/" rel="tag"># magenta</a>
-          
-            <a href="/tags/music/" rel="tag"># music</a>
-          
-            <a href="/tags/midi/" rel="tag"># midi</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/12/basic-music/" rel="next" title="基本乐理知识">
-                <i class="fa fa-chevron-left"></i> 基本乐理知识
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/music/" rel="tag"># music</a>
+              <a href="/tags/midi/" rel="tag"># midi</a>
+              <a href="/tags/magenta/" rel="tag"># magenta</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/23/web-tdd/" rel="prev" title="《TDD - Python Web》学习笔记">
-                《TDD - Python Web》学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/03/12/basic-music/" rel="prev" title="基本乐理知识">
+                  <i class="fa fa-chevron-left"></i> 基本乐理知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/03/23/web-tdd/" rel="next" title="《TDD - Python Web》学习笔记">
+                  《TDD - Python Web》学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/assets/avatar.jpg" alt="Hui Zhang">
-            
-              <p class="site-author-name" itemprop="name">Hui Zhang</p>
-              <p class="site-description motion-element" itemprop="description">Dream It Possible</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">61</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">categories</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/HuiZhangDB" title="GitHub &rarr; https://github.com/HuiZhangDB" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail &rarr; mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Friends
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.imxcy.com/" title="http://blog.imxcy.com/" rel="noopener" target="_blank">C.Y.Xu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://aprilwang.me/" title="https://aprilwang.me/" rel="noopener" target="_blank">April</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.hlyue.com/" title="https://blog.hlyue.com/" rel="noopener" target="_blank">Richard</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.senorsen.com/links/" title="https://blog.senorsen.com/links/" rel="noopener" target="_blank">Senorsen</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://fujiaqi.com/" title="http://fujiaqi.com/" rel="noopener" target="_blank">Jiaqi Fu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://qusic.me/" title="https://qusic.me/" rel="noopener" target="_blank">Qusic</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://imsun.net/" title="https://imsun.net/" rel="noopener" target="_blank">Sun</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.sfu.ca/~leeaol/" title="https://www.sfu.ca/~leeaol/" rel="noopener" target="_blank">Leeleo3x</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http://mypage.zju.edu.cn/en/zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和配置支持Python3的Magenta环境"><span class="nav-number">1.</span> <span class="nav-text">安装和配置支持Python3的Magenta环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Melody-RNN模型生成旋律"><span class="nav-number">2.</span> <span class="nav-text">使用Melody RNN模型生成旋律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#播放和评估MIDI效果"><span class="nav-number">3.</span> <span class="nav-text">播放和评估MIDI效果</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
-
-  
-
-  
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
-        
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  
-    <script src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-  <script src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.6/pdfobject.min.js","integrity":"sha256-77geM50MfxCD17eqyJR+Dag1svjJOLN+BJ2F/DMqMEY="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
@@ -965,45 +372,6 @@
 
 
 
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
 
 
 </body>

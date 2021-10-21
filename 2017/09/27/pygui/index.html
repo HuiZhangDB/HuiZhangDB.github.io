@@ -1,444 +1,290 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png?v=6.6.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png?v=6.6.0">
-
-
-  <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg?v=6.6.0" color="#222">
-
-
-  <link rel="manifest" href="/assets/favicons/site.webmanifest">
-
-
-  <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.6.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
-<meta name="keywords" content="PyGUI">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huisblog.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python GUI">
 <meta property="og:url" content="http://huisblog.cn/2017/09/27/pygui/index.html">
 <meta property="og:site_name" content="HuisBlog">
 <meta property="og:description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-27T06:41:16.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-27T14:39:06.000Z">
+<meta property="article:modified_time" content="2021-10-21T05:53:58.199Z">
+<meta property="article:author" content="Hui Zhang">
+<meta property="article:tag" content="PyGUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python GUI">
-<meta name="twitter:description" content="最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的Python来写。在Python图形界面编程中常用的工具包有：">
+
+
+<link rel="canonical" href="http://huisblog.cn/2017/09/27/pygui/">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="HuisBlog" type="application/atom+xml">
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://huisblog.cn/2017/09/27/pygui/","path":"2017/09/27/pygui/","title":"Python GUI"}</script>
 
-
-
-
-  <link rel="canonical" href="http://huisblog.cn/2017/09/27/pygui/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Python GUI | HuisBlog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python GUI | HuisBlog</title>
   
-
-
-
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?6e0afd1cf600be3a82f747e8c14cd52d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
 
 
 
 
   <noscript>
-  <style>
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion .logo-line-before i { left: initial; }
-    .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">HuisBlog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">HuisBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
-
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-blogs"><a href="/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>Blogs</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-huishome"><a href="http://zhanghui.ac.cn/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>HuisHome</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PyQt"><span class="nav-number">1.</span> <span class="nav-text">PyQt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-PyInstaller-%E6%89%93%E5%8C%85%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">使用 PyInstaller 打包可执行程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E5%9C%A8%E6%89%93%E5%8C%85%E5%90%8E%E7%B3%BB%E7%BB%9F%E8%B7%AF%E5%BE%84%E4%BC%9A%E5%8F%91%E7%94%9F%E5%8F%98%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">注意在打包后系统路径会发生变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">打包数据文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E6%89%93%E5%8C%85"><span class="nav-number">2.3.</span> <span class="nav-text">开始打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%EF%BC%9A%E4%BD%BF%E7%94%A8PyQt%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">附：使用PyQt过程中遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QSound%E4%B8%8D%E8%83%BD%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90"><span class="nav-number">3.1.</span> <span class="nav-text">QSound不能播放音乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlayer%E6%B2%A1%E6%9C%89%E5%A3%B0%E9%9F%B3"><span class="nav-number">3.2.</span> <span class="nav-text">QMediaPlayer没有声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlayer-duration%E6%95%B0%E6%8D%AE%E9%94%99%E8%AF%AF"><span class="nav-number">3.3.</span> <span class="nav-text">QMediaPlayer.duration数据错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlaylist%E5%BE%AA%E7%8E%AF%E6%92%AD%E6%94%BE"><span class="nav-number">3.4.</span> <span class="nav-text">QMediaPlaylist循环播放</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hui Zhang"
+      src="/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Hui Zhang</p>
+  <div class="site-description" itemprop="description">Dream It Possible</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuiZhangDB" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuiZhangDB" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail → mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.imxcy.com/" title="http:&#x2F;&#x2F;blog.imxcy.com&#x2F;" rel="noopener" target="_blank">C.Y.Xu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://aprilwang.me/" title="https:&#x2F;&#x2F;aprilwang.me&#x2F;" rel="noopener" target="_blank">April</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.hlyue.com/" title="https:&#x2F;&#x2F;blog.hlyue.com&#x2F;" rel="noopener" target="_blank">Richard</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.senorsen.com/links/" title="https:&#x2F;&#x2F;blog.senorsen.com&#x2F;links&#x2F;" rel="noopener" target="_blank">Senorsen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fujiaqi.com/" title="http:&#x2F;&#x2F;fujiaqi.com&#x2F;" rel="noopener" target="_blank">Jiaqi Fu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qusic.me/" title="https:&#x2F;&#x2F;qusic.me&#x2F;" rel="noopener" target="_blank">Qusic</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imsun.net/" title="https:&#x2F;&#x2F;imsun.net&#x2F;" rel="noopener" target="_blank">Sun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.sfu.ca/~leeaol/" title="https:&#x2F;&#x2F;www.sfu.ca&#x2F;~leeaol&#x2F;" rel="noopener" target="_blank">Leeleo3x</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http:&#x2F;&#x2F;mypage.zju.edu.cn&#x2F;en&#x2F;zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://huisblog.cn/2017/09/27/pygui/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/avatar.jpg">
       <meta itemprop="name" content="Hui Zhang">
       <meta itemprop="description" content="Dream It Possible">
-      <meta itemprop="image" content="/assets/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="HuisBlog">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python GUI
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Python GUI
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h1>
-        
+      <time title="Created: 2017-09-27 14:39:06" itemprop="dateCreated datePublished" datetime="2017-09-27T14:39:06+00:00">2017-09-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-21 05:53:58" itemprop="dateModified" datetime="2021-10-21T05:53:58+00:00">2021-10-21</time>
+      </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-27 14:39:06 / Modified: 14:41:16" itemprop="dateCreated datePublished" datetime="2017-09-27T14:39:06+08:00">2017-09-27</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <p>最近的实验需要做一个桌面小程序来收集实验信息，决定选用跨平台的<code>Python</code>来写。<br>在<code>Python图形界面编程</code>中常用的工具包有：</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <ul>
-<li><a href="https://www.riverbankcomputing.com/software/pyqt" target="_blank" rel="noopener">PyQt</a> (Python和Qt库的成功融合)</li>
-<li><a href="https://www.wxpython.org/" target="_blank" rel="noopener">wxPython</a> (wxWidgets的Python封装)</li>
-<li><a href="https://wiki.python.org/moin/TkInter/" target="_blank" rel="noopener">Tkinter</a> (Python的标准GUI工具包)</li>
+<li><a target="_blank" rel="noopener" href="https://www.riverbankcomputing.com/software/pyqt">PyQt</a> (Python和Qt库的成功融合)</li>
+<li><a target="_blank" rel="noopener" href="https://www.wxpython.org/">wxPython</a> (wxWidgets的Python封装)</li>
+<li><a target="_blank" rel="noopener" href="https://wiki.python.org/moin/TkInter/">Tkinter</a> (Python的标准GUI工具包)</li>
 </ul>
 <p>这次使用的是<code>PyQt</code>（相关文档和资料比较多）。</p>
-<h2 id="PyQt"><a href="#PyQt" class="headerlink" title="PyQt"></a>PyQt</h2><p>使用Qt开发程序可以从<code>Qt Widgets</code>或/和<code>Qt Quick</code>开始（<a href="http://blog.csdn.net/liang19890820/article/details/54141552" target="_blank" rel="noopener">Qt Widgets、QML、Qt Quick的区别</a>）。我们对实验工具的界面要求不高，可以直接使用<code>Qt Widgets</code>开发。它有几个重要的概念：</p>
+<h2 id="PyQt"><a href="#PyQt" class="headerlink" title="PyQt"></a>PyQt</h2><p>使用Qt开发程序可以从<code>Qt Widgets</code>或/和<code>Qt Quick</code>开始（<a target="_blank" rel="noopener" href="http://blog.csdn.net/liang19890820/article/details/54141552">Qt Widgets、QML、Qt Quick的区别</a>）。我们对实验工具的界面要求不高，可以直接使用<code>Qt Widgets</code>开发。它有几个重要的概念：</p>
 <p>C1. UI 界面实现</p>
 <blockquote>
 <p>QApplication</p>
@@ -451,22 +297,27 @@
 <p>Signal &amp; Slot （信号槽机制）</p>
 </blockquote>
 <h2 id="使用-PyInstaller-打包可执行程序"><a href="#使用-PyInstaller-打包可执行程序" class="headerlink" title="使用 PyInstaller 打包可执行程序"></a>使用 PyInstaller 打包可执行程序</h2><h3 id="注意在打包后系统路径会发生变化"><a href="#注意在打包后系统路径会发生变化" class="headerlink" title="注意在打包后系统路径会发生变化"></a>注意在打包后系统路径会发生变化</h3><p>平时几种常用的获取当前运行脚本路径的方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">print(__file__)</span><br><span class="line">print(os.path.realpath(__file__))</span><br><span class="line">print(<span class="string">'using sys.executable:'</span>, repr(os.path.dirname(os.path.realpath(sys.executable))))</span><br><span class="line">print(<span class="string">'using sys.argv[0]:'</span>, repr(os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))))</span><br><span class="line">print(os.path.split(sys.argv[<span class="number">0</span>]))</span><br><span class="line">print(sys.path[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(__file__)</span><br><span class="line"><span class="built_in">print</span>(os.path.realpath(__file__))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;using sys.executable:&#x27;</span>, <span class="built_in">repr</span>(os.path.dirname(os.path.realpath(sys.executable))))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;using sys.argv[0]:&#x27;</span>, <span class="built_in">repr</span>(os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))))</span><br><span class="line"><span class="built_in">print</span>(os.path.split(sys.argv[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(sys.path[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 <p>在工程中的运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/Users/huizhang/Desktop/testpath/path.py</span><br><span class="line">/Users/huizhang/Desktop/testpath/path.py</span><br><span class="line">using sys.executable: <span class="string">'/usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/bin'</span></span><br><span class="line">using sys.argv[<span class="number">0</span>]: <span class="string">'/Users/huizhang/Desktop/testpath'</span></span><br><span class="line">(<span class="string">'/Users/huizhang/Desktop/testpath'</span>, <span class="string">'path.py'</span>)</span><br><span class="line">/Users/huizhang/Desktop/testpath</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/Users/huizhang/Desktop/testpath/path.py</span><br><span class="line">/Users/huizhang/Desktop/testpath/path.py</span><br><span class="line">using sys.executable: <span class="string">&#x27;/usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/bin&#x27;</span></span><br><span class="line">using sys.argv[<span class="number">0</span>]: <span class="string">&#x27;/Users/huizhang/Desktop/testpath&#x27;</span></span><br><span class="line">(<span class="string">&#x27;/Users/huizhang/Desktop/testpath&#x27;</span>, <span class="string">&#x27;path.py&#x27;</span>)</span><br><span class="line">/Users/huizhang/Desktop/testpath</span><br></pre></td></tr></table></figure>
+
 <p>打包后的运行结果：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">path.py</span><br><span class="line">/Users/huizhang/path.py</span><br><span class="line">using sys.executable: <span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span></span><br><span class="line">using sys.argv[0]: <span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span></span><br><span class="line">(<span class="string">'/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS'</span>, <span class="string">'path'</span>)</span><br><span class="line">/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS/base_library.zip</span><br></pre></td></tr></table></figure>
-<h3 id="打包数据文件"><a href="#打包数据文件" class="headerlink" title="打包数据文件"></a>打包数据文件</h3><p><code>pyinstaller</code>命令不能直接将工程中的数据文件一起打包，要实现这一步必须修改<code>.spec</code>文件。<a href="http://legendtkl.com/2015/11/06/pyinstaller/" target="_blank" rel="noopener">legendtkl的博客</a>中有<code>PyInstaller</code>的简介中文教程，也可以直接查看<a href="https://pythonhosted.org/PyInstaller/spec-files.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">path.py</span><br><span class="line">/Users/huizhang/path.py</span><br><span class="line">using sys.executable: <span class="string">&#x27;/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS&#x27;</span></span><br><span class="line">using sys.argv[0]: <span class="string">&#x27;/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS&#x27;</span></span><br><span class="line">(<span class="string">&#x27;/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS&#x27;</span>, <span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">/Users/huizhang/Desktop/testpath/dist/path.app/Contents/MacOS/base_library.zip</span><br></pre></td></tr></table></figure>
+
+<h3 id="打包数据文件"><a href="#打包数据文件" class="headerlink" title="打包数据文件"></a>打包数据文件</h3><p><code>pyinstaller</code>命令不能直接将工程中的数据文件一起打包，要实现这一步必须修改<code>.spec</code>文件。<a target="_blank" rel="noopener" href="http://legendtkl.com/2015/11/06/pyinstaller/">legendtkl的博客</a>中有<code>PyInstaller</code>的简介中文教程，也可以直接查看<a target="_blank" rel="noopener" href="https://pythonhosted.org/PyInstaller/spec-files.html">官方文档</a>。</p>
 <p>添加数据文件只需要在<code>a.datas</code>里面添加二元组即可，二元组第一个参数<code>&#39;/mygame/data&#39;</code>是要添加的数据文件的本地索引，第二个参数<code>&#39;data&#39;</code>是在打包后的工程中的位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">added_files = [</span><br><span class="line">         ( &apos;/mygame/data&apos;, &apos;data&apos; ),</span><br><span class="line">         ( &apos;/mygame/sfx/*.mp3&apos;, &apos;sfx&apos; ),</span><br><span class="line">         ( &apos;src/README.txt&apos;, &apos;.&apos; )</span><br><span class="line">         ]</span><br><span class="line">         </span><br><span class="line">    a = Analysis(...</span><br><span class="line">         datas = added_files,</span><br><span class="line">         ...</span><br><span class="line">         )</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">added_files = [</span><br><span class="line">         ( &#x27;/mygame/data&#x27;, &#x27;data&#x27; ),</span><br><span class="line">         ( &#x27;/mygame/sfx/*.mp3&#x27;, &#x27;sfx&#x27; ),</span><br><span class="line">         ( &#x27;src/README.txt&#x27;, &#x27;.&#x27; )</span><br><span class="line">         ]</span><br><span class="line">         </span><br><span class="line">    a = Analysis(...</span><br><span class="line">         datas = added_files,</span><br><span class="line">         ...</span><br><span class="line">         )</span><br></pre></td></tr></table></figure>
 <p><code>PyInstaller</code>会把打包的位置存在<code>sys._MEIPASS</code>，可以测试一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = os.path.join(<span class="string">"res"</span>,<span class="string">"img"</span>,<span class="string">"test.jpg"</span>)</span><br><span class="line"></span><br><span class="line">base_path0 = os.path.abspath(<span class="string">"."</span>)</span><br><span class="line">base_path1 = os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    base_path2 = sys._MEIPASS</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    <span class="comment"># PyInstaller打包前sys._MEIPASS不存在</span></span><br><span class="line">    base_path2 = os.path.abspath(<span class="string">"."</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"img0: "</span>,os.path.join(base_path0,img))</span><br><span class="line">print(<span class="string">"img1: "</span>,os.path.join(base_path1,img))</span><br><span class="line">print(<span class="string">"img2: "</span>,os.path.join(base_path2,img))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = os.path.join(<span class="string">&quot;res&quot;</span>,<span class="string">&quot;img&quot;</span>,<span class="string">&quot;test.jpg&quot;</span>)</span><br><span class="line"></span><br><span class="line">base_path0 = os.path.abspath(<span class="string">&quot;.&quot;</span>)</span><br><span class="line">base_path1 = os.path.dirname(os.path.realpath(sys.argv[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    base_path2 = sys._MEIPASS</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    <span class="comment"># PyInstaller打包前sys._MEIPASS不存在</span></span><br><span class="line">    base_path2 = os.path.abspath(<span class="string">&quot;.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;img0: &quot;</span>,os.path.join(base_path0,img))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;img1: &quot;</span>,os.path.join(base_path1,img))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;img2: &quot;</span>,os.path.join(base_path2,img))</span><br></pre></td></tr></table></figure>
 <p>工程中的运行结果都一样：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路径都正确</span></span><br><span class="line">img0:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg </span><br><span class="line">img1:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg</span><br><span class="line">img2:  /Users/huizhang/Desktop/testinstaller/res/img/test.jpg</span><br></pre></td></tr></table></figure>
 <p>打包后：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># img0错误，img1和img2正确</span></span><br><span class="line">img0:  /Users/huizhang/res/img/test.jpg </span><br><span class="line">img1:  /Users/huizhang/Desktop/testinstaller/dist/test.app/Contents/MacOS/res/img/test.jpg</span><br><span class="line">img2:  /Users/huizhang/Desktop/testinstaller/dist/test.app/Contents/MacOS/res/img/test.jpg</span><br></pre></td></tr></table></figure>
 <h3 id="开始打包"><a href="#开始打包" class="headerlink" title="开始打包"></a>开始打包</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> my_project_dir</span><br><span class="line"><span class="comment"># -w 参数指定打包为一个文件(.app)，-n 设置应用名，-i 设置应用图标。</span></span><br><span class="line">pyi-makespec -w -n MyAppName -i appicon.icns MyMainScript.py</span><br><span class="line"><span class="comment"># 修改.spec文件中的 datas 以添加数据文件</span></span><br><span class="line">pyinstaller MyAppName.spec</span><br><span class="line"><span class="comment"># 生成 built 文件夹和 dist 文件夹，打包好的文件在 dist 中。</span></span><br></pre></td></tr></table></figure>
-<h2 id="附：使用PyQt过程中遇到的问题"><a href="#附：使用PyQt过程中遇到的问题" class="headerlink" title="附：使用PyQt过程中遇到的问题"></a>附：使用PyQt过程中遇到的问题</h2><h3 id="QSound不能播放音乐"><a href="#QSound不能播放音乐" class="headerlink" title="QSound不能播放音乐"></a>QSound不能播放音乐</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QSoundEffect(qaudio): Error decoding source</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="附：使用PyQt过程中遇到的问题"><a href="#附：使用PyQt过程中遇到的问题" class="headerlink" title="附：使用PyQt过程中遇到的问题"></a>附：使用PyQt过程中遇到的问题</h2><h3 id="QSound不能播放音乐"><a href="#QSound不能播放音乐" class="headerlink" title="QSound不能播放音乐"></a>QSound不能播放音乐</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QSoundEffect(qaudio): Error decoding source  </span><br></pre></td></tr></table></figure>
+
 <p>QSound只能播放<code>.wav</code></p>
 <h3 id="QMediaPlayer没有声音"><a href="#QMediaPlayer没有声音" class="headerlink" title="QMediaPlayer没有声音"></a>QMediaPlayer没有声音</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no error but no sound</span><br></pre></td></tr></table></figure>
 <p>QUrl.fromLocalFile只能使用绝对路径</p>
@@ -474,489 +325,69 @@
 <p><code>QMediaPlayer.setMedia()</code>是异步执行的，如果在这个方法后马上调用<code>QMediaPlayer.duration()</code>得到的将是错误的值，因为<code>QMediaPlayer.setMedia()</code>还未设置好。应该在<code>durationchanged</code>信号发出后重新给其赋值。</p>
 <h3 id="QMediaPlaylist循环播放"><a href="#QMediaPlaylist循环播放" class="headerlink" title="QMediaPlaylist循环播放"></a>QMediaPlaylist循环播放</h3><p>设置只播一首歌时<code>setPlaybackMode(CurrentItemOnce)</code>，每次本首歌曲播完index会被重置为<code>-1</code>。</p>
 
-      
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PyGUI/" rel="tag"># PyGUI</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/09/11/recsys/" rel="next" title="推荐系统(Recommender Systems)">
-                <i class="fa fa-chevron-left"></i> 推荐系统(Recommender Systems)
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/PyGUI/" rel="tag"># PyGUI</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/24/ffmpeg/" rel="prev" title="FFmpeg实用操作">
-                FFmpeg实用操作 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/09/11/recsys/" rel="prev" title="推荐系统(Recommender Systems)">
+                  <i class="fa fa-chevron-left"></i> 推荐系统(Recommender Systems)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/10/24/ffmpeg/" rel="next" title="FFmpeg实用操作">
+                  FFmpeg实用操作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/assets/avatar.jpg" alt="Hui Zhang">
-            
-              <p class="site-author-name" itemprop="name">Hui Zhang</p>
-              <p class="site-description motion-element" itemprop="description">Dream It Possible</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">61</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">categories</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/HuiZhangDB" title="GitHub &rarr; https://github.com/HuiZhangDB" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:helenzhang2015@foxmail.com" title="E-Mail &rarr; mailto:helenzhang2015@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Friends
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.imxcy.com/" title="http://blog.imxcy.com/" rel="noopener" target="_blank">C.Y.Xu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://aprilwang.me/" title="https://aprilwang.me/" rel="noopener" target="_blank">April</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.hlyue.com/" title="https://blog.hlyue.com/" rel="noopener" target="_blank">Richard</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://blog.senorsen.com/links/" title="https://blog.senorsen.com/links/" rel="noopener" target="_blank">Senorsen</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://fujiaqi.com/" title="http://fujiaqi.com/" rel="noopener" target="_blank">Jiaqi Fu</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://qusic.me/" title="https://qusic.me/" rel="noopener" target="_blank">Qusic</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://imsun.net/" title="https://imsun.net/" rel="noopener" target="_blank">Sun</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.sfu.ca/~leeaol/" title="https://www.sfu.ca/~leeaol/" rel="noopener" target="_blank">Leeleo3x</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://mypage.zju.edu.cn/en/zhangkejun" title="http://mypage.zju.edu.cn/en/zhangkejun" rel="noopener" target="_blank">Kejun Zhang</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PyQt"><span class="nav-number">1.</span> <span class="nav-text">PyQt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-PyInstaller-打包可执行程序"><span class="nav-number">2.</span> <span class="nav-text">使用 PyInstaller 打包可执行程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意在打包后系统路径会发生变化"><span class="nav-number">2.1.</span> <span class="nav-text">注意在打包后系统路径会发生变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包数据文件"><span class="nav-number">2.2.</span> <span class="nav-text">打包数据文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始打包"><span class="nav-number">2.3.</span> <span class="nav-text">开始打包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附：使用PyQt过程中遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">附：使用PyQt过程中遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QSound不能播放音乐"><span class="nav-number">3.1.</span> <span class="nav-text">QSound不能播放音乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlayer没有声音"><span class="nav-number">3.2.</span> <span class="nav-text">QMediaPlayer没有声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlayer-duration数据错误"><span class="nav-number">3.3.</span> <span class="nav-text">QMediaPlayer.duration数据错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QMediaPlaylist循环播放"><span class="nav-number">3.4.</span> <span class="nav-text">QMediaPlaylist循环播放</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
-
-  
-
-  
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
-        
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
 
 
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hui Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  
-    <script src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-  <script src="/js/src/utils.js?v=6.6.0"></script>
-
-  <script src="/js/src/motion.js?v=6.6.0"></script>
-
-
-
-  
-  
-
-  
-  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
-<script src="/js/src/post-details.js?v=6.6.0"></script>
-
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.6/pdfobject.min.js","integrity":"sha256-77geM50MfxCD17eqyJR+Dag1svjJOLN+BJ2F/DMqMEY="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
@@ -965,45 +396,6 @@
 
 
 
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
 
 
 </body>
