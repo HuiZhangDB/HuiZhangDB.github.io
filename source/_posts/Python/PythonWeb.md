@@ -4,6 +4,7 @@ tags:
   - python
 categories:
   - Python基础
+date: 2016-12-26 23:50:33
 ---
 
 ## HTML简介
@@ -27,7 +28,6 @@ Model-View-Controller，”模型-视图-控制器“。
 **感谢网上恩师[廖雪峰老师的Python教程][廖雪峰老师的教程]，本文大部分内容都摘自于此。**
 
 [廖雪峰老师的教程]: http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000
-
 
 
 
